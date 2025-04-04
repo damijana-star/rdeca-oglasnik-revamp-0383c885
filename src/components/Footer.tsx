@@ -44,17 +44,6 @@ export const Footer = () => {
           </div>
 
           <div>
-            <h3 className="font-bold mb-4">Kategorije</h3>
-            <ul className="space-y-2">
-              <li><a href="#" className="text-gray-600 hover:text-primary">Smuči</a></li>
-              <li><a href="#" className="text-gray-600 hover:text-primary">Smučarski čevlji</a></li>
-              <li><a href="#" className="text-gray-600 hover:text-primary">Snowboardi</a></li>
-              <li><a href="#" className="text-gray-600 hover:text-primary">Oblačila</a></li>
-              <li><a href="#" className="text-gray-600 hover:text-primary">Dodatki</a></li>
-            </ul>
-          </div>
-
-          <div>
             <h3 className="font-bold mb-4">Povezave</h3>
             <ul className="space-y-2">
               <li><a href="#" className="text-gray-600 hover:text-primary">O nas</a></li>

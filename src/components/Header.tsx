@@ -21,9 +21,6 @@ export const Header = () => {
               Domov
             </a>
             <a href="#" className="text-foreground hover:text-primary font-medium">
-              Kategorije
-            </a>
-            <a href="#" className="text-foreground hover:text-primary font-medium">
               O nas
             </a>
             <a href="#" className="text-foreground hover:text-primary font-medium">
@@ -57,9 +54,6 @@ export const Header = () => {
             <nav className="flex flex-col space-y-4">
               <a href="/" className="text-foreground hover:text-primary font-medium">
                 Domov
-              </a>
-              <a href="#" className="text-foreground hover:text-primary font-medium">
-                Kategorije
               </a>
               <a href="#" className="text-foreground hover:text-primary font-medium">
                 O nas
