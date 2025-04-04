@@ -181,8 +181,8 @@ export const ContactForm = () => {
               <div>
                 <h4 className="font-medium mb-1">Naslov</h4>
                 <address className="text-gray-600 not-italic">
-                  Smučarska ulica 42<br />
-                  1000 Ljubljana<br />
+                  Volče 88<br />
+                  5220 Tolmin<br />
                   Slovenija
                 </address>
               </div>

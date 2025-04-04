@@ -28,7 +28,7 @@ export const Footer = () => {
           <div id="about">
             <h3 className="font-bold text-lg mb-4 text-dark-red">NANOSKI OGLASNIK</h3>
             <p className="text-gray-600 mb-4">
-              Vodilni specializirani oglasnik za zimsko športno opremo v Sloveniji.
+              Oglasnik za NOTRANJSKO-KRAŠKO, OBALNO-KRAŠKO in GORIŠKO regijo.
             </p>
             <div className="flex space-x-4">
               <a href="#" className="text-dark-red hover:text-white hover:bg-dark-red rounded-full p-2 transition-colors">

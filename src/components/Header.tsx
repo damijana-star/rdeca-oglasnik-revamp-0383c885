@@ -72,23 +72,6 @@ export const Header = () => {
           </div>
         )}
       </div>
-
-      {/* Stats Bar - Removed duplicated icons */}
-      <div className="bg-gradient-to-r from-dark-red to-dark-red/90 text-white py-3">
-        <div className="container">
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-4 text-center">
-            <div className="flex items-center justify-center">
-              <span className="font-medium text-sm md:text-base">17 let zadovoljnih strank</span>
-            </div>
-            <div className="flex items-center justify-center">
-              <span className="font-medium text-sm md:text-base">53000 izvodov</span>
-            </div>
-            <div className="flex items-center justify-center">
-              <span className="font-medium text-sm md:text-base">168000 potencialnih strank</span>
-            </div>
-          </div>
-        </div>
-      </div>
     </header>
   );
 };

@@ -17,7 +17,7 @@ export const Hero = () => {
       {/* Content */}
       <div className="container relative z-10">
         <div className="max-w-3xl mx-auto text-center">
-          <p className="font-body text-xl md:text-2xl mb-8 font-bold">
+          <p className="font-body text-xl md:text-2xl mb-8 font-bold uppercase">
             Imate izdelek, storitev ali dogodek, ki bi ga radi predstavili širši lokalni skupnosti?
           </p>
           <p className="font-body text-lg md:text-xl mb-12 opacity-90">
