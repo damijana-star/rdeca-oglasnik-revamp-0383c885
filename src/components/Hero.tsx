@@ -16,7 +16,7 @@ export const Hero = () => {
       <div className="container relative z-10">
         <div className="max-w-3xl mx-auto text-center">
           <p className="font-body text-xl md:text-2xl mb-8 font-bold uppercase">
-            IMATE IZDELEK, STORITEV ALI DOGODEK, KI BI GA RADI PREDSTAVILI ŠIRŠI LOKALNI SKUPNOSTI?
+            DOSEŽI VEČ – OGLAŠUJ TAM, KJER TE LJUDJE RES VIDIJO
           </p>
           <p className="font-body text-lg md:text-xl mb-12 opacity-90">
             Distribucija po Notranjsko-kraški, Notranjsko-obalni in Goriški regiji zagotavlja visoko prepoznavnost in direkten stik z vašimi strankami.

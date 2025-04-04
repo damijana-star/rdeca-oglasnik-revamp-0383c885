@@ -26,7 +26,13 @@ export const Footer = () => {
 
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8 mb-8">
           <div id="about">
-            <h3 className="font-bold text-lg mb-4 text-dark-red">NANOSKI OGLASNIK</h3>
+            <h3 className="mb-4">
+              <img 
+                src="/lovable-uploads/7bb6fbc9-f86e-41ec-8b55-658095999864.png" 
+                alt="NANOSKI OGLASNIK" 
+                className="h-8"
+              />
+            </h3>
             <p className="text-gray-600 mb-4">
               Oglasnik za NOTRANJSKO-KRAŠKO, OBALNO-KRAŠKO in GORIŠKO regijo.
             </p>
