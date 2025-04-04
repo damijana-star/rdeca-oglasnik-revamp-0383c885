@@ -1,4 +1,3 @@
-
 import { Award, Users, FileText } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useState } from "react";
@@ -78,17 +77,17 @@ export const Header = () => {
       <div className="bg-gradient-to-r from-primary to-red-500 text-white py-3">
         <div className="container">
           <div className="grid grid-cols-1 md:grid-cols-3 gap-4 text-center">
-            <div className="flex flex-col md:flex-row items-center justify-center gap-2">
-              <Award className="h-6 w-6" />
-              <span className="font-medium">17 let zadovoljnih strank</span>
+            <div className="flex flex-col md:flex-row items-center justify-center gap-3">
+              <Award className="h-8 w-8 md:h-10 md:w-10" strokeWidth={1.5} />
+              <span className="font-medium text-sm md:text-base">17 let zadovoljnih strank</span>
             </div>
-            <div className="flex flex-col md:flex-row items-center justify-center gap-2">
-              <FileText className="h-6 w-6" />
-              <span className="font-medium">53000 izvodov</span>
+            <div className="flex flex-col md:flex-row items-center justify-center gap-3">
+              <FileText className="h-8 w-8 md:h-10 md:w-10" strokeWidth={1.5} />
+              <span className="font-medium text-sm md:text-base">53000 izvodov</span>
             </div>
-            <div className="flex flex-col md:flex-row items-center justify-center gap-2">
-              <Users className="h-6 w-6" />
-              <span className="font-medium">168000 potencialnih strank</span>
+            <div className="flex flex-col md:flex-row items-center justify-center gap-3">
+              <Users className="h-8 w-8 md:h-10 md:w-10" strokeWidth={1.5} />
+              <span className="font-medium text-sm md:text-base">168000 potencialnih strank</span>
             </div>
           </div>
         </div>
