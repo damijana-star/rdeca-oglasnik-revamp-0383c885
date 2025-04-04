@@ -61,6 +61,10 @@ export default {
 					'accent-foreground': 'hsl(var(--sidebar-accent-foreground))',
 					border: 'hsl(var(--sidebar-border))',
 					ring: 'hsl(var(--sidebar-ring))'
+				},
+				'dark-red': {
+					DEFAULT: '#B22222',
+					dark: '#8B0000'
 				}
 			},
 			borderRadius: {
@@ -89,6 +93,10 @@ export default {
 			animation: {
 				'accordion-down': 'accordion-down 0.2s ease-out',
 				'accordion-up': 'accordion-up 0.2s ease-out'
+			},
+			fontFamily: {
+				'heading': ['Montserrat', 'sans-serif'],
+				'body': ['Open Sans', 'sans-serif']
 			}
 		}
 	},
