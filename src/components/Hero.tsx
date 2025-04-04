@@ -3,13 +3,21 @@ import { Award, FileText, Users } from "lucide-react";
 
 export const Hero = () => {
   return (
-    <div className="bg-gradient-to-r from-dark-red to-dark-red/90 text-white py-16 md:py-24">
-      <div className="container">
+    <div className="relative text-white py-16 md:py-24">
+      {/* Background image with overlay */}
+      <div className="absolute inset-0 z-0">
+        <img 
+          src="/lovable-uploads/ef9f75c3-294b-441f-b566-cb6e2e20abb9.png" 
+          alt="Mountain landscape" 
+          className="w-full h-full object-cover"
+        />
+        <div className="absolute inset-0 bg-dark-red/70"></div>
+      </div>
+      
+      {/* Content */}
+      <div className="container relative z-10">
         <div className="max-w-3xl mx-auto text-center">
-          <h1 className="font-heading text-4xl md:text-6xl font-bold mb-6 tracking-tight">
-            Najdi svojo zimsko opremo
-          </h1>
-          <p className="font-body text-xl md:text-2xl mb-8 opacity-90">
+          <p className="font-body text-xl md:text-2xl mb-8 font-bold">
             Imate izdelek, storitev ali dogodek, ki bi ga radi predstavili širši lokalni skupnosti?
           </p>
           <p className="font-body text-lg md:text-xl mb-12 opacity-90">

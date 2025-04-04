@@ -66,8 +66,8 @@ export const Footer = () => {
                 <span className="text-gray-600">info@nanoski-oglasnik.eu</span>
               </div>
               <address className="text-gray-600 not-italic">
-                Smučarska ulica 42<br />
-                1000 Ljubljana<br />
+                Volče 88<br />
+                5220 Tolmin<br />
                 Slovenija
               </address>
             </div>
