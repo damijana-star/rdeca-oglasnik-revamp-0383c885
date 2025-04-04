@@ -1,5 +1,4 @@
 
-import { Award, Users, FileText } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useState } from "react";
 
@@ -20,6 +19,9 @@ export const Header = () => {
           <nav className="hidden md:flex items-center space-x-6">
             <a href="#featured" className="text-foreground hover:text-dark-red font-medium">
               Oglasi
+            </a>
+            <a href="#blog" className="text-foreground hover:text-dark-red font-medium">
+              Blog
             </a>
             <a href="#about" className="text-foreground hover:text-dark-red font-medium">
               O nas
@@ -56,6 +58,9 @@ export const Header = () => {
               <a href="#featured" className="text-foreground hover:text-dark-red font-medium">
                 Oglasi
               </a>
+              <a href="#blog" className="text-foreground hover:text-dark-red font-medium">
+                Blog
+              </a>
               <a href="#about" className="text-foreground hover:text-dark-red font-medium">
                 O nas
               </a>
@@ -68,20 +73,17 @@ export const Header = () => {
         )}
       </div>
 
-      {/* Stats Bar */}
+      {/* Stats Bar - Removed duplicated icons */}
       <div className="bg-gradient-to-r from-dark-red to-dark-red/90 text-white py-3">
         <div className="container">
           <div className="grid grid-cols-1 md:grid-cols-3 gap-4 text-center">
-            <div className="flex flex-col md:flex-row items-center justify-center gap-3">
-              <Award className="h-8 w-8 md:h-10 md:w-10" strokeWidth={1.5} />
+            <div className="flex items-center justify-center">
               <span className="font-medium text-sm md:text-base">17 let zadovoljnih strank</span>
             </div>
-            <div className="flex flex-col md:flex-row items-center justify-center gap-3">
-              <FileText className="h-8 w-8 md:h-10 md:w-10" strokeWidth={1.5} />
+            <div className="flex items-center justify-center">
               <span className="font-medium text-sm md:text-base">53000 izvodov</span>
             </div>
-            <div className="flex flex-col md:flex-row items-center justify-center gap-3">
-              <Users className="h-8 w-8 md:h-10 md:w-10" strokeWidth={1.5} />
+            <div className="flex items-center justify-center">
               <span className="font-medium text-sm md:text-base">168000 potencialnih strank</span>
             </div>
           </div>

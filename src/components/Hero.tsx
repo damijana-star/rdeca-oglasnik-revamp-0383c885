@@ -9,8 +9,11 @@ export const Hero = () => {
           <h1 className="font-heading text-4xl md:text-6xl font-bold mb-6 tracking-tight">
             Najdi svojo zimsko opremo
           </h1>
-          <p className="font-body text-xl md:text-2xl mb-12 opacity-90">
-            Največja izbira rabljene in nove smučarske opreme na enem mestu
+          <p className="font-body text-xl md:text-2xl mb-8 opacity-90">
+            Imate izdelek, storitev ali dogodek, ki bi ga radi predstavili širši lokalni skupnosti?
+          </p>
+          <p className="font-body text-lg md:text-xl mb-12 opacity-90">
+            Distribucija po Notranjsko-kraški, Notranjsko-obalni in Goriški regiji zagotavlja visoko prepoznavnost in direkten stik z vašimi strankami.
           </p>
           
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6 text-center">
