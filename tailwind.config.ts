@@ -1,3 +1,4 @@
+
 import type { Config } from "tailwindcss";
 
 export default {
@@ -63,7 +64,7 @@ export default {
 					ring: 'hsl(var(--sidebar-ring))'
 				},
 				'dark-red': {
-					DEFAULT: '#B22222',
+					DEFAULT: '#e32530',
 					dark: '#8B0000'
 				}
 			},
@@ -97,6 +98,9 @@ export default {
 			fontFamily: {
 				'heading': ['Montserrat', 'sans-serif'],
 				'body': ['Open Sans', 'sans-serif']
+			},
+			fontWeight: {
+				'extrabold': '800',
 			}
 		}
 	},

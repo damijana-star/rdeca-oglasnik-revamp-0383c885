@@ -10,7 +10,7 @@ export const Header = () => {
       <div className="container py-4">
         <div className="flex items-center justify-between">
           <div className="flex items-center">
-            <a href="/" className="text-dark-red font-bold text-2xl">
+            <a href="/" className="text-dark-red font-body font-extrabold text-2xl">
               NANOSKI OGLASNIK
             </a>
           </div>
