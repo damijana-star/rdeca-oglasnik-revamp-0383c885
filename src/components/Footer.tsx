@@ -25,44 +25,44 @@ export const Footer = () => {
         <Separator className="mb-8" />
 
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8 mb-8">
-          <div>
-            <h3 className="font-bold text-lg mb-4">NANOSKI OGLASNIK</h3>
+          <div id="about">
+            <h3 className="font-bold text-lg mb-4 text-dark-red">NANOSKI OGLASNIK</h3>
             <p className="text-gray-600 mb-4">
               Vodilni specializirani oglasnik za zimsko športno opremo v Sloveniji.
             </p>
             <div className="flex space-x-4">
-              <a href="#" className="text-primary hover:text-primary-foreground hover:bg-primary rounded-full p-2 transition-colors">
+              <a href="#" className="text-dark-red hover:text-white hover:bg-dark-red rounded-full p-2 transition-colors">
                 <Facebook size={20} />
               </a>
-              <a href="#" className="text-primary hover:text-primary-foreground hover:bg-primary rounded-full p-2 transition-colors">
+              <a href="#" className="text-dark-red hover:text-white hover:bg-dark-red rounded-full p-2 transition-colors">
                 <Instagram size={20} />
               </a>
-              <a href="#" className="text-primary hover:text-primary-foreground hover:bg-primary rounded-full p-2 transition-colors">
+              <a href="#" className="text-dark-red hover:text-white hover:bg-dark-red rounded-full p-2 transition-colors">
                 <Mail size={20} />
               </a>
             </div>
           </div>
 
           <div>
-            <h3 className="font-bold mb-4">Povezave</h3>
+            <h3 className="font-bold mb-4 text-dark-red">Povezave</h3>
             <ul className="space-y-2">
-              <li><a href="#" className="text-gray-600 hover:text-primary">O nas</a></li>
-              <li><a href="#" className="text-gray-600 hover:text-primary">Pogoji uporabe</a></li>
-              <li><a href="#" className="text-gray-600 hover:text-primary">Zasebnost</a></li>
-              <li><a href="#" className="text-gray-600 hover:text-primary">Piškotki</a></li>
-              <li><a href="#" className="text-gray-600 hover:text-primary">Kontakt</a></li>
+              <li><a href="#about" className="text-gray-600 hover:text-dark-red">O nas</a></li>
+              <li><a href="#" className="text-gray-600 hover:text-dark-red">Pogoji uporabe</a></li>
+              <li><a href="#" className="text-gray-600 hover:text-dark-red">Zasebnost</a></li>
+              <li><a href="#" className="text-gray-600 hover:text-dark-red">Piškotki</a></li>
+              <li><a href="#contact" className="text-gray-600 hover:text-dark-red">Kontakt</a></li>
             </ul>
           </div>
 
-          <div>
-            <h3 className="font-bold mb-4">Kontakt</h3>
+          <div id="contact">
+            <h3 className="font-bold mb-4 text-dark-red">Kontakt</h3>
             <div className="space-y-3">
               <div className="flex items-center">
-                <Phone size={18} className="mr-2 text-primary" />
+                <Phone size={18} className="mr-2 text-dark-red" />
                 <span className="text-gray-600">+386 123 456 789</span>
               </div>
               <div className="flex items-center">
-                <Mail size={18} className="mr-2 text-primary" />
+                <Mail size={18} className="mr-2 text-dark-red" />
                 <span className="text-gray-600">info@nanoski-oglasnik.eu</span>
               </div>
               <address className="text-gray-600 not-italic">

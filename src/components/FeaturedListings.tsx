@@ -73,7 +73,7 @@ export const FeaturedListings = () => {
   ];
 
   return (
-    <div className="section">
+    <div id="featured" className="section">
       <div className="container">
         <h2 className="text-2xl md:text-3xl font-bold mb-2">Izpostavljeni oglasi</h2>
         <p className="text-gray-600 mb-8">Najnovejši in najbolj priljubljeni oglasi</p>
@@ -93,7 +93,7 @@ export const FeaturedListings = () => {
         </div>
 
         <div className="text-center mt-10">
-          <a href="#" className="text-primary hover:underline font-medium inline-flex items-center">
+          <a href="#" className="bg-dark-red text-white px-6 py-2 rounded hover:bg-dark-red/90 transition-colors inline-flex items-center">
             <span>Prikaži vse oglase</span>
             <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="ml-1">
               <path d="M5 12h14"/><path d="m12 5 7 7-7 7"/>

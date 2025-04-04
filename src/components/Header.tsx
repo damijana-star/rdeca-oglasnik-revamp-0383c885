@@ -1,3 +1,4 @@
+
 import { Award, Users, FileText } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useState } from "react";
@@ -10,23 +11,23 @@ export const Header = () => {
       <div className="container py-4">
         <div className="flex items-center justify-between">
           <div className="flex items-center">
-            <a href="/" className="text-primary font-bold text-2xl">
+            <a href="/" className="text-dark-red font-bold text-2xl">
               NANOSKI OGLASNIK
             </a>
           </div>
 
           {/* Desktop Navigation */}
           <nav className="hidden md:flex items-center space-x-6">
-            <a href="/" className="text-foreground hover:text-primary font-medium">
-              Domov
+            <a href="#featured" className="text-foreground hover:text-dark-red font-medium">
+              Oglasi
             </a>
-            <a href="#" className="text-foreground hover:text-primary font-medium">
+            <a href="#about" className="text-foreground hover:text-dark-red font-medium">
               O nas
             </a>
-            <a href="#" className="text-foreground hover:text-primary font-medium">
+            <a href="#contact" className="text-foreground hover:text-dark-red font-medium">
               Kontakt
             </a>
-            <Button>Oddaj oglas</Button>
+            <Button className="bg-dark-red hover:bg-dark-red/90">Oddaj oglas</Button>
           </nav>
 
           {/* Mobile Menu Toggle */}
@@ -52,23 +53,23 @@ export const Header = () => {
         {isMenuOpen && (
           <div className="md:hidden mt-4 pb-4">
             <nav className="flex flex-col space-y-4">
-              <a href="/" className="text-foreground hover:text-primary font-medium">
-                Domov
+              <a href="#featured" className="text-foreground hover:text-dark-red font-medium">
+                Oglasi
               </a>
-              <a href="#" className="text-foreground hover:text-primary font-medium">
+              <a href="#about" className="text-foreground hover:text-dark-red font-medium">
                 O nas
               </a>
-              <a href="#" className="text-foreground hover:text-primary font-medium">
+              <a href="#contact" className="text-foreground hover:text-dark-red font-medium">
                 Kontakt
               </a>
-              <Button>Oddaj oglas</Button>
+              <Button className="bg-dark-red hover:bg-dark-red/90 w-full">Oddaj oglas</Button>
             </nav>
           </div>
         )}
       </div>
 
       {/* Stats Bar */}
-      <div className="bg-gradient-to-r from-primary to-red-500 text-white py-3">
+      <div className="bg-gradient-to-r from-dark-red to-dark-red/90 text-white py-3">
         <div className="container">
           <div className="grid grid-cols-1 md:grid-cols-3 gap-4 text-center">
             <div className="flex flex-col md:flex-row items-center justify-center gap-3">
