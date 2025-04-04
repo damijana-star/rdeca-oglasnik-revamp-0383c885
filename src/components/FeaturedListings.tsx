@@ -1,4 +1,3 @@
-
 import { ListingCard } from "./ListingCard";
 
 export const FeaturedListings = () => {
@@ -75,8 +74,7 @@ export const FeaturedListings = () => {
   return (
     <div id="featured" className="section">
       <div className="container">
-        <h2 className="text-2xl md:text-3xl font-bold mb-2">Izpostavljeni oglasi</h2>
-        <p className="text-gray-600 mb-8">Najnovejši in najbolj priljubljeni oglasi</p>
+        <h2 className="text-2xl md:text-3xl font-bold mb-8">Izpostavljeni oglasi</h2>
         
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
           {listings.map((listing) => (

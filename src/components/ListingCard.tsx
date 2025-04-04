@@ -19,14 +19,7 @@ export const ListingCard = ({ title, price, image, location, isNew, category }: 
           alt={title} 
           className="w-full h-full object-cover"
         />
-        {isNew && (
-          <Badge className="absolute top-2 left-2 bg-dark-red border-dark-red">
-            Novo
-          </Badge>
-        )}
-        <Badge variant="outline" className="absolute top-2 right-2 bg-white">
-          {category}
-        </Badge>
+        {/* Badges removed as requested */}
       </div>
       <div className="p-4">
         <h3 className="font-semibold text-lg mb-1 truncate">{title}</h3>
