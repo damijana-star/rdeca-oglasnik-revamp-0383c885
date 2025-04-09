@@ -5,6 +5,15 @@ import { Link } from "react-router-dom";
 
 const blogPosts = [
   {
+    id: 5,
+    title: "Kako pripraviti učinkovit oglas, ki pritegne pozornost (in prodaja)",
+    excerpt: "Ali se tudi ti sprašuješ, zakaj nekateri oglasi pritegnejo takojšnjo pozornost, drugi pa ostanejo spregledani? Učinkovit oglas ima jasno strukturo, močno sporočilo in poziv k dejanju.",
+    date: "10. 04. 2025",
+    author: "Ana Kovač",
+    image: "https://images.unsplash.com/photo-1488590528505-98d2b5aba04b?ixlib=rb-4.0.3",
+    category: "Marketing"
+  },
+  {
     id: 4,
     title: "📰 Oglaševanje s tiskanimi oglasi: Zakaj jih podjetja še vedno uporabljajo",
     excerpt: "V dobi digitalnega sveta, kjer nas vsak dan preplavljajo spletni oglasi, tiskani oglasi še vedno ohranjajo svojo moč – še posebej v lokalnem okolju.",
@@ -21,15 +30,6 @@ const blogPosts = [
     author: "Janez Novak",
     image: "https://images.unsplash.com/photo-1622484212776-62edf9a686e8?ixlib=rb-4.0.3",
     category: "Nasveti"
-  },
-  {
-    id: 2,
-    title: "5 top smučarskih destinacij v Sloveniji",
-    excerpt: "Slovenija kljub majhnosti ponuja odlična smučišča za vse ravni smučarjev. Preverite naš izbor petih najboljših destinacij za zimsko smuko v naši državi.",
-    date: "28. 09. 2024",
-    author: "Maja Kovač",
-    image: "https://images.unsplash.com/photo-1610737241336-371badac3b66?ixlib=rb-4.0.3",
-    category: "Destinacije"
   }
 ];
 
