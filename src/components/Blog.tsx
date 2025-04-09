@@ -37,7 +37,7 @@ export const Blog = () => {
   return (
     <div id="blog" className="section bg-white">
       <div className="container">
-        <h2 className="text-2xl md:text-3xl font-bold mb-2">Blog & Nasveti</h2>
+        <h2 className="text-2xl md:text-3xl font-bold mb-2">Nasveti</h2>
         <p className="text-gray-600 mb-8">Najnovejši članki, nasveti in novice iz sveta zimskih športov</p>
         
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">

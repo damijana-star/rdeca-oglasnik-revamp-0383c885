@@ -2,7 +2,7 @@
 import { useParams, Link } from "react-router-dom";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
-import { Calendar, User, ChevronLeft, Tag } from "lucide-react";
+import { Calendar, User, ChevronLeft, Tag, ChevronRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
 const allBlogPosts = [
@@ -121,7 +121,7 @@ const BlogPostPage = () => {
             <Button className="bg-[#e32530] hover:bg-[#e32530]/90" asChild>
               <Link to="/blog">
                 <ChevronLeft className="mr-2 h-4 w-4" />
-                Nazaj na blog
+                Nazaj na nasvete
               </Link>
             </Button>
           </div>
@@ -140,33 +140,42 @@ const BlogPostPage = () => {
     <div className="min-h-screen flex flex-col">
       <Header />
       <main className="flex-grow">
-        {/* Hero Section with Post Image */}
-        <div className="relative text-white h-[40vh] md:h-[50vh]">
+        {/* Modern Hero Section with Post Image */}
+        <div className="relative text-white h-[50vh] md:h-[60vh] flex items-end">
           <div className="absolute inset-0 z-0">
             <img 
               src={post.image} 
               alt={post.title} 
               className="w-full h-full object-cover"
             />
-            <div className="absolute inset-0 bg-black/60"></div>
+            <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/60 to-black/30"></div>
           </div>
           
-          <div className="container relative z-10 h-full flex flex-col justify-end pb-12">
-            <span className="inline-block bg-[#e32530] text-white text-sm font-semibold px-3 py-1 rounded mb-4">
-              {post.category}
-            </span>
-            <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-4 max-w-4xl">
-              {post.title}
-            </h1>
-            <div className="flex items-center text-sm text-gray-300">
-              <div className="flex items-center mr-6">
-                <Calendar className="w-4 h-4 mr-2" />
-                <span>{post.date}</span>
+          <div className="container relative z-10 py-16">
+            <div className="max-w-4xl">
+              <div className="flex items-center space-x-4 mb-6">
+                <span className="inline-flex items-center bg-[#e32530] text-white text-sm font-semibold px-3 py-1.5 rounded-full">
+                  {post.category}
+                </span>
+                <span className="inline-block w-1 h-1 rounded-full bg-white/60"></span>
+                <div className="flex items-center text-gray-300">
+                  <Calendar className="w-4 h-4 mr-2" />
+                  <span>{post.date}</span>
+                </div>
+                <span className="inline-block w-1 h-1 rounded-full bg-white/60"></span>
+                <div className="flex items-center text-gray-300">
+                  <User className="w-4 h-4 mr-2" />
+                  <span>{post.author}</span>
+                </div>
               </div>
-              <div className="flex items-center">
-                <User className="w-4 h-4 mr-2" />
-                <span>{post.author}</span>
-              </div>
+              
+              <h1 className="text-3xl md:text-5xl font-bold mb-6 leading-tight max-w-4xl">
+                {post.title}
+              </h1>
+              
+              <p className="text-xl text-gray-300 max-w-3xl mb-8">
+                {post.excerpt}
+              </p>
             </div>
           </div>
         </div>
@@ -174,10 +183,10 @@ const BlogPostPage = () => {
         {/* Content */}
         <div className="container py-12">
           <div className="max-w-4xl mx-auto">
-            <Button variant="outline" className="mb-8" asChild>
-              <Link to="/blog">
+            <Button variant="outline" className="mb-8 hover:bg-gray-100" asChild>
+              <Link to="/blog" className="flex items-center">
                 <ChevronLeft className="mr-2 h-4 w-4" />
-                Nazaj na blog
+                Nazaj na nasvete
               </Link>
             </Button>
             

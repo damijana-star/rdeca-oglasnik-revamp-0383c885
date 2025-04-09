@@ -25,7 +25,7 @@ export const Header = () => {
               Oglasi
             </a>
             <a href="/blog" className="text-foreground hover:text-dark-red font-medium">
-              Blog
+              Nasveti
             </a>
             <a href="#about" className="text-foreground hover:text-dark-red font-medium">
               O nas
@@ -65,7 +65,7 @@ export const Header = () => {
                 Oglasi
               </a>
               <a href="/blog" className="text-foreground hover:text-dark-red font-medium">
-                Blog
+                Nasveti
               </a>
               <a href="#about" className="text-foreground hover:text-dark-red font-medium">
                 O nas
@@ -73,7 +73,7 @@ export const Header = () => {
               <a href="#contact" className="text-foreground hover:text-dark-red font-medium">
                 Kontakt
               </a>
-              <Button className="bg-[#e32530] hover:bg-[#e32530]/90 w-full" asChild>
+              <Button className="bg-[#e32530] hover:bg-[#e32530]/90" w-full" asChild>
                 <a href="#contact">Oddaj oglas</a>
               </Button>
             </nav>
