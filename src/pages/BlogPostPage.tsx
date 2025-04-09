@@ -1,16 +1,13 @@
-
 import { useParams, Link } from "react-router-dom";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import { Calendar, User, ChevronLeft, Tag, ChevronRight, Newspaper, QrCode, Link as LinkIcon, Image } from "lucide-react";
 import { Button } from "@/components/ui/button";
-
-const allBlogPosts = [
-  {
-    id: 1,
-    title: "Kako izbrati pravo smučarsko opremo za začetnike",
-    excerpt: "Pred nakupom smučarske opreme je pomembno upoštevati nekaj ključnih dejavnikov, ki vam bodo pomagali pri izbiri prave opreme za vaše potrebe in raven znanja.",
-    content: `
+const allBlogPosts = [{
+  id: 1,
+  title: "Kako izbrati pravo smučarsko opremo za začetnike",
+  excerpt: "Pred nakupom smučarske opreme je pomembno upoštevati nekaj ključnih dejavnikov, ki vam bodo pomagali pri izbiri prave opreme za vaše potrebe in raven znanja.",
+  content: `
       <p>Pred nakupom smučarske opreme je pomembno upoštevati nekaj ključnih dejavnikov, ki vam bodo pomagali pri izbiri prave opreme za vaše potrebe in raven znanja.</p>
       
       <h2>1. Izbira pravih smuči</h2>
@@ -31,17 +28,16 @@ const allBlogPosts = [
       <h2>Zaključek</h2>
       <p>Za začetnike priporočamo, da opremo najprej najamete in jo šele po nekaj smučarskih dneh, ko boste bolje razumeli svoje potrebe in preference, tudi kupite. Pri nakupu poiščite nasvet izkušenega prodajalca, ki vam bo znal svetovati glede na vaše fizične značilnosti in raven znanja.</p>
     `,
-    date: "15. 10. 2024",
-    author: "Janez Novak",
-    image: "https://images.unsplash.com/photo-1622484212776-62edf9a686e8?ixlib=rb-4.0.3",
-    category: "Nasveti",
-    tags: ["oprema", "začetniki", "smuči", "nakup"]
-  },
-  {
-    id: 2,
-    title: "5 top smučarskih destinacij v Sloveniji",
-    excerpt: "Slovenija kljub majhnosti ponuja odlična smučišča za vse ravni smučarjev. Preverite naš izbor petih najboljših destinacij za zimsko smuko v naši državi.",
-    content: `
+  date: "15. 10. 2024",
+  author: "Janez Novak",
+  image: "https://images.unsplash.com/photo-1622484212776-62edf9a686e8?ixlib=rb-4.0.3",
+  category: "Nasveti",
+  tags: ["oprema", "začetniki", "smuči", "nakup"]
+}, {
+  id: 2,
+  title: "5 top smučarskih destinacij v Sloveniji",
+  excerpt: "Slovenija kljub majhnosti ponuja odlična smučišča za vse ravni smučarjev. Preverite naš izbor petih najboljših destinacij za zimsko smuko v naši državi.",
+  content: `
       <p>Slovenija kljub majhnosti ponuja odlična smučišča za vse ravni smučarjev. Preverite naš izbor petih najboljših destinacij za zimsko smuko v naši državi.</p>
       
       <h2>1. Kranjska Gora</h2>
@@ -62,17 +58,16 @@ const allBlogPosts = [
       <h2>Zaključek</h2>
       <p>Slovenska smučišča morda niso tako obsežna kot alpski velikani, vendar s svojo dostopnostjo, raznolikostjo in kakovostno ponudbo predstavljajo odlično izbiro za zimske užitke. Vsako od naštetih smučišč ima svoje edinstvene značilnosti, ki jih je vredno izkusiti.</p>
     `,
-    date: "28. 09. 2024",
-    author: "Maja Kovač",
-    image: "https://images.unsplash.com/photo-1610737241336-371badac3b66?ixlib=rb-4.0.3",
-    category: "Destinacije",
-    tags: ["Slovenija", "smučišča", "destinacije", "zima"]
-  },
-  {
-    id: 3,
-    title: "Kako pravilno vzdrževati smuči med sezono",
-    excerpt: "Pravilno vzdrževanje smuči je ključno za optimalno izkušnjo smučanja. Naučite se, kako poskrbeti za svojo opremo, da bo trajala dlje in bolje delovala.",
-    content: `
+  date: "28. 09. 2024",
+  author: "Maja Kovač",
+  image: "https://images.unsplash.com/photo-1610737241336-371badac3b66?ixlib=rb-4.0.3",
+  category: "Destinacije",
+  tags: ["Slovenija", "smučišča", "destinacije", "zima"]
+}, {
+  id: 3,
+  title: "Kako pravilno vzdrževati smuči med sezono",
+  excerpt: "Pravilno vzdrževanje smuči je ključno za optimalno izkušnjo smučanja. Naučite se, kako poskrbeti za svojo opremo, da bo trajala dlje in bolje delovala.",
+  content: `
       <p>Pravilno vzdrževanje smuči je ključno za optimalno izkušnjo smučanja. Naučite se, kako poskrbeti za svojo opremo, da bo trajala dlje in bolje delovala.</p>
       
       <h2>1. Redno čiščenje</h2>
@@ -96,17 +91,16 @@ const allBlogPosts = [
       <h2>Zaključek</h2>
       <p>Redno vzdrževanje smuči ni le vprašanje dolgoročne investicije, temveč tudi varnosti in kvalitete smučanja. Z malo truda in znanja lahko sami poskrbite za večino vzdrževalnih del in si tako zagotovite vedno optimalno pripravljeno opremo za zimske užitke.</p>
     `,
-    date: "05. 09. 2024",
-    author: "Matej Horvat",
-    image: "https://images.unsplash.com/photo-1520715874916-4ad5dd38bef2?ixlib=rb-4.0.3", 
-    category: "Vzdrževanje",
-    tags: ["vzdrževanje", "smuči", "oprema", "servis"]
-  },
-  {
-    id: 4,
-    title: "📰 Oglaševanje s tiskanimi oglasi: Zakaj jih podjetja še vedno uporabljajo",
-    excerpt: "V dobi digitalnega sveta, kjer nas vsak dan preplavljajo spletni oglasi, tiskani oglasi še vedno ohranjajo svojo moč – še posebej v lokalnem okolju.",
-    content: `
+  date: "05. 09. 2024",
+  author: "Matej Horvat",
+  image: "https://images.unsplash.com/photo-1520715874916-4ad5dd38bef2?ixlib=rb-4.0.3",
+  category: "Vzdrževanje",
+  tags: ["vzdrževanje", "smuči", "oprema", "servis"]
+}, {
+  id: 4,
+  title: "📰 Oglaševanje s tiskanimi oglasi: Zakaj jih podjetja še vedno uporabljajo",
+  excerpt: "V dobi digitalnega sveta, kjer nas vsak dan preplavljajo spletni oglasi, tiskani oglasi še vedno ohranjajo svojo moč – še posebej v lokalnem okolju.",
+  content: `
       <p>V dobi digitalnega sveta, kjer nas vsak dan preplavljajo spletni oglasi, tiskani oglasi še vedno ohranjajo svojo moč – še posebej v lokalnem okolju. Mnoga podjetja opažajo, da prav preko tiskanih medijev dosežejo najbolj zvesto in odzivno publiko.</p>
       
       <p>V nadaljevanju predstavljamo glavne prednosti oglaševanja v tiskanih oglasnikih in zakaj se ga splača vključiti v vašo marketinško strategijo.</p>
@@ -134,23 +128,22 @@ const allBlogPosts = [
       
       <p>➡️ Razmislite, kako lahko vaš naslednji oglas izstopa prav v tiskanem oglasniku – s pravim sporočilom, v pravem okolju.</p>
     `,
-    date: "09. 04. 2025",
-    author: "Ana Kovač",
-    image: "https://images.unsplash.com/photo-1504711434969-e33886168f5c?ixlib=rb-4.0.3",
-    category: "Marketing",
-    tags: ["marketing", "oglasi", "tiskani mediji", "lokalno oglaševanje", "strategija"]
-  }
-];
-
+  date: "09. 04. 2025",
+  author: "Ana Kovač",
+  image: "https://images.unsplash.com/photo-1504711434969-e33886168f5c?ixlib=rb-4.0.3",
+  category: "Marketing",
+  tags: ["marketing", "oglasi", "tiskani mediji", "lokalno oglaševanje", "strategija"]
+}];
 const BlogPostPage = () => {
-  const { id } = useParams<{ id: string }>();
+  const {
+    id
+  } = useParams<{
+    id: string;
+  }>();
   const postId = parseInt(id || "0");
-  
   const post = allBlogPosts.find(p => p.id === postId);
-  
   if (!post) {
-    return (
-      <div className="min-h-screen flex flex-col">
+    return <div className="min-h-screen flex flex-col">
         <Header />
         <main className="flex-grow container py-16">
           <div className="text-center">
@@ -165,27 +158,18 @@ const BlogPostPage = () => {
           </div>
         </main>
         <Footer />
-      </div>
-    );
+      </div>;
   }
-  
-  // Find related posts (same category, excluding current post)
-  const relatedPosts = allBlogPosts
-    .filter(p => p.category === post.category && p.id !== post.id)
-    .slice(0, 2);
 
-  return (
-    <div className="min-h-screen flex flex-col">
+  // Find related posts (same category, excluding current post)
+  const relatedPosts = allBlogPosts.filter(p => p.category === post.category && p.id !== post.id).slice(0, 2);
+  return <div className="min-h-screen flex flex-col">
       <Header />
       <main className="flex-grow">
         {/* Modern Hero Section with Post Image */}
         <div className="relative text-white h-[50vh] md:h-[60vh] flex items-end">
           <div className="absolute inset-0 z-0">
-            <img 
-              src={post.image} 
-              alt={post.title} 
-              className="w-full h-full object-cover"
-            />
+            <img src={post.image} alt={post.title} className="w-full h-full object-cover" />
             <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/60 to-black/30"></div>
           </div>
           
@@ -207,7 +191,7 @@ const BlogPostPage = () => {
                 </div>
               </div>
               
-              <h1 className="text-3xl md:text-5xl font-bold mb-6 leading-tight max-w-4xl">
+              <h1 className="text-3xl md:text-5xl mb-6 leading-tight max-w-4xl font-bold">
                 {post.title}
               </h1>
               
@@ -229,37 +213,26 @@ const BlogPostPage = () => {
             </Button>
             
             <div className="prose prose-lg max-w-none mb-12">
-              <div dangerouslySetInnerHTML={{ __html: post.content }} />
+              <div dangerouslySetInnerHTML={{
+              __html: post.content
+            }} />
             </div>
             
             {/* Tags */}
-            {post.tags && post.tags.length > 0 && (
-              <div className="flex items-center flex-wrap gap-2 mb-12 border-t border-b py-4">
+            {post.tags && post.tags.length > 0 && <div className="flex items-center flex-wrap gap-2 mb-12 border-t border-b py-4">
                 <Tag className="h-4 w-4 text-gray-500 mr-2" />
-                {post.tags.map((tag, index) => (
-                  <span 
-                    key={index} 
-                    className="bg-gray-100 text-gray-800 text-sm px-3 py-1 rounded-full"
-                  >
+                {post.tags.map((tag, index) => <span key={index} className="bg-gray-100 text-gray-800 text-sm px-3 py-1 rounded-full">
                     {tag}
-                  </span>
-                ))}
-              </div>
-            )}
+                  </span>)}
+              </div>}
             
             {/* Related Articles */}
-            {relatedPosts.length > 0 && (
-              <div className="mt-12">
+            {relatedPosts.length > 0 && <div className="mt-12">
                 <h3 className="text-xl font-bold mb-6">Sorodni članki</h3>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-                  {relatedPosts.map((relatedPost) => (
-                    <div key={relatedPost.id} className="bg-white rounded-lg overflow-hidden shadow-sm card-hover border border-gray-100">
+                  {relatedPosts.map(relatedPost => <div key={relatedPost.id} className="bg-white rounded-lg overflow-hidden shadow-sm card-hover border border-gray-100">
                       <div className="relative h-48 overflow-hidden">
-                        <img 
-                          src={relatedPost.image} 
-                          alt={relatedPost.title} 
-                          className="w-full h-full object-cover"
-                        />
+                        <img src={relatedPost.image} alt={relatedPost.title} className="w-full h-full object-cover" />
                         <span className="absolute top-2 right-2 bg-[#e32530] text-white text-xs font-semibold px-2 py-1 rounded">
                           {relatedPost.category}
                         </span>
@@ -273,17 +246,13 @@ const BlogPostPage = () => {
                           Preberi več <ChevronRight className="w-4 h-4 ml-1" />
                         </Link>
                       </div>
-                    </div>
-                  ))}
+                    </div>)}
                 </div>
-              </div>
-            )}
+              </div>}
           </div>
         </div>
       </main>
       <Footer />
-    </div>
-  );
+    </div>;
 };
-
 export default BlogPostPage;
