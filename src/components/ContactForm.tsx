@@ -1,4 +1,3 @@
-
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
@@ -159,7 +158,7 @@ export const ContactForm = () => {
                 <Phone className="text-dark-red mr-4 h-5 w-5 mt-1" />
                 <div>
                   <h4 className="font-medium mb-1">Telefon</h4>
-                  <p className="text-gray-600">+386 123 456 789</p>
+                  <p className="text-gray-600">031 646 666</p>
                 </div>
               </div>
               

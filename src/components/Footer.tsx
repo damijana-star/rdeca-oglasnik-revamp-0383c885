@@ -1,4 +1,3 @@
-
 import { Facebook, Instagram, Mail, Phone } from "lucide-react";
 import { Separator } from "@/components/ui/separator";
 
