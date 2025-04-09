@@ -1,6 +1,5 @@
-
 import { Button } from "@/components/ui/button";
-import { Calendar, ChevronRight, User } from "lucide-react";
+import { ChevronRight } from "lucide-react";
 import { Link } from "react-router-dom";
 
 const blogPosts = [
@@ -62,16 +61,6 @@ export const Blog = () => {
                 <p className="text-gray-600 mb-4 text-sm line-clamp-3">
                   {post.excerpt}
                 </p>
-                <div className="flex items-center text-sm text-gray-500 mb-4">
-                  <div className="flex items-center mr-4">
-                    <Calendar className="w-4 h-4 mr-1" />
-                    <span>{post.date}</span>
-                  </div>
-                  <div className="flex items-center">
-                    <User className="w-4 h-4 mr-1" />
-                    <span>{post.author}</span>
-                  </div>
-                </div>
                 <Link to={`/blog/${post.id}`} className="inline-flex items-center text-[#e32530] font-medium hover:underline">
                   Preberi več <ChevronRight className="w-4 h-4 ml-1" />
                 </Link>
