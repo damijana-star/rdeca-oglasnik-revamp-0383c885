@@ -1,6 +1,7 @@
 
 import { Button } from "@/components/ui/button";
 import { Calendar, ChevronRight, User } from "lucide-react";
+import { Link } from "react-router-dom";
 
 const blogPosts = [
   {
@@ -48,7 +49,7 @@ export const Blog = () => {
                   alt={post.title} 
                   className="w-full h-full object-cover"
                 />
-                <span className="absolute top-2 right-2 bg-dark-red text-white text-xs font-semibold px-2 py-1 rounded">
+                <span className="absolute top-2 right-2 bg-[#e32530] text-white text-xs font-semibold px-2 py-1 rounded">
                   {post.category}
                 </span>
               </div>
@@ -67,18 +68,20 @@ export const Blog = () => {
                     <span>{post.author}</span>
                   </div>
                 </div>
-                <a href="#" className="inline-flex items-center text-dark-red font-medium hover:underline">
+                <Link to={`/blog/${post.id}`} className="inline-flex items-center text-[#e32530] font-medium hover:underline">
                   Preberi več <ChevronRight className="w-4 h-4 ml-1" />
-                </a>
+                </Link>
               </div>
             </div>
           ))}
         </div>
         
         <div className="text-center mt-10">
-          <Button className="bg-dark-red hover:bg-dark-red/90">
-            Vsi članki
-            <ChevronRight className="ml-1 h-4 w-4" />
+          <Button className="bg-[#e32530] hover:bg-[#e32530]/90" asChild>
+            <Link to="/blog">
+              Vsi članki
+              <ChevronRight className="ml-1 h-4 w-4" />
+            </Link>
           </Button>
         </div>
       </div>

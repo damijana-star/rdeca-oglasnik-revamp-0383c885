@@ -24,7 +24,7 @@ export const Header = () => {
             <a href="#featured" className="text-foreground hover:text-dark-red font-medium">
               Oglasi
             </a>
-            <a href="#blog" className="text-foreground hover:text-dark-red font-medium">
+            <a href="/blog" className="text-foreground hover:text-dark-red font-medium">
               Blog
             </a>
             <a href="#about" className="text-foreground hover:text-dark-red font-medium">
@@ -33,7 +33,9 @@ export const Header = () => {
             <a href="#contact" className="text-foreground hover:text-dark-red font-medium">
               Kontakt
             </a>
-            <Button className="bg-dark-red hover:bg-dark-red/90">Oddaj oglas</Button>
+            <Button className="bg-[#e32530] hover:bg-[#e32530]/90" asChild>
+              <a href="#contact">Oddaj oglas</a>
+            </Button>
           </nav>
 
           {/* Mobile Menu Toggle */}
@@ -62,7 +64,7 @@ export const Header = () => {
               <a href="#featured" className="text-foreground hover:text-dark-red font-medium">
                 Oglasi
               </a>
-              <a href="#blog" className="text-foreground hover:text-dark-red font-medium">
+              <a href="/blog" className="text-foreground hover:text-dark-red font-medium">
                 Blog
               </a>
               <a href="#about" className="text-foreground hover:text-dark-red font-medium">
@@ -71,7 +73,9 @@ export const Header = () => {
               <a href="#contact" className="text-foreground hover:text-dark-red font-medium">
                 Kontakt
               </a>
-              <Button className="bg-dark-red hover:bg-dark-red/90 w-full">Oddaj oglas</Button>
+              <Button className="bg-[#e32530] hover:bg-[#e32530]/90 w-full" asChild>
+                <a href="#contact">Oddaj oglas</a>
+              </Button>
             </nav>
           </div>
         )}
