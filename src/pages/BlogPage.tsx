@@ -1,7 +1,6 @@
-
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
-import { Calendar, ChevronRight, User, Search } from "lucide-react";
+import { Calendar, ChevronRight, User, Search, Newspaper } from "lucide-react";
 import { Link } from "react-router-dom";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
@@ -37,6 +36,15 @@ const allBlogPosts = [
   },
   {
     id: 4,
+    title: "📰 Oglaševanje s tiskanimi oglasi: Zakaj jih podjetja še vedno uporabljajo",
+    excerpt: "V dobi digitalnega sveta, kjer nas vsak dan preplavljajo spletni oglasi, tiskani oglasi še vedno ohranjajo svojo moč – še posebej v lokalnem okolju.",
+    date: "09. 04. 2025",
+    author: "Ana Kovač",
+    image: "https://images.unsplash.com/photo-1504711434969-e33886168f5c?ixlib=rb-4.0.3",
+    category: "Marketing"
+  },
+  {
+    id: 5,
     title: "Najboljše destinacije za smučanje v Avstriji",
     excerpt: "Avstrija je znana po svojih legendarnih smučiščih. V tem članku razkrivamo nekaj najboljših destinacij za nepozaben smučarski oddih čez mejo.",
     date: "01. 09. 2024",
@@ -45,7 +53,7 @@ const allBlogPosts = [
     category: "Destinacije"
   },
   {
-    id: 5,
+    id: 6,
     title: "Kako izboljšati svojo smučarsko tehniko",
     excerpt: "Želite postati boljši smučar? Z nekaj ključnimi nasveti in rednim treningom lahko hitro izboljšate svojo tehniko in samozavest na smučeh.",
     date: "25. 08. 2024",
@@ -54,7 +62,7 @@ const allBlogPosts = [
     category: "Nasveti"
   },
   {
-    id: 6,
+    id: 7,
     title: "Smučanje in varnost: kaj morate vedeti",
     excerpt: "Varnost na smučišču je ključnega pomena. Spoznajte osnovna pravila smučanja, opremo za zaščito in kako se izogniti najpogostejšim poškodbam.",
     date: "18. 08. 2024",
@@ -69,7 +77,8 @@ const categories = [
   "Nasveti",
   "Destinacije",
   "Vzdrževanje",
-  "Varnost"
+  "Varnost",
+  "Marketing"
 ];
 
 const BlogPage = () => {

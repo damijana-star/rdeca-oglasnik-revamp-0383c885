@@ -2,7 +2,7 @@
 import { useParams, Link } from "react-router-dom";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
-import { Calendar, User, ChevronLeft, Tag, ChevronRight } from "lucide-react";
+import { Calendar, User, ChevronLeft, Tag, ChevronRight, Newspaper, QrCode, Link as LinkIcon, Image } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
 const allBlogPosts = [
@@ -101,6 +101,44 @@ const allBlogPosts = [
     image: "https://images.unsplash.com/photo-1520715874916-4ad5dd38bef2?ixlib=rb-4.0.3", 
     category: "Vzdrževanje",
     tags: ["vzdrževanje", "smuči", "oprema", "servis"]
+  },
+  {
+    id: 4,
+    title: "📰 Oglaševanje s tiskanimi oglasi: Zakaj jih podjetja še vedno uporabljajo",
+    excerpt: "V dobi digitalnega sveta, kjer nas vsak dan preplavljajo spletni oglasi, tiskani oglasi še vedno ohranjajo svojo moč – še posebej v lokalnem okolju.",
+    content: `
+      <p>V dobi digitalnega sveta, kjer nas vsak dan preplavljajo spletni oglasi, tiskani oglasi še vedno ohranjajo svojo moč – še posebej v lokalnem okolju. Mnoga podjetja opažajo, da prav preko tiskanih medijev dosežejo najbolj zvesto in odzivno publiko.</p>
+      
+      <p>V nadaljevanju predstavljamo glavne prednosti oglaševanja v tiskanih oglasnikih in zakaj se ga splača vključiti v vašo marketinško strategijo.</p>
+      
+      <h2>✅ 1. Dolgotrajna prisotnost in opaznost</h2>
+      <p>Tiskani oglas ne izgine po 5 sekundah kot spletni pasični oglasi. Bralci časopis ali oglasnik listajo večkrat, oglas ostane na mizi, v torbi, na pultu. S tem se poveča možnost, da bo vaš oglas opažen večkrat – tudi več dni zapored.</p>
+      
+      <h2>📍 2. Močan lokalni doseg</h2>
+      <p>Tiskani oglasniki so izjemno učinkoviti pri ciljanju lokalne skupnosti. Če želite doseči stranke v določeni regiji (npr. Primorska, Gorenjska...), so tovrstni oglasi idealni za lokalna podjetja, obrtnike, trgovine in storitve.</p>
+      
+      <h2>🧠 3. Večje zaupanje bralcev</h2>
+      <p>Študije kažejo, da ljudje bolj zaupajo informacijam v tiskanih medijih kot v spletnih. Oglas v tiskanem oglasniku deluje bolj profesionalno in zanesljivo, kar se lahko odraža v višji stopnji odziva.</p>
+      
+      <h2>💬 4. Manj konkurence – več pozornosti</h2>
+      <p>Na spletu se podjetja dobesedno borijo za vsak klik. V tiskanem oglasniku pa ni toliko motenj – vaš oglas ima več prostora, manj konkurentov in večjo možnost, da pritegne oko bralca.</p>
+      
+      <h2>💡 5. Enostavno, dostopno, učinkovito</h2>
+      <p>Oglaševanje v tiskanem oglasniku je pogosto cenovno dostopnejše od drugih oblik oglaševanja, hkrati pa omogoča personalizacijo: lahko vključite sliko, kontakt, QR kodo, logo podjetja... in vse to brez večjih tehničnih znanj.</p>
+      
+      <h2>📈 6. Kombinacija z digitalnim oglaševanjem = zmagovalna</h2>
+      <p>Najboljše rezultate dosežete z kombinacijo tiskanega in spletnega oglaševanja. Tiskani oglas lahko deluje kot "prvi stik", medtem ko digitalna prisotnost nadgradi vašo zgodbo. QR koda ali spletna povezava v oglasu lahko preusmeri bralce na vašo spletno stran ali družbena omrežja.</p>
+      
+      <h2>🎯 Zaključek: Tiskani oglasi še zdaleč niso preteklost</h2>
+      <p>Čeprav živimo v digitalnem svetu, tiskani oglasi ostajajo močno orodje, še posebej za lokalna podjetja, ki želijo dosegati konkretne, zveste in resnično zainteresirane stranke.</p>
+      
+      <p>➡️ Razmislite, kako lahko vaš naslednji oglas izstopa prav v tiskanem oglasniku – s pravim sporočilom, v pravem okolju.</p>
+    `,
+    date: "09. 04. 2025",
+    author: "Ana Kovač",
+    image: "https://images.unsplash.com/photo-1504711434969-e33886168f5c?ixlib=rb-4.0.3",
+    category: "Marketing",
+    tags: ["marketing", "oglasi", "tiskani mediji", "lokalno oglaševanje", "strategija"]
   }
 ];
 

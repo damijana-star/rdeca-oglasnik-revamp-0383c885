@@ -5,6 +5,15 @@ import { Link } from "react-router-dom";
 
 const blogPosts = [
   {
+    id: 4,
+    title: "📰 Oglaševanje s tiskanimi oglasi: Zakaj jih podjetja še vedno uporabljajo",
+    excerpt: "V dobi digitalnega sveta, kjer nas vsak dan preplavljajo spletni oglasi, tiskani oglasi še vedno ohranjajo svojo moč – še posebej v lokalnem okolju.",
+    date: "09. 04. 2025",
+    author: "Ana Kovač",
+    image: "https://images.unsplash.com/photo-1504711434969-e33886168f5c?ixlib=rb-4.0.3",
+    category: "Marketing"
+  },
+  {
     id: 1,
     title: "Kako izbrati pravo smučarsko opremo za začetnike",
     excerpt: "Pred nakupom smučarske opreme je pomembno upoštevati nekaj ključnih dejavnikov, ki vam bodo pomagali pri izbiri prave opreme za vaše potrebe in raven znanja.",
@@ -21,15 +30,6 @@ const blogPosts = [
     author: "Maja Kovač",
     image: "https://images.unsplash.com/photo-1610737241336-371badac3b66?ixlib=rb-4.0.3",
     category: "Destinacije"
-  },
-  {
-    id: 3,
-    title: "Kako pravilno vzdrževati smuči med sezono",
-    excerpt: "Pravilno vzdrževanje smuči je ključno za optimalno izkušnjo smučanja. Naučite se, kako poskrbeti za svojo opremo, da bo trajala dlje in bolje delovala.",
-    date: "05. 09. 2024",
-    author: "Matej Horvat",
-    image: "https://images.unsplash.com/photo-1520715874916-4ad5dd38bef2?ixlib=rb-4.0.3", 
-    category: "Vzdrževanje"
   }
 ];
 
@@ -42,12 +42,16 @@ export const Blog = () => {
         
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
           {blogPosts.map((post) => (
-            <div key={post.id} className="bg-white rounded-lg overflow-hidden shadow-sm card-hover border border-gray-100">
+            <div 
+              key={post.id} 
+              className="bg-white rounded-lg overflow-hidden shadow-sm card-hover border border-gray-100 transition-all duration-300 hover:shadow-md animate-fade-in"
+              style={{ animationDelay: `${(post.id % 3) * 0.1}s` }}
+            >
               <div className="relative h-48 overflow-hidden">
                 <img 
                   src={post.image} 
                   alt={post.title} 
-                  className="w-full h-full object-cover"
+                  className="w-full h-full object-cover transition-transform duration-500 hover:scale-105"
                 />
                 <span className="absolute top-2 right-2 bg-[#e32530] text-white text-xs font-semibold px-2 py-1 rounded">
                   {post.category}
@@ -77,7 +81,7 @@ export const Blog = () => {
         </div>
         
         <div className="text-center mt-10">
-          <Button className="bg-[#e32530] hover:bg-[#e32530]/90" asChild>
+          <Button className="bg-[#e32530] hover:bg-[#e32530]/90 transition-transform duration-300 hover:scale-105" asChild>
             <Link to="/blog">
               Vsi članki
               <ChevronRight className="ml-1 h-4 w-4" />
