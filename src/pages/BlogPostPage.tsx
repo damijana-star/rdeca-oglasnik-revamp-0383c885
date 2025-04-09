@@ -1,8 +1,9 @@
 import { useParams, Link } from "react-router-dom";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
-import { Calendar, User, ChevronLeft, Tag, ChevronRight, Newspaper, QrCode, Link as LinkIcon, Image } from "lucide-react";
+import { ChevronLeft, ChevronRight, Tag } from "lucide-react";
 import { Button } from "@/components/ui/button";
+
 const allBlogPosts = [{
   id: 1,
   title: "Kako izbrati pravo smučarsko opremo za začetnike",
@@ -134,6 +135,7 @@ const allBlogPosts = [{
   category: "Marketing",
   tags: ["marketing", "oglasi", "tiskani mediji", "lokalno oglaševanje", "strategija"]
 }];
+
 const BlogPostPage = () => {
   const {
     id
@@ -161,12 +163,10 @@ const BlogPostPage = () => {
       </div>;
   }
 
-  // Find related posts (same category, excluding current post)
   const relatedPosts = allBlogPosts.filter(p => p.category === post.category && p.id !== post.id).slice(0, 2);
   return <div className="min-h-screen flex flex-col">
       <Header />
       <main className="flex-grow">
-        {/* Modern Hero Section with Post Image */}
         <div className="relative text-white h-[50vh] md:h-[60vh] flex items-end">
           <div className="absolute inset-0 z-0">
             <img src={post.image} alt={post.title} className="w-full h-full object-cover" />
@@ -179,16 +179,6 @@ const BlogPostPage = () => {
                 <span className="inline-flex items-center bg-[#e32530] text-white text-sm font-semibold px-3 py-1.5 rounded-full">
                   {post.category}
                 </span>
-                <span className="inline-block w-1 h-1 rounded-full bg-white/60"></span>
-                <div className="flex items-center text-gray-300">
-                  <Calendar className="w-4 h-4 mr-2" />
-                  <span>{post.date}</span>
-                </div>
-                <span className="inline-block w-1 h-1 rounded-full bg-white/60"></span>
-                <div className="flex items-center text-gray-300">
-                  <User className="w-4 h-4 mr-2" />
-                  <span>{post.author}</span>
-                </div>
               </div>
               
               <h1 className="text-3xl md:text-5xl mb-6 leading-tight max-w-4xl font-bold">
@@ -202,7 +192,6 @@ const BlogPostPage = () => {
           </div>
         </div>
 
-        {/* Content */}
         <div className="container py-12">
           <div className="max-w-4xl mx-auto">
             <Button variant="outline" className="mb-8 hover:bg-gray-100" asChild>
@@ -218,7 +207,6 @@ const BlogPostPage = () => {
             }} />
             </div>
             
-            {/* Tags */}
             {post.tags && post.tags.length > 0 && <div className="flex items-center flex-wrap gap-2 mb-12 border-t border-b py-4">
                 <Tag className="h-4 w-4 text-gray-500 mr-2" />
                 {post.tags.map((tag, index) => <span key={index} className="bg-gray-100 text-gray-800 text-sm px-3 py-1 rounded-full">
@@ -226,7 +214,6 @@ const BlogPostPage = () => {
                   </span>)}
               </div>}
             
-            {/* Related Articles */}
             {relatedPosts.length > 0 && <div className="mt-12">
                 <h3 className="text-xl font-bold mb-6">Sorodni članki</h3>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
