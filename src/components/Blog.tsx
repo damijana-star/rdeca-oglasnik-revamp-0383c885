@@ -1,5 +1,5 @@
 import { Button } from "@/components/ui/button";
-import { ChevronRight } from "lucide-react";
+import { ArrowRight } from "lucide-react";
 import { Link } from "react-router-dom";
 
 const blogPosts = [
@@ -62,7 +62,7 @@ export const Blog = () => {
                   {post.excerpt}
                 </p>
                 <Link to={`/blog/${post.id}`} className="inline-flex items-center text-[#e32530] font-medium hover:underline">
-                  Preberi več <ChevronRight className="w-4 h-4 ml-1" />
+                  Preberi več <ArrowRight className="w-4 h-4 ml-1" />
                 </Link>
               </div>
             </div>
@@ -73,7 +73,7 @@ export const Blog = () => {
           <Button className="bg-[#e32530] hover:bg-[#e32530]/90 transition-transform duration-300 hover:scale-105" asChild>
             <Link to="/blog">
               Vsi članki
-              <ChevronRight className="ml-1 h-4 w-4" />
+              <ArrowRight className="ml-1 h-4 w-4" />
             </Link>
           </Button>
         </div>
