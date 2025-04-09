@@ -1,6 +1,6 @@
-
 import { Button } from "@/components/ui/button";
 import { useState } from "react";
+import { Link } from "react-router-dom";
 
 export const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -24,9 +24,9 @@ export const Header = () => {
             <a href="#featured" className="text-foreground hover:text-dark-red font-medium">
               Oglasi
             </a>
-            <a href="/nasveti" className="text-foreground hover:text-dark-red font-medium">
+            <Link to="/blog" className="text-foreground hover:text-dark-red font-medium">
               Nasveti
-            </a>
+            </Link>
             <a href="#about" className="text-foreground hover:text-dark-red font-medium">
               O nas
             </a>
@@ -64,9 +64,9 @@ export const Header = () => {
               <a href="#featured" className="text-foreground hover:text-dark-red font-medium">
                 Oglasi
               </a>
-              <a href="/nasveti" className="text-foreground hover:text-dark-red font-medium">
+              <Link to="/blog" className="text-foreground hover:text-dark-red font-medium">
                 Nasveti
-              </a>
+              </Link>
               <a href="#about" className="text-foreground hover:text-dark-red font-medium">
                 O nas
               </a>
