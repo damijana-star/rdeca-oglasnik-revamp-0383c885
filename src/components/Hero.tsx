@@ -7,7 +7,7 @@ export const Hero = () => {
         <img 
           src="/lovable-uploads/ef9f75c3-294b-441f-b566-cb6e2e20abb9.png" 
           alt="Mountain landscape" 
-          className="w-full h-full object-cover"
+          className="w-full h-full object-cover transition-transform duration-[30s] hover:scale-110"
         />
         <div className="absolute inset-0 bg-dark-red/70"></div>
       </div>
@@ -15,10 +15,10 @@ export const Hero = () => {
       {/* Content */}
       <div className="container relative z-10">
         <div className="max-w-3xl mx-auto text-center">
-          <p className="font-body text-xl md:text-2xl mb-8 font-bold uppercase">
+          <p className="font-body text-xl md:text-2xl mb-8 font-bold uppercase fade-in" style={{ animationDelay: '0.3s' }}>
             DOSEŽI VEČ – OGLAŠUJ TAM, KJER TE LJUDJE RES VIDIJO
           </p>
-          <p className="font-body text-lg md:text-xl mb-12 opacity-90">
+          <p className="font-body text-lg md:text-xl mb-12 opacity-90 fade-in" style={{ animationDelay: '0.6s' }}>
             Distribucija po Notranjsko-kraški, Notranjsko-obalni in Goriški regiji zagotavlja visoko prepoznavnost in direkten stik z vašimi strankami.
           </p>
         </div>
