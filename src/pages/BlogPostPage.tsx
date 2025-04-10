@@ -7,7 +7,7 @@ import { Button } from "@/components/ui/button";
 
 const allBlogPosts = [{
   id: 4,
-  title: "📰 Oglaševanje s tiskanimi oglasi: Zakaj jih podjetja še vedno uporabljajo",
+  title: "Oglaševanje s tiskanimi oglasi: Zakaj jih podjetja še vedno uporabljajo",
   excerpt: "V dobi digitalnega sveta, kjer nas vsak dan preplavljajo spletni oglasi, tiskani oglasi še vedno ohranjajo svojo moč – še posebej v lokalnem okolju.",
   content: `
       <p>V dobi digitalnega sveta, kjer nas vsak dan preplavljajo spletni oglasi, tiskani oglasi še vedno ohranjajo svojo moč – še posebej v lokalnem okolju. Mnoga podjetja opažajo, da prav preko tiskanih medijev dosežejo najbolj zvesto in odzivno publiko.</p>
