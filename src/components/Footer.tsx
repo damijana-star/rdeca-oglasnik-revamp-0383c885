@@ -1,5 +1,5 @@
 
-import { Facebook, Mail } from "lucide-react";
+import { Facebook, Mail, PhoneCall } from "lucide-react";
 import { Separator } from "@/components/ui/separator";
 import { Link } from "react-router-dom";
 
@@ -88,7 +88,7 @@ export const Footer = () => {
           <h3 className="font-bold mb-4 text-dark-red">Kontakt</h3>
           <div className="space-y-3 inline-block text-left">
             <div className="flex items-center transition-transform duration-300 hover:translate-x-1">
-              <Phone size={18} className="mr-2 text-dark-red" />
+              <PhoneCall size={18} className="mr-2 text-dark-red" />
               <span className="text-gray-600">031 646 666</span>
             </div>
             <div className="flex items-center transition-transform duration-300 hover:translate-x-1">
