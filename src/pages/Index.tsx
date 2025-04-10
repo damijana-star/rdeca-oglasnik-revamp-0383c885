@@ -1,5 +1,6 @@
 
 import Header from "@/components/Header";
+import AdvertisingBenefits from "@/components/AdvertisingBenefits";
 import Hero from "@/components/Hero";
 import StatsBar from "@/components/StatsBar";
 import Blog from "@/components/Blog";
@@ -11,6 +12,7 @@ const Index = () => {
     <div className="min-h-screen flex flex-col">
       <Header />
       <main className="flex-grow">
+        <AdvertisingBenefits />
         <Hero />
         <StatsBar />
         <Blog />
