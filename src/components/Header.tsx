@@ -8,7 +8,7 @@ export const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   
   const handlePdfPreview = () => {
-    window.open("/oglasnik-cenik.pdf", "_blank");
+    window.open("https://mozilla.github.io/pdf.js/web/viewer.html?file=/oglasnik-cenik.pdf", "_blank");
   };
 
   return (
@@ -45,7 +45,7 @@ export const Header = () => {
               onClick={handlePdfPreview}
             >
               <FileText className="h-4 w-4" />
-              Cenik
+              Prelistaj
             </Button>
             <Button className="bg-[#e32530] hover:bg-[#e32530]/90 transform transition-all duration-300 hover:scale-105 hover:shadow-md" asChild>
               <a href="#contact">Oddaj oglas</a>
@@ -93,7 +93,7 @@ export const Header = () => {
               onClick={handlePdfPreview}
             >
               <FileText className="h-4 w-4" />
-              Cenik
+              Prelistaj
             </Button>
             <Button className="bg-[#e32530] hover:bg-[#e32530]/90 w-full transform transition-all duration-300 hover:scale-105 hover:shadow-md" asChild>
               <a href="#contact">Oddaj oglas</a>
