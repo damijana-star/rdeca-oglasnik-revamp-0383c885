@@ -1,3 +1,4 @@
+
 import { Facebook, Instagram, Mail, Phone } from "lucide-react";
 import { Separator } from "@/components/ui/separator";
 
@@ -39,7 +40,12 @@ export const Footer = () => {
             Oglasnik za NOTRANJSKO-KRAŠKO, OBALNO-KRAŠKO in GORIŠKO regijo.
           </p>
           <div className="flex space-x-4">
-            <a href="#" className="text-dark-red hover:text-white hover:bg-dark-red rounded-full p-2 transition-all duration-300 hover:scale-110">
+            <a 
+              href="https://www.facebook.com/profile.php?id=61575021988033" 
+              target="_blank" 
+              rel="noopener noreferrer"
+              className="text-dark-red hover:text-white hover:bg-dark-red rounded-full p-2 transition-all duration-300 hover:scale-110"
+            >
               <Facebook size={20} />
             </a>
             <a href="#" className="text-dark-red hover:text-white hover:bg-dark-red rounded-full p-2 transition-all duration-300 hover:scale-110">
