@@ -40,7 +40,7 @@ const PDFViewer: React.FC<PDFViewerProps> = ({
 
   return (
     <div className="w-full flex flex-col">
-      {title && <h2 className="text-xl font-semibold mb-4">{title}</h2>}
+      {/* Removed h2 element */}
       
       <div className="bg-gray-100 p-2 rounded-t-lg flex items-center justify-between">
         <div className="flex items-center space-x-2">
