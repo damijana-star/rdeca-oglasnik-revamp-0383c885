@@ -274,7 +274,7 @@ const allBlogPosts = [{
     `,
   date: "12. 04. 2025",
   author: "Ana Kovač",
-  image: "https://images.unsplash.com/photo-1486312338219-ce68d2c6f44d?ixlib=rb-4.0.3", // Updated to show a laptop with an ad design
+  image: "https://images.unsplash.com/photo-1504711434969-e33886168f5c?ixlib=rb-4.0.3", // Updated to printed newspaper/ad
   category: "Marketing",
   tags: ["marketing", "oglasi", "napake", "mala podjetja", "strategija"]
 }];
