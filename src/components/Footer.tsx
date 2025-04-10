@@ -1,5 +1,7 @@
+
 import { Facebook, Mail, Phone } from "lucide-react";
 import { Separator } from "@/components/ui/separator";
+import { Link } from "react-router-dom";
 
 export const Footer = () => {
   const clientLogos = [
@@ -59,11 +61,26 @@ export const Footer = () => {
         <div className="fade-in" style={{ animationDelay: '0.2s' }}>
           <h3 className="font-bold mb-4 text-dark-red">Povezave</h3>
           <ul className="space-y-2">
-            <li><a href="#about" className="text-gray-600 hover:text-dark-red transition-colors duration-300">O nas</a></li>
-            <li><a href="#" className="text-gray-600 hover:text-dark-red transition-colors duration-300">Pogoji uporabe</a></li>
-            <li><a href="#" className="text-gray-600 hover:text-dark-red transition-colors duration-300">Zasebnost</a></li>
-            <li><a href="#" className="text-gray-600 hover:text-dark-red transition-colors duration-300">Piškotki</a></li>
-            <li><a href="#contact" className="text-gray-600 hover:text-dark-red transition-colors duration-300">Kontakt</a></li>
+            <li>
+              <Link to="/blog" className="text-gray-600 hover:text-dark-red transition-colors duration-300">
+                Nasveti
+              </Link>
+            </li>
+            <li>
+              <a href="#contact" className="text-gray-600 hover:text-dark-red transition-colors duration-300">
+                Kontakt
+              </a>
+            </li>
+            <li>
+              <Link to="/view-pdf" className="text-gray-600 hover:text-dark-red transition-colors duration-300">
+                Prelistaj
+              </Link>
+            </li>
+            <li>
+              <a href="#contact" className="text-gray-600 hover:text-dark-red transition-colors duration-300">
+                Oddaj oglas
+              </a>
+            </li>
           </ul>
         </div>
 
