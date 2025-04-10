@@ -1,6 +1,5 @@
-
 import React from 'react';
-import { useParams, Link } from "react-router-dom";
+import { useParams, Link, useNavigate } from "react-router-dom";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import { ChevronLeft, ChevronRight, Tag } from "lucide-react";
@@ -188,12 +187,12 @@ const allBlogPosts = [{
 }];
 
 const BlogPostPage = () => {
-  const {
-    id
-  } = useParams<{
-    id: string;
-  }>();
+  const { id } = useParams<{ id: string }>();
+  const navigate = useNavigate();
   const postId = parseInt(id || "0");
+  
+  console.log('Current Blog Post ID:', postId);
+
   const post = allBlogPosts.find(p => p.id === postId);
   if (!post) {
     return <div className="min-h-screen flex flex-col">
@@ -268,7 +267,8 @@ const BlogPostPage = () => {
             {relatedPosts.length > 0 && <div className="mt-12">
                 <h3 className="text-xl font-bold mb-6">Sorodni članki</h3>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-                  {relatedPosts.map(relatedPost => <div key={relatedPost.id} className="bg-white rounded-lg overflow-hidden shadow-sm card-hover border border-gray-100">
+                  {relatedPosts.map(relatedPost => (
+                    <div key={relatedPost.id}>
                       <div className="relative h-48 overflow-hidden">
                         <img src={relatedPost.image} alt={relatedPost.title} className="w-full h-full object-cover" />
                         <span className="absolute top-2 right-2 bg-[#e32530] text-white text-xs font-semibold px-2 py-1 rounded">
@@ -280,11 +280,20 @@ const BlogPostPage = () => {
                         <p className="text-gray-600 mb-4 text-sm line-clamp-2">
                           {relatedPost.excerpt}
                         </p>
-                        <Link to={`/blog/${relatedPost.id}`} className="inline-flex items-center text-[#e32530] font-medium hover:underline">
-                          Preberi več <ChevronRight className="w-4 h-4 ml-1" />
+                        <Link 
+                          to={`/blog/${relatedPost.id}`} 
+                          onClick={(e) => {
+                            console.log('Navigating to post:', relatedPost.id);
+                            window.scrollTo(0, 0);
+                          }}
+                          className="inline-flex items-center text-[#e32530] font-medium hover:underline"
+                        >
+                          Preberi več 
+                          <ChevronRight className="w-4 h-4 ml-1" />
                         </Link>
                       </div>
-                    </div>)}
+                    </div>
+                  ))}
                 </div>
               </div>}
           </div>
@@ -293,4 +302,5 @@ const BlogPostPage = () => {
       <Footer />
     </div>;
 };
+
 export default BlogPostPage;
