@@ -1,42 +1,45 @@
 
 import { Button } from "@/components/ui/button";
 import { FileText, Upload } from "lucide-react";
-import { useState, useRef } from "react";
+import { useState } from "react";
 import { Link } from "react-router-dom";
-import { toast } from "sonner";
+import { useToast } from "@/hooks/use-toast";
 
 export const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const fileInputRef = useRef<HTMLInputElement>(null);
+  const { toast } = useToast();
   
   const handlePdfPreview = () => {
     window.open("https://mozilla.github.io/pdf.js/web/viewer.html?file=/oglasnik-cenik.pdf", "_blank");
   };
 
-  const handleFileInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+  const handleFileUpload = (event: React.ChangeEvent<HTMLInputElement>) => {
     const file = event.target.files?.[0];
-    if (!file) return;
     
-    if (file.type !== 'application/pdf') {
-      toast.error('Prosimo, naložite PDF datoteko');
+    if (!file) {
       return;
     }
 
-    // In a real application, you would upload this file to a server
-    // Here we're just creating a temporary URL for preview purposes
-    const objectUrl = URL.createObjectURL(file);
-    window.open(`https://mozilla.github.io/pdf.js/web/viewer.html?file=${encodeURIComponent(objectUrl)}`, "_blank");
-    
-    toast.success('PDF uspešno naložen');
-    
-    // Reset the file input
-    if (fileInputRef.current) {
-      fileInputRef.current.value = '';
+    if (file.type !== 'application/pdf') {
+      toast({
+        title: "Napaka",
+        description: "Prosimo, naložite PDF datoteko.",
+        variant: "destructive",
+      });
+      return;
     }
-  };
 
-  const triggerFileInput = () => {
-    fileInputRef.current?.click();
+    // You would typically upload this file to a server
+    // For now, we'll create a local URL to preview it
+    const fileUrl = URL.createObjectURL(file);
+    
+    // Open the PDF in a new tab using PDF.js viewer
+    window.open(`https://mozilla.github.io/pdf.js/web/viewer.html?file=${encodeURIComponent(fileUrl)}`, "_blank");
+    
+    toast({
+      title: "Uspešno",
+      description: "PDF datoteka je bila naložena.",
+    });
   };
 
   return (
@@ -75,24 +78,18 @@ export const Header = () => {
               <FileText className="h-4 w-4" />
               Prelistaj
             </Button>
-            <Button 
-              variant="outline" 
-              className="flex items-center gap-2 border-[#e32530] text-[#e32530]"
-              onClick={triggerFileInput}
-            >
-              <Upload className="h-4 w-4" />
-              Naloži PDF
-            </Button>
-            <input
-              type="file"
-              accept=".pdf"
-              className="hidden"
-              ref={fileInputRef}
-              onChange={handleFileInputChange}
-            />
-            <Button className="bg-[#e32530] hover:bg-[#e32530]/90 transform transition-all duration-300 hover:scale-105 hover:shadow-md" asChild>
-              <a href="#contact">Oddaj oglas</a>
-            </Button>
+            <label className="cursor-pointer">
+              <input
+                type="file"
+                accept="application/pdf"
+                className="hidden"
+                onChange={handleFileUpload}
+              />
+              <Button className="bg-[#e32530] hover:bg-[#e32530]/90 transform transition-all duration-300 hover:scale-105 hover:shadow-md flex items-center gap-2">
+                <Upload className="h-4 w-4" />
+                Naloži PDF
+              </Button>
+            </label>
           </nav>
 
           {/* Mobile Menu Toggle */}
@@ -138,27 +135,21 @@ export const Header = () => {
               <FileText className="h-4 w-4" />
               Prelistaj
             </Button>
-            <Button 
-              variant="outline" 
-              className="flex items-center justify-center gap-2 border-[#e32530] text-[#e32530]"
-              onClick={triggerFileInput}
-            >
-              <Upload className="h-4 w-4" />
-              Naloži PDF
-            </Button>
-            <Button className="bg-[#e32530] hover:bg-[#e32530]/90 w-full transform transition-all duration-300 hover:scale-105 hover:shadow-md" asChild>
-              <a href="#contact">Oddaj oglas</a>
-            </Button>
+            <label className="cursor-pointer w-full">
+              <input
+                type="file"
+                accept="application/pdf"
+                className="hidden"
+                onChange={handleFileUpload}
+              />
+              <Button className="bg-[#e32530] hover:bg-[#e32530]/90 w-full transform transition-all duration-300 hover:scale-105 hover:shadow-md flex items-center justify-center gap-2">
+                <Upload className="h-4 w-4" />
+                Naloži PDF
+              </Button>
+            </label>
           </nav>
         </div>
       </div>
-      <input
-        type="file"
-        accept=".pdf"
-        className="hidden"
-        ref={fileInputRef}
-        onChange={handleFileInputChange}
-      />
     </header>
   );
 };
