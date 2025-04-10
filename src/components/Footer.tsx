@@ -1,4 +1,3 @@
-
 import { Facebook, Mail, PhoneCall } from "lucide-react";
 import { Separator } from "@/components/ui/separator";
 import { Link, useLocation } from "react-router-dom";
@@ -10,7 +9,6 @@ export const Footer = () => {
   
   const location = useLocation();
   
-  // Function to handle navigation to home page sections
   const navigateToHomeSection = (sectionId: string) => {
     if (location.pathname === '/') {
       const element = document.getElementById(sectionId);
@@ -22,7 +20,6 @@ export const Footer = () => {
 
   return (
     <footer className="bg-gray-100 pt-12 pb-6 text-center" id="footer">
-      {/* Client logos */}
       <div className="mb-12">
         <h3 className="text-lg font-semibold mb-6">Naši partnerji</h3>
         <div className="grid grid-cols-2 md:grid-cols-5 gap-6 justify-center">
@@ -44,7 +41,7 @@ export const Footer = () => {
         <div id="about" className="fade-in text-center" style={{ animationDelay: '0.1s' }}>
           <h3 className="mb-4 flex justify-center">
             <img 
-              src="/lovable-uploads/7bb6fbc9-f86e-41ec-8b55-658095999864.png" 
+              src="/lovable-uploads/0ad2c6b5-12cf-4c0b-9c30-5af74d87725a.png" 
               alt="NANOSKI OGLASNIK" 
               className="h-8 transition-transform duration-300 hover:scale-105"
             />

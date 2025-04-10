@@ -1,3 +1,4 @@
+
 import { Button } from "@/components/ui/button";
 import { FileText } from "lucide-react";
 import { useState } from "react";
@@ -22,7 +23,7 @@ export const Header = () => {
         <div className="flex items-center justify-between">
           <div className="flex items-center">
             <Link to="/" className="text-dark-red transition-transform duration-300 hover:scale-105">
-              <img src="/lovable-uploads/7bb6fbc9-f86e-41ec-8b55-658095999864.png" alt="NANOSKI OGLASNIK" className="h-10" />
+              <img src="/lovable-uploads/0ad2c6b5-12cf-4c0b-9c30-5af74d87725a.png" alt="NANOSKI OGLASNIK" className="h-10" />
             </Link>
           </div>
 
