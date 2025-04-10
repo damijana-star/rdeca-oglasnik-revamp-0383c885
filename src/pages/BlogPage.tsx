@@ -14,7 +14,7 @@ const allBlogPosts = [
     excerpt: "Oglaševanje je lahko eno najboljših orodij za rast podjetja – če se ga lotimo premišljeno. Prevečkrat pa se mala podjetja znajdejo v situaciji, ko vlagajo v oglase, a učinka ni.",
     date: "12. 04. 2025",
     author: "Ana Kovač",
-    image: "https://images.unsplash.com/photo-1504711434969-e33886168f5c?ixlib=rb-4.0.3", // Updated to printed newspaper/ad
+    image: "https://images.unsplash.com/photo-1498050108023-c5249f4df085?ixlib=rb-4.0.3", // Updated to show a laptop with code/design
     category: "Marketing"
   },
   {
@@ -23,16 +23,16 @@ const allBlogPosts = [
     excerpt: "V dobi digitalnega sveta, kjer nas vsak dan preplavljajo spletni oglasi, tiskani oglasi še vedno ohranjajo svojo moč – še posebej v lokalnem okolju.",
     date: "09. 04. 2025",
     author: "Ana Kovač",
-    image: "https://images.unsplash.com/photo-1584446922564-7a4e6b13ec79?ixlib=rb-4.0.3", // Updated to printed magazines/catalogs
+    image: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?ixlib=rb-4.0.3", // Updated to show a laptop on a desk
     category: "Marketing"
   },
   {
     id: 5,
     title: "Kako pripraviti učinkovit oglas, ki pritegne pozornost (in prodaja)",
-    excerpt: "Ali se tudi ti sprašuješ, zakaj nekateri oglasi pritegnejo takojšnjo pozornost, drugi pa ostanejo spregledani? Učinkovit oglas ima jasno strukturo, močno sporočilo in poziv k dejanju.",
+    excerpt: "Ali se tudi ti sprašuješ, zakaj nekateri oglasi pritegnejo takojšnjo pozornost, drugi pa ostanejo spregledeni? Učinkovit oglas ima jasno strukturo, močno sporočilo in poziv k dejanju.",
     date: "10. 04. 2025",
     author: "Ana Kovač",
-    image: "https://images.unsplash.com/photo-1475721027785-f74eccf877e2?ixlib=rb-4.0.3", // Updated to printed flyers/brochures
+    image: "https://images.unsplash.com/photo-1488590528505-98d2b5aba04b?ixlib=rb-4.0.3", // Kept the original laptop image
     category: "Marketing"
   }
 ];
