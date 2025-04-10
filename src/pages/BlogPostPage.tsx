@@ -1,4 +1,4 @@
-
+import React from 'react';
 import { useParams, Link } from "react-router-dom";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
@@ -274,7 +274,7 @@ const allBlogPosts = [{
     `,
   date: "12. 04. 2025",
   author: "Ana Kovač",
-  image: "https://images.unsplash.com/photo-1563986768609-322da13575f3?ixlib=rb-4.0.3",
+  image: "https://images.unsplash.com/photo-1486312338219-ce68d2c6f44d?ixlib=rb-4.0.3", // Updated to show a laptop with an ad design
   category: "Marketing",
   tags: ["marketing", "oglasi", "napake", "mala podjetja", "strategija"]
 }];
