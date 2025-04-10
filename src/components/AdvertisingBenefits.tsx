@@ -1,3 +1,4 @@
+
 import { Newspaper, Award, Users, Target, TrendingUp, Calendar } from "lucide-react";
 
 const AdvertisingBenefits = () => {
@@ -5,8 +6,8 @@ const AdvertisingBenefits = () => {
     <section id="benefits" className="py-16 bg-gray-50">
       <div className="container mx-auto px-4">
         <div className="text-center mb-12">
-          <h2 className="text-3xl font-bold text-gray-900 mb-4 uppercase">ZAKAJ OGLAŠEVATI Z NAMI</h2>
-          <p className="text-lg text-gray-600 max-w-3xl mx-auto">
+          <h2 className="text-2xl font-bold text-gray-900 mb-4 uppercase">ZAKAJ OGLAŠEVATI Z NAMI</h2>
+          <p className="text-base text-gray-600 max-w-3xl mx-auto">
             Tiskano oglaševanje prinaša edinstvene prednosti, ki jih digitalni kanali ne morejo ponuditi.
             Odkrijte, zakaj so tiskani oglasi še vedno nepogrešljiv del vašega oglaševalskega miksa.
           </p>
@@ -19,9 +20,9 @@ const AdvertisingBenefits = () => {
               <div className="bg-[#e32530]/10 p-3 rounded-full mr-4">
                 <Newspaper className="h-7 w-7 text-[#e32530]" />
               </div>
-              <h3 className="text-xl font-semibold text-gray-900">Otipljivost in trajnost</h3>
+              <h3 className="text-base font-semibold text-gray-900">Otipljivost in trajnost</h3>
             </div>
-            <p className="text-gray-600">
+            <p className="text-sm text-gray-600">
               Tiskani oglasi so fizični in otipljivi, kar prinaša višjo stopnjo zaupanja in daljšo prisotnost v domovih bralcev.
             </p>
           </div>
@@ -32,9 +33,9 @@ const AdvertisingBenefits = () => {
               <div className="bg-[#e32530]/10 p-3 rounded-full mr-4">
                 <Users className="h-7 w-7 text-[#e32530]" />
               </div>
-              <h3 className="text-xl font-semibold text-gray-900">Ciljana lokalna publika</h3>
+              <h3 className="text-base font-semibold text-gray-900">Ciljana lokalna publika</h3>
             </div>
-            <p className="text-gray-600">
+            <p className="text-sm text-gray-600">
               Naši tiskani oglasi dosežejo natančno segmentirano lokalno občinstvo, kar zagotavlja relevantnost in učinkovitost oglaševanja.
             </p>
           </div>
@@ -45,9 +46,9 @@ const AdvertisingBenefits = () => {
               <div className="bg-[#e32530]/10 p-3 rounded-full mr-4">
                 <Award className="h-7 w-7 text-[#e32530]" />
               </div>
-              <h3 className="text-xl font-semibold text-gray-900">Verodostojnost in zaupanje</h3>
+              <h3 className="text-base font-semibold text-gray-900">Verodostojnost in zaupanje</h3>
             </div>
-            <p className="text-gray-600">
+            <p className="text-sm text-gray-600">
               Tiskani mediji uživajo visoko stopnjo zaupanja, kar se prenaša tudi na oglase in blagovne znamke, ki se v njih pojavljajo.
             </p>
           </div>
@@ -58,9 +59,9 @@ const AdvertisingBenefits = () => {
               <div className="bg-[#e32530]/10 p-3 rounded-full mr-4">
                 <Target className="h-7 w-7 text-[#e32530]" />
               </div>
-              <h3 className="text-xl font-semibold text-gray-900">Manjša konkurenčnost</h3>
+              <h3 className="text-base font-semibold text-gray-900">Manjša konkurenčnost</h3>
             </div>
-            <p className="text-gray-600">
+            <p className="text-sm text-gray-600">
               Zaradi premika oglaševanja na splet je v tiskanih medijih manj oglasov, kar pomeni večjo vidnost vaših oglasov.
             </p>
           </div>
@@ -71,9 +72,9 @@ const AdvertisingBenefits = () => {
               <div className="bg-[#e32530]/10 p-3 rounded-full mr-4">
                 <TrendingUp className="h-7 w-7 text-[#e32530]" />
               </div>
-              <h3 className="text-xl font-semibold text-gray-900">Višja stopnja angažiranosti</h3>
+              <h3 className="text-base font-semibold text-gray-900">Višja stopnja angažiranosti</h3>
             </div>
-            <p className="text-gray-600">
+            <p className="text-sm text-gray-600">
               Bralci tiskanih medijev so bolj osredotočeni in posvečajo več pozornosti vsebini, vključno z oglasi.
             </p>
           </div>
@@ -84,9 +85,9 @@ const AdvertisingBenefits = () => {
               <div className="bg-[#e32530]/10 p-3 rounded-full mr-4">
                 <Calendar className="h-7 w-7 text-[#e32530]" />
               </div>
-              <h3 className="text-xl font-semibold text-gray-900">Dolgoročna vrednost</h3>
+              <h3 className="text-base font-semibold text-gray-900">Dolgoročna vrednost</h3>
             </div>
-            <p className="text-gray-600">
+            <p className="text-sm text-gray-600">
               Medtem ko spletni oglasi hitro izginejo, tiskani oglasi ostajajo prisotni dlje časa in prinašajo dolgoročno vrednost.
             </p>
           </div>
