@@ -1,38 +1,33 @@
-
 import React from 'react';
 import { Button } from "@/components/ui/button";
 import { ArrowRight, ExternalLink } from "lucide-react";
 import { Link } from "react-router-dom";
 
-const blogPosts = [
-  {
-    id: 6,
-    title: "5 najpogostejših napak pri oglaševanju malih podjetij – in kako se jim izogniti",
-    excerpt: "Oglaševanje je lahko eno najboljših orodij za rast podjetja – če se ga lotimo premišljeno. Prevečkrat pa se mala podjetja znajdejo v situaciji, ko vlagajo v oglase, a učinka ni.",
-    date: "12. 04. 2025",
-    author: "Ana Kovač",
-    image: "https://images.unsplash.com/photo-1605810230434-7631ac76ec81", // Group of people around display screens
-    category: "Marketing"
-  },
-  {
-    id: 4,
-    title: "📰 Oglaševanje s tiskanimi oglasi: Zakaj jih podjetja še vedno uporabljajo",
-    excerpt: "V dobi digitalnega sveta, kjer nas vsak dan preplavljajo spletni oglasi, tiskani oglasi še vedno ohranjajo svojo moč – še posebej v lokalnem okolju.",
-    date: "09. 04. 2025",
-    author: "Ana Kovač",
-    image: "https://images.unsplash.com/photo-1466442929976-97f336a657be", // Architecture and business setting
-    category: "Marketing"
-  },
-  {
-    id: 5,
-    title: "Kako pripraviti učinkovit oglas, ki pritegne pozornost (in prodaja)",
-    excerpt: "Ali se tudi ti sprašuješ, zakaj nekateri oglasi pritegnejo takojšnjo pozornost, drugi pa ostanejo spregledeni? Učinkovit oglas ima jasno strukturo, močno sporočilo in poziv k dejanju.",
-    date: "10. 04. 2025",
-    author: "Ana Kovač",
-    image: "https://images.unsplash.com/photo-1494891848038-7bd202a2afeb", // Business-related architectural image
-    category: "Marketing"
-  }
-];
+const blogPosts = [{
+  id: 4,
+  title: "📰 Oglaševanje s tiskanimi oglasi: Zakaj jih podjetja še vedno uporabljajo",
+  image: "https://images.unsplash.com/photo-1517842645767-c639042777db", // Classic desk with newspaper and coffee
+  excerpt: "V dobi digitalnega sveta, kjer nas vsak dan preplavljajo spletni oglasi, tiskani oglasi še vedno ohranjajo svojo moč – še posebej v lokalnem okolju.",
+  date: "09. 04. 2025",
+  author: "Ana Kovač",
+  category: "Marketing"
+}, {
+  id: 5,
+  title: "Kako pripraviti učinkovit oglas, ki pritegne pozornost (in prodaja)",
+  image: "https://images.unsplash.com/photo-1579357338862-faf1bf33af0c", // Classic marketing meeting table
+  excerpt: "Ali se tudi ti sprašuješ, zakaj nekateri oglasi pritegnejo takojšnjo pozornost, drugi pa ostanejo spregledeni? Učinkovit oglas ima jasno strukturo, močno sporočilo in poziv k dejanju.",
+  date: "10. 04. 2025",
+  author: "Ana Kovač",
+  category: "Marketing"
+}, {
+  id: 6,
+  title: "5 najpogostejših napak pri oglaševanju malih podjetij – in kako se jim izogniti",
+  image: "https://images.unsplash.com/photo-1578574077470-cd16b53ffb63", // Classic business brainstorming scene
+  excerpt: "Oglaševanje je lahko eno najboljših orodij za rast podjetja – če se ga lotimo premišljeno. Prevečkrat pa se mala podjetja znajdejo v situaciji, ko vlagajo v oglase, a učinka ni.",
+  date: "12. 04. 2025",
+  author: "Ana Kovač",
+  category: "Marketing"
+}];
 
 export const Blog = () => {
   return (

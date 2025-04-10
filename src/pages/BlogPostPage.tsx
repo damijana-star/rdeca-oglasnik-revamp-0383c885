@@ -6,99 +6,6 @@ import { ChevronLeft, ChevronRight, Tag } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
 const allBlogPosts = [{
-  id: 1,
-  title: "Kako izbrati pravo smučarsko opremo za začetnike",
-  excerpt: "Pred nakupom smučarske opreme je pomembno upoštevati nekaj ključnih dejavnikov, ki vam bodo pomagali pri izbiri prave opreme za vaše potrebe in raven znanja.",
-  content: `
-      <p>Pred nakupom smučarske opreme je pomembno upoštevati nekaj ključnih dejavnikov, ki vam bodo pomagali pri izbiri prave opreme za vaše potrebe in raven znanja.</p>
-      
-      <h2>1. Izbira pravih smuči</h2>
-      <p>Za začetnike so najprimernejše smuči, ki so nekoliko krajše in širše, saj omogočajo lažje vodenje zavojev in boljšo stabilnost. Pri izbiri dolžine smuči velja pravilo, da naj bodo smuči za začetnike visoke do brade, za naprednejše smučarje pa do čela ali višje.</p>
-      
-      <h2>2. Smučarski čevlji</h2>
-      <p>Smučarski čevlji so morda najpomembnejši del opreme, saj neposredno prenašajo vaše gibe na smuči. Pomembno je, da so čevlji udobni, a hkrati dovolj tesni za dobro kontrolo. Pri začetnikih naj bo "flex" indeks (togost čevlja) nižji, običajno med 60-80 za ženske in 70-90 za moške.</p>
-      
-      <h2>3. Smučarske palice</h2>
-      <p>Za določitev prave dolžine palic velja pravilo, da jih obrnete z ročajem navzdol in prime te pod košarico. Komolec naj bo pod pravim kotom. Za začetnike so primerne nekoliko krajše palice, ki omogočajo lažje ravnotežje.</p>
-      
-      <h2>4. Zaščitna oprema</h2>
-      <p>Nikoli ne podcenjujte pomena zaščitne opreme. Čelada je obvezna, priporočljiva pa je tudi zaščita za hrbtenico, zapestja in kolena, posebej za začetnike, pri katerih je verjetnost padca večja.</p>
-      
-      <h2>5. Oblačila</h2>
-      <p>Smučarska oblačila morajo biti vodoodporna, topla in zračna. Sistem oblačenja v plasteh vam omogoča prilagajanje glede na vremenske pogoje in intenzivnost smučanja.</p>
-      
-      <h2>Zaključek</h2>
-      <p>Za začetnike priporočamo, da opremo najprej najamete in jo šele po nekaj smučarskih dneh, ko boste bolje razumeli svoje potrebe in preference, tudi kupite. Pri nakupu poiščite nasvet izkušenega prodajalca, ki vam bo znal svetovati glede na vaše fizične značilnosti in raven znanja.</p>
-    `,
-  date: "15. 10. 2024",
-  author: "Janez Novak",
-  image: "https://images.unsplash.com/photo-1605810230434-7631ac76ec81",
-  category: "Nasveti",
-  tags: ["oprema", "začetniki", "smuči", "nakup"]
-}, {
-  id: 2,
-  title: "5 top smučarskih destinacij v Sloveniji",
-  excerpt: "Slovenija kljub majhnosti ponuja odlična smučišča za vse ravni smučarjev. Preverite naš izbor petih najboljših destinacij za zimsko smuko v naši državi.",
-  content: `
-      <p>Slovenija kljub majhnosti ponuja odlična smučišča za vse ravni smučarjev. Preverite naš izbor petih najboljših destinacij za zimsko smuko v naši državi.</p>
-      
-      <h2>1. Kranjska Gora</h2>
-      <p>Kot gostiteljica tekem svetovnega pokala je Kranjska Gora eno najbolj znanih slovenskih smučišč. Ponuja proge različnih težavnosti, od začetniških do zahtevnih, kot je legendarna proga Podkoren. Zaradi svoje lege blizu meje je priljubljena tudi med tujimi smučarji.</p>
-      
-      <h2>2. Krvavec</h2>
-      <p>Zaradi bližine Ljubljane in letališča Jožeta Pučnika je Krvavec izjemno dostopno smučišče. Z nadmorsko višino do 1971 metrov ponuja zanesljive snežne razmere in raznolike proge za vse ravni smučarjev. Pogled na Ljubljansko kotlino med smučanjem je neprecenljiv.</p>
-      
-      <h2>3. Rogla</h2>
-      <p>Rogla na Pohorju je znana po urejenih progah in zanesljivih snežnih razmerah. Zaradi svoje lege je manj izpostavljena vetru in megli, kar omogoča prijetno smučanje tudi v manj idealnih vremenskih pogojih. Odlična je za družine z različnimi ravnmi smučarskega znanja.</p>
-      
-      <h2>4. Mariborsko Pohorje</h2>
-      <p>Pohorje ponuja najdaljšo osvetljeno smučarsko progo v Evropi za nočno smučanje. 41,5 km prog različnih težavnostnih stopenj in bližina Maribora ga delajo privlačnega za dnevne in večdnevne smučarske izlete.</p>
-      
-      <h2>5. Cerkno</h2>
-      <p>Smučišče Cerkno se ponaša z nazivom "Najbolj urejeno slovensko smučišče" že več let zapored. Moderne naprave, raznolike proge in odlična urejenost ga uvrščajo med najboljše slovenske smučarske destinacije, posebej za družine in smučarje srednjega znanja.</p>
-      
-      <h2>Zaključek</h2>
-      <p>Slovenska smučišča morda niso tako obsežna kot alpski velikani, vendar s svojo dostopnostjo, raznolikostjo in kakovostno ponudbo predstavljajo odlično izbiro za zimske užitke. Vsako od naštetih smučišč ima svoje edinstvene značilnosti, ki jih je vredno izkusiti.</p>
-    `,
-  date: "28. 09. 2024",
-  author: "Maja Kovač",
-  image: "https://images.unsplash.com/photo-1466442929976-97f336a657be",
-  category: "Destinacije",
-  tags: ["Slovenija", "smučišča", "destinacije", "zima"]
-}, {
-  id: 3,
-  title: "Kako pravilno vzdrževati smuči med sezono",
-  excerpt: "Pravilno vzdrževanje smuči je ključno za optimalno izkušnjo smučanja. Naučite se, kako poskrbeti za svojo opremo, da bo trajala dlje in bolje delovala.",
-  content: `
-      <p>Pravilno vzdrževanje smuči je ključno za optimalno izkušnjo smučanja. Naučite se, kako poskrbeti za svojo opremo, da bo trajala dlje in bolje delovala.</p>
-      
-      <h2>1. Redno čiščenje</h2>
-      <p>Po vsakem smučarskem dnevu je pomembno, da smuči očistite. Odstranite sneg in umazanijo s celotne površine, posebej pozorni pa bodite na robnikei drsno ploskev. Uporabite mehko krpo in se izogibajte uporabi agresivnih čistil, ki bi lahko poškodovala površino.</p>
-      
-      <h2>2. Sušenje</h2>
-      <p>Smuči vedno hranite na suhem mestu pri sobni temperaturi. Izogibajte se shranjevanju v avtomobilih ali vlažnih kleteh. Po uporabi jih temeljito posušite, preden jih pospravite, saj lahko vlaga povzroči korozijo robnikov.</p>
-      
-      <h2>3. Mazanje drsne ploskve</h2>
-      <p>Za optimalno drsnost in zaščito drsne ploskve je potrebno redno mazanje. Pogostost je odvisna od intenzivnosti uporabe in vrste snega, običajno pa je priporočljivo mazanje vsakih 3-5 smučarskih dni. Izberite vosek, ki ustreza temperaturam, v katerih smučate.</p>
-      
-      <h2>4. Brušenje robnikov</h2>
-      <p>Ostri robniki so ključni za dobro kontrolo, posebej na trdem snegu in ledu. Če opazite, da smuči slabše držijo na robnikih ali če so ti vidno poškodovani, je čas za brušenje. To lahko storite sami z ustreznim orodjem ali zaupate strokovnjakom v specializiranih trgovinah.</p>
-      
-      <h2>5. Popravilo poškodb</h2>
-      <p>Manjše praske in poškodbe drsne ploskve lahko popravite sami s pomočjo posebnih voskov za popravila. Večje poškodbe, kot so globoke zareze ali poškodovani robniki, pa zahtevajo strokovno obravnavo.</p>
-      
-      <h2>6. Pravilno shranjevanje izven sezone</h2>
-      <p>Pred dolgotrajnejšim shranjevanjem smuči temeljito očistite, namažite z debelejšim slojem voska (ki ga ne odstranite) in spnite skupaj, da ohranijo obliko. Hranite jih v navpičnem položaju na suhem mestu, zaščitene pred UV žarki in toploto.</p>
-      
-      <h2>Zaključek</h2>
-      <p>Redno vzdrževanje smuči ni le vprašanje dolgoročne investicije, temveč tudi varnosti in kvalitete smučanja. Z malo truda in znanja lahko sami poskrbite za večino vzdrževalnih del in si tako zagotovite vedno optimalno pripravljeno opremo za zimske užitke.</p>
-    `,
-  date: "05. 09. 2024",
-  author: "Matej Horvat",
-  image: "https://images.unsplash.com/photo-1494891848038-7bd202a2afeb",
-  category: "Vzdrževanje",
-  tags: ["vzdrževanje", "smuči", "oprema", "servis"]
-}, {
   id: 4,
   title: "📰 Oglaševanje s tiskanimi oglasi: Zakaj jih podjetja še vedno uporabljajo",
   excerpt: "V dobi digitalnega sveta, kjer nas vsak dan preplavljajo spletni oglasi, tiskani oglasi še vedno ohranjajo svojo moč – še posebej v lokalnem okolju.",
@@ -132,7 +39,7 @@ const allBlogPosts = [{
     `,
   date: "09. 04. 2025",
   author: "Ana Kovač",
-  image: "https://images.unsplash.com/photo-1487958449943-2429e8be8625",
+  image: "https://images.unsplash.com/photo-1517842645767-c639042777db",
   category: "Marketing",
   tags: ["marketing", "oglasi", "tiskani mediji", "lokalno oglaševanje", "strategija"]
 }, {
@@ -209,7 +116,7 @@ const allBlogPosts = [{
     `,
   date: "10. 04. 2025",
   author: "Ana Kovač",
-  image: "https://images.unsplash.com/photo-1605810230434-7631ac76ec81",
+  image: "https://images.unsplash.com/photo-1579357338862-faf1bf33af0c",
   category: "Marketing",
   tags: ["marketing", "oglasi", "oglaševanje", "prodaja", "strategija"]
 }, {
@@ -274,7 +181,7 @@ const allBlogPosts = [{
     `,
   date: "12. 04. 2025",
   author: "Ana Kovač",
-  image: "https://images.unsplash.com/photo-1466442929976-97f336a657be",
+  image: "https://images.unsplash.com/photo-1578574077470-cd16b53ffb63",
   category: "Marketing",
   tags: ["marketing", "oglasi", "napake", "mala podjetja", "strategija"]
 }];
