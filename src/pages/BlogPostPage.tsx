@@ -40,7 +40,7 @@ const allBlogPosts = [{
     `,
   date: "09. 04. 2025",
   author: "Ana Kovač",
-  image: "https://images.unsplash.com/photo-1517842645767-c639042777db",
+  image: "/lovable-uploads/9d2bf50c-8258-41d6-80a5-c71a06939606.png", // Updated with optimized magazine photo
   category: "Marketing",
   tags: ["marketing", "oglasi", "tiskani mediji", "lokalno oglaševanje", "strategija"]
 }, {
@@ -50,7 +50,7 @@ const allBlogPosts = [{
   content: `
       <p>Ali se tudi ti sprašuješ, zakaj nekateri oglasi pritegnejo takojšnjo pozornost, drugi pa ostanejo spregledani? Ne gre za naključje. Učinkovit oglas ima jasno strukturo, močno sporočilo in poziv k dejanju. Pa naj bo to v tiskanem oglasniku, na družbenih omrežjih ali spletni strani.</p>
       
-      <p>V nadaljevanju ti razkrijemo preproste, a zanesljive korake, kako ustvariti oglas, ki izstopa in prineša rezultate.</p>
+      <p>V nadaljevanju ti razkrijemo preproste, a zanesljive korake, kako ustvariti oglas, ki izstopa in prineše rezultate.</p>
       
       <h2>1. Določi svoj cilj</h2>
       <p>Preden napišeš eno samo besedo, se vprašaj:</p>
@@ -187,6 +187,7 @@ const allBlogPosts = [{
   tags: ["marketing", "oglasi", "napake", "mala podjetja", "strategija"]
 }];
 
+// Enhanced BlogPostPage component with improved navigation
 const BlogPostPage = () => {
   const { id } = useParams<{ id: string }>();
   const navigate = useNavigate();
@@ -195,6 +196,8 @@ const BlogPostPage = () => {
   console.log('Current Blog Post ID:', postId);
 
   const post = allBlogPosts.find(p => p.id === postId);
+  
+  // Handling post not found scenario
   if (!post) {
     return <div className="min-h-screen flex flex-col">
         <Header />
@@ -214,7 +217,16 @@ const BlogPostPage = () => {
       </div>;
   }
 
+  // Find related posts (same category, different ID)
   const relatedPosts = allBlogPosts.filter(p => p.category === post.category && p.id !== post.id).slice(0, 2);
+  
+  // Function to handle clicking related post links
+  const handleRelatedPostClick = (relatedPostId: number) => {
+    console.log('Navigating to post:', relatedPostId);
+    navigate(`/blog/${relatedPostId}`);
+    window.scrollTo(0, 0);
+  };
+
   return <div className="min-h-screen flex flex-col">
       <Header />
       <main className="flex-grow">
@@ -269,7 +281,7 @@ const BlogPostPage = () => {
                 <h3 className="text-xl font-bold mb-6">Sorodni članki</h3>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                   {relatedPosts.map(relatedPost => (
-                    <div key={relatedPost.id}>
+                    <div key={relatedPost.id} className="cursor-pointer hover:shadow-md transition-all duration-300">
                       <div className="relative h-48 overflow-hidden">
                         <img src={relatedPost.image} alt={relatedPost.title} className="w-full h-full object-cover" />
                         <span className="absolute top-2 right-2 bg-[#e32530] text-white text-xs font-semibold px-2 py-1 rounded">
@@ -284,8 +296,8 @@ const BlogPostPage = () => {
                         <Link 
                           to={`/blog/${relatedPost.id}`} 
                           onClick={(e) => {
-                            console.log('Navigating to post:', relatedPost.id);
-                            window.scrollTo(0, 0);
+                            e.preventDefault();
+                            handleRelatedPostClick(relatedPost.id);
                           }}
                           className="inline-flex items-center text-[#e32530] font-medium hover:underline"
                         >

@@ -23,7 +23,7 @@ const allBlogPosts = [
     excerpt: "V dobi digitalnega sveta, kjer nas vsak dan preplavljajo spletni oglasi, tiskani oglasi še vedno ohranjajo svojo moč – še posebej v lokalnem okolju.",
     date: "09. 04. 2025",
     author: "Ana Kovač",
-    image: "https://images.unsplash.com/photo-1517842645767-c639042777db", // Classic desk with newspaper and coffee
+    image: "/lovable-uploads/9d2bf50c-8258-41d6-80a5-c71a06939606.png", // Updated with optimized magazine photo
     category: "Marketing"
   },
   {
@@ -140,7 +140,14 @@ const BlogPage = () => {
                         <span>{post.author}</span>
                       </div>
                     </div>
-                    <Link to={`/blog/${post.id}`} className="inline-flex items-center text-[#e32530] font-medium hover:underline">
+                    <Link 
+                      to={`/blog/${post.id}`} 
+                      className="inline-flex items-center text-[#e32530] font-medium hover:underline"
+                      onClick={() => {
+                        console.log('Navigating to post:', post.id);
+                        window.scrollTo(0, 0);
+                      }}
+                    >
                       Preberi več <ChevronRight className="w-4 h-4 ml-1" />
                     </Link>
                   </div>
