@@ -15,7 +15,7 @@ export const Hero = () => {
       {/* Content */}
       <div className="container relative z-10">
         <div className="max-w-3xl mx-auto text-center">
-          <p className="font-body text-xl md:text-2xl mb-8 font-extrabold uppercase fade-in" style={{ animationDelay: '0.3s' }}>
+          <p className="font-heading text-xl md:text-2xl mb-8 font-extrabold uppercase fade-in" style={{ animationDelay: '0.3s' }}>
             DOSEŽI VEČ – OGLAŠUJ TAM, KJER TE LJUDJE RES VIDIJO
           </p>
           <p className="font-body text-lg md:text-xl mb-12 opacity-90 fade-in" style={{ animationDelay: '0.6s' }}>
@@ -28,3 +28,4 @@ export const Hero = () => {
 };
 
 export default Hero;
+
