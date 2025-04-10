@@ -1,3 +1,4 @@
+
 import React from 'react';
 import { useParams, Link, useNavigate } from "react-router-dom";
 import Header from "@/components/Header";
@@ -116,7 +117,7 @@ const allBlogPosts = [{
     `,
   date: "10. 04. 2025",
   author: "Ana Kovač",
-  image: "https://images.unsplash.com/photo-1579357338862-faf1bf33af0c",
+  image: "/lovable-uploads/039a48a7-0aeb-4fc5-a920-fa78940f29aa.png",
   category: "Marketing",
   tags: ["marketing", "oglasi", "oglaševanje", "prodaja", "strategija"]
 }, {

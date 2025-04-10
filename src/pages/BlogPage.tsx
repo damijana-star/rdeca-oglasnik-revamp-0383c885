@@ -32,7 +32,7 @@ const allBlogPosts = [
     excerpt: "Ali se tudi ti sprašuješ, zakaj nekateri oglasi pritegnejo takojšnjo pozornost, drugi pa ostanejo spregledani? Učinkovit oglas ima jasno strukturo, močno sporočilo in poziv k dejanju.",
     date: "10. 04. 2025",
     author: "Ana Kovač",
-    image: "https://images.unsplash.com/photo-1579357338862-faf1bf33af0c", // Classic marketing meeting table
+    image: "/lovable-uploads/039a48a7-0aeb-4fc5-a920-fa78940f29aa.png", // Updated with new business meeting image
     category: "Marketing"
   }
 ];
