@@ -10,7 +10,7 @@ const PDFViewPage = () => {
       <Header />
       <main className="flex-grow container py-12">
         <div className="max-w-5xl mx-auto">
-          <h1 className="text-3xl font-bold mb-8">Nanoski Oglasnik</h1>
+          <h1 className="text-3xl font-bold mb-8">Nanoški Oglasnik April 2025</h1>
           
           <div className="bg-white rounded-lg shadow-sm p-6 mb-8">
             <PDFViewer 
