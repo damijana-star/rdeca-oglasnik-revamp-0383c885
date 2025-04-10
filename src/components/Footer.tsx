@@ -1,5 +1,5 @@
 
-import { Facebook, Mail, Phone } from "lucide-react";
+import { Facebook, Mail } from "lucide-react";
 import { Separator } from "@/components/ui/separator";
 import { Link } from "react-router-dom";
 
@@ -9,15 +9,15 @@ export const Footer = () => {
   ];
 
   return (
-    <footer className="bg-gray-100 pt-12 pb-6" id="footer">
+    <footer className="bg-gray-100 pt-12 pb-6 text-center" id="footer">
       {/* Client logos */}
       <div className="mb-12">
-        <h3 className="text-lg font-semibold mb-6 text-center">Naši partnerji</h3>
-        <div className="grid grid-cols-2 md:grid-cols-5 gap-6">
+        <h3 className="text-lg font-semibold mb-6">Naši partnerji</h3>
+        <div className="grid grid-cols-2 md:grid-cols-5 gap-6 justify-center">
           {clientLogos.map((logo, index) => (
             <div 
               key={index} 
-              className="bg-white rounded-md p-4 flex items-center justify-center h-20 shadow-sm transition-all duration-300 hover:shadow-md hover:scale-105"
+              className="bg-white rounded-md p-4 flex items-center justify-center h-20 shadow-sm transition-all duration-300 hover:shadow-md hover:scale-105 mx-auto"
               style={{ animationDelay: `${index * 0.1}s` }}
             >
               <span className="text-gray-400">{logo}</span>
@@ -26,11 +26,11 @@ export const Footer = () => {
         </div>
       </div>
 
-      <Separator className="mb-8" />
+      <Separator className="mb-8 mx-auto max-w-4xl" />
 
-      <div className="grid grid-cols-1 md:grid-cols-4 gap-8 mb-8">
-        <div id="about" className="fade-in" style={{ animationDelay: '0.1s' }}>
-          <h3 className="mb-4">
+      <div className="grid grid-cols-1 md:grid-cols-4 gap-8 mb-8 max-w-6xl mx-auto">
+        <div id="about" className="fade-in text-center" style={{ animationDelay: '0.1s' }}>
+          <h3 className="mb-4 flex justify-center">
             <img 
               src="/lovable-uploads/7bb6fbc9-f86e-41ec-8b55-658095999864.png" 
               alt="NANOSKI OGLASNIK" 
@@ -40,7 +40,7 @@ export const Footer = () => {
           <p className="text-gray-600 mb-4">
             Oglasnik za NOTRANJSKO-KRAŠKO, OBALNO-KRAŠKO in GORIŠKO regijo.
           </p>
-          <div className="flex space-x-4">
+          <div className="flex space-x-4 justify-center">
             <a 
               href="https://www.facebook.com/profile.php?id=61575021988033" 
               target="_blank" 
@@ -58,9 +58,9 @@ export const Footer = () => {
           </div>
         </div>
 
-        <div className="fade-in" style={{ animationDelay: '0.2s' }}>
+        <div className="fade-in text-center" style={{ animationDelay: '0.2s' }}>
           <h3 className="font-bold mb-4 text-dark-red">Povezave</h3>
-          <ul className="space-y-2">
+          <ul className="space-y-2 inline-block text-left">
             <li>
               <Link to="/blog" className="text-gray-600 hover:text-dark-red transition-colors duration-300">
                 Nasveti
@@ -84,9 +84,9 @@ export const Footer = () => {
           </ul>
         </div>
 
-        <div id="contact" className="fade-in" style={{ animationDelay: '0.3s' }}>
+        <div id="contact" className="fade-in text-center" style={{ animationDelay: '0.3s' }}>
           <h3 className="font-bold mb-4 text-dark-red">Kontakt</h3>
-          <div className="space-y-3">
+          <div className="space-y-3 inline-block text-left">
             <div className="flex items-center transition-transform duration-300 hover:translate-x-1">
               <Phone size={18} className="mr-2 text-dark-red" />
               <span className="text-gray-600">031 646 666</span>
@@ -104,7 +104,7 @@ export const Footer = () => {
         </div>
       </div>
 
-      <Separator className="mb-6" />
+      <Separator className="mb-6 mx-auto max-w-4xl" />
 
       <div className="text-center text-gray-500 text-sm">
         © {new Date().getFullYear()} Nanoski Oglasnik. Vse pravice pridržane.
