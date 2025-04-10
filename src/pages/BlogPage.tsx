@@ -19,7 +19,7 @@ const allBlogPosts = [
   },
   {
     id: 4,
-    title: "📰 Oglaševanje s tiskanimi oglasi: Zakaj jih podjetja še vedno uporabljajo",
+    title: "Oglaševanje s tiskanimi oglasi: Zakaj jih podjetja še vedno uporabljajo",
     excerpt: "V dobi digitalnega sveta, kjer nas vsak dan preplavljajo spletni oglasi, tiskani oglasi še vedno ohranjajo svojo moč – še posebej v lokalnem okolju.",
     date: "09. 04. 2025",
     author: "Ana Kovač",
