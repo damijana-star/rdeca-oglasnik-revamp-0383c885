@@ -1,13 +1,14 @@
-
 import { Button } from "@/components/ui/button";
 import { FileText, Upload } from "lucide-react";
 import { useState } from "react";
 import { Link } from "react-router-dom";
 export const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  
   const handlePdfPreview = () => {
-    window.open("https://mozilla.github.io/pdf.js/web/viewer.html?file=/oglasnik-cenik.pdf", "_blank");
+    window.location.href = "/view-pdf";
   };
+  
   return <header className="bg-white shadow-sm sticky top-0 z-50">
       <div className="container py-4">
         <div className="flex items-center justify-between">
@@ -17,15 +18,18 @@ export const Header = () => {
             </a>
           </div>
 
-          {/* Desktop Navigation */}
           <nav className="hidden md:flex items-center space-x-6">
             <a href="#featured" className="nav-link text-foreground hover:text-dark-red font-medium transition-colors duration-300">
-          </a>
+              Oglasi
+            </a>
             <Link to="/blog" className="nav-link text-foreground hover:text-dark-red font-medium transition-colors duration-300">
               Nasveti
             </Link>
             <Link to="/upload-pdf" className="nav-link text-foreground hover:text-dark-red font-medium transition-colors duration-300">
               Naloži PDF
+            </Link>
+            <Link to="/view-pdf" className="nav-link text-foreground hover:text-dark-red font-medium transition-colors duration-300">
+              Cenik
             </Link>
             <a href="#about" className="nav-link text-foreground hover:text-dark-red font-medium transition-colors duration-300">
               O nas
@@ -42,7 +46,6 @@ export const Header = () => {
             </Button>
           </nav>
 
-          {/* Mobile Menu Toggle */}
           <div className="md:hidden">
             <button onClick={() => setIsMenuOpen(!isMenuOpen)} className="text-foreground p-2 transition-transform duration-300 hover:scale-110" aria-label={isMenuOpen ? "Close menu" : "Open menu"}>
               {isMenuOpen ? <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-x transition-transform duration-300">
@@ -54,7 +57,6 @@ export const Header = () => {
           </div>
         </div>
 
-        {/* Mobile Menu with animation */}
         <div className={`md:hidden mt-4 pb-4 transition-all duration-300 overflow-hidden ${isMenuOpen ? 'max-h-96 opacity-100' : 'max-h-0 opacity-0'}`}>
           <nav className="flex flex-col space-y-4">
             <a href="#featured" className="nav-link text-foreground hover:text-dark-red font-medium transition-colors duration-300">
@@ -65,6 +67,9 @@ export const Header = () => {
             </Link>
             <Link to="/upload-pdf" className="nav-link text-foreground hover:text-dark-red font-medium transition-colors duration-300">
               Naloži PDF
+            </Link>
+            <Link to="/view-pdf" className="nav-link text-foreground hover:text-dark-red font-medium transition-colors duration-300">
+              Cenik
             </Link>
             <a href="#about" className="nav-link text-foreground hover:text-dark-red font-medium transition-colors duration-300">
               O nas
