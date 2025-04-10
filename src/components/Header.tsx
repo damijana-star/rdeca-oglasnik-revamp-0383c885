@@ -1,42 +1,14 @@
 
 import { Button } from "@/components/ui/button";
-import { FileText, Upload } from "lucide-react";
-import { useState, useRef } from "react";
+import { FileText } from "lucide-react";
+import { useState } from "react";
 import { Link } from "react-router-dom";
-import { toast } from "sonner";
 
 export const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const fileInputRef = useRef<HTMLInputElement>(null);
   
   const handlePdfPreview = () => {
     window.open("https://mozilla.github.io/pdf.js/web/viewer.html?file=/oglasnik-cenik.pdf", "_blank");
-  };
-
-  const handleFileInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    const file = event.target.files?.[0];
-    if (!file) return;
-    
-    if (file.type !== 'application/pdf') {
-      toast.error('Prosimo, naložite PDF datoteko');
-      return;
-    }
-
-    // In a real application, you would upload this file to a server
-    // Here we're just creating a temporary URL for preview purposes
-    const objectUrl = URL.createObjectURL(file);
-    window.open(`https://mozilla.github.io/pdf.js/web/viewer.html?file=${encodeURIComponent(objectUrl)}`, "_blank");
-    
-    toast.success('PDF uspešno naložen');
-    
-    // Reset the file input
-    if (fileInputRef.current) {
-      fileInputRef.current.value = '';
-    }
-  };
-
-  const triggerFileInput = () => {
-    fileInputRef.current?.click();
   };
 
   return (
@@ -75,21 +47,6 @@ export const Header = () => {
               <FileText className="h-4 w-4" />
               Prelistaj
             </Button>
-            <Button 
-              variant="outline" 
-              className="flex items-center gap-2 border-[#e32530] text-[#e32530]"
-              onClick={triggerFileInput}
-            >
-              <Upload className="h-4 w-4" />
-              Naloži PDF
-            </Button>
-            <input
-              type="file"
-              accept=".pdf"
-              className="hidden"
-              ref={fileInputRef}
-              onChange={handleFileInputChange}
-            />
             <Button className="bg-[#e32530] hover:bg-[#e32530]/90 transform transition-all duration-300 hover:scale-105 hover:shadow-md" asChild>
               <a href="#contact">Oddaj oglas</a>
             </Button>
@@ -138,27 +95,12 @@ export const Header = () => {
               <FileText className="h-4 w-4" />
               Prelistaj
             </Button>
-            <Button 
-              variant="outline" 
-              className="flex items-center justify-center gap-2 border-[#e32530] text-[#e32530]"
-              onClick={triggerFileInput}
-            >
-              <Upload className="h-4 w-4" />
-              Naloži PDF
-            </Button>
             <Button className="bg-[#e32530] hover:bg-[#e32530]/90 w-full transform transition-all duration-300 hover:scale-105 hover:shadow-md" asChild>
               <a href="#contact">Oddaj oglas</a>
             </Button>
           </nav>
         </div>
       </div>
-      <input
-        type="file"
-        accept=".pdf"
-        className="hidden"
-        ref={fileInputRef}
-        onChange={handleFileInputChange}
-      />
     </header>
   );
 };
