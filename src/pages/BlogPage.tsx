@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import { Calendar, ChevronRight, User, Search, Newspaper } from "lucide-react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 
@@ -45,6 +45,7 @@ const categories = [
 const BlogPage = () => {
   const [searchTerm, setSearchTerm] = useState("");
   const [selectedCategory, setSelectedCategory] = useState("Vse");
+  const navigate = useNavigate();
 
   const filteredPosts = allBlogPosts.filter(post => {
     const matchesSearch = post.title.toLowerCase().includes(searchTerm.toLowerCase()) || 
@@ -53,6 +54,12 @@ const BlogPage = () => {
     
     return matchesSearch && matchesCategory;
   });
+
+  const handlePostClick = (postId: number) => {
+    console.log('BlogPage: Navigating to post:', postId);
+    navigate(`/blog/${postId}`);
+    window.scrollTo(0, 0);
+  };
 
   return (
     <div className="min-h-screen flex flex-col">
@@ -140,16 +147,12 @@ const BlogPage = () => {
                         <span>{post.author}</span>
                       </div>
                     </div>
-                    <Link 
-                      to={`/blog/${post.id}`} 
+                    <button 
+                      onClick={() => handlePostClick(post.id)}
                       className="inline-flex items-center text-[#e32530] font-medium hover:underline"
-                      onClick={() => {
-                        console.log('Navigating to post:', post.id);
-                        window.scrollTo(0, 0);
-                      }}
                     >
                       Preberi več <ChevronRight className="w-4 h-4 ml-1" />
-                    </Link>
+                    </button>
                   </div>
                 </div>
               ))}

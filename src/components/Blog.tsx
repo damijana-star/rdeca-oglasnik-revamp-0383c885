@@ -2,7 +2,7 @@
 import React from 'react';
 import { Button } from "@/components/ui/button";
 import { ArrowRight, ExternalLink } from "lucide-react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 const blogPosts = [{
   id: 4,
@@ -31,6 +31,14 @@ const blogPosts = [{
 }];
 
 export const Blog = () => {
+  const navigate = useNavigate();
+  
+  const handlePostClick = (postId: number) => {
+    console.log('Blog: Navigating to post:', postId);
+    navigate(`/blog/${postId}`);
+    window.scrollTo(0, 0);
+  };
+
   return (
     <div id="blog" className="section bg-white">
       <div className="container">
@@ -59,16 +67,12 @@ export const Blog = () => {
                 <p className="text-gray-600 mb-4 text-sm line-clamp-3">
                   {post.excerpt}
                 </p>
-                <Link 
-                  to={`/blog/${post.id}`} 
+                <button 
+                  onClick={() => handlePostClick(post.id)}
                   className="inline-flex items-center text-[#e32530] font-medium hover:underline"
-                  onClick={() => {
-                    console.log('Clicked on blog post:', post.id);
-                    window.scrollTo(0, 0);
-                  }}
                 >
                   Preberi več <ExternalLink className="w-4 h-4 ml-1" />
-                </Link>
+                </button>
               </div>
             </div>
           ))}

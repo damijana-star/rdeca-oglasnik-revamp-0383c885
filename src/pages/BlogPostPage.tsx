@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { useParams, Link, useNavigate } from "react-router-dom";
 import Header from "@/components/Header";
@@ -222,7 +221,7 @@ const BlogPostPage = () => {
   
   // Function to handle clicking related post links
   const handleRelatedPostClick = (relatedPostId: number) => {
-    console.log('Navigating to post:', relatedPostId);
+    console.log('BlogPostPage: Navigating to post:', relatedPostId);
     navigate(`/blog/${relatedPostId}`);
     window.scrollTo(0, 0);
   };
@@ -266,8 +265,8 @@ const BlogPostPage = () => {
             
             <div className="prose prose-lg max-w-none mb-12">
               <div dangerouslySetInnerHTML={{
-              __html: post.content
-            }} />
+                __html: post.content
+              }} />
             </div>
             
             {post.tags && post.tags.length > 0 && <div className="flex items-center flex-wrap gap-2 mb-12 border-t border-b py-4">
@@ -281,7 +280,11 @@ const BlogPostPage = () => {
                 <h3 className="text-xl font-bold mb-6">Sorodni članki</h3>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                   {relatedPosts.map(relatedPost => (
-                    <div key={relatedPost.id} className="cursor-pointer hover:shadow-md transition-all duration-300">
+                    <div 
+                      key={relatedPost.id} 
+                      className="cursor-pointer hover:shadow-md transition-all duration-300"
+                      onClick={() => handleRelatedPostClick(relatedPost.id)}
+                    >
                       <div className="relative h-48 overflow-hidden">
                         <img src={relatedPost.image} alt={relatedPost.title} className="w-full h-full object-cover" />
                         <span className="absolute top-2 right-2 bg-[#e32530] text-white text-xs font-semibold px-2 py-1 rounded">
@@ -293,17 +296,12 @@ const BlogPostPage = () => {
                         <p className="text-gray-600 mb-4 text-sm line-clamp-2">
                           {relatedPost.excerpt}
                         </p>
-                        <Link 
-                          to={`/blog/${relatedPost.id}`} 
-                          onClick={(e) => {
-                            e.preventDefault();
-                            handleRelatedPostClick(relatedPost.id);
-                          }}
+                        <button 
                           className="inline-flex items-center text-[#e32530] font-medium hover:underline"
                         >
                           Preberi več 
                           <ChevronRight className="w-4 h-4 ml-1" />
-                        </Link>
+                        </button>
                       </div>
                     </div>
                   ))}
