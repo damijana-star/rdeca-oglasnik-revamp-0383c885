@@ -1,6 +1,6 @@
 
 import { Button } from "@/components/ui/button";
-import { FilePdf } from "lucide-react";
+import { FileText } from "lucide-react";
 import { useState } from "react";
 import { Link } from "react-router-dom";
 
@@ -44,7 +44,7 @@ export const Header = () => {
               className="flex items-center gap-2 border-[#e32530] text-[#e32530]"
               onClick={handlePdfPreview}
             >
-              <FilePdf className="h-4 w-4" />
+              <FileText className="h-4 w-4" />
               Cenik
             </Button>
             <Button className="bg-[#e32530] hover:bg-[#e32530]/90 transform transition-all duration-300 hover:scale-105 hover:shadow-md" asChild>
@@ -92,7 +92,7 @@ export const Header = () => {
               className="flex items-center justify-center gap-2 border-[#e32530] text-[#e32530]"
               onClick={handlePdfPreview}
             >
-              <FilePdf className="h-4 w-4" />
+              <FileText className="h-4 w-4" />
               Cenik
             </Button>
             <Button className="bg-[#e32530] hover:bg-[#e32530]/90 w-full transform transition-all duration-300 hover:scale-105 hover:shadow-md" asChild>
