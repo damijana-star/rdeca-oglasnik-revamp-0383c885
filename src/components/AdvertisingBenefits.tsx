@@ -1,11 +1,9 @@
 import { Newspaper, Award, Users, Target, TrendingUp, Calendar } from "lucide-react";
-
 const AdvertisingBenefits = () => {
-  return (
-    <section id="benefits" className="py-16 bg-gray-50">
+  return <section id="benefits" className="py-16 bg-gray-50">
       <div className="container mx-auto px-4">
-        <div className="text-center mb-12">
-          <h2 className="text-3xl font-bold text-gray-900 mb-4 uppercase">ZAKAJ OGLAŠEVATI Z NAMI</h2>
+        <div className="text-center mb-12 text-5xl font-extrabold">
+          <h2 className="text-3xl font-bold text-gray-900 mb-4">Zakaj oglaševati z nami</h2>
           <p className="text-lg text-gray-600 max-w-3xl mx-auto">
             Tiskano oglaševanje prinaša edinstvene prednosti, ki jih digitalni kanali ne morejo ponuditi.
             Odkrijte, zakaj so tiskani oglasi še vedno nepogrešljiv del vašega oglaševalskega miksa.
@@ -92,8 +90,6 @@ const AdvertisingBenefits = () => {
           </div>
         </div>
       </div>
-    </section>
-  );
+    </section>;
 };
-
 export default AdvertisingBenefits;
