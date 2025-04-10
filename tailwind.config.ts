@@ -1,3 +1,4 @@
+
 import type { Config } from "tailwindcss";
 
 export default {
@@ -95,8 +96,10 @@ export default {
 				'accordion-up': 'accordion-up 0.2s ease-out'
 			},
 			fontFamily: {
-				'heading': ['Montserrat', 'sans-serif'],
-				'body': ['Open Sans', 'sans-serif'],
+				'heading': ['Poppins', 'sans-serif'],
+				'body': ['Inter', 'sans-serif'],
+				'display': ['Playfair Display', 'serif'],
+				'accent': ['DM Sans', 'sans-serif']
 			},
 			fontWeight: {
 				'extrabold': '800',
