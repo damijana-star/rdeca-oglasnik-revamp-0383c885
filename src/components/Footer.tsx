@@ -51,7 +51,10 @@ export const Footer = () => {
             <a href="#" className="text-dark-red hover:text-white hover:bg-dark-red rounded-full p-2 transition-all duration-300 hover:scale-110">
               <Instagram size={20} />
             </a>
-            <a href="#" className="text-dark-red hover:text-white hover:bg-dark-red rounded-full p-2 transition-all duration-300 hover:scale-110">
+            <a 
+              href="mailto:info@nanoski-oglasnik.eu" 
+              className="text-dark-red hover:text-white hover:bg-dark-red rounded-full p-2 transition-all duration-300 hover:scale-110"
+            >
               <Mail size={20} />
             </a>
           </div>
