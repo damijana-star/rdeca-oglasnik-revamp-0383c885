@@ -4,7 +4,7 @@ import AdvertisingBenefits from "@/components/AdvertisingBenefits";
 import Hero from "@/components/Hero";
 import StatsBar from "@/components/StatsBar";
 import Blog from "@/components/Blog";
-import ContactForm from "@/components/Footer";
+import ContactForm from "@/components/ContactForm";
 import Footer from "@/components/Footer";
 
 const Index = () => {
