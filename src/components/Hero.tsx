@@ -1,14 +1,4 @@
-
-import { useEffect, useState } from "react";
-
 export const Hero = () => {
-  const [isVisible, setIsVisible] = useState(false);
-  
-  useEffect(() => {
-    // Set visible after component mounts for animation to trigger
-    setIsVisible(true);
-  }, []);
-
   return <div className="relative text-white py-16 md:py-24">
       {/* Background image with overlay */}
       <div className="absolute inset-0 z-0">
@@ -19,10 +9,13 @@ export const Hero = () => {
       {/* Content */}
       <div className="container relative z-10">
         <div className="max-w-3xl mx-auto text-center">
-          <p className={`font-heading font-extrabold uppercase mb-8 md:text-5xl transition-all duration-1000 transform ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
-            DOSEŽI VEČ – OGLAŠUJ TAM,<br />KJER TE LJUDJE RES VIDIJO
-          </p>
-          <p className={`font-body text-lg md:text-xl mb-12 opacity-90 transition-all duration-1000 delay-300 transform ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
+          <p style={{
+          animationDelay: '0.3s'
+        }} className="font-body text-xl mb-8 font-bold uppercase fade-in md:text-5xl">OGLAŠUJ TAM,
+KJER TE LJUDJE RES VIDIJO</p>
+          <p className="font-body text-lg md:text-xl mb-12 opacity-90 fade-in" style={{
+          animationDelay: '0.6s'
+        }}>
             Distribucija po Notranjsko-kraški, Notranjsko-obalni in Goriški regiji zagotavlja visoko prepoznavnost in direkten stik z vašimi strankami.
           </p>
         </div>
