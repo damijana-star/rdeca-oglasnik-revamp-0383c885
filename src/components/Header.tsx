@@ -1,5 +1,6 @@
+
 import { Button } from "@/components/ui/button";
-import { FileText } from "lucide-react";
+import { FileText, Upload } from "lucide-react";
 import { useState } from "react";
 import { Link } from "react-router-dom";
 export const Header = () => {
@@ -22,6 +23,9 @@ export const Header = () => {
           </a>
             <Link to="/blog" className="nav-link text-foreground hover:text-dark-red font-medium transition-colors duration-300">
               Nasveti
+            </Link>
+            <Link to="/upload-pdf" className="nav-link text-foreground hover:text-dark-red font-medium transition-colors duration-300">
+              Naloži PDF
             </Link>
             <a href="#about" className="nav-link text-foreground hover:text-dark-red font-medium transition-colors duration-300">
               O nas
@@ -58,6 +62,9 @@ export const Header = () => {
             </a>
             <Link to="/blog" className="nav-link text-foreground hover:text-dark-red font-medium transition-colors duration-300">
               Nasveti
+            </Link>
+            <Link to="/upload-pdf" className="nav-link text-foreground hover:text-dark-red font-medium transition-colors duration-300">
+              Naloži PDF
             </Link>
             <a href="#about" className="nav-link text-foreground hover:text-dark-red font-medium transition-colors duration-300">
               O nas
