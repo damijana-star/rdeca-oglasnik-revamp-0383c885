@@ -82,7 +82,7 @@ const PDFViewer: React.FC<PDFViewerProps> = ({
           style={{ zoom: `${zoom}%` }}
         >
           <div className="flex flex-col items-center justify-center p-6 text-center bg-white h-full">
-            <p className="mb-4 text-gray-600">Vašega brskalnika ne podpira vgrajenega PDF prikazovalnika.</p>
+            <p className="mb-4 text-gray-600">Vaš brskalnik ne podpira vgrajenega PDF prikazovalnika.</p>
             <Button onClick={handleDownload} className="bg-[#e32530] hover:bg-[#e32530]/90">
               <Download className="h-4 w-4 mr-2" />
               Prenesi PDF
