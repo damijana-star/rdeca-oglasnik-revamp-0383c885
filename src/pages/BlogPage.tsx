@@ -1,3 +1,4 @@
+
 import React, { useState } from 'react';
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
@@ -13,7 +14,7 @@ const allBlogPosts = [
     excerpt: "Oglaševanje je lahko eno najboljših orodij za rast podjetja – če se ga lotimo premišljeno. Prevečkrat pa se mala podjetja znajdejo v situaciji, ko vlagajo v oglase, a učinka ni.",
     date: "12. 04. 2025",
     author: "Ana Kovač",
-    image: "https://images.unsplash.com/photo-1578574077470-cd16b53ffb63", // Classic business brainstorming scene
+    image: "/lovable-uploads/fb97cac4-7bc2-4659-aac9-346efcc70f67.png", // Updated modern marketing illustration
     category: "Marketing"
   },
   {
@@ -28,7 +29,7 @@ const allBlogPosts = [
   {
     id: 5,
     title: "Kako pripraviti učinkovit oglas, ki pritegne pozornost (in prodaja)",
-    excerpt: "Ali se tudi ti sprašuješ, zakaj nekateri oglasi pritegnejo takojšnjo pozornost, drugi pa ostanejo spregledeni? Učinkovit oglas ima jasno strukturo, močno sporočilo in poziv k dejanju.",
+    excerpt: "Ali se tudi ti sprašuješ, zakaj nekateri oglasi pritegnejo takojšnjo pozornost, drugi pa ostanejo spregledani? Učinkovit oglas ima jasno strukturo, močno sporočilo in poziv k dejanju.",
     date: "10. 04. 2025",
     author: "Ana Kovač",
     image: "https://images.unsplash.com/photo-1579357338862-faf1bf33af0c", // Classic marketing meeting table

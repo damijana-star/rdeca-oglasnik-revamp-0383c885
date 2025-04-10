@@ -1,3 +1,4 @@
+
 import React from 'react';
 import { useParams, Link } from "react-router-dom";
 import Header from "@/components/Header";
@@ -181,7 +182,7 @@ const allBlogPosts = [{
     `,
   date: "12. 04. 2025",
   author: "Ana Kovač",
-  image: "https://images.unsplash.com/photo-1578574077470-cd16b53ffb63",
+  image: "/lovable-uploads/fb97cac4-7bc2-4659-aac9-346efcc70f67.png",
   category: "Marketing",
   tags: ["marketing", "oglasi", "napake", "mala podjetja", "strategija"]
 }];
