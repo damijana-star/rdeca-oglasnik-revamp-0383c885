@@ -1,12 +1,24 @@
 
 import { Facebook, Mail, PhoneCall } from "lucide-react";
 import { Separator } from "@/components/ui/separator";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 
 export const Footer = () => {
   const clientLogos = [
     "Logo 1", "Logo 2", "Logo 3", "Logo 4", "Logo 5"
   ];
+  
+  const location = useLocation();
+  
+  // Function to handle navigation to home page sections
+  const navigateToHomeSection = (sectionId: string) => {
+    if (location.pathname === '/') {
+      const element = document.getElementById(sectionId);
+      if (element) {
+        element.scrollIntoView({ behavior: 'smooth' });
+      }
+    }
+  };
 
   return (
     <footer className="bg-gray-100 pt-12 pb-6 text-center" id="footer">
@@ -67,7 +79,19 @@ export const Footer = () => {
               </Link>
             </li>
             <li>
-              <Link to="/#contact" className="text-gray-600 hover:text-dark-red transition-colors duration-300">
+              <Link 
+                to="/#contact" 
+                onClick={(e) => {
+                  if (location.pathname !== '/') {
+                    e.preventDefault();
+                    window.location.href = '/#contact';
+                  } else {
+                    e.preventDefault();
+                    navigateToHomeSection('contact');
+                  }
+                }}
+                className="text-gray-600 hover:text-dark-red transition-colors duration-300"
+              >
                 Kontakt
               </Link>
             </li>
@@ -77,7 +101,19 @@ export const Footer = () => {
               </Link>
             </li>
             <li>
-              <Link to="/#contact" className="text-gray-600 hover:text-dark-red transition-colors duration-300">
+              <Link 
+                to="/#contact" 
+                onClick={(e) => {
+                  if (location.pathname !== '/') {
+                    e.preventDefault();
+                    window.location.href = '/#contact';
+                  } else {
+                    e.preventDefault();
+                    navigateToHomeSection('contact');
+                  }
+                }}
+                className="text-gray-600 hover:text-dark-red transition-colors duration-300"
+              >
                 Oddaj oglas
               </Link>
             </li>

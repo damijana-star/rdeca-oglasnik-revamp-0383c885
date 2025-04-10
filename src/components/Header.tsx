@@ -1,11 +1,21 @@
-
 import { Button } from "@/components/ui/button";
 import { FileText } from "lucide-react";
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 
 export const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const location = useLocation();
+  
+  const navigateToSection = (sectionId: string) => {
+    if (location.pathname === '/') {
+      const element = document.getElementById(sectionId);
+      if (element) {
+        element.scrollIntoView({ behavior: 'smooth' });
+      }
+    }
+    setIsMenuOpen(false);
+  };
   
   return <header className="bg-white shadow-sm sticky top-0 z-50">
       <div className="container py-4">
@@ -20,7 +30,15 @@ export const Header = () => {
             <Link to="/blog" className="nav-link text-foreground hover:text-dark-red font-medium transition-colors duration-300">
               Nasveti
             </Link>
-            <Link to="/#contact" className="nav-link text-foreground hover:text-dark-red font-medium transition-colors duration-300">
+            <Link 
+              to="/" 
+              onClick={(e) => {
+                e.preventDefault();
+                navigateToSection('contact');
+                window.location.href = '/#contact';
+              }}
+              className="nav-link text-foreground hover:text-dark-red font-medium transition-colors duration-300"
+            >
               Kontakt
             </Link>
             <Button variant="outline" className="flex items-center gap-2 border-[#e32530] text-[#e32530]" asChild>
@@ -30,7 +48,16 @@ export const Header = () => {
               </Link>
             </Button>
             <Button className="bg-[#e32530] hover:bg-[#e32530]/90 transform transition-all duration-300 hover:scale-105 hover:shadow-md" asChild>
-              <Link to="/#contact">Oddaj oglas</Link>
+              <Link 
+                to="/" 
+                onClick={(e) => {
+                  e.preventDefault();
+                  navigateToSection('contact');
+                  window.location.href = '/#contact';
+                }}
+              >
+                Oddaj oglas
+              </Link>
             </Button>
           </nav>
 
@@ -50,7 +77,15 @@ export const Header = () => {
             <Link to="/blog" className="nav-link text-foreground hover:text-dark-red font-medium transition-colors duration-300">
               Nasveti
             </Link>
-            <Link to="/#contact" className="nav-link text-foreground hover:text-dark-red font-medium transition-colors duration-300">
+            <Link 
+              to="/" 
+              onClick={(e) => {
+                e.preventDefault();
+                navigateToSection('contact');
+                window.location.href = '/#contact';
+              }}
+              className="nav-link text-foreground hover:text-dark-red font-medium transition-colors duration-300"
+            >
               Kontakt
             </Link>
             <Button variant="outline" className="flex items-center justify-center gap-2 border-[#e32530] text-[#e32530]" asChild>
@@ -60,7 +95,16 @@ export const Header = () => {
               </Link>
             </Button>
             <Button className="bg-[#e32530] hover:bg-[#e32530]/90 w-full transform transition-all duration-300 hover:scale-105 hover:shadow-md" asChild>
-              <Link to="/#contact">Oddaj oglas</Link>
+              <Link 
+                to="/" 
+                onClick={(e) => {
+                  e.preventDefault();
+                  navigateToSection('contact');
+                  window.location.href = '/#contact';
+                }}
+              >
+                Oddaj oglas
+              </Link>
             </Button>
           </nav>
         </div>
