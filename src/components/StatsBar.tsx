@@ -3,7 +3,7 @@ import { Award, FileText, Users } from "lucide-react";
 
 export const StatsBar = () => {
   return (
-    <div className="bg-white py-8 border-b">
+    <div className="bg-white py-8">
       <div className="container">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 text-center">
           <div className="flex flex-col items-center justify-center">
