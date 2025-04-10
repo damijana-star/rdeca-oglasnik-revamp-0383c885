@@ -11,18 +11,18 @@ export const Header = () => {
       <div className="container py-4">
         <div className="flex items-center justify-between">
           <div className="flex items-center">
-            <a href="/" className="text-dark-red transition-transform duration-300 hover:scale-105">
+            <Link to="/" className="text-dark-red transition-transform duration-300 hover:scale-105">
               <img src="/lovable-uploads/7bb6fbc9-f86e-41ec-8b55-658095999864.png" alt="NANOSKI OGLASNIK" className="h-10" />
-            </a>
+            </Link>
           </div>
 
           <nav className="hidden md:flex items-center space-x-6">
             <Link to="/blog" className="nav-link text-foreground hover:text-dark-red font-medium transition-colors duration-300">
               Nasveti
             </Link>
-            <a href="#contact" className="nav-link text-foreground hover:text-dark-red font-medium transition-colors duration-300">
+            <Link to="/#contact" className="nav-link text-foreground hover:text-dark-red font-medium transition-colors duration-300">
               Kontakt
-            </a>
+            </Link>
             <Button variant="outline" className="flex items-center gap-2 border-[#e32530] text-[#e32530]" asChild>
               <Link to="/view-pdf">
                 <FileText className="h-4 w-4" />
@@ -30,7 +30,7 @@ export const Header = () => {
               </Link>
             </Button>
             <Button className="bg-[#e32530] hover:bg-[#e32530]/90 transform transition-all duration-300 hover:scale-105 hover:shadow-md" asChild>
-              <a href="#contact">Oddaj oglas</a>
+              <Link to="/#contact">Oddaj oglas</Link>
             </Button>
           </nav>
 
@@ -50,9 +50,9 @@ export const Header = () => {
             <Link to="/blog" className="nav-link text-foreground hover:text-dark-red font-medium transition-colors duration-300">
               Nasveti
             </Link>
-            <a href="#contact" className="nav-link text-foreground hover:text-dark-red font-medium transition-colors duration-300">
+            <Link to="/#contact" className="nav-link text-foreground hover:text-dark-red font-medium transition-colors duration-300">
               Kontakt
-            </a>
+            </Link>
             <Button variant="outline" className="flex items-center justify-center gap-2 border-[#e32530] text-[#e32530]" asChild>
               <Link to="/view-pdf">
                 <FileText className="h-4 w-4" />
@@ -60,7 +60,7 @@ export const Header = () => {
               </Link>
             </Button>
             <Button className="bg-[#e32530] hover:bg-[#e32530]/90 w-full transform transition-all duration-300 hover:scale-105 hover:shadow-md" asChild>
-              <a href="#contact">Oddaj oglas</a>
+              <Link to="/#contact">Oddaj oglas</Link>
             </Button>
           </nav>
         </div>
