@@ -9,7 +9,7 @@ export const Footer = () => {
   ];
 
   return (
-    <footer className="bg-gray-100 pt-12 pb-6">
+    <footer className="bg-gray-100 pt-12 pb-6" id="footer">
       {/* Client logos */}
       <div className="mb-12">
         <h3 className="text-lg font-semibold mb-6 text-center">Naši partnerji</h3>
@@ -67,9 +67,9 @@ export const Footer = () => {
               </Link>
             </li>
             <li>
-              <a href="#contact" className="text-gray-600 hover:text-dark-red transition-colors duration-300">
+              <Link to="/#contact" className="text-gray-600 hover:text-dark-red transition-colors duration-300">
                 Kontakt
-              </a>
+              </Link>
             </li>
             <li>
               <Link to="/view-pdf" className="text-gray-600 hover:text-dark-red transition-colors duration-300">
@@ -77,9 +77,9 @@ export const Footer = () => {
               </Link>
             </li>
             <li>
-              <a href="#contact" className="text-gray-600 hover:text-dark-red transition-colors duration-300">
+              <Link to="/#contact" className="text-gray-600 hover:text-dark-red transition-colors duration-300">
                 Oddaj oglas
-              </a>
+              </Link>
             </li>
           </ul>
         </div>
