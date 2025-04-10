@@ -17,15 +17,9 @@ export const Header = () => {
           </div>
 
           <nav className="hidden md:flex items-center space-x-6">
-            <a href="#featured" className="nav-link text-foreground hover:text-dark-red font-medium transition-colors duration-300">
-              Oglasi
-            </a>
             <Link to="/blog" className="nav-link text-foreground hover:text-dark-red font-medium transition-colors duration-300">
               Nasveti
             </Link>
-            <a href="#about" className="nav-link text-foreground hover:text-dark-red font-medium transition-colors duration-300">
-              O nas
-            </a>
             <a href="#contact" className="nav-link text-foreground hover:text-dark-red font-medium transition-colors duration-300">
               Kontakt
             </a>
@@ -53,15 +47,9 @@ export const Header = () => {
 
         <div className={`md:hidden mt-4 pb-4 transition-all duration-300 overflow-hidden ${isMenuOpen ? 'max-h-96 opacity-100' : 'max-h-0 opacity-0'}`}>
           <nav className="flex flex-col space-y-4">
-            <a href="#featured" className="nav-link text-foreground hover:text-dark-red font-medium transition-colors duration-300">
-              Oglasi
-            </a>
             <Link to="/blog" className="nav-link text-foreground hover:text-dark-red font-medium transition-colors duration-300">
               Nasveti
             </Link>
-            <a href="#about" className="nav-link text-foreground hover:text-dark-red font-medium transition-colors duration-300">
-              O nas
-            </a>
             <a href="#contact" className="nav-link text-foreground hover:text-dark-red font-medium transition-colors duration-300">
               Kontakt
             </a>
