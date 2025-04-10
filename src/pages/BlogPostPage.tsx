@@ -39,7 +39,7 @@ const allBlogPosts = [{
     `,
   date: "09. 04. 2025",
   author: "Ana Kovač",
-  image: "/lovable-uploads/9d2bf50c-8258-41d6-80a5-c71a06939606.png", // Updated with optimized magazine photo
+  image: "/lovable-uploads/9d2bf50c-8258-41d6-80a5-c71a06939606.png",
   category: "Marketing",
   tags: ["marketing", "oglasi", "tiskani mediji", "lokalno oglaševanje", "strategija"]
 }, {
@@ -296,12 +296,16 @@ const BlogPostPage = () => {
                         <p className="text-gray-600 mb-4 text-sm line-clamp-2">
                           {relatedPost.excerpt}
                         </p>
-                        <button 
+                        <span 
                           className="inline-flex items-center text-[#e32530] font-medium hover:underline"
+                          onClick={(e) => {
+                            e.stopPropagation(); // Prevent triggering parent onClick
+                            handleRelatedPostClick(relatedPost.id);
+                          }}
                         >
                           Preberi več 
                           <ChevronRight className="w-4 h-4 ml-1" />
-                        </button>
+                        </span>
                       </div>
                     </div>
                   ))}
