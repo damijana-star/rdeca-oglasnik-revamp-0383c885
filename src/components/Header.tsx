@@ -1,13 +1,11 @@
+
 import { Button } from "@/components/ui/button";
-import { FileText, Upload } from "lucide-react";
+import { FileText } from "lucide-react";
 import { useState } from "react";
 import { Link } from "react-router-dom";
+
 export const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  
-  const handlePdfPreview = () => {
-    window.location.href = "/view-pdf";
-  };
   
   return <header className="bg-white shadow-sm sticky top-0 z-50">
       <div className="container py-4">
@@ -25,21 +23,17 @@ export const Header = () => {
             <Link to="/blog" className="nav-link text-foreground hover:text-dark-red font-medium transition-colors duration-300">
               Nasveti
             </Link>
-            <Link to="/upload-pdf" className="nav-link text-foreground hover:text-dark-red font-medium transition-colors duration-300">
-              Naloži PDF
-            </Link>
-            <Link to="/view-pdf" className="nav-link text-foreground hover:text-dark-red font-medium transition-colors duration-300">
-              Cenik
-            </Link>
             <a href="#about" className="nav-link text-foreground hover:text-dark-red font-medium transition-colors duration-300">
               O nas
             </a>
             <a href="#contact" className="nav-link text-foreground hover:text-dark-red font-medium transition-colors duration-300">
               Kontakt
             </a>
-            <Button variant="outline" className="flex items-center gap-2 border-[#e32530] text-[#e32530]" onClick={handlePdfPreview}>
-              <FileText className="h-4 w-4" />
-              Prelistaj
+            <Button variant="outline" className="flex items-center gap-2 border-[#e32530] text-[#e32530]" asChild>
+              <Link to="/view-pdf">
+                <FileText className="h-4 w-4" />
+                Prelistaj
+              </Link>
             </Button>
             <Button className="bg-[#e32530] hover:bg-[#e32530]/90 transform transition-all duration-300 hover:scale-105 hover:shadow-md" asChild>
               <a href="#contact">Oddaj oglas</a>
@@ -65,21 +59,17 @@ export const Header = () => {
             <Link to="/blog" className="nav-link text-foreground hover:text-dark-red font-medium transition-colors duration-300">
               Nasveti
             </Link>
-            <Link to="/upload-pdf" className="nav-link text-foreground hover:text-dark-red font-medium transition-colors duration-300">
-              Naloži PDF
-            </Link>
-            <Link to="/view-pdf" className="nav-link text-foreground hover:text-dark-red font-medium transition-colors duration-300">
-              Cenik
-            </Link>
             <a href="#about" className="nav-link text-foreground hover:text-dark-red font-medium transition-colors duration-300">
               O nas
             </a>
             <a href="#contact" className="nav-link text-foreground hover:text-dark-red font-medium transition-colors duration-300">
               Kontakt
             </a>
-            <Button variant="outline" className="flex items-center justify-center gap-2 border-[#e32530] text-[#e32530]" onClick={handlePdfPreview}>
-              <FileText className="h-4 w-4" />
-              Prelistaj
+            <Button variant="outline" className="flex items-center justify-center gap-2 border-[#e32530] text-[#e32530]" asChild>
+              <Link to="/view-pdf">
+                <FileText className="h-4 w-4" />
+                Prelistaj
+              </Link>
             </Button>
             <Button className="bg-[#e32530] hover:bg-[#e32530]/90 w-full transform transition-all duration-300 hover:scale-105 hover:shadow-md" asChild>
               <a href="#contact">Oddaj oglas</a>
