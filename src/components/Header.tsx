@@ -1,9 +1,12 @@
+
 import { Button } from "@/components/ui/button";
 import { FileText } from "lucide-react";
 import { useState } from "react";
 import { Link } from "react-router-dom";
+
 export const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  
   return <header className="bg-white shadow-sm sticky top-0 z-50">
       <div className="container py-4">
         <div className="flex items-center justify-between">
@@ -15,13 +18,14 @@ export const Header = () => {
 
           <nav className="hidden md:flex items-center space-x-6">
             <a href="#featured" className="nav-link text-foreground hover:text-dark-red font-medium transition-colors duration-300">
-          </a>
+              Oglasi
+            </a>
             <Link to="/blog" className="nav-link text-foreground hover:text-dark-red font-medium transition-colors duration-300">
               Nasveti
             </Link>
             <a href="#about" className="nav-link text-foreground hover:text-dark-red font-medium transition-colors duration-300">
-
-          </a>
+              O nas
+            </a>
             <a href="#contact" className="nav-link text-foreground hover:text-dark-red font-medium transition-colors duration-300">
               Kontakt
             </a>
