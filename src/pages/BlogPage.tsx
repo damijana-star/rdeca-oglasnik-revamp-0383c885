@@ -9,6 +9,15 @@ import { useState } from "react";
 
 const allBlogPosts = [
   {
+    id: 6,
+    title: "5 najpogostejših napak pri oglaševanju malih podjetij – in kako se jim izogniti",
+    excerpt: "Oglaševanje je lahko eno najboljših orodij za rast podjetja – če se ga lotimo premišljeno. Prevečkrat pa se mala podjetja znajdejo v situaciji, ko vlagajo v oglase, a učinka ni.",
+    date: "12. 04. 2025",
+    author: "Ana Kovač",
+    image: "https://images.unsplash.com/photo-1563986768609-322da13575f3?ixlib=rb-4.0.3",
+    category: "Marketing"
+  },
+  {
     id: 4,
     title: "📰 Oglaševanje s tiskanimi oglasi: Zakaj jih podjetja še vedno uporabljajo",
     excerpt: "V dobi digitalnega sveta, kjer nas vsak dan preplavljajo spletni oglasi, tiskani oglasi še vedno ohranjajo svojo moč – še posebej v lokalnem okolju.",

@@ -5,6 +5,15 @@ import { Link } from "react-router-dom";
 
 const blogPosts = [
   {
+    id: 6,
+    title: "5 najpogostejših napak pri oglaševanju malih podjetij – in kako se jim izogniti",
+    excerpt: "Oglaševanje je lahko eno najboljših orodij za rast podjetja – če se ga lotimo premišljeno. Prevečkrat pa se mala podjetja znajdejo v situaciji, ko vlagajo v oglase, a učinka ni.",
+    date: "12. 04. 2025",
+    author: "Ana Kovač",
+    image: "https://images.unsplash.com/photo-1563986768609-322da13575f3?ixlib=rb-4.0.3",
+    category: "Marketing"
+  },
+  {
     id: 5,
     title: "Kako pripraviti učinkovit oglas, ki pritegne pozornost (in prodaja)",
     excerpt: "Ali se tudi ti sprašuješ, zakaj nekateri oglasi pritegnejo takojšnjo pozornost, drugi pa ostanejo spregledani? Učinkovit oglas ima jasno strukturo, močno sporočilo in poziv k dejanju.",

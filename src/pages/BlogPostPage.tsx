@@ -212,6 +212,71 @@ const allBlogPosts = [{
   image: "https://images.unsplash.com/photo-1488590528505-98d2b5aba04b?ixlib=rb-4.0.3",
   category: "Marketing",
   tags: ["marketing", "oglasi", "oglaševanje", "prodaja", "strategija"]
+}, {
+  id: 6,
+  title: "5 najpogostejših napak pri oglaševanju malih podjetij – in kako se jim izogniti",
+  excerpt: "Oglaševanje je lahko eno najboljših orodij za rast podjetja – če se ga lotimo premišljeno. Prevečkrat pa se mala podjetja znajdejo v situaciji, ko vlagajo v oglase, a učinka ni, telefona nihče ne dvigne, e-pošta ostane prazna.",
+  content: `
+      <p>Oglaševanje je lahko eno najboljših orodij za rast podjetja – če se ga lotimo premišljeno. Prevečkrat pa se mala podjetja znajdejo v situaciji, ko vlagajo v oglase, a učinka ni, telefona nihče ne dvigne, e-pošta ostane prazna. Zakaj?</p>
+      <p>V tem zapisu ti pokažemo 5 najpogostejših napak, ki jih delajo mala podjetja pri oglaševanju – in kako jih lahko preprosto odpraviš.</p>
+      
+      <h2>1️⃣ Nejasno sporočilo – kupec ne ve, kaj ponujaš</h2>
+      <p>Če tvoj oglas ne pove točno in hitro, kaj ponujaš in zakaj si prava izbira, bo bralec preprosto preskočil.</p>
+      <p>Malo časa imaš, da ujameš pozornost – izkoristi ga!</p>
+      <p><strong>Kako to popraviti:</strong></p>
+      <ul>
+        <li>Jasno napiši: Kaj? Komu? Zakaj?</li>
+        <li>Namesto "Kvalitetne storitve za dom" raje:
+        "Hitre in natančne vodovodne storitve – Koper in okolica"</li>
+      </ul>
+      
+      <h2>2️⃣ Ni poziva k dejanju (Call to Action)</h2>
+      <p>Ljudje potrebujejo usmeritev. Če jim ne poveš, kaj naj naredijo, večina preprosto ne naredi nič.</p>
+      <p><strong>Kako to popraviti:</strong></p>
+      <p>Dodaj jasno navodilo:</p>
+      <ul>
+        <li>"Pokliči nas zdaj na 040 123 456"</li>
+        <li>"Pošlji povpraševanje na info@podjetje.si"</li>
+        <li>"Obišči nas danes v centru Kopra"</li>
+      </ul>
+      
+      <h2>3️⃣ Oglas brez koristi za stranko</h2>
+      <p>Podjetja pogosto govorijo o sebi, namesto da bi se osredotočila na kupca in njegove potrebe.</p>
+      <p><strong>Kako to popraviti:</strong></p>
+      <p>Ne govori, da si najboljši – pokaži kaj kupec dobi.</p>
+      <p>"Mi smo strokovnjaki za elektroinštalacije"</p>
+      <p>"Prihranite čas in denar z našimi zanesljivimi elektroinštalacijami – brez skritih stroškov"</p>
+      
+      <h2>4️⃣ Preveč informacij v enem oglasu</h2>
+      <p>Oglas ni katalog. Če je vse natlačeno skupaj, bralec izgubi zanimanje ali pa ne najde ključnih informacij.</p>
+      <p><strong>Kako to popraviti:</strong></p>
+      <ul>
+        <li>Uporabi kratek naslov, jedrnat opis, kontakt.</li>
+        <li>Če ponujaš več storitev, izberi eno ali dve, ki sta najbolj privlačni.</li>
+      </ul>
+      
+      <h2>5️⃣ Oglas brez vizualnega učinka (slika, barva, logotip)</h2>
+      <p>V današnjem svetu vizualnih vsebin mora tvoj oglas izstopati. Če je siv, dolgočasen in brez slike, bo šel mimo neopažen.</p>
+      <p><strong>Kako to popraviti:</strong></p>
+      <ul>
+        <li>Dodaj fotografijo izdelka, dela, lokacije.</li>
+        <li>Uporabi logotip in kontakt v spodnjem delu.</li>
+        <li>Uporabi poudarke (krepko, barva, okvir).</li>
+      </ul>
+      
+      <h2>BONUS: Ne oglašuj samo enkrat</h2>
+      <p>Ena objava ali en oglas ni dovolj. Ljudje potrebujejo več ponovitev, da si zapomnijo tvoje ime.</p>
+      <p>Redno oglaševanje (tudi v tiskani obliki!) gradi prepoznavnost in zaupanje.</p>
+      
+      <h2>Zaključek</h2>
+      <p>Napake pri oglaševanju so pogoste – a tudi enostavno popravljive.</p>
+      <p>S pravim pristopom lahko tvoj oglas izstopa, pritegne in prinese prave stranke.</p>
+    `,
+  date: "12. 04. 2025",
+  author: "Ana Kovač",
+  image: "https://images.unsplash.com/photo-1563986768609-322da13575f3?ixlib=rb-4.0.3",
+  category: "Marketing",
+  tags: ["marketing", "oglasi", "napake", "mala podjetja", "strategija"]
 }];
 
 const BlogPostPage = () => {
