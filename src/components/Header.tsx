@@ -1,10 +1,15 @@
 
 import { Button } from "@/components/ui/button";
+import { FilePdf } from "lucide-react";
 import { useState } from "react";
 import { Link } from "react-router-dom";
 
 export const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  
+  const handlePdfPreview = () => {
+    window.open("/oglasnik-cenik.pdf", "_blank");
+  };
 
   return (
     <header className="bg-white shadow-sm sticky top-0 z-50">
@@ -34,6 +39,14 @@ export const Header = () => {
             <a href="#contact" className="nav-link text-foreground hover:text-dark-red font-medium transition-colors duration-300">
               Kontakt
             </a>
+            <Button 
+              variant="outline" 
+              className="flex items-center gap-2 border-[#e32530] text-[#e32530]"
+              onClick={handlePdfPreview}
+            >
+              <FilePdf className="h-4 w-4" />
+              Cenik
+            </Button>
             <Button className="bg-[#e32530] hover:bg-[#e32530]/90 transform transition-all duration-300 hover:scale-105 hover:shadow-md" asChild>
               <a href="#contact">Oddaj oglas</a>
             </Button>
@@ -74,6 +87,14 @@ export const Header = () => {
             <a href="#contact" className="nav-link text-foreground hover:text-dark-red font-medium transition-colors duration-300">
               Kontakt
             </a>
+            <Button 
+              variant="outline" 
+              className="flex items-center justify-center gap-2 border-[#e32530] text-[#e32530]"
+              onClick={handlePdfPreview}
+            >
+              <FilePdf className="h-4 w-4" />
+              Cenik
+            </Button>
             <Button className="bg-[#e32530] hover:bg-[#e32530]/90 w-full transform transition-all duration-300 hover:scale-105 hover:shadow-md" asChild>
               <a href="#contact">Oddaj oglas</a>
             </Button>

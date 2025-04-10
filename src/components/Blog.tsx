@@ -21,15 +21,6 @@ const blogPosts = [
     author: "Ana Kovač",
     image: "https://images.unsplash.com/photo-1504711434969-e33886168f5c?ixlib=rb-4.0.3",
     category: "Marketing"
-  },
-  {
-    id: 1,
-    title: "Kako izbrati pravo smučarsko opremo za začetnike",
-    excerpt: "Pred nakupom smučarske opreme je pomembno upoštevati nekaj ključnih dejavnikov, ki vam bodo pomagali pri izbiri prave opreme za vaše potrebe in raven znanja.",
-    date: "15. 10. 2024",
-    author: "Janez Novak",
-    image: "https://images.unsplash.com/photo-1622484212776-62edf9a686e8?ixlib=rb-4.0.3",
-    category: "Nasveti"
   }
 ];
 
@@ -38,7 +29,7 @@ export const Blog = () => {
     <div id="blog" className="section bg-white">
       <div className="container">
         <h2 className="text-2xl md:text-3xl font-bold mb-2">Nasveti</h2>
-        <p className="text-gray-600 mb-8">Najnovejši članki, nasveti in novice iz sveta zimskih športov</p>
+        <p className="text-gray-600 mb-8">Najnovejši članki, nasveti in novice iz sveta oglasov in marketinga</p>
         
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
           {blogPosts.map((post) => (
