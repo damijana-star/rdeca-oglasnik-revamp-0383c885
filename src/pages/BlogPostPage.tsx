@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useParams, Link, useNavigate } from "react-router-dom";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
@@ -194,6 +194,11 @@ const BlogPostPage = () => {
   
   console.log('Current Blog Post ID:', postId);
 
+  useEffect(() => {
+    // Scroll to top when post ID changes
+    window.scrollTo(0, 0);
+  }, [postId]);
+
   const post = allBlogPosts.find(p => p.id === postId);
   
   // Handling post not found scenario
@@ -223,7 +228,6 @@ const BlogPostPage = () => {
   const handleRelatedPostClick = (relatedPostId: number) => {
     console.log('BlogPostPage: Navigating to post:', relatedPostId);
     navigate(`/blog/${relatedPostId}`);
-    window.scrollTo(0, 0);
   };
 
   return <div className="min-h-screen flex flex-col">
@@ -296,8 +300,8 @@ const BlogPostPage = () => {
                         <p className="text-gray-600 mb-4 text-sm line-clamp-2">
                           {relatedPost.excerpt}
                         </p>
-                        <span 
-                          className="inline-flex items-center text-[#e32530] font-medium hover:underline"
+                        <div 
+                          className="inline-flex items-center text-[#e32530] font-medium hover:underline cursor-pointer"
                           onClick={(e) => {
                             e.stopPropagation(); // Prevent triggering parent onClick
                             handleRelatedPostClick(relatedPost.id);
@@ -305,7 +309,7 @@ const BlogPostPage = () => {
                         >
                           Preberi več 
                           <ChevronRight className="w-4 h-4 ml-1" />
-                        </span>
+                        </div>
                       </div>
                     </div>
                   ))}
