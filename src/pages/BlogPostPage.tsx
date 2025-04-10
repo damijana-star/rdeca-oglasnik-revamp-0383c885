@@ -32,7 +32,7 @@ const allBlogPosts = [{
     `,
   date: "15. 10. 2024",
   author: "Janez Novak",
-  image: "https://images.unsplash.com/photo-1622484212776-62edf9a686e8?ixlib=rb-4.0.3",
+  image: "https://images.unsplash.com/photo-1605810230434-7631ac76ec81",
   category: "Nasveti",
   tags: ["oprema", "začetniki", "smuči", "nakup"]
 }, {
@@ -62,7 +62,7 @@ const allBlogPosts = [{
     `,
   date: "28. 09. 2024",
   author: "Maja Kovač",
-  image: "https://images.unsplash.com/photo-1610737241336-371badac3b66?ixlib=rb-4.0.3",
+  image: "https://images.unsplash.com/photo-1466442929976-97f336a657be",
   category: "Destinacije",
   tags: ["Slovenija", "smučišča", "destinacije", "zima"]
 }, {
@@ -95,7 +95,7 @@ const allBlogPosts = [{
     `,
   date: "05. 09. 2024",
   author: "Matej Horvat",
-  image: "https://images.unsplash.com/photo-1520715874916-4ad5dd38bef2?ixlib=rb-4.0.3",
+  image: "https://images.unsplash.com/photo-1494891848038-7bd202a2afeb",
   category: "Vzdrževanje",
   tags: ["vzdrževanje", "smuči", "oprema", "servis"]
 }, {
@@ -132,7 +132,7 @@ const allBlogPosts = [{
     `,
   date: "09. 04. 2025",
   author: "Ana Kovač",
-  image: "https://images.unsplash.com/photo-1504711434969-e33886168f5c?ixlib=rb-4.0.3",
+  image: "https://images.unsplash.com/photo-1487958449943-2429e8be8625",
   category: "Marketing",
   tags: ["marketing", "oglasi", "tiskani mediji", "lokalno oglaševanje", "strategija"]
 }, {
@@ -142,7 +142,7 @@ const allBlogPosts = [{
   content: `
       <p>Ali se tudi ti sprašuješ, zakaj nekateri oglasi pritegnejo takojšnjo pozornost, drugi pa ostanejo spregledani? Ne gre za naključje. Učinkovit oglas ima jasno strukturo, močno sporočilo in poziv k dejanju. Pa naj bo to v tiskanem oglasniku, na družbenih omrežjih ali spletni strani.</p>
       
-      <p>V nadaljevanju ti razkrijemo preproste, a zanesljive korake, kako ustvariti oglas, ki izstopa in prinaša rezultate.</p>
+      <p>V nadaljevanju ti razkrijemo preproste, a zanesljive korake, kako ustvariti oglas, ki izstopa in prineša rezultate.</p>
       
       <h2>1. Določi svoj cilj</h2>
       <p>Preden napišeš eno samo besedo, se vprašaj:</p>
@@ -209,7 +209,7 @@ const allBlogPosts = [{
     `,
   date: "10. 04. 2025",
   author: "Ana Kovač",
-  image: "https://images.unsplash.com/photo-1488590528505-98d2b5aba04b?ixlib=rb-4.0.3",
+  image: "https://images.unsplash.com/photo-1605810230434-7631ac76ec81",
   category: "Marketing",
   tags: ["marketing", "oglasi", "oglaševanje", "prodaja", "strategija"]
 }, {
@@ -274,7 +274,7 @@ const allBlogPosts = [{
     `,
   date: "12. 04. 2025",
   author: "Ana Kovač",
-  image: "https://images.unsplash.com/photo-1486312338219-ce68d2c6f44d?ixlib=rb-4.0.3", // Updated to show a laptop with an ad design
+  image: "https://images.unsplash.com/photo-1466442929976-97f336a657be",
   category: "Marketing",
   tags: ["marketing", "oglasi", "napake", "mala podjetja", "strategija"]
 }];
