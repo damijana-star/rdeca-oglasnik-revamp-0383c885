@@ -2,6 +2,7 @@
 import { useEffect, useRef } from "react";
 import { Carousel, CarouselContent, CarouselItem } from "@/components/ui/carousel";
 import { useInView } from "react-intersection-observer";
+import { cn } from "@/lib/utils";
 
 interface PartnerLogoCarouselProps {
   logos: string[];
@@ -17,44 +18,39 @@ const PartnerLogoCarousel = ({
     triggerOnce: false
   });
   
-  const timeoutRef = useRef<number | null>(null);
   const carouselRef = useRef<HTMLDivElement>(null);
+  const animationRef = useRef<number | null>(null);
+  
+  // Make infinite loop by duplicating the logos
+  const duplicatedLogos = [...logos, ...logos];
   
   useEffect(() => {
-    const startAutoplay = () => {
-      if (carouselRef.current && inView) {
-        const scrollAmount = 1; // pixels to scroll per interval - slower for smoother animation
-        
-        const scroll = () => {
-          if (carouselRef.current) {
-            const container = carouselRef.current.querySelector('.embla__container');
-            if (container) {
-              container.scrollLeft += scrollAmount;
-              
-              // If we've scrolled to the end, reset to the beginning
-              const scrollWidth = container.scrollWidth;
-              const clientWidth = container.clientWidth;
-              if (container.scrollLeft + clientWidth >= scrollWidth) {
-                container.scrollLeft = 0;
-              }
-            }
-          }
-          
-          // Continue autoplay
-          if (inView) {
-            timeoutRef.current = window.setTimeout(scroll, 30); // faster interval for smoother motion
-          }
-        };
-        
-        scroll();
+    const carousel = carouselRef.current;
+    if (!carousel || !inView) return;
+    
+    const scrollContainer = carousel.querySelector('.embla__container') as HTMLElement;
+    if (!scrollContainer) return;
+    
+    let position = 0;
+    const speed = 0.5; // pixels per frame - adjust for speed
+    
+    const animate = () => {
+      position += speed;
+      
+      // When we've scrolled the width of one set of logos, reset to beginning
+      if (position >= scrollContainer.scrollWidth / 2) {
+        position = 0;
       }
+      
+      scrollContainer.scrollLeft = position;
+      animationRef.current = requestAnimationFrame(animate);
     };
     
-    startAutoplay();
+    animationRef.current = requestAnimationFrame(animate);
     
     return () => {
-      if (timeoutRef.current) {
-        clearTimeout(timeoutRef.current);
+      if (animationRef.current) {
+        cancelAnimationFrame(animationRef.current);
       }
     };
   }, [inView]);
@@ -71,15 +67,17 @@ const PartnerLogoCarousel = ({
         ref={carouselRef}
       >
         <CarouselContent className="py-1">
-          {logos.map((logo, index) => (
+          {duplicatedLogos.map((logo, index) => (
             <CarouselItem key={index} className="basis-1/4 md:basis-1/6 lg:basis-1/8 pl-2">
               <div 
-                className="flex items-center justify-center h-10 transition-all duration-300"
+                className={cn(
+                  "flex items-center justify-center h-10 transition-all duration-300"
+                )}
               >
                 <img 
                   src={logo} 
-                  alt={`Partner logo ${index + 1}`} 
-                  className="max-h-full max-w-full object-contain brightness-0 invert opacity-80 hover:opacity-100 transition-all duration-300"
+                  alt={`Partner logo ${index % logos.length + 1}`} 
+                  className="max-h-full max-w-full object-contain brightness-0 invert opacity-80 hover:opacity-100 transition-all duration-300 hover:scale-110"
                   loading="lazy"
                 />
               </div>
