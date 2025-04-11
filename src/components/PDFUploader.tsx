@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react';
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -29,7 +28,6 @@ const PDFUploader: React.FC<PDFUploaderProps> = ({
     
     const file = files[0];
     
-    // Check if file is a PDF
     if (file.type !== 'application/pdf') {
       toast({
         title: "Napaka",
@@ -39,7 +37,6 @@ const PDFUploader: React.FC<PDFUploaderProps> = ({
       return;
     }
     
-    // Check file size
     const fileSizeMB = file.size / (1024 * 1024);
     if (fileSizeMB > maxSizeMB) {
       toast({
@@ -50,10 +47,8 @@ const PDFUploader: React.FC<PDFUploaderProps> = ({
       return;
     }
     
-    // Set selected file
     setSelectedFile(file);
     
-    // Call onFileSelect callback if provided
     if (onFileSelect) {
       onFileSelect(file);
     }
@@ -70,17 +65,15 @@ const PDFUploader: React.FC<PDFUploaderProps> = ({
     setIsUploading(true);
     setUploadProgress(0);
     
-    // Simulate upload process with progress
     const interval = setInterval(() => {
       setUploadProgress(prev => {
         if (prev >= 100) {
           clearInterval(interval);
           setIsUploading(false);
           
-          // Create a temporary URL for the file (this would normally be a server URL)
           const pdfUrl = URL.createObjectURL(selectedFile);
+          console.log("Created PDF URL:", pdfUrl);
           
-          // Store PDF info in localStorage
           const pdfInfo = {
             url: pdfUrl,
             title: selectedFile.name,
@@ -88,18 +81,15 @@ const PDFUploader: React.FC<PDFUploaderProps> = ({
           };
           
           localStorage.setItem('lastUploadedPdf', JSON.stringify(pdfInfo));
+          console.log("Saved PDF info to localStorage:", pdfInfo);
           
           toast({
             title: "Uspešno naloženo",
             description: "Vaša PDF datoteka je bila uspešno naložena.",
           });
           
-          // Ask user if they want to preview the PDF
           setTimeout(() => {
-            const shouldPreview = window.confirm("Bi želeli prelistati naloženo datoteko?");
-            if (shouldPreview) {
-              navigate("/view-pdf");
-            }
+            navigate("/view-pdf");
           }, 500);
           
           return 100;
@@ -112,7 +102,6 @@ const PDFUploader: React.FC<PDFUploaderProps> = ({
   const handlePreview = () => {
     if (!selectedFile) return;
     
-    // Create object URL for the file
     const fileURL = URL.createObjectURL(selectedFile);
     window.open(fileURL, '_blank');
   };

@@ -75,9 +75,8 @@ const PDFViewer: React.FC<PDFViewerProps> = ({
       </div>
       
       <div className="border border-gray-200 rounded-b-lg overflow-hidden bg-gray-800 h-[70vh]">
-        {/* Replace object tag with iframe for better PDF compatibility */}
         <iframe
-          src={`${pdfUrl}#view=FitH&zoom=${zoomLevel/100}`}
+          src={pdfUrl}
           className="w-full h-full"
           title={title || "PDF Viewer"}
           style={{ border: 'none' }}

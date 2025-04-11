@@ -6,6 +6,7 @@ import PDFViewer from "@/components/PDFViewer";
 import { useToast } from "@/hooks/use-toast";
 
 const PDFViewPage = () => {
+  // Default to the sample PDF file
   const [lastUploadedPdf, setLastUploadedPdf] = useState<string>("/oglasnik-april-2025.pdf");
   const [pdfTitle, setPdfTitle] = useState<string>("Nanoski Oglasnik - April 2025");
   const { toast } = useToast();
@@ -18,8 +19,9 @@ const PDFViewPage = () => {
       try {
         const pdfInfo = JSON.parse(storedPdfInfo);
         
-        // Check if URL is valid
-        if (pdfInfo.url) {
+        // Check if URL is valid and use it
+        if (pdfInfo && pdfInfo.url) {
+          console.log("Loading PDF from storage:", pdfInfo.url);
           setLastUploadedPdf(pdfInfo.url);
           setPdfTitle(pdfInfo.title || "Uploaded PDF");
           
@@ -27,6 +29,8 @@ const PDFViewPage = () => {
             title: "PDF naložen",
             description: "Prikazujem zadnjo naloženo PDF datoteko.",
           });
+        } else {
+          console.log("No valid PDF URL found in storage");
         }
       } catch (error) {
         console.error("Error parsing stored PDF info:", error);
@@ -34,6 +38,8 @@ const PDFViewPage = () => {
         setLastUploadedPdf("/oglasnik-april-2025.pdf");
         setPdfTitle("Nanoski Oglasnik - April 2025");
       }
+    } else {
+      console.log("No PDF info found in storage, using default");
     }
   }, [toast]);
 
