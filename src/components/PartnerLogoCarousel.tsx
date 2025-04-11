@@ -80,7 +80,7 @@ const PartnerLogoCarousel = ({
                 <img 
                   src={logo} 
                   alt={`Partner logo ${index + 1}`} 
-                  className="max-h-full max-w-full object-contain grayscale hover:grayscale-0 transition-all duration-300 hover:animate-spin-slow"
+                  className="max-h-full max-w-full object-contain grayscale hover:grayscale-0 transition-all duration-300"
                   loading="lazy"
                 />
               </div>
