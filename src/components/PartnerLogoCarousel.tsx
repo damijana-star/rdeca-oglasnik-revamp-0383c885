@@ -70,9 +70,9 @@ const PartnerLogoCarousel = ({
           {duplicatedLogos.map((logo, index) => (
             <div 
               key={index} 
-              className="flex-shrink-0 px-4 md:px-6 lg:px-8 w-[20%] md:w-[16.66%] lg:w-[12.5%]"
+              className="flex-shrink-0 px-6 md:px-8 lg:px-12 w-[25%] md:w-[20%] lg:w-[16.66%]"
             >
-              <div className="flex items-center justify-center h-12 transition-all duration-300">
+              <div className="flex items-center justify-center h-16 md:h-20 transition-all duration-300">
                 <img 
                   src={logo} 
                   alt={`Partner logo ${index % logos.length + 1}`} 
