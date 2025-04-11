@@ -48,7 +48,12 @@ export const Hero = () => {
         </div>
         
         <div className={`mt-8 transition-all duration-1000 delay-600 transform ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
-          <PartnerLogoCarousel logos={clientLogos} />
+          <PartnerLogoCarousel 
+            logos={clientLogos} 
+            size="medium"
+            speed={0.7}
+            pauseOnHover={true}
+          />
         </div>
       </div>
     </div>
