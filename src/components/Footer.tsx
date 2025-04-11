@@ -1,22 +1,9 @@
+
 import { Facebook, Mail, PhoneCall } from "lucide-react";
 import { Separator } from "@/components/ui/separator";
 import { Link, useLocation } from "react-router-dom";
-import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from "@/components/ui/carousel";
 
 export const Footer = () => {
-  const clientLogos = [
-    "/lovable-uploads/a70fa581-c6f8-44d5-be1c-5589ca8626f6.png", // BREZ OV:R
-    "/lovable-uploads/6be61759-c181-4565-8130-35b4715fe1e1.png", // ELKOR
-    "/lovable-uploads/476b5c5f-85c3-4193-8d88-f3571eb24335.png", // gramint
-    "/lovable-uploads/9f35d68a-2f69-4a48-9b93-76657d6bc122.png", // Komunala
-    "/lovable-uploads/a5bc1e9d-7a5b-40b2-9dfc-8feca77f7102.png", // Les 33
-    "/lovable-uploads/432954bc-cf7d-42c7-b309-b20b3289108f.png", // lipbled
-    "/lovable-uploads/20277a73-c415-415e-b538-75410ff05226.png", // martin
-    "/lovable-uploads/d066daf3-4428-47ee-b210-1f61b489f618.png", // NAGODE
-    "/lovable-uploads/484d7273-fbb0-40e2-8d02-c09f1e06b15f.png", // SencilRus
-    "/lovable-uploads/b4bcb7c2-72d2-4e47-8549-2a1a57436add.png"  // Stavanja
-  ];
-  
   const location = useLocation();
   
   const navigateToHomeSection = (sectionId: string) => {
@@ -30,43 +17,9 @@ export const Footer = () => {
 
   return (
     <footer className="bg-gray-100 pt-12 pb-6 text-center" id="footer">
-      <div className="mb-12">
-        <h3 className="text-lg font-semibold mb-6">Naši partnerji</h3>
-        <div className="max-w-6xl mx-auto px-4">
-          <Carousel 
-            opts={{
-              align: "start",
-              loop: true,
-            }}
-            className="w-full"
-          >
-            <CarouselContent className="py-4">
-              {clientLogos.map((logo, index) => (
-                <CarouselItem key={index} className="basis-1/2 md:basis-1/3 lg:basis-1/5">
-                  <div 
-                    className="flex items-center justify-center h-20 transition-all duration-300 hover:scale-105 px-2"
-                    style={{ animationDelay: `${index * 0.1}s` }}
-                  >
-                    <img 
-                      src={logo} 
-                      alt={`Partner logo ${index + 1}`} 
-                      className="max-h-full max-w-full object-contain grayscale hover:grayscale-0 transition-all duration-300"
-                    />
-                  </div>
-                </CarouselItem>
-              ))}
-            </CarouselContent>
-            <div className="hidden md:block">
-              <CarouselPrevious className="left-0" />
-              <CarouselNext className="right-0" />
-            </div>
-          </Carousel>
-        </div>
-      </div>
-
       <Separator className="mb-8 mx-auto max-w-4xl" />
 
-      <div className="grid grid-cols-1 md:grid-cols-4 gap-8 mb-8 max-w-6xl mx-auto">
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-8 max-w-6xl mx-auto">
         <div id="about" className="fade-in text-center" style={{ animationDelay: '0.1s' }}>
           <h3 className="mb-4 flex justify-center">
             <img 
