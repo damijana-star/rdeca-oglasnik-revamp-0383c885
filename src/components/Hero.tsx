@@ -19,7 +19,7 @@ export const Hero = () => {
       {/* Content */}
       <div className="container relative z-10">
         <div className="max-w-3xl mx-auto text-center">
-          <p className={`font-heading font-extrabold uppercase mb-8 md:text-5xl transition-all duration-1000 transform ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
+          <p className={`font-heading font-extrabold uppercase mb-8 text-7xl tracking-tight transition-all duration-1000 transform ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
             DOSEŽI VEČ – OGLAŠUJ TAM,<br />KJER TE LJUDJE RES VIDIJO
           </p>
           <p className={`font-body text-lg md:text-xl mb-12 opacity-90 transition-all duration-1000 delay-300 transform ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
