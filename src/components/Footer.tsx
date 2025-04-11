@@ -1,6 +1,8 @@
+
 import { Facebook, Mail, PhoneCall } from "lucide-react";
 import { Separator } from "@/components/ui/separator";
 import { Link, useLocation } from "react-router-dom";
+import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from "@/components/ui/carousel";
 
 export const Footer = () => {
   const clientLogos = [
@@ -31,20 +33,35 @@ export const Footer = () => {
     <footer className="bg-gray-100 pt-12 pb-6 text-center" id="footer">
       <div className="mb-12">
         <h3 className="text-lg font-semibold mb-6">Naši partnerji</h3>
-        <div className="grid grid-cols-2 md:grid-cols-5 gap-6 justify-center">
-          {clientLogos.map((logo, index) => (
-            <div 
-              key={index} 
-              className="bg-white rounded-md p-4 flex items-center justify-center h-20 shadow-sm transition-all duration-300 hover:shadow-md hover:scale-105 mx-auto"
-              style={{ animationDelay: `${index * 0.1}s` }}
-            >
-              <img 
-                src={logo} 
-                alt={`Partner logo ${index + 1}`} 
-                className="max-h-full max-w-full object-contain grayscale hover:grayscale-0 transition-all duration-300"
-              />
+        <div className="max-w-6xl mx-auto px-4">
+          <Carousel 
+            opts={{
+              align: "start",
+              loop: true,
+            }}
+            className="w-full"
+          >
+            <CarouselContent className="py-4">
+              {clientLogos.map((logo, index) => (
+                <CarouselItem key={index} className="basis-1/2 md:basis-1/3 lg:basis-1/5">
+                  <div 
+                    className="flex items-center justify-center h-20 transition-all duration-300 hover:scale-105 px-2"
+                    style={{ animationDelay: `${index * 0.1}s` }}
+                  >
+                    <img 
+                      src={logo} 
+                      alt={`Partner logo ${index + 1}`} 
+                      className="max-h-full max-w-full object-contain grayscale hover:grayscale-0 transition-all duration-300"
+                    />
+                  </div>
+                </CarouselItem>
+              ))}
+            </CarouselContent>
+            <div className="hidden md:block">
+              <CarouselPrevious className="left-0" />
+              <CarouselNext className="right-0" />
             </div>
-          ))}
+          </Carousel>
         </div>
       </div>
 
