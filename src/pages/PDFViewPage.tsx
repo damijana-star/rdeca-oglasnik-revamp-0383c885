@@ -1,18 +1,38 @@
-
 import React, { useState, useEffect } from 'react';
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import PDFViewer from "@/components/PDFViewer";
 import { useToast } from "@/hooks/use-toast";
+import { useLocation } from "react-router-dom";
 
 const PDFViewPage = () => {
   // Default to the sample PDF file
   const [lastUploadedPdf, setLastUploadedPdf] = useState<string>("/oglasnik-april-2025.pdf");
   const [pdfTitle, setPdfTitle] = useState<string>("Nanoski Oglasnik - April 2025");
   const { toast } = useToast();
+  const location = useLocation();
   
   useEffect(() => {
-    // Check if we have any stored PDFs in local storage
+    // Check for direct PDF URL in location state first (from upload)
+    if (location.state && location.state.pdfUrl) {
+      console.log("Loading PDF from location state:", location.state.pdfUrl);
+      setLastUploadedPdf(location.state.pdfUrl);
+      setPdfTitle(location.state.title || "Uploaded PDF");
+      
+      // Save to local storage for persistence
+      localStorage.setItem('lastUploadedPdf', JSON.stringify({
+        url: location.state.pdfUrl,
+        title: location.state.title || "Uploaded PDF"
+      }));
+      
+      toast({
+        title: "PDF naložen",
+        description: "Prikazujem naloženo PDF datoteko.",
+      });
+      return;
+    }
+    
+    // Otherwise check if we have any stored PDFs in local storage
     const storedPdfInfo = localStorage.getItem('lastUploadedPdf');
     
     if (storedPdfInfo) {
@@ -41,7 +61,7 @@ const PDFViewPage = () => {
     } else {
       console.log("No PDF info found in storage, using default");
     }
-  }, [toast]);
+  }, [toast, location.state]);
 
   return (
     <div className="min-h-screen flex flex-col">

@@ -1,3 +1,4 @@
+
 import React, { useState } from 'react';
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -88,9 +89,13 @@ const PDFUploader: React.FC<PDFUploaderProps> = ({
             description: "Vaša PDF datoteka je bila uspešno naložena.",
           });
           
-          setTimeout(() => {
-            navigate("/view-pdf");
-          }, 500);
+          // Navigate to the PDF view page with the PDF URL and title
+          navigate("/view-pdf", { 
+            state: { 
+              pdfUrl: pdfUrl,
+              title: selectedFile.name
+            } 
+          });
           
           return 100;
         }
