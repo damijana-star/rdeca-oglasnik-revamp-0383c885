@@ -1,4 +1,3 @@
-
 import { Facebook, Mail, PhoneCall } from "lucide-react";
 import { Separator } from "@/components/ui/separator";
 import { Link, useLocation } from "react-router-dom";
@@ -97,9 +96,9 @@ export const Footer = () => {
           </div>
         </div>
 
-        <div className="fade-in text-center" style={{ animationDelay: '0.2s' }}>
-          <h3 className="font-bold mb-4 text-dark-red">Povezave</h3>
-          <ul className="space-y-2 inline-block text-left">
+        <div className="fade-in text-left" style={{ animationDelay: '0.2s' }}>
+          <h3 className="font-bold mb-4 text-dark-red text-left">Povezave</h3>
+          <ul className="space-y-2">
             <li>
               <Link to="/blog" className="text-gray-600 hover:text-dark-red transition-colors duration-300">
                 Nasveti
@@ -147,9 +146,9 @@ export const Footer = () => {
           </ul>
         </div>
 
-        <div id="contact" className="fade-in text-center" style={{ animationDelay: '0.3s' }}>
-          <h3 className="font-bold mb-4 text-dark-red">Kontakt</h3>
-          <div className="space-y-3 inline-block text-left">
+        <div id="contact" className="fade-in text-left" style={{ animationDelay: '0.3s' }}>
+          <h3 className="font-bold mb-4 text-dark-red text-left">Kontakt</h3>
+          <div className="space-y-3">
             <div className="flex items-center transition-transform duration-300 hover:translate-x-1">
               <PhoneCall size={18} className="mr-2 text-dark-red" />
               <span className="text-gray-600">031 646 666</span>
