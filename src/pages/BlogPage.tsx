@@ -14,8 +14,7 @@ const allBlogPosts = [
     excerpt: "Oglaševanje je lahko eno najboljših orodij za rast podjetja – če se ga lotimo premišljeno. Prevečkrat pa se mala podjetja znajdejo v situaciji, ko vlagajo v oglase, a učinka ni.",
     image: "/lovable-uploads/fb97cac4-7bc2-4659-aac9-346efcc70f67.png", // Updated modern marketing illustration
     category: "Marketing",
-    date: "12. 04. 2025",
-    author: "Ana Kovač"
+  
   },
   {
     id: 4,
@@ -23,8 +22,7 @@ const allBlogPosts = [
     excerpt: "V dobi digitalnega sveta, kjer nas vsak dan preplavljajo spletni oglasi, tiskani oglasi še vedno ohranjajo svojo moč – še posebej v lokalnem okolju.",
     image: "/lovable-uploads/9d2bf50c-8258-41d6-80a5-c71a06939606.png", // Updated with optimized magazine photo
     category: "Marketing",
-    date: "09. 04. 2025",
-    author: "Ana Kovač"
+    
   },
   {
     id: 5,
@@ -32,8 +30,7 @@ const allBlogPosts = [
     excerpt: "Ali se tudi ti sprašuješ, zakaj nekateri oglasi pritegnejo takojšnjo pozornost, drugi pa ostanejo spregledani? Učinkovit oglas ima jasno strukturo, močno sporočilo in poziv k dejanju.",
     image: "/lovable-uploads/039a48a7-0aeb-4fc5-a920-fa78940f29aa.png", // Updated with new business meeting image
     category: "Marketing",
-    date: "10. 04. 2025",
-    author: "Ana Kovač"
+  
   }
 ];
 
