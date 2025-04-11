@@ -1,6 +1,8 @@
 
 import { useEffect, useRef } from "react";
+import { Carousel, CarouselContent, CarouselItem } from "@/components/ui/carousel";
 import { useInView } from "react-intersection-observer";
+import { cn } from "@/lib/utils";
 
 interface PartnerLogoCarouselProps {
   logos: string[];
@@ -35,17 +37,17 @@ const PartnerLogoCarousel = ({
       const scrollContent = container.querySelector('.scroll-content') as HTMLElement;
       if (!scrollContent) return;
       
-      // Move the element (positive value for left to right movement)
+      // Move the element
+      scrollContent.style.transform = `translateX(-${scrollContent.dataset.position || 0}px)`;
       const currentPosition = Number(scrollContent.dataset.position || 0);
       const newPosition = currentPosition + scrollSpeed;
-      scrollContent.style.transform = `translateX(${newPosition}px)`;
-      scrollContent.dataset.position = newPosition.toString();
       
       // Reset when we've scrolled through the first set of logos
       const firstSetWidth = scrollContent.scrollWidth / 2;
       if (newPosition >= firstSetWidth) {
         scrollContent.dataset.position = '0';
-        scrollContent.style.transform = `translateX(0px)`;
+      } else {
+        scrollContent.dataset.position = newPosition.toString();
       }
       
       animationRef.current = requestAnimationFrame(animate);
