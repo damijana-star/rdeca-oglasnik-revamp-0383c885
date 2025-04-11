@@ -25,7 +25,7 @@ const allBlogPosts = [
   {
     id: 5,
     title: "Kako pripraviti učinkovit oglas, ki pritegne pozornost (in prodaja)",
-    excerpt: "Ali se tudi ti sprašuješ, zakaj nekateri oglasi pritegnejo takojšnjo pozornost, drugi pa ostanejo spregledani? Učinkovit oglas ima jasno strukturo, močno sporočilo in poziv k dejanju.",,
+    excerpt: "Ali se tudi ti sprašuješ, zakaj nekateri oglasi pritegnejo takojšnjo pozornost, drugi pa ostanejo spregledani? Učinkovit oglas ima jasno strukturo, močno sporočilo in poziv k dejanju.",
     image: "/lovable-uploads/039a48a7-0aeb-4fc5-a920-fa78940f29aa.png", // Updated with new business meeting image
     category: "Marketing"
   }
