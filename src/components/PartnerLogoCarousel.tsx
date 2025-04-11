@@ -68,7 +68,7 @@ const PartnerLogoCarousel = ({
       >
         <CarouselContent className="py-1">
           {duplicatedLogos.map((logo, index) => (
-            <CarouselItem key={index} className="basis-1/4 md:basis-1/6 lg:basis-1/8 pl-2">
+            <CarouselItem key={index} className="basis-1/5 md:basis-1/7 lg:basis-1/10 pl-2">
               <div 
                 className={cn(
                   "flex items-center justify-center h-10 transition-all duration-300"

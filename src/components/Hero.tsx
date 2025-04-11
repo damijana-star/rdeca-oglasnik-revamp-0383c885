@@ -15,7 +15,12 @@ export const Hero = () => {
     "/lovable-uploads/20277a73-c415-415e-b538-75410ff05226.png", // martin
     "/lovable-uploads/d066daf3-4428-47ee-b210-1f61b489f618.png", // NAGODE
     "/lovable-uploads/484d7273-fbb0-40e2-8d02-c09f1e06b15f.png", // SencilRus
-    "/lovable-uploads/b4bcb7c2-72d2-4e47-8549-2a1a57436add.png"  // Stavanja
+    "/lovable-uploads/b4bcb7c2-72d2-4e47-8549-2a1a57436add.png", // Stavanja
+    // Adding new logos
+    "/lovable-uploads/96e57270-837b-4917-adde-f0154b82a599.png", // martin
+    "/lovable-uploads/a95d5fec-41d0-4daf-904a-707c45aefb65.png", // NAGODE
+    "/lovable-uploads/fbbe3b71-7014-40f5-8c70-ebfe802f9329.png", // SencilRus
+    "/lovable-uploads/c7debcb6-84a6-440a-bc84-865cd2dfe300.png"  // Stavanja
   ];
   
   useEffect(() => {
