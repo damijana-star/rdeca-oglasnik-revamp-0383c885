@@ -4,7 +4,16 @@ import { Link, useLocation } from "react-router-dom";
 
 export const Footer = () => {
   const clientLogos = [
-    "Logo 1", "Logo 2", "Logo 3", "Logo 4", "Logo 5"
+    "/lovable-uploads/a70fa581-c6f8-44d5-be1c-5589ca8626f6.png", // BREZ OV:R
+    "/lovable-uploads/6be61759-c181-4565-8130-35b4715fe1e1.png", // ELKOR
+    "/lovable-uploads/476b5c5f-85c3-4193-8d88-f3571eb24335.png", // gramint
+    "/lovable-uploads/9f35d68a-2f69-4a48-9b93-76657d6bc122.png", // Komunala
+    "/lovable-uploads/a5bc1e9d-7a5b-40b2-9dfc-8feca77f7102.png", // Les 33
+    "/lovable-uploads/432954bc-cf7d-42c7-b309-b20b3289108f.png", // lipbled
+    "/lovable-uploads/20277a73-c415-415e-b538-75410ff05226.png", // martin
+    "/lovable-uploads/d066daf3-4428-47ee-b210-1f61b489f618.png", // NAGODE
+    "/lovable-uploads/484d7273-fbb0-40e2-8d02-c09f1e06b15f.png", // SencilRus
+    "/lovable-uploads/b4bcb7c2-72d2-4e47-8549-2a1a57436add.png"  // Stavanja
   ];
   
   const location = useLocation();
@@ -29,7 +38,11 @@ export const Footer = () => {
               className="bg-white rounded-md p-4 flex items-center justify-center h-20 shadow-sm transition-all duration-300 hover:shadow-md hover:scale-105 mx-auto"
               style={{ animationDelay: `${index * 0.1}s` }}
             >
-              <span className="text-gray-400">{logo}</span>
+              <img 
+                src={logo} 
+                alt={`Partner logo ${index + 1}`} 
+                className="max-h-full max-w-full object-contain grayscale hover:grayscale-0 transition-all duration-300"
+              />
             </div>
           ))}
         </div>
