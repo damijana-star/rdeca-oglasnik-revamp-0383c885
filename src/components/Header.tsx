@@ -1,6 +1,6 @@
 
 import { Button } from "@/components/ui/button";
-import { FileText } from "lucide-react";
+import { FileText, Home } from "lucide-react";
 import { useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 
@@ -28,6 +28,10 @@ export const Header = () => {
           </div>
 
           <nav className="hidden md:flex items-center space-x-6">
+            <Link to="/" className="nav-link text-foreground hover:text-dark-red font-medium transition-colors duration-300 flex items-center gap-1">
+              <Home className="h-4 w-4" />
+              Domov
+            </Link>
             <Link to="/blog" className="nav-link text-foreground hover:text-dark-red font-medium transition-colors duration-300">
               Nasveti
             </Link>
@@ -75,6 +79,10 @@ export const Header = () => {
 
         <div className={`md:hidden mt-4 pb-4 transition-all duration-300 overflow-hidden ${isMenuOpen ? 'max-h-96 opacity-100' : 'max-h-0 opacity-0'}`}>
           <nav className="flex flex-col space-y-4">
+            <Link to="/" className="nav-link text-foreground hover:text-dark-red font-medium transition-colors duration-300 flex items-center gap-1">
+              <Home className="h-4 w-4" />
+              Domov
+            </Link>
             <Link to="/blog" className="nav-link text-foreground hover:text-dark-red font-medium transition-colors duration-300">
               Nasveti
             </Link>
@@ -114,3 +122,4 @@ export const Header = () => {
 };
 
 export default Header;
+
