@@ -23,7 +23,7 @@ const PartnerLogoCarousel = ({
   useEffect(() => {
     const startAutoplay = () => {
       if (carouselRef.current && inView) {
-        const scrollAmount = 2; // pixels to scroll per interval
+        const scrollAmount = 1; // pixels to scroll per interval - slower for smoother animation
         
         const scroll = () => {
           if (carouselRef.current) {
@@ -42,7 +42,7 @@ const PartnerLogoCarousel = ({
           
           // Continue autoplay
           if (inView) {
-            timeoutRef.current = window.setTimeout(scroll, 50);
+            timeoutRef.current = window.setTimeout(scroll, 30); // faster interval for smoother motion
           }
         };
         
@@ -60,7 +60,7 @@ const PartnerLogoCarousel = ({
   }, [inView]);
   
   return (
-    <div ref={ref}>
+    <div ref={ref} className="overflow-hidden">
       <Carousel
         opts={{
           align: "start",
@@ -74,13 +74,12 @@ const PartnerLogoCarousel = ({
           {logos.map((logo, index) => (
             <CarouselItem key={index} className="basis-1/4 md:basis-1/6 lg:basis-1/8 pl-2">
               <div 
-                className="flex items-center justify-center h-10 transition-all duration-300 hover:scale-105 px-2"
-                style={{ animationDelay: `${index * 0.1}s` }}
+                className="flex items-center justify-center h-10 transition-all duration-300"
               >
                 <img 
                   src={logo} 
                   alt={`Partner logo ${index + 1}`} 
-                  className="max-h-full max-w-full object-contain grayscale hover:grayscale-0 transition-all duration-300"
+                  className="max-h-full max-w-full object-contain brightness-0 invert opacity-80 hover:opacity-100 transition-all duration-300"
                   loading="lazy"
                 />
               </div>
