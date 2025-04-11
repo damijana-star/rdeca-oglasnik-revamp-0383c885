@@ -28,7 +28,8 @@ export const Hero = () => {
     setIsVisible(true);
   }, []);
 
-  return <div className="relative text-white py-16 md:py-24">
+  return (
+    <div className="relative text-white py-16 md:py-24">
       {/* Background image with overlay */}
       <div className="absolute inset-0 z-0">
         <img src="/lovable-uploads/ef9f75c3-294b-441f-b566-cb6e2e20abb9.png" alt="Mountain landscape" className="w-full h-full object-cover transition-transform duration-[30s] hover:scale-110" />
@@ -47,9 +48,11 @@ export const Hero = () => {
         </div>
         
         <div className={`mt-8 transition-all duration-1000 delay-600 transform ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
-          <PartnerLogoCarousel logos={clientLogos} autoplayInterval={0} />
+          <PartnerLogoCarousel logos={clientLogos} />
         </div>
       </div>
-    </div>;
-};
+    </div>
+  );
+}
+
 export default Hero;

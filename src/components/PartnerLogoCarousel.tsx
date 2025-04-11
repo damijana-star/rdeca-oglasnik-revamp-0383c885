@@ -18,31 +18,38 @@ const PartnerLogoCarousel = ({
     triggerOnce: false
   });
   
-  const carouselRef = useRef<HTMLDivElement>(null);
+  const containerRef = useRef<HTMLDivElement>(null);
   const animationRef = useRef<number | null>(null);
   
   // Make infinite loop by duplicating the logos
   const duplicatedLogos = [...logos, ...logos];
   
   useEffect(() => {
-    const carousel = carouselRef.current;
-    if (!carousel || !inView) return;
+    if (!inView) return;
     
-    const scrollContainer = carousel.querySelector('.embla__container') as HTMLElement;
-    if (!scrollContainer) return;
+    const container = containerRef.current;
+    if (!container) return;
     
-    let position = 0;
-    const speed = 0.5; // pixels per frame - adjust for speed
+    const scrollSpeed = 1; // pixels per frame - adjust for speed
     
     const animate = () => {
-      position += speed;
+      // Get the scroll content
+      const scrollContent = container.querySelector('.scroll-content') as HTMLElement;
+      if (!scrollContent) return;
       
-      // When we've scrolled the width of one set of logos, reset to beginning
-      if (position >= scrollContainer.scrollWidth / 2) {
-        position = 0;
+      // Move the element
+      scrollContent.style.transform = `translateX(-${scrollContent.dataset.position || 0}px)`;
+      const currentPosition = Number(scrollContent.dataset.position || 0);
+      const newPosition = currentPosition + scrollSpeed;
+      
+      // Reset when we've scrolled through the first set of logos
+      const firstSetWidth = scrollContent.scrollWidth / 2;
+      if (newPosition >= firstSetWidth) {
+        scrollContent.dataset.position = '0';
+      } else {
+        scrollContent.dataset.position = newPosition.toString();
       }
       
-      scrollContainer.scrollLeft = position;
       animationRef.current = requestAnimationFrame(animate);
     };
     
@@ -56,24 +63,15 @@ const PartnerLogoCarousel = ({
   }, [inView]);
   
   return (
-    <div ref={ref} className="overflow-hidden">
-      <Carousel
-        opts={{
-          align: "start",
-          loop: true,
-          dragFree: true,
-        }}
-        className="w-full"
-        ref={carouselRef}
-      >
-        <CarouselContent className="py-1">
+    <div ref={ref} className="overflow-hidden w-full">
+      <div ref={containerRef} className="w-full">
+        <div className="scroll-content flex" data-position="0">
           {duplicatedLogos.map((logo, index) => (
-            <CarouselItem key={index} className="basis-1/5 md:basis-1/7 lg:basis-1/10 pl-2">
-              <div 
-                className={cn(
-                  "flex items-center justify-center h-10 transition-all duration-300"
-                )}
-              >
+            <div 
+              key={index} 
+              className="flex-shrink-0 px-4 md:px-6 lg:px-8 w-[20%] md:w-[14.28%] lg:w-[10%]"
+            >
+              <div className="flex items-center justify-center h-10 transition-all duration-300">
                 <img 
                   src={logo} 
                   alt={`Partner logo ${index % logos.length + 1}`} 
@@ -81,10 +79,10 @@ const PartnerLogoCarousel = ({
                   loading="lazy"
                 />
               </div>
-            </CarouselItem>
+            </div>
           ))}
-        </CarouselContent>
-      </Carousel>
+        </div>
+      </div>
     </div>
   );
 };
