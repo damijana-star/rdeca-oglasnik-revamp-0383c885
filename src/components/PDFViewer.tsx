@@ -12,14 +12,16 @@ const PDFViewer: React.FC<PDFViewerProps> = ({
   pdfUrl,
   title
 }) => {
-  const [zoom, setZoom] = useState(100);
+  // We'll use this for controlling UI elements, but actual zoom 
+  // will be handled differently since iframe doesn't support style.zoom
+  const [zoomLevel, setZoomLevel] = useState(100);
   
   const handleZoomIn = () => {
-    setZoom(prev => Math.min(prev + 25, 200));
+    setZoomLevel(prev => Math.min(prev + 25, 200));
   };
   
   const handleZoomOut = () => {
-    setZoom(prev => Math.max(prev - 25, 50));
+    setZoomLevel(prev => Math.max(prev - 25, 50));
   };
   
   const handleDownload = () => {
@@ -40,24 +42,22 @@ const PDFViewer: React.FC<PDFViewerProps> = ({
 
   return (
     <div className="w-full flex flex-col">
-      {/* Removed h2 element */}
-      
       <div className="bg-gray-100 p-2 rounded-t-lg flex items-center justify-between">
         <div className="flex items-center space-x-2">
           <Button 
             variant="ghost" 
             size="sm" 
             onClick={handleZoomOut}
-            disabled={zoom <= 50}
+            disabled={zoomLevel <= 50}
           >
             <ZoomOut className="h-4 w-4" />
           </Button>
-          <span className="text-sm font-medium">{zoom}%</span>
+          <span className="text-sm font-medium">{zoomLevel}%</span>
           <Button 
             variant="ghost" 
             size="sm" 
             onClick={handleZoomIn}
-            disabled={zoom >= 200}
+            disabled={zoomLevel >= 200}
           >
             <ZoomIn className="h-4 w-4" />
           </Button>
@@ -75,11 +75,12 @@ const PDFViewer: React.FC<PDFViewerProps> = ({
       </div>
       
       <div className="border border-gray-200 rounded-b-lg overflow-hidden bg-gray-800 h-[70vh]">
-        <object
-          data={pdfUrl}
-          type="application/pdf"
+        {/* Replace object tag with iframe for better PDF compatibility */}
+        <iframe
+          src={`${pdfUrl}#view=FitH&zoom=${zoomLevel/100}`}
           className="w-full h-full"
-          style={{ zoom: `${zoom}%` }}
+          title={title || "PDF Viewer"}
+          style={{ border: 'none' }}
         >
           <div className="flex flex-col items-center justify-center p-6 text-center bg-white h-full">
             <p className="mb-4 text-gray-600">Vaš brskalnik ne podpira vgrajenega PDF prikazovalnika.</p>
@@ -88,7 +89,7 @@ const PDFViewer: React.FC<PDFViewerProps> = ({
               Prenesi PDF
             </Button>
           </div>
-        </object>
+        </iframe>
       </div>
     </div>
   );

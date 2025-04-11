@@ -17,15 +17,22 @@ const PDFViewPage = () => {
     if (storedPdfInfo) {
       try {
         const pdfInfo = JSON.parse(storedPdfInfo);
-        setLastUploadedPdf(pdfInfo.url);
-        setPdfTitle(pdfInfo.title || "Uploaded PDF");
         
-        toast({
-          title: "PDF naložen",
-          description: "Prikazujem zadnjo naloženo PDF datoteko.",
-        });
+        // Check if URL is valid
+        if (pdfInfo.url) {
+          setLastUploadedPdf(pdfInfo.url);
+          setPdfTitle(pdfInfo.title || "Uploaded PDF");
+          
+          toast({
+            title: "PDF naložen",
+            description: "Prikazujem zadnjo naloženo PDF datoteko.",
+          });
+        }
       } catch (error) {
         console.error("Error parsing stored PDF info:", error);
+        // Fall back to default PDF if there's an error
+        setLastUploadedPdf("/oglasnik-april-2025.pdf");
+        setPdfTitle("Nanoski Oglasnik - April 2025");
       }
     }
   }, [toast]);
