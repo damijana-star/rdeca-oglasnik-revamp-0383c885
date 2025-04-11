@@ -7,17 +7,15 @@ interface PartnerLogoCarouselProps {
   logos: string[];
   speed?: number;
   size?: "small" | "medium" | "large";
-  brightness?: number;
   hoverEffect?: boolean;
-  autoplayInterval?: number;
   pauseOnHover?: boolean;
+  autoplayInterval?: number;
 }
 
 const PartnerLogoCarousel = ({ 
   logos,
   speed = 0.5,
   size = "medium",
-  brightness = 0.8,
   hoverEffect = true,
   pauseOnHover = true,
   autoplayInterval = 3000 
@@ -92,7 +90,6 @@ const PartnerLogoCarousel = ({
               index={index}
               totalLogos={logos.length}
               size={size}
-              brightness={brightness}
               hoverEffect={hoverEffect}
             />
           ))}
