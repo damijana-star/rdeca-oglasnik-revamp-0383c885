@@ -10,6 +10,7 @@ import BlogPage from "./pages/BlogPage";
 import BlogPostPage from "./pages/BlogPostPage";
 import PDFUploadPage from "./pages/PDFUploadPage";
 import PDFViewPage from "./pages/PDFViewPage";
+import CookieConsent from "./components/CookieConsent";
 
 const queryClient = new QueryClient();
 
@@ -18,6 +19,7 @@ const App = () => (
     <TooltipProvider>
       <Toaster />
       <Sonner />
+      <CookieConsent />
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<Index />} />
