@@ -6,7 +6,6 @@ interface LogoItemProps {
   index: number;
   totalLogos: number;
   size?: "small" | "medium" | "large";
-  brightness?: number;
   hoverEffect?: boolean;
 }
 
@@ -15,7 +14,6 @@ const LogoItem = ({
   index,
   totalLogos,
   size = "medium",
-  brightness = 0.8,
   hoverEffect = true
 }: LogoItemProps) => {
   // Size mapping for responsive dimensions
@@ -46,7 +44,6 @@ const LogoItem = ({
           alt={`Partner logo ${index % totalLogos + 1}`} 
           className={cn(
             "max-h-full max-w-full object-contain",
-            `brightness-${Math.round(brightness * 100)} invert`,
             "opacity-80",
             hoverEffect && "hover:opacity-100 transition-all duration-300"
           )}
@@ -58,3 +55,4 @@ const LogoItem = ({
 };
 
 export default LogoItem;
+
