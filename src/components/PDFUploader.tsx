@@ -5,6 +5,7 @@ import { Input } from "@/components/ui/input";
 import { Progress } from "@/components/ui/progress";
 import { FileText, Upload, X, Eye } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
+import { useNavigate } from "react-router-dom";
 
 interface PDFUploaderProps {
   onFileSelect?: (file: File) => void;
@@ -19,6 +20,7 @@ const PDFUploader: React.FC<PDFUploaderProps> = ({
   const [uploadProgress, setUploadProgress] = useState(0);
   const [isUploading, setIsUploading] = useState(false);
   const { toast } = useToast();
+  const navigate = useNavigate();
 
   const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const files = e.target.files;
@@ -74,10 +76,32 @@ const PDFUploader: React.FC<PDFUploaderProps> = ({
         if (prev >= 100) {
           clearInterval(interval);
           setIsUploading(false);
+          
+          // Create a temporary URL for the file (this would normally be a server URL)
+          const pdfUrl = URL.createObjectURL(selectedFile);
+          
+          // Store PDF info in localStorage
+          const pdfInfo = {
+            url: pdfUrl,
+            title: selectedFile.name,
+            uploadedAt: new Date().toISOString()
+          };
+          
+          localStorage.setItem('lastUploadedPdf', JSON.stringify(pdfInfo));
+          
           toast({
             title: "Uspešno naloženo",
             description: "Vaša PDF datoteka je bila uspešno naložena.",
           });
+          
+          // Ask user if they want to preview the PDF
+          setTimeout(() => {
+            const shouldPreview = window.confirm("Bi želeli prelistati naloženo datoteko?");
+            if (shouldPreview) {
+              navigate("/view-pdf");
+            }
+          }, 500);
+          
           return 100;
         }
         return prev + 10;
