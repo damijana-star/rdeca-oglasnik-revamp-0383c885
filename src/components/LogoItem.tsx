@@ -44,7 +44,7 @@ const LogoItem = ({
           alt={`Partner logo ${index % totalLogos + 1}`} 
           className={cn(
             "max-h-full max-w-full object-contain",
-            "invert opacity-80",
+            "invert brightness-0 opacity-80",
             hoverEffect && "hover:opacity-100 transition-all duration-300"
           )}
           loading="lazy"
