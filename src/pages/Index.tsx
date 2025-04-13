@@ -17,7 +17,9 @@ const Index = () => {
     if (state?.scrollTo) {
       const element = document.getElementById(state.scrollTo);
       if (element) {
-        element.scrollIntoView({ behavior: 'smooth' });
+        setTimeout(() => {
+          element.scrollIntoView({ behavior: 'smooth' });
+        }, 100);
       }
       // Clear the state to prevent repeated scrolling
       window.history.replaceState({}, document.title);

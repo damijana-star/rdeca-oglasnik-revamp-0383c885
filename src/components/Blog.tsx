@@ -30,10 +30,10 @@ const blogPosts = [{
   category: "Marketing"
 }];
 
-export const Blog = () => {
+const Blog = () => {
   const navigate = useNavigate();
   
-  const handlePostClick = (postId: number) => {
+  const handlePostClick = (postId) => {
     console.log('Blog: Navigating to post:', postId);
     navigate(`/blog/${postId}`);
     window.scrollTo(0, 0);

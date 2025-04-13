@@ -5,18 +5,20 @@ import App from './App.tsx';
 import './index.css';
 
 // Better error handling for root element mounting
-try {
-  const root = document.getElementById("root");
-  if (root) {
-    createRoot(root).render(
+const rootElement = document.getElementById("root");
+
+if (!rootElement) {
+  console.error("Root element not found - DOM may not be fully loaded");
+} else {
+  try {
+    const root = createRoot(rootElement);
+    root.render(
       <React.StrictMode>
         <App />
       </React.StrictMode>
     );
     console.log("React app successfully mounted");
-  } else {
-    console.error("Root element not found - DOM may not be fully loaded");
+  } catch (error) {
+    console.error("Error rendering React application:", error);
   }
-} catch (error) {
-  console.error("Error rendering React application:", error);
 }
