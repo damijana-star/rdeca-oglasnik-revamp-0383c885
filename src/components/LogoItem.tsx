@@ -19,32 +19,33 @@ const LogoItem = ({
   // Size mapping for responsive dimensions
   const sizeClasses = {
     small: {
-      height: "h-10 md:h-12"
+      container: "px-4 md:px-6 lg:px-8 w-[22%] md:w-[18%] lg:w-[14%]",
+      height: "h-12 md:h-14"
     },
     medium: {
-      height: "h-14 md:h-16"
+      container: "px-6 md:px-8 lg:px-12 w-[25%] md:w-[20%] lg:w-[16.66%]",
+      height: "h-16 md:h-20"
     },
     large: {
-      height: "h-16 md:h-20"
+      container: "px-6 md:px-10 lg:px-14 w-[33%] md:w-[25%] lg:w-[20%]",
+      height: "h-20 md:h-24"
     }
   };
 
   return (
-    <div className="w-full aspect-[3/2] flex items-center justify-center p-2">
-      <div 
-        className={cn(
-          "flex items-center justify-center w-full h-full transition-all duration-300", 
-          sizeClasses[size].height,
-          hoverEffect && "hover:scale-110"
-        )}
-      >
+    <div className={cn("flex-shrink-0", sizeClasses[size].container)}>
+      <div className={cn(
+        "flex items-center justify-center transition-all duration-300", 
+        sizeClasses[size].height,
+        hoverEffect && "hover:scale-110"
+      )}>
         <img 
           src={logo} 
           alt={`Partner logo ${index % totalLogos + 1}`} 
           className={cn(
             "max-h-full max-w-full object-contain",
-            "filter grayscale opacity-80", 
-            hoverEffect && "hover:grayscale-0 hover:opacity-100 transition-all duration-300"
+            "invert brightness-0 opacity-100", // Changed opacity to 100 to make sure it's fully visible
+            hoverEffect && "hover:opacity-80 transition-all duration-300"
           )}
           loading="lazy"
         />

@@ -1,3 +1,4 @@
+
 import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogFooter } from "@/components/ui/dialog";
@@ -10,14 +11,14 @@ const CookieConsent = () => {
   const { toast } = useToast();
   
   useEffect(() => {
-    // For testing - remove the existing cookie (uncomment below for testing)
-    // eraseCookie("cookie-consent");
+    // Za testiranje - izbrišemo obstoječi piškotek (odstranimo komentar spodaj za testiranje)
+    eraseCookie("cookie-consent");
     
-    // Check if the user has already consented to cookies
+    // Preverimo, če je uporabnik že privolil v piškotke
     const hasConsented = getCookie("cookie-consent");
     
     if (!hasConsented) {
-      // Delay dialog display for better user experience
+      // Zakasnimo prikaz dialoga za boljšo uporabniško izkušnjo
       const timer = setTimeout(() => {
         setOpen(true);
       }, 1000);

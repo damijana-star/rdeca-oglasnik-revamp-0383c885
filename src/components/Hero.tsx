@@ -51,9 +51,8 @@ export const Hero = () => {
           <PartnerLogoCarousel 
             logos={clientLogos} 
             size="medium"
-            hoverEffect={true}
-            autoplay={true}
-            autoplayInterval={3000}
+            speed={0.7}
+            pauseOnHover={true}
           />
         </div>
       </div>

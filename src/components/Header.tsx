@@ -3,7 +3,6 @@ import { useState, useEffect } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { FileText, Home, Menu, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { useIsMobile } from "@/hooks/use-mobile";
 import {
   NavigationMenu,
   NavigationMenuContent,
@@ -19,7 +18,6 @@ export const Header = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const location = useLocation();
   const navigate = useNavigate();
-  const isMobile = useIsMobile();
   
   const navigateToSection = (sectionId: string, e: React.MouseEvent) => {
     e.preventDefault();
@@ -35,18 +33,6 @@ export const Header = () => {
     }
   };
   
-  // Added direct navigation function for home link
-  const navigateHome = (e: React.MouseEvent) => {
-    e.preventDefault();
-    if (location.pathname !== '/') {
-      navigate('/');
-    } else {
-      // If already on home page, scroll to top
-      window.scrollTo({ top: 0, behavior: 'smooth' });
-    }
-    setIsMenuOpen(false);
-  };
-
   useEffect(() => {
     const state = location.state as { scrollTo?: string };
     if (state?.scrollTo) {
@@ -69,7 +55,7 @@ export const Header = () => {
 
   return (
     <header className={`sticky top-0 z-50 transition-all duration-300 ${isScrolled ? 'bg-white shadow-md' : 'bg-white/95 backdrop-blur-sm'}`}>
-      <div className="container mx-auto py-4">
+      <div className="container py-3">
         <div className="flex items-center justify-between">
           <div className="flex items-center">
             <Link to="/" className="text-dark-red transition-transform duration-300 hover:scale-105">
@@ -77,18 +63,14 @@ export const Header = () => {
             </Link>
           </div>
 
-          <div className="hidden md:flex items-center justify-center flex-1 px-4">
-            <NavigationMenu className="mx-auto">
-              <NavigationMenuList className="gap-1">
+          <div className="hidden md:block">
+            <NavigationMenu>
+              <NavigationMenuList>
                 <NavigationMenuItem>
-                  <a 
-                    href="/" 
-                    onClick={navigateHome} 
-                    className="flex items-center gap-1 px-4 py-2 text-foreground hover:text-dark-red font-medium transition-colors duration-300"
-                  >
+                  <Link to="/" className="flex items-center gap-1 px-4 py-2 text-foreground hover:text-dark-red font-medium transition-colors duration-300">
                     <Home className="h-4 w-4" />
                     Domov
-                  </a>
+                  </Link>
                 </NavigationMenuItem>
                 <NavigationMenuItem>
                   <Link to="/blog" className="px-4 py-2 text-foreground hover:text-dark-red font-medium transition-colors duration-300">
@@ -96,13 +78,13 @@ export const Header = () => {
                   </Link>
                 </NavigationMenuItem>
                 <NavigationMenuItem>
-                  <a 
-                    href="/#contact" 
+                  <Link 
+                    to="/#contact" 
                     onClick={(e) => navigateToSection('contact', e)}
                     className="px-4 py-2 text-foreground hover:text-dark-red font-medium transition-colors duration-300"
                   >
                     Kontakt
-                  </a>
+                  </Link>
                 </NavigationMenuItem>
               </NavigationMenuList>
             </NavigationMenu>
@@ -116,12 +98,12 @@ export const Header = () => {
               </Link>
             </Button>
             <Button className="bg-[#e32530] hover:bg-[#e32530]/90 text-white transform transition-all duration-300 hover:scale-105 hover:shadow-md" asChild>
-              <a 
-                href="/#contact" 
+              <Link 
+                to="/#contact" 
                 onClick={(e) => navigateToSection('contact', e)}
               >
                 Oddaj oglas
-              </a>
+              </Link>
             </Button>
           </div>
 
@@ -142,24 +124,20 @@ export const Header = () => {
 
         <div className={`md:hidden mt-4 pb-4 transition-all duration-300 overflow-hidden ${isMenuOpen ? 'max-h-96 opacity-100' : 'max-h-0 opacity-0'}`}>
           <nav className="flex flex-col space-y-4">
-            <a 
-              href="/" 
-              onClick={navigateHome}
-              className="nav-link text-foreground hover:text-dark-red font-medium transition-colors duration-300 flex items-center gap-1 p-2 rounded-md hover:bg-gray-50"
-            >
+            <Link to="/" className="nav-link text-foreground hover:text-dark-red font-medium transition-colors duration-300 flex items-center gap-1 p-2 rounded-md hover:bg-gray-50">
               <Home className="h-4 w-4" />
               Domov
-            </a>
+            </Link>
             <Link to="/blog" className="nav-link text-foreground hover:text-dark-red font-medium transition-colors duration-300 p-2 rounded-md hover:bg-gray-50">
               Nasveti
             </Link>
-            <a 
-              href="/#contact" 
+            <Link 
+              to="/#contact" 
               onClick={(e) => navigateToSection('contact', e)}
               className="nav-link text-foreground hover:text-dark-red font-medium transition-colors duration-300 p-2 rounded-md hover:bg-gray-50"
             >
               Kontakt
-            </a>
+            </Link>
             <Button variant="outline" className="flex items-center justify-center gap-2 border-[#e32530] text-[#e32530]" asChild>
               <Link to="/view-pdf">
                 <FileText className="h-4 w-4" />
@@ -167,12 +145,12 @@ export const Header = () => {
               </Link>
             </Button>
             <Button className="bg-[#e32530] hover:bg-[#e32530]/90 text-white w-full transform transition-all duration-300 hover:scale-105 hover:shadow-md" asChild>
-              <a 
-                href="/#contact" 
+              <Link 
+                to="/#contact" 
                 onClick={(e) => navigateToSection('contact', e)}
               >
                 Oddaj oglas
-              </a>
+              </Link>
             </Button>
           </nav>
         </div>

@@ -8,7 +8,6 @@ import StatsBar from "@/components/StatsBar";
 import Blog from "@/components/Blog";
 import ContactForm from "@/components/ContactForm";
 import Footer from "@/components/Footer";
-import PartnersSection from "@/components/PartnersSection";
 
 const Index = () => {
   const location = useLocation();
@@ -33,7 +32,6 @@ const Index = () => {
       <main className="flex-grow">
         <Hero />
         <StatsBar />
-        <PartnersSection />
         <AdvertisingBenefits />
         <Blog />
         <ContactForm />
