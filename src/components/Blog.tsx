@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { Button } from "@/components/ui/button";
 import { ArrowRight, ExternalLink } from "lucide-react";
@@ -79,7 +78,7 @@ const Blog = () => {
         </div>
         
         <div className="text-center mt-10">
-          <Button className="bg-[#e32530] hover:bg-[#e32530]/90 transition-transform duration-300 hover:scale-105" asChild>
+          <Button className="bg-[#e32530] hover:bg-[#e32530]/90 text-white transition-transform duration-300 hover:scale-105" asChild>
             <Link to="/blog">
               Vsi članki
               <ExternalLink className="ml-1 h-4 w-4" />

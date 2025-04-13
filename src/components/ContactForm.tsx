@@ -129,7 +129,7 @@ export const ContactForm = () => {
                 
                 <Button 
                   type="submit" 
-                  className="w-full bg-dark-red hover:bg-dark-red/90"
+                  className="w-full bg-dark-red hover:bg-dark-red/90 text-white"
                   disabled={isSubmitting}
                 >
                   {isSubmitting ? (
