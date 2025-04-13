@@ -57,20 +57,22 @@ export const Header = () => {
             >
               Kontakt
             </Link>
-            <Button variant="outline" className="flex items-center gap-2 border-[#e32530] text-[#e32530]" asChild>
-              <Link to="/view-pdf">
-                <FileText className="h-4 w-4" />
-                Prelistaj
-              </Link>
-            </Button>
-            <Button className="bg-[#e32530] hover:bg-[#e32530]/90 transform transition-all duration-300 hover:scale-105 hover:shadow-md" asChild>
-              <Link 
-                to="/#contact" 
-                onClick={(e) => navigateToSection('contact', e)}
-              >
-                Oddaj oglas
-              </Link>
-            </Button>
+            <div className="flex items-center space-x-4">
+              <Button variant="outline" className="flex items-center gap-2 border-[#e32530] text-[#e32530]" asChild>
+                <Link to="/view-pdf">
+                  <FileText className="h-4 w-4" />
+                  Prelistaj
+                </Link>
+              </Button>
+              <Button className="bg-[#e32530] hover:bg-[#e32530]/90 transform transition-all duration-300 hover:scale-105 hover:shadow-md" asChild>
+                <Link 
+                  to="/#contact" 
+                  onClick={(e) => navigateToSection('contact', e)}
+                >
+                  Oddaj oglas
+                </Link>
+              </Button>
+            </div>
           </nav>
 
           <div className="md:hidden">
