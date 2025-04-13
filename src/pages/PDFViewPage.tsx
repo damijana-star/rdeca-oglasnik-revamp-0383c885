@@ -13,35 +13,38 @@ const PDFViewPage = () => {
   const location = useLocation();
   
   useEffect(() => {
-    // Check for direct PDF URL in location state first (from upload)
-    if (location.state && location.state.pdfUrl) {
-      console.log("Loading PDF from location state:", location.state.pdfUrl);
-      setLastUploadedPdf(location.state.pdfUrl);
-      setPdfTitle(location.state.title || "Uploaded PDF");
-      
-      // Save to local storage for persistence
-      localStorage.setItem('lastUploadedPdf', JSON.stringify({
-        url: location.state.pdfUrl,
-        title: location.state.title || "Uploaded PDF"
-      }));
-      
-      toast({
-        title: "PDF naložen",
-        description: "Prikazujem naloženo PDF datoteko.",
-      });
+    // Check if we're coming from the upload page
+    if (location.state && location.state.fromUpload) {
+      loadPdfFromStorage();
       return;
     }
     
     // Otherwise check if we have any stored PDFs in local storage
+    loadPdfFromStorage();
+    
+  }, [toast, location.state]);
+  
+  const loadPdfFromStorage = () => {
     const storedPdfInfo = localStorage.getItem('lastUploadedPdf');
     
     if (storedPdfInfo) {
       try {
         const pdfInfo = JSON.parse(storedPdfInfo);
         
-        // Check if URL is valid and use it
-        if (pdfInfo && pdfInfo.url) {
-          console.log("Loading PDF from storage:", pdfInfo.url);
+        // Check if we have base64 data
+        if (pdfInfo && pdfInfo.data) {
+          console.log("Loading PDF from storage (base64)");
+          setLastUploadedPdf(pdfInfo.data);
+          setPdfTitle(pdfInfo.title || "Uploaded PDF");
+          
+          toast({
+            title: "PDF naložen",
+            description: "Prikazujem zadnjo naloženo PDF datoteko.",
+          });
+        } 
+        // Backward compatibility with older format
+        else if (pdfInfo && pdfInfo.url) {
+          console.log("Loading PDF from storage (URL):", pdfInfo.url);
           setLastUploadedPdf(pdfInfo.url);
           setPdfTitle(pdfInfo.title || "Uploaded PDF");
           
@@ -50,7 +53,7 @@ const PDFViewPage = () => {
             description: "Prikazujem zadnjo naloženo PDF datoteko.",
           });
         } else {
-          console.log("No valid PDF URL found in storage");
+          console.log("No valid PDF data found in storage");
         }
       } catch (error) {
         console.error("Error parsing stored PDF info:", error);
@@ -61,7 +64,7 @@ const PDFViewPage = () => {
     } else {
       console.log("No PDF info found in storage, using default");
     }
-  }, [toast, location.state]);
+  };
 
   return (
     <div className="min-h-screen flex flex-col">

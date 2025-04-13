@@ -66,42 +66,69 @@ const PDFUploader: React.FC<PDFUploaderProps> = ({
     setIsUploading(true);
     setUploadProgress(0);
     
-    const interval = setInterval(() => {
-      setUploadProgress(prev => {
-        if (prev >= 100) {
-          clearInterval(interval);
-          setIsUploading(false);
+    const reader = new FileReader();
+    
+    reader.onload = function(event) {
+      if (event.target && event.target.result) {
+        // Start progress simulation
+        let progress = 0;
+        const interval = setInterval(() => {
+          progress += 10;
+          setUploadProgress(progress);
           
-          const pdfUrl = URL.createObjectURL(selectedFile);
-          console.log("Created PDF URL:", pdfUrl);
-          
-          const pdfInfo = {
-            url: pdfUrl,
-            title: selectedFile.name,
-            uploadedAt: new Date().toISOString()
-          };
-          
-          localStorage.setItem('lastUploadedPdf', JSON.stringify(pdfInfo));
-          console.log("Saved PDF info to localStorage:", pdfInfo);
-          
-          toast({
-            title: "Uspešno naloženo",
-            description: "Vaša PDF datoteka je bila uspešno naložena.",
-          });
-          
-          // Navigate to the PDF view page with the PDF URL and title
-          navigate("/view-pdf", { 
-            state: { 
-              pdfUrl: pdfUrl,
-              title: selectedFile.name
-            } 
-          });
-          
-          return 100;
-        }
-        return prev + 10;
+          if (progress >= 100) {
+            clearInterval(interval);
+            setIsUploading(false);
+            
+            // Store the PDF data as base64
+            const base64Data = event.target.result.toString();
+            
+            // Save to localStorage with size check
+            try {
+              const pdfInfo = {
+                data: base64Data,
+                title: selectedFile.name,
+                uploadedAt: new Date().toISOString()
+              };
+              
+              localStorage.setItem('lastUploadedPdf', JSON.stringify(pdfInfo));
+              console.log("Saved PDF info to localStorage");
+              
+              toast({
+                title: "Uspešno naloženo",
+                description: "Vaša PDF datoteka je bila uspešno naložena.",
+              });
+              
+              // Navigate to the PDF view page
+              navigate("/view-pdf", { 
+                state: { 
+                  fromUpload: true
+                } 
+              });
+            } catch (e) {
+              console.error("Error saving to localStorage:", e);
+              toast({
+                title: "Napaka pri shranjevanju",
+                description: "PDF je prevelik za shranjevanje. Poskusite z manjšo datoteko.",
+                variant: "destructive"
+              });
+            }
+          }
+        }, 300);
+      }
+    };
+    
+    reader.onerror = function() {
+      toast({
+        title: "Napaka pri branju datoteke",
+        description: "Prosimo, poskusite z drugo datoteko.",
+        variant: "destructive"
       });
-    }, 300);
+      setIsUploading(false);
+    };
+    
+    // Read the file as a data URL (base64)
+    reader.readAsDataURL(selectedFile);
   };
 
   const handlePreview = () => {
