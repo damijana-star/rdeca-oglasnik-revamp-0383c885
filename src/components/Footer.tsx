@@ -78,13 +78,13 @@ export const Footer = () => {
               </Link>
             </li>
             <li>
-              <Link 
-                to="/#contact" 
+              <a 
+                href="/#contact" 
                 onClick={(e) => navigateToSection('contact', e)}
                 className="text-gray-600 hover:text-dark-red transition-colors duration-300"
               >
                 Kontakt
-              </Link>
+              </a>
             </li>
             <li>
               <Link to="/view-pdf" className="text-gray-600 hover:text-dark-red transition-colors duration-300">
@@ -92,18 +92,18 @@ export const Footer = () => {
               </Link>
             </li>
             <li>
-              <Link 
-                to="/#contact" 
+              <a 
+                href="/#contact" 
                 onClick={(e) => navigateToSection('contact', e)}
                 className="text-gray-600 hover:text-dark-red transition-colors duration-300"
               >
                 Oddaj oglas
-              </Link>
+              </a>
             </li>
           </ul>
         </div>
 
-        <div id="contact" className="fade-in text-left" style={{ animationDelay: '0.3s' }}>
+        <div className="fade-in text-left" style={{ animationDelay: '0.3s' }}>
           <h3 className="font-bold mb-4 text-dark-red text-left">Kontakt</h3>
           <div className="space-y-3">
             <div className="flex items-center transition-transform duration-300 hover:translate-x-1">

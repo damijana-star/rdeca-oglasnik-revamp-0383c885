@@ -1,7 +1,7 @@
 
 import { Button } from "@/components/ui/button";
 import { FileText, Home } from "lucide-react";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 
 export const Header = () => {
@@ -17,8 +17,8 @@ export const Header = () => {
       const element = document.getElementById(sectionId);
       if (element) {
         element.scrollIntoView({ behavior: 'smooth' });
+        setIsMenuOpen(false);
       }
-      setIsMenuOpen(false);
     } else {
       // If we're on another page, navigate to home page with the section as hash
       window.location.href = `/#${sectionId}`;
@@ -113,4 +113,3 @@ export const Header = () => {
 };
 
 export default Header;
-
