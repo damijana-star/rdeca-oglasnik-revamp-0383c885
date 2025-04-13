@@ -1,100 +1,80 @@
 
-import { useEffect, useRef, useState } from "react";
+import React, { useEffect } from "react";
 import { useInView } from "react-intersection-observer";
 import LogoItem from "./LogoItem";
+import {
+  Carousel,
+  CarouselContent,
+  CarouselItem,
+  CarouselNext,
+  CarouselPrevious,
+} from "@/components/ui/carousel";
 
 interface PartnerLogoCarouselProps {
   logos: string[];
-  speed?: number;
   size?: "small" | "medium" | "large";
   hoverEffect?: boolean;
-  pauseOnHover?: boolean;
+  autoplay?: boolean;
   autoplayInterval?: number;
+  showControls?: boolean;
 }
 
-const PartnerLogoCarousel = ({ 
+const PartnerLogoCarousel = ({
   logos,
-  speed = 0.5,
   size = "medium",
   hoverEffect = true,
-  pauseOnHover = true,
-  autoplayInterval = 3000 
+  autoplay = true,
+  autoplayInterval = 3000,
+  showControls = false
 }: PartnerLogoCarouselProps) => {
   const { ref, inView } = useInView({
     threshold: 0.1,
     triggerOnce: false
   });
-  
-  const containerRef = useRef<HTMLDivElement>(null);
-  const animationRef = useRef<number | null>(null);
-  const [position, setPosition] = useState(0);
-  const [isPaused, setIsPaused] = useState(false);
-  
-  // Make infinite loop by duplicating the logos
-  const duplicatedLogos = [...logos, ...logos];
-  
-  useEffect(() => {
-    if (!inView || !containerRef.current) return;
-    
-    const scrollContent = containerRef.current.querySelector('.scroll-content') as HTMLElement;
-    if (!scrollContent) return;
-    
-    // Get the width of the first set of logos
-    const logoSetWidth = scrollContent.scrollWidth / 2;
-    const scrollSpeed = speed; // pixels per frame - adjust for speed
-    
-    const animate = () => {
-      if (!isPaused) {
-        setPosition(prevPosition => {
-          let newPosition = prevPosition + scrollSpeed;
-          
-          // Reset position when we've scrolled through the first set of logos
-          if (newPosition >= logoSetWidth) {
-            newPosition = 0;
-          }
-          
-          return newPosition;
-        });
-      }
-      
-      animationRef.current = requestAnimationFrame(animate);
-    };
-    
-    // Start the animation
-    animationRef.current = requestAnimationFrame(animate);
-    
-    // Cleanup animation on unmount or when not in view
-    return () => {
-      if (animationRef.current) {
-        cancelAnimationFrame(animationRef.current);
-      }
-    };
-  }, [inView, isPaused, speed]);
-  
+
+  // Create a duplicate set of logos for infinite-like scrolling effect
+  const displayLogos = [...logos, ...logos].slice(0, Math.min(logos.length * 2, 20));
+
   return (
-    <div 
-      ref={ref} 
-      className="overflow-hidden w-full"
-      onMouseEnter={() => pauseOnHover && setIsPaused(true)}
-      onMouseLeave={() => pauseOnHover && setIsPaused(false)}
-    >
-      <div ref={containerRef} className="w-full">
-        <div 
-          className="scroll-content flex" 
-          style={{ transform: `translateX(-${position}px)` }}
-        >
-          {duplicatedLogos.map((logo, index) => (
-            <LogoItem 
-              key={index}
-              logo={logo}
-              index={index}
-              totalLogos={logos.length}
-              size={size}
-              hoverEffect={hoverEffect}
-            />
+    <div ref={ref} className="w-full py-4">
+      <Carousel
+        opts={{
+          align: "start",
+          loop: true,
+          dragFree: true,
+        }}
+        className="w-full"
+      >
+        <CarouselContent className="-ml-2 md:-ml-4">
+          {displayLogos.map((logo, index) => (
+            <CarouselItem 
+              key={`logo-${index}`} 
+              className={
+                size === "small" 
+                  ? "pl-2 md:pl-4 basis-1/4 md:basis-1/5 lg:basis-1/6" 
+                  : size === "medium"
+                    ? "pl-2 md:pl-4 basis-1/3 md:basis-1/4 lg:basis-1/5" 
+                    : "pl-2 md:pl-4 basis-1/2 md:basis-1/3 lg:basis-1/4"
+              }
+            >
+              <LogoItem
+                logo={logo}
+                index={index}
+                totalLogos={logos.length}
+                size={size}
+                hoverEffect={hoverEffect}
+              />
+            </CarouselItem>
           ))}
-        </div>
-      </div>
+        </CarouselContent>
+        
+        {showControls && (
+          <>
+            <CarouselPrevious className="hidden md:flex -left-4 border-[#e32530]/20 bg-white" />
+            <CarouselNext className="hidden md:flex -right-4 border-[#e32530]/20 bg-white" />
+          </>
+        )}
+      </Carousel>
     </div>
   );
 };
