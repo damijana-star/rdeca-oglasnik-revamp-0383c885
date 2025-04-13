@@ -1,3 +1,4 @@
+
 import { Button } from "@/components/ui/button";
 import { FileText, Home } from "lucide-react";
 import { useState, useEffect } from "react";
@@ -33,7 +34,8 @@ export const Header = () => {
     }
   }, [location.state]);
 
-  return <header className="bg-white shadow-sm sticky top-0 z-50">
+  return (
+    <header className="bg-white shadow-sm sticky top-0 z-50">
       <div className="container py-4">
         <div className="flex items-center justify-between">
           <div className="flex items-center">
@@ -76,12 +78,20 @@ export const Header = () => {
           </nav>
 
           <div className="md:hidden">
-            <button onClick={() => setIsMenuOpen(!isMenuOpen)} className="text-foreground p-2 transition-transform duration-300 hover:scale-110" aria-label={isMenuOpen ? "Close menu" : "Open menu"}>
-              {isMenuOpen ? <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-x transition-transform duration-300">
+            <button 
+              onClick={() => setIsMenuOpen(!isMenuOpen)} 
+              className="text-foreground p-2 transition-transform duration-300 hover:scale-110" 
+              aria-label={isMenuOpen ? "Close menu" : "Open menu"}
+            >
+              {isMenuOpen ? (
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-x transition-transform duration-300">
                   <path d="M18 6 6 18" /><path d="m6 6 12 12" />
-                </svg> : <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-menu transition-transform duration-300">
+                </svg>
+              ) : (
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-menu transition-transform duration-300">
                   <line x1="4" x2="20" y1="12" y2="12" /><line x1="4" x2="20" y1="6" y2="6" /><line x1="4" x2="20" y1="18" y2="18" />
-                </svg>}
+                </svg>
+              )}
             </button>
           </div>
         </div>
@@ -119,7 +129,8 @@ export const Header = () => {
           </nav>
         </div>
       </div>
-    </header>;
+    </header>
+  );
 };
 
 export default Header;
