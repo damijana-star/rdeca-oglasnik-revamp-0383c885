@@ -38,7 +38,7 @@
     --input: 214.3 31.8% 91.4%;
     --ring: 354 84% 57%;
 
-    --radius: 0.5rem;
+    --radius: 0.75rem;
   }
 
   .dark {
@@ -107,7 +107,7 @@
   
   /* Card hover animation */
   .card-hover {
-    @apply transition-all duration-300 hover:shadow-md hover:-translate-y-1;
+    @apply transition-all duration-300 hover:shadow-elevated hover:-translate-y-1;
   }
   
   /* Fade in animation */
@@ -142,6 +142,24 @@
     }
   }
 
+  /* Modern button styles */
+  .btn-modern {
+    @apply relative overflow-hidden rounded-lg transition-all duration-300 ease-out hover:shadow-glow;
+  }
+  
+  .btn-modern::before {
+    @apply content-[''] absolute inset-0 bg-white/10 opacity-0 transition-opacity duration-300;
+  }
+  
+  .btn-modern:hover::before {
+    @apply opacity-100;
+  }
+  
+  /* Glass card style */
+  .glass-card {
+    @apply bg-white/90 backdrop-blur-xs border border-white/20 shadow-soft;
+  }
+
   /* Enhanced typography for modern, trendy look */
   .modern-heading {
     @apply font-heading font-extrabold tracking-tight text-foreground;
@@ -170,4 +188,23 @@
 
 .section {
   @apply py-10 md:py-16;
+}
+
+/* Image hover effect */
+.img-hover-zoom {
+  @apply overflow-hidden;
+}
+
+.img-hover-zoom img {
+  @apply transition-transform duration-500 ease-out hover:scale-110;
+}
+
+/* Hover lift effect */
+.hover-lift {
+  @apply transition-all duration-300 hover:-translate-y-1 hover:shadow-elevated;
+}
+
+/* Interactive cards */
+.interactive-card {
+  @apply relative overflow-hidden rounded-xl border border-border/40 transition-all duration-300 ease-in-out hover:border-accent/30 hover:shadow-soft;
 }
