@@ -64,13 +64,13 @@ export const Footer = () => {
               </Link>
             </li>
             <li>
-              <Link 
-                to="/" 
+              <a 
+                href="#contact" 
                 onClick={handleContactClick}
                 className="text-gray-600 hover:text-dark-red transition-colors duration-300"
               >
                 Kontakt
-              </Link>
+              </a>
             </li>
             <li>
               <Link to="/view-pdf" className="text-gray-600 hover:text-dark-red transition-colors duration-300">
@@ -78,14 +78,14 @@ export const Footer = () => {
               </Link>
             </li>
             <li>
-              <Link 
-                to="/" 
+              <a 
+                href="#contact" 
                 onClick={handleContactClick}
                 className="text-gray-600 flex items-center gap-1 text-dark-red font-medium hover:text-dark-red/80 transition-colors duration-300"
               >
                 <Send size={16} />
                 Oddaj oglas
-              </Link>
+              </a>
             </li>
           </ul>
         </div>

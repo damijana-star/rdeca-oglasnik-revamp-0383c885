@@ -10,6 +10,7 @@ export const Header = () => {
   
   const handleContactClick = (e: React.MouseEvent) => {
     e.preventDefault();
+    setIsMenuOpen(false);
     
     if (location.pathname !== '/') {
       // If not on homepage, navigate to homepage with contact anchor
@@ -21,9 +22,6 @@ export const Header = () => {
         contactSection.scrollIntoView({ behavior: 'smooth' });
       }
     }
-    
-    // Close mobile menu if open
-    setIsMenuOpen(false);
   };
   
   return <header className="bg-white shadow-sm sticky top-0 z-50">
@@ -43,13 +41,13 @@ export const Header = () => {
             <Link to="/blog" className="nav-link text-foreground hover:text-dark-red font-medium transition-colors duration-300">
               Nasveti
             </Link>
-            <Link 
-              to="/" 
+            <a 
+              href="#contact" 
               onClick={handleContactClick}
               className="nav-link text-foreground hover:text-dark-red font-medium transition-colors duration-300"
             >
               Kontakt
-            </Link>
+            </a>
             <Button variant="outline" className="flex items-center gap-2 border-[#e32530] text-[#e32530]" asChild>
               <Link to="/view-pdf">
                 <FileText className="h-4 w-4" />
@@ -57,13 +55,13 @@ export const Header = () => {
               </Link>
             </Button>
             <Button className="bg-[#e32530] hover:bg-[#e32530]/90 transform transition-all duration-300 hover:scale-105 hover:shadow-md flex items-center gap-2" asChild>
-              <Link 
-                to="/" 
+              <a 
+                href="#contact" 
                 onClick={handleContactClick}
               >
                 <Send className="h-4 w-4" />
                 Oddaj oglas
-              </Link>
+              </a>
             </Button>
           </nav>
 
@@ -87,13 +85,13 @@ export const Header = () => {
             <Link to="/blog" className="nav-link text-foreground hover:text-dark-red font-medium transition-colors duration-300">
               Nasveti
             </Link>
-            <Link 
-              to="/" 
+            <a 
+              href="#contact" 
               onClick={handleContactClick}
               className="nav-link text-foreground hover:text-dark-red font-medium transition-colors duration-300"
             >
               Kontakt
-            </Link>
+            </a>
             <Button variant="outline" className="flex items-center justify-center gap-2 border-[#e32530] text-[#e32530]" asChild>
               <Link to="/view-pdf">
                 <FileText className="h-4 w-4" />
@@ -101,13 +99,13 @@ export const Header = () => {
               </Link>
             </Button>
             <Button className="bg-[#e32530] hover:bg-[#e32530]/90 w-full transform transition-all duration-300 hover:scale-105 hover:shadow-md flex items-center justify-center gap-2" asChild>
-              <Link 
-                to="/" 
+              <a 
+                href="#contact" 
                 onClick={handleContactClick}
               >
                 <Send className="h-4 w-4" />
                 Oddaj oglas
-              </Link>
+              </a>
             </Button>
           </nav>
         </div>
