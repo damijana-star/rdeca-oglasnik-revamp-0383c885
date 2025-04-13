@@ -1,21 +1,28 @@
 
 import { Button } from "@/components/ui/button";
 import { FileText, Home } from "lucide-react";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Link, useLocation } from "react-router-dom";
 
 export const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const location = useLocation();
   
-  const navigateToSection = (sectionId: string) => {
+  // Function to handle smooth scrolling to sections on the home page
+  const navigateToSection = (sectionId: string, e: React.MouseEvent) => {
+    e.preventDefault();
+    
     if (location.pathname === '/') {
+      // If we're already on the home page, just scroll to the section
       const element = document.getElementById(sectionId);
       if (element) {
         element.scrollIntoView({ behavior: 'smooth' });
       }
+      setIsMenuOpen(false);
+    } else {
+      // If we're on another page, navigate to home page with the section as hash
+      window.location.href = `/#${sectionId}`;
     }
-    setIsMenuOpen(false);
   };
   
   return <header className="bg-white shadow-sm sticky top-0 z-50">
@@ -36,12 +43,8 @@ export const Header = () => {
               Nasveti
             </Link>
             <Link 
-              to="/" 
-              onClick={(e) => {
-                e.preventDefault();
-                navigateToSection('contact');
-                window.location.href = '/#contact';
-              }}
+              to="/#contact" 
+              onClick={(e) => navigateToSection('contact', e)}
               className="nav-link text-foreground hover:text-dark-red font-medium transition-colors duration-300"
             >
               Kontakt
@@ -54,12 +57,8 @@ export const Header = () => {
             </Button>
             <Button className="bg-[#e32530] hover:bg-[#e32530]/90 transform transition-all duration-300 hover:scale-105 hover:shadow-md" asChild>
               <Link 
-                to="/" 
-                onClick={(e) => {
-                  e.preventDefault();
-                  navigateToSection('contact');
-                  window.location.href = '/#contact';
-                }}
+                to="/#contact" 
+                onClick={(e) => navigateToSection('contact', e)}
               >
                 Oddaj oglas
               </Link>
@@ -87,12 +86,8 @@ export const Header = () => {
               Nasveti
             </Link>
             <Link 
-              to="/" 
-              onClick={(e) => {
-                e.preventDefault();
-                navigateToSection('contact');
-                window.location.href = '/#contact';
-              }}
+              to="/#contact" 
+              onClick={(e) => navigateToSection('contact', e)}
               className="nav-link text-foreground hover:text-dark-red font-medium transition-colors duration-300"
             >
               Kontakt
@@ -105,12 +100,8 @@ export const Header = () => {
             </Button>
             <Button className="bg-[#e32530] hover:bg-[#e32530]/90 w-full transform transition-all duration-300 hover:scale-105 hover:shadow-md" asChild>
               <Link 
-                to="/" 
-                onClick={(e) => {
-                  e.preventDefault();
-                  navigateToSection('contact');
-                  window.location.href = '/#contact';
-                }}
+                to="/#contact" 
+                onClick={(e) => navigateToSection('contact', e)}
               >
                 Oddaj oglas
               </Link>

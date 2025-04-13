@@ -2,16 +2,36 @@
 import { Facebook, Mail, PhoneCall } from "lucide-react";
 import { Separator } from "@/components/ui/separator";
 import { Link, useLocation } from "react-router-dom";
+import { useEffect } from "react";
 
 export const Footer = () => {
   const location = useLocation();
   
-  const navigateToHomeSection = (sectionId: string) => {
+  // Handle hash navigation when the component mounts
+  useEffect(() => {
+    if (location.hash) {
+      const id = location.hash.replace('#', '');
+      const element = document.getElementById(id);
+      if (element) {
+        setTimeout(() => {
+          element.scrollIntoView({ behavior: 'smooth' });
+        }, 100);
+      }
+    }
+  }, [location.hash]);
+  
+  const navigateToSection = (sectionId: string, e: React.MouseEvent) => {
+    e.preventDefault();
+    
     if (location.pathname === '/') {
+      // If we're already on the home page, just scroll to the section
       const element = document.getElementById(sectionId);
       if (element) {
         element.scrollIntoView({ behavior: 'smooth' });
       }
+    } else {
+      // If we're on another page, navigate to home page with the section as hash
+      window.location.href = `/#${sectionId}`;
     }
   };
 
@@ -60,15 +80,7 @@ export const Footer = () => {
             <li>
               <Link 
                 to="/#contact" 
-                onClick={(e) => {
-                  if (location.pathname !== '/') {
-                    e.preventDefault();
-                    window.location.href = '/#contact';
-                  } else {
-                    e.preventDefault();
-                    navigateToHomeSection('contact');
-                  }
-                }}
+                onClick={(e) => navigateToSection('contact', e)}
                 className="text-gray-600 hover:text-dark-red transition-colors duration-300"
               >
                 Kontakt
@@ -82,15 +94,7 @@ export const Footer = () => {
             <li>
               <Link 
                 to="/#contact" 
-                onClick={(e) => {
-                  if (location.pathname !== '/') {
-                    e.preventDefault();
-                    window.location.href = '/#contact';
-                  } else {
-                    e.preventDefault();
-                    navigateToHomeSection('contact');
-                  }
-                }}
+                onClick={(e) => navigateToSection('contact', e)}
                 className="text-gray-600 hover:text-dark-red transition-colors duration-300"
               >
                 Oddaj oglas
