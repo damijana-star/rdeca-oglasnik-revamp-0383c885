@@ -25,20 +25,21 @@
                 </div>
 
                 <nav class="hidden md:flex items-center space-x-6">
-                    <?php
-                    wp_nav_menu(array(
-                        'theme_location' => 'primary',
-                        'menu_class' => 'flex items-center space-x-6',
-                        'container' => false,
-                        'fallback_cb' => false,
-                        'items_wrap' => '%3$s',
-                        'walker' => new Nanoski_Nav_Walker(),
-                    ));
-                    ?>
+                    <a href="<?php echo esc_url(home_url('/')); ?>" class="nav-link text-foreground hover:text-dark-red font-medium transition-colors duration-300 flex items-center gap-1">
+                        <i class="fas fa-home"></i>
+                        Domov
+                    </a>
+                    <a href="<?php echo esc_url(home_url('/blog')); ?>" class="nav-link text-foreground hover:text-dark-red font-medium transition-colors duration-300">
+                        Nasveti
+                    </a>
+                    <a href="<?php echo esc_url(home_url('/')); ?>#contact" class="nav-link text-foreground hover:text-dark-red font-medium transition-colors duration-300 contact-link">
+                        Kontakt
+                    </a>
                     <a href="<?php echo esc_url(home_url('/view-pdf')); ?>" class="inline-flex items-center gap-2 border border-[#e32530] text-[#e32530] px-4 py-2 rounded hover:bg-gray-50">
                         <i class="fas fa-file-pdf"></i> Prelistaj
                     </a>
-                    <a href="<?php echo esc_url(home_url('/#contact')); ?>" class="inline-flex items-center gap-2 bg-[#e32530] text-white px-4 py-2 rounded hover:bg-[#e32530]/90 transform transition-all duration-300 hover:scale-105 hover:shadow-md">
+                    <a href="<?php echo esc_url(home_url('/')); ?>#contact" class="inline-flex items-center gap-2 bg-[#e32530] text-white px-4 py-2 rounded hover:bg-[#e32530]/90 transform transition-all duration-300 hover:scale-105 hover:shadow-md contact-link">
+                        <i class="fas fa-paper-plane"></i>
                         Oddaj oglas
                     </a>
                 </nav>
@@ -52,19 +53,21 @@
 
             <div id="mobile-menu" class="md:hidden mt-4 pb-4 transition-all duration-300 overflow-hidden max-h-0 opacity-0">
                 <nav class="flex flex-col space-y-4">
-                    <?php
-                    wp_nav_menu(array(
-                        'theme_location' => 'primary',
-                        'menu_class' => 'flex flex-col space-y-4',
-                        'container' => false,
-                        'fallback_cb' => false,
-                        'walker' => new Nanoski_Mobile_Nav_Walker(),
-                    ));
-                    ?>
+                    <a href="<?php echo esc_url(home_url('/')); ?>" class="nav-link text-foreground hover:text-dark-red font-medium transition-colors duration-300 flex items-center gap-1">
+                        <i class="fas fa-home"></i>
+                        Domov
+                    </a>
+                    <a href="<?php echo esc_url(home_url('/blog')); ?>" class="nav-link text-foreground hover:text-dark-red font-medium transition-colors duration-300">
+                        Nasveti
+                    </a>
+                    <a href="<?php echo esc_url(home_url('/')); ?>#contact" class="nav-link text-foreground hover:text-dark-red font-medium transition-colors duration-300 contact-link">
+                        Kontakt
+                    </a>
                     <a href="<?php echo esc_url(home_url('/view-pdf')); ?>" class="inline-flex items-center justify-center gap-2 border border-[#e32530] text-[#e32530] px-4 py-2 rounded hover:bg-gray-50">
                         <i class="fas fa-file-pdf"></i> Prelistaj
                     </a>
-                    <a href="<?php echo esc_url(home_url('/#contact')); ?>" class="inline-flex items-center justify-center gap-2 bg-[#e32530] text-white px-4 py-2 rounded hover:bg-[#e32530]/90 w-full transform transition-all duration-300 hover:scale-105 hover:shadow-md">
+                    <a href="<?php echo esc_url(home_url('/')); ?>#contact" class="inline-flex items-center justify-center gap-2 bg-[#e32530] text-white px-4 py-2 rounded hover:bg-[#e32530]/90 w-full transform transition-all duration-300 hover:scale-105 hover:shadow-md contact-link">
+                        <i class="fas fa-paper-plane"></i>
                         Oddaj oglas
                     </a>
                 </nav>

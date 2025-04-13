@@ -26,14 +26,29 @@
 
             <div class="fade-in text-left">
                 <h3 class="font-bold mb-4 text-dark-red text-left">Povezave</h3>
-                <?php
-                wp_nav_menu(array(
-                    'theme_location' => 'footer',
-                    'container' => false,
-                    'menu_class' => 'space-y-2',
-                    'fallback_cb' => false,
-                ));
-                ?>
+                <ul class="space-y-2">
+                    <li>
+                        <a href="<?php echo esc_url(home_url('/blog')); ?>" class="text-gray-600 hover:text-dark-red transition-colors duration-300">
+                            Nasveti
+                        </a>
+                    </li>
+                    <li>
+                        <a href="<?php echo esc_url(home_url('/')); ?>#contact" class="text-gray-600 hover:text-dark-red transition-colors duration-300 contact-link">
+                            Kontakt
+                        </a>
+                    </li>
+                    <li>
+                        <a href="<?php echo esc_url(home_url('/view-pdf')); ?>" class="text-gray-600 hover:text-dark-red transition-colors duration-300">
+                            Prelistaj
+                        </a>
+                    </li>
+                    <li>
+                        <a href="<?php echo esc_url(home_url('/')); ?>#contact" class="text-gray-600 flex items-center gap-1 text-dark-red font-medium hover:text-dark-red/80 transition-colors duration-300 contact-link">
+                            <i class="fas fa-paper-plane"></i>
+                            Oddaj oglas
+                        </a>
+                    </li>
+                </ul>
             </div>
 
             <div id="contact" class="fade-in text-left">
@@ -66,6 +81,28 @@
 </div><!-- #page -->
 
 <?php wp_footer(); ?>
+
+<script>
+// Handle smooth scrolling for contact links
+document.addEventListener('DOMContentLoaded', function() {
+    const contactLinks = document.querySelectorAll('.contact-link');
+    
+    contactLinks.forEach(link => {
+        link.addEventListener('click', function(e) {
+            const currentPath = window.location.pathname;
+            
+            // If already on homepage, scroll to contact section
+            if (currentPath === '/' || currentPath === '/index.php') {
+                e.preventDefault();
+                const contactSection = document.getElementById('contact');
+                if (contactSection) {
+                    contactSection.scrollIntoView({ behavior: 'smooth' });
+                }
+            }
+        });
+    });
+});
+</script>
 
 </body>
 </html>
