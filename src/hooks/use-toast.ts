@@ -1,9 +1,8 @@
 
 import { toast as sonnerToast } from "sonner"
-import type { ToastProps } from "@/components/ui/toast"
 
 // Create a simple toast function that uses sonner
-export const toast = (props: ToastProps | string) => {
+export const toast = (props: string | { title: string; description?: string; variant?: "default" | "destructive" }) => {
   return sonnerToast(props)
 }
 

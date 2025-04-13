@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react';
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -96,7 +95,7 @@ const PDFUploader: React.FC<PDFUploaderProps> = ({
               
               toast({
                 title: "Uspešno naloženo",
-                description: "Vaša PDF datoteka je bila uspešno naložena.",
+                description: "Vaša PDF datoteka je bila uspešno naložena."
               });
               
               // Navigate to the PDF view page

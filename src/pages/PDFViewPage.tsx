@@ -39,7 +39,7 @@ const PDFViewPage = () => {
           
           toast({
             title: "PDF naložen",
-            description: "Prikazujem zadnjo naloženo PDF datoteko.",
+            description: "Prikazujem zadnjo naloženo PDF datoteko."
           });
         } 
         // Backward compatibility with older format
@@ -50,7 +50,7 @@ const PDFViewPage = () => {
           
           toast({
             title: "PDF naložen",
-            description: "Prikazujem zadnjo naloženo PDF datoteko.",
+            description: "Prikazujem zadnjo naloženo PDF datoteko."
           });
         } else {
           console.log("No valid PDF data found in storage");
