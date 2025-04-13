@@ -1,24 +1,11 @@
-
 import { Facebook, Mail, PhoneCall } from "lucide-react";
 import { Separator } from "@/components/ui/separator";
-import { Link, useLocation } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { useEffect } from "react";
 
 export const Footer = () => {
   const location = useLocation();
-  
-  // Handle hash navigation when the component mounts
-  useEffect(() => {
-    if (location.hash) {
-      const id = location.hash.replace('#', '');
-      const element = document.getElementById(id);
-      if (element) {
-        setTimeout(() => {
-          element.scrollIntoView({ behavior: 'smooth' });
-        }, 100);
-      }
-    }
-  }, [location.hash]);
+  const navigate = useNavigate();
   
   const navigateToSection = (sectionId: string, e: React.MouseEvent) => {
     e.preventDefault();
@@ -30,8 +17,8 @@ export const Footer = () => {
         element.scrollIntoView({ behavior: 'smooth' });
       }
     } else {
-      // If we're on another page, navigate to home page with the section as hash
-      window.location.href = `/#${sectionId}`;
+      // Navigate to home page with hash, then scroll
+      navigate('/', { state: { scrollTo: sectionId } });
     }
   };
 

@@ -1,30 +1,38 @@
-
 import { Button } from "@/components/ui/button";
 import { FileText, Home } from "lucide-react";
 import { useState, useEffect } from "react";
-import { Link, useLocation } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 
 export const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const location = useLocation();
+  const navigate = useNavigate();
   
-  // Function to handle smooth scrolling to sections on the home page
   const navigateToSection = (sectionId: string, e: React.MouseEvent) => {
     e.preventDefault();
     
     if (location.pathname === '/') {
-      // If we're already on the home page, just scroll to the section
       const element = document.getElementById(sectionId);
       if (element) {
         element.scrollIntoView({ behavior: 'smooth' });
       }
       setIsMenuOpen(false);
     } else {
-      // If we're on another page, navigate to home page with the section as hash
-      window.location.href = `/#${sectionId}`;
+      navigate('/', { state: { scrollTo: sectionId } });
     }
   };
   
+  useEffect(() => {
+    const state = location.state as { scrollTo?: string };
+    if (state?.scrollTo) {
+      const element = document.getElementById(state.scrollTo);
+      if (element) {
+        element.scrollIntoView({ behavior: 'smooth' });
+      }
+      window.history.replaceState({}, document.title);
+    }
+  }, [location.state]);
+
   return <header className="bg-white shadow-sm sticky top-0 z-50">
       <div className="container py-4">
         <div className="flex items-center justify-between">
@@ -113,4 +121,3 @@ export const Header = () => {
 };
 
 export default Header;
-
