@@ -1,21 +1,29 @@
 
 import { Button } from "@/components/ui/button";
 import { FileText, Home, Send } from "lucide-react";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Link, useLocation } from "react-router-dom";
 
 export const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const location = useLocation();
   
-  const navigateToSection = (sectionId: string) => {
-    if (location.pathname === '/') {
-      const element = document.getElementById(sectionId);
-      if (element) {
-        element.scrollIntoView({ behavior: 'smooth' });
+  const handleContactClick = (e: React.MouseEvent) => {
+    e.preventDefault();
+    
+    if (location.pathname !== '/') {
+      // If not on homepage, navigate to homepage with contact anchor
+      window.location.href = '/#contact';
+    } else {
+      // If on homepage, scroll to contact section
+      const contactSection = document.getElementById('contact');
+      if (contactSection) {
+        contactSection.scrollIntoView({ behavior: 'smooth' });
       }
-      setIsMenuOpen(false);
     }
+    
+    // Close mobile menu if open
+    setIsMenuOpen(false);
   };
   
   return <header className="bg-white shadow-sm sticky top-0 z-50">
@@ -37,17 +45,7 @@ export const Header = () => {
             </Link>
             <Link 
               to="/" 
-              onClick={(e) => {
-                e.preventDefault();
-                if (location.pathname !== '/') {
-                  window.location.href = '/#contact';
-                } else {
-                  const element = document.getElementById('contact');
-                  if (element) {
-                    element.scrollIntoView({ behavior: 'smooth' });
-                  }
-                }
-              }}
+              onClick={handleContactClick}
               className="nav-link text-foreground hover:text-dark-red font-medium transition-colors duration-300"
             >
               Kontakt
@@ -61,17 +59,7 @@ export const Header = () => {
             <Button className="bg-[#e32530] hover:bg-[#e32530]/90 transform transition-all duration-300 hover:scale-105 hover:shadow-md flex items-center gap-2" asChild>
               <Link 
                 to="/" 
-                onClick={(e) => {
-                  e.preventDefault();
-                  if (location.pathname !== '/') {
-                    window.location.href = '/#contact';
-                  } else {
-                    const element = document.getElementById('contact');
-                    if (element) {
-                      element.scrollIntoView({ behavior: 'smooth' });
-                    }
-                  }
-                }}
+                onClick={handleContactClick}
               >
                 <Send className="h-4 w-4" />
                 Oddaj oglas
@@ -101,18 +89,7 @@ export const Header = () => {
             </Link>
             <Link 
               to="/" 
-              onClick={(e) => {
-                e.preventDefault();
-                if (location.pathname !== '/') {
-                  window.location.href = '/#contact';
-                } else {
-                  const element = document.getElementById('contact');
-                  if (element) {
-                    element.scrollIntoView({ behavior: 'smooth' });
-                  }
-                }
-                setIsMenuOpen(false);
-              }}
+              onClick={handleContactClick}
               className="nav-link text-foreground hover:text-dark-red font-medium transition-colors duration-300"
             >
               Kontakt
@@ -126,18 +103,7 @@ export const Header = () => {
             <Button className="bg-[#e32530] hover:bg-[#e32530]/90 w-full transform transition-all duration-300 hover:scale-105 hover:shadow-md flex items-center justify-center gap-2" asChild>
               <Link 
                 to="/" 
-                onClick={(e) => {
-                  e.preventDefault();
-                  if (location.pathname !== '/') {
-                    window.location.href = '/#contact';
-                  } else {
-                    const element = document.getElementById('contact');
-                    if (element) {
-                      element.scrollIntoView({ behavior: 'smooth' });
-                    }
-                  }
-                  setIsMenuOpen(false);
-                }}
+                onClick={handleContactClick}
               >
                 <Send className="h-4 w-4" />
                 Oddaj oglas

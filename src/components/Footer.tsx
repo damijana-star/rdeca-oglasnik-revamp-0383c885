@@ -6,6 +6,21 @@ import { Link, useLocation } from "react-router-dom";
 export const Footer = () => {
   const location = useLocation();
   
+  const handleContactClick = (e: React.MouseEvent) => {
+    e.preventDefault();
+    
+    if (location.pathname !== '/') {
+      // If not on homepage, navigate to homepage with contact anchor
+      window.location.href = '/#contact';
+    } else {
+      // If on homepage, scroll to contact section
+      const contactSection = document.getElementById('contact');
+      if (contactSection) {
+        contactSection.scrollIntoView({ behavior: 'smooth' });
+      }
+    }
+  };
+  
   return (
     <footer className="bg-gray-100 pt-12 pb-6 text-center" id="footer">
       <Separator className="mb-8 mx-auto max-w-4xl" />
@@ -51,17 +66,7 @@ export const Footer = () => {
             <li>
               <Link 
                 to="/" 
-                onClick={(e) => {
-                  e.preventDefault();
-                  if (location.pathname !== '/') {
-                    window.location.href = '/#contact';
-                  } else {
-                    const element = document.getElementById('contact');
-                    if (element) {
-                      element.scrollIntoView({ behavior: 'smooth' });
-                    }
-                  }
-                }}
+                onClick={handleContactClick}
                 className="text-gray-600 hover:text-dark-red transition-colors duration-300"
               >
                 Kontakt
@@ -75,17 +80,7 @@ export const Footer = () => {
             <li>
               <Link 
                 to="/" 
-                onClick={(e) => {
-                  e.preventDefault();
-                  if (location.pathname !== '/') {
-                    window.location.href = '/#contact';
-                  } else {
-                    const element = document.getElementById('contact');
-                    if (element) {
-                      element.scrollIntoView({ behavior: 'smooth' });
-                    }
-                  }
-                }}
+                onClick={handleContactClick}
                 className="text-gray-600 flex items-center gap-1 text-dark-red font-medium hover:text-dark-red/80 transition-colors duration-300"
               >
                 <Send size={16} />
