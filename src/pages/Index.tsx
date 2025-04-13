@@ -8,7 +8,6 @@ import StatsBar from "@/components/StatsBar";
 import Blog from "@/components/Blog";
 import ContactForm from "@/components/ContactForm";
 import Footer from "@/components/Footer";
-import CookieConsent from "@/components/CookieConsent";
 
 const Index = () => {
   const location = useLocation();
@@ -44,7 +43,6 @@ const Index = () => {
         </div>
       </main>
       <Footer />
-      <CookieConsent />
     </div>
   );
 };

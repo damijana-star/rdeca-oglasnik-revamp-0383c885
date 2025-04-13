@@ -26,3 +26,15 @@ export const getCookie = (name: string): string | null => {
 export const eraseCookie = (name: string) => {
   document.cookie = name + '=; Path=/; Expires=Thu, 01 Jan 1970 00:00:01 GMT;';
 };
+
+// Function to test if cookies are enabled in the browser
+export const areCookiesEnabled = (): boolean => {
+  try {
+    document.cookie = "testcookie=1; SameSite=Strict;";
+    const cookieEnabled = document.cookie.indexOf("testcookie") !== -1;
+    document.cookie = "testcookie=; expires=Thu, 01 Jan 1970 00:00:00 UTC; SameSite=Strict;";
+    return cookieEnabled;
+  } catch (e) {
+    return false;
+  }
+};

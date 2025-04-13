@@ -2,7 +2,7 @@
 import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogFooter } from "@/components/ui/dialog";
-import { setCookie, getCookie } from "@/lib/cookies";
+import { setCookie, getCookie, eraseCookie } from "@/lib/cookies";
 import { useToast } from "@/hooks/use-toast";
 import { Cookie, Info, Shield } from "lucide-react";
 
@@ -11,13 +11,17 @@ const CookieConsent = () => {
   const { toast } = useToast();
   
   useEffect(() => {
-    // Check if the user has already consented to cookies
+    // Za testiranje - izbrišemo obstoječi piškotek (odstranite v produkciji)
+    // eraseCookie("cookie-consent");
+    
+    // Preverimo, če je uporabnik že privolil v piškotke
     const hasConsented = getCookie("cookie-consent");
+    
     if (!hasConsented) {
-      // Delay the opening of the dialog for better UX
+      // Zakasnimo prikaz dialoga za boljšo uporabniško izkušnjo
       const timer = setTimeout(() => {
         setOpen(true);
-      }, 1000);
+      }, 1500);
       return () => clearTimeout(timer);
     }
   }, []);
