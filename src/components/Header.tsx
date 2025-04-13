@@ -3,6 +3,7 @@ import { useState, useEffect } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { FileText, Home, Menu, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { useIsMobile } from "@/hooks/use-mobile";
 import {
   NavigationMenu,
   NavigationMenuContent,
@@ -18,6 +19,7 @@ export const Header = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const location = useLocation();
   const navigate = useNavigate();
+  const isMobile = useIsMobile();
   
   const navigateToSection = (sectionId: string, e: React.MouseEvent) => {
     e.preventDefault();
@@ -55,7 +57,7 @@ export const Header = () => {
 
   return (
     <header className={`sticky top-0 z-50 transition-all duration-300 ${isScrolled ? 'bg-white shadow-md' : 'bg-white/95 backdrop-blur-sm'}`}>
-      <div className="container py-3">
+      <div className="container mx-auto py-4">
         <div className="flex items-center justify-between">
           <div className="flex items-center">
             <Link to="/" className="text-dark-red transition-transform duration-300 hover:scale-105">
@@ -63,9 +65,9 @@ export const Header = () => {
             </Link>
           </div>
 
-          <div className="hidden md:block">
-            <NavigationMenu>
-              <NavigationMenuList>
+          <div className="hidden md:flex items-center justify-center flex-1 px-4">
+            <NavigationMenu className="mx-auto">
+              <NavigationMenuList className="gap-1">
                 <NavigationMenuItem>
                   <Link to="/" className="flex items-center gap-1 px-4 py-2 text-foreground hover:text-dark-red font-medium transition-colors duration-300">
                     <Home className="h-4 w-4" />
