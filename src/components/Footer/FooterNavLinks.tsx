@@ -17,7 +17,7 @@ export const FooterNavLinks = ({ navigateToSection }: FooterNavLinksProps) => {
         </li>
         <li>
           <a 
-            href="/#contact" 
+            href="#contact" 
             onClick={(e) => navigateToSection('contact', e)}
             className="text-gray-600 hover:text-dark-red transition-colors duration-300"
           >
@@ -31,7 +31,7 @@ export const FooterNavLinks = ({ navigateToSection }: FooterNavLinksProps) => {
         </li>
         <li>
           <a 
-            href="/#contact" 
+            href="#contact" 
             onClick={(e) => navigateToSection('contact', e)}
             className="text-gray-600 hover:text-dark-red transition-colors duration-300"
           >

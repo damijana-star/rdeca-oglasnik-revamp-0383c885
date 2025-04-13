@@ -34,7 +34,8 @@ export const Footer = () => {
       }
     } else {
       // If we're on another page, navigate to home page with the section as hash
-      window.location.href = `/#${sectionId}`;
+      // Fixed to work with HashRouter
+      window.location.href = `/#/${sectionId}`;
     }
   };
 
