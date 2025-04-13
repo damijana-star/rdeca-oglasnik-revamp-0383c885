@@ -7,7 +7,7 @@ import { Link, useNavigate } from "react-router-dom";
 const blogPosts = [{
   id: 4,
   title: "📰 Oglaševanje s tiskanimi oglasi: Zakaj jih podjetja še vedno uporabljajo",
-  image: "/lovable-uploads/9d2bf50c-8258-41d6-80a5-c71a06939606.png",
+  image: "/lovable-uploads/9d2bf50c-8258-41d6-80a5-c71a06939606.png", // Updated with optimized magazine photo
   excerpt: "V dobi digitalnega sveta, kjer nas vsak dan preplavljajo spletni oglasi, tiskani oglasi še vedno ohranjajo svojo moč – še posebej v lokalnem okolju.",
   date: "09. 04. 2025",
   author: "Ana Kovač",
@@ -15,7 +15,7 @@ const blogPosts = [{
 }, {
   id: 5,
   title: "Kako pripraviti učinkovit oglas, ki pritegne pozornost (in prodaja)",
-  image: "/lovable-uploads/039a48a7-0aeb-4fc5-a920-fa78940f29aa.png",
+  image: "/lovable-uploads/039a48a7-0aeb-4fc5-a920-fa78940f29aa.png", // Updated with new business meeting image
   excerpt: "Ali se tudi ti sprašuješ, zakaj nekateri oglasi pritegnejo takojšnjo pozornost, drugi pa ostanejo spregledani? Učinkovit oglas ima jasno strukturo, močno sporočilo in poziv k dejanju.",
   date: "10. 04. 2025",
   author: "Ana Kovač",
@@ -23,14 +23,14 @@ const blogPosts = [{
 }, {
   id: 6,
   title: "5 najpogostejših napak pri oglaševanju malih podjetij – in kako se jim izogniti",
-  image: "/lovable-uploads/fb97cac4-7bc2-4659-aac9-346efcc70f67.png",
+  image: "/lovable-uploads/fb97cac4-7bc2-4659-aac9-346efcc70f67.png", // Updated modern marketing illustration
   excerpt: "Oglaševanje je lahko eno najboljših orodij za rast podjetja – če se ga lotimo premišljeno. Prevečkrat pa se mala podjetja znajdejo v situaciji, ko vlagajo v oglase, a učinka ni.",
   date: "12. 04. 2025",
   author: "Ana Kovač",
   category: "Marketing"
 }];
 
-const Blog = () => {
+export const Blog = () => {
   const navigate = useNavigate();
   
   const handlePostClick = (postId: number) => {
@@ -40,8 +40,8 @@ const Blog = () => {
   };
 
   return (
-    <div id="blog" className="section bg-white py-16">
-      <div className="container mx-auto px-4">
+    <div id="blog" className="section bg-white">
+      <div className="container">
         <h2 className="text-2xl md:text-3xl font-bold mb-2">Nasveti</h2>
         <p className="text-gray-600 mb-8">Najnovejši članki, nasveti in novice iz sveta oglasov in marketinga</p>
         
@@ -79,7 +79,7 @@ const Blog = () => {
         </div>
         
         <div className="text-center mt-10">
-          <Button className="bg-[#e32530] hover:bg-[#e32530]/90 text-white transition-transform duration-300 hover:scale-105" asChild>
+          <Button className="bg-[#e32530] hover:bg-[#e32530]/90 transition-transform duration-300 hover:scale-105" asChild>
             <Link to="/blog">
               Vsi članki
               <ExternalLink className="ml-1 h-4 w-4" />

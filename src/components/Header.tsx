@@ -1,25 +1,12 @@
-
+import { Button } from "@/components/ui/button";
+import { FileText, Home } from "lucide-react";
 import { useState, useEffect } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
-import { FileText, Home, Menu, X } from "lucide-react";
-import { Button } from "@/components/ui/button";
-import { useIsMobile } from "@/hooks/use-mobile";
-import {
-  NavigationMenu,
-  NavigationMenuContent,
-  NavigationMenuItem,
-  NavigationMenuLink,
-  NavigationMenuList,
-  NavigationMenuTrigger,
-  navigationMenuTriggerStyle,
-} from "@/components/ui/navigation-menu";
 
 export const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const [isScrolled, setIsScrolled] = useState(false);
   const location = useLocation();
   const navigate = useNavigate();
-  const isMobile = useIsMobile();
   
   const navigateToSection = (sectionId: string, e: React.MouseEvent) => {
     e.preventDefault();
@@ -46,18 +33,8 @@ export const Header = () => {
     }
   }, [location.state]);
 
-  useEffect(() => {
-    const handleScroll = () => {
-      setIsScrolled(window.scrollY > 20);
-    };
-    
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
-
-  return (
-    <header className={`sticky top-0 z-50 transition-all duration-300 ${isScrolled ? 'bg-white shadow-md' : 'bg-white/95 backdrop-blur-sm'}`}>
-      <div className="container mx-auto py-4">
+  return <header className="bg-white shadow-sm sticky top-0 z-50">
+      <div className="container py-4">
         <div className="flex items-center justify-between">
           <div className="flex items-center">
             <Link to="/" className="text-dark-red transition-transform duration-300 hover:scale-105">
@@ -65,41 +42,28 @@ export const Header = () => {
             </Link>
           </div>
 
-          <div className="hidden md:flex items-center justify-center flex-1 px-4">
-            <NavigationMenu className="mx-auto">
-              <NavigationMenuList className="gap-1">
-                <NavigationMenuItem>
-                  <Link to="/" className="flex items-center gap-1 px-4 py-2 text-foreground hover:text-dark-red font-medium transition-colors duration-300">
-                    <Home className="h-4 w-4" />
-                    Domov
-                  </Link>
-                </NavigationMenuItem>
-                <NavigationMenuItem>
-                  <Link to="/blog" className="px-4 py-2 text-foreground hover:text-dark-red font-medium transition-colors duration-300">
-                    Nasveti
-                  </Link>
-                </NavigationMenuItem>
-                <NavigationMenuItem>
-                  <Link 
-                    to="/#contact" 
-                    onClick={(e) => navigateToSection('contact', e)}
-                    className="px-4 py-2 text-foreground hover:text-dark-red font-medium transition-colors duration-300"
-                  >
-                    Kontakt
-                  </Link>
-                </NavigationMenuItem>
-              </NavigationMenuList>
-            </NavigationMenu>
-          </div>
-
-          <div className="hidden md:flex items-center space-x-4">
+          <nav className="hidden md:flex items-center space-x-6">
+            <Link to="/" className="nav-link text-foreground hover:text-dark-red font-medium transition-colors duration-300 flex items-center gap-1">
+              <Home className="h-4 w-4" />
+              Domov
+            </Link>
+            <Link to="/blog" className="nav-link text-foreground hover:text-dark-red font-medium transition-colors duration-300">
+              Nasveti
+            </Link>
+            <Link 
+              to="/#contact" 
+              onClick={(e) => navigateToSection('contact', e)}
+              className="nav-link text-foreground hover:text-dark-red font-medium transition-colors duration-300"
+            >
+              Kontakt
+            </Link>
             <Button variant="outline" className="flex items-center gap-2 border-[#e32530] text-[#e32530]" asChild>
               <Link to="/view-pdf">
                 <FileText className="h-4 w-4" />
                 Prelistaj
               </Link>
             </Button>
-            <Button className="bg-[#e32530] hover:bg-[#e32530]/90 text-white transform transition-all duration-300 hover:scale-105 hover:shadow-md" asChild>
+            <Button className="bg-[#e32530] hover:bg-[#e32530]/90 transform transition-all duration-300 hover:scale-105 hover:shadow-md" asChild>
               <Link 
                 to="/#contact" 
                 onClick={(e) => navigateToSection('contact', e)}
@@ -107,36 +71,32 @@ export const Header = () => {
                 Oddaj oglas
               </Link>
             </Button>
-          </div>
+          </nav>
 
           <div className="md:hidden">
-            <button 
-              onClick={() => setIsMenuOpen(!isMenuOpen)} 
-              className="text-foreground p-2 transition-transform duration-300 hover:scale-110 rounded-full hover:bg-gray-100" 
-              aria-label={isMenuOpen ? "Close menu" : "Open menu"}
-            >
-              {isMenuOpen ? (
-                <X className="h-6 w-6 transition-transform duration-300" />
-              ) : (
-                <Menu className="h-6 w-6 transition-transform duration-300" />
-              )}
+            <button onClick={() => setIsMenuOpen(!isMenuOpen)} className="text-foreground p-2 transition-transform duration-300 hover:scale-110" aria-label={isMenuOpen ? "Close menu" : "Open menu"}>
+              {isMenuOpen ? <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-x transition-transform duration-300">
+                  <path d="M18 6 6 18" /><path d="m6 6 12 12" />
+                </svg> : <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-menu transition-transform duration-300">
+                  <line x1="4" x2="20" y1="12" y2="12" /><line x1="4" x2="20" y1="6" y2="6" /><line x1="4" x2="20" y1="18" y2="18" />
+                </svg>}
             </button>
           </div>
         </div>
 
         <div className={`md:hidden mt-4 pb-4 transition-all duration-300 overflow-hidden ${isMenuOpen ? 'max-h-96 opacity-100' : 'max-h-0 opacity-0'}`}>
           <nav className="flex flex-col space-y-4">
-            <Link to="/" className="nav-link text-foreground hover:text-dark-red font-medium transition-colors duration-300 flex items-center gap-1 p-2 rounded-md hover:bg-gray-50">
+            <Link to="/" className="nav-link text-foreground hover:text-dark-red font-medium transition-colors duration-300 flex items-center gap-1">
               <Home className="h-4 w-4" />
               Domov
             </Link>
-            <Link to="/blog" className="nav-link text-foreground hover:text-dark-red font-medium transition-colors duration-300 p-2 rounded-md hover:bg-gray-50">
+            <Link to="/blog" className="nav-link text-foreground hover:text-dark-red font-medium transition-colors duration-300">
               Nasveti
             </Link>
             <Link 
               to="/#contact" 
               onClick={(e) => navigateToSection('contact', e)}
-              className="nav-link text-foreground hover:text-dark-red font-medium transition-colors duration-300 p-2 rounded-md hover:bg-gray-50"
+              className="nav-link text-foreground hover:text-dark-red font-medium transition-colors duration-300"
             >
               Kontakt
             </Link>
@@ -146,7 +106,7 @@ export const Header = () => {
                 Prelistaj
               </Link>
             </Button>
-            <Button className="bg-[#e32530] hover:bg-[#e32530]/90 text-white w-full transform transition-all duration-300 hover:scale-105 hover:shadow-md" asChild>
+            <Button className="bg-[#e32530] hover:bg-[#e32530]/90 w-full transform transition-all duration-300 hover:scale-105 hover:shadow-md" asChild>
               <Link 
                 to="/#contact" 
                 onClick={(e) => navigateToSection('contact', e)}
@@ -157,8 +117,7 @@ export const Header = () => {
           </nav>
         </div>
       </div>
-    </header>
-  );
+    </header>;
 };
 
 export default Header;

@@ -119,6 +119,9 @@ export const Footer = () => {
 
       <div className="text-center text-gray-500 text-sm px-4">
         <p>© {new Date().getFullYear()} Nanoski Oglasnik. Vse pravice pridržane.</p>
+        <p className="mt-2 text-xs opacity-70">
+          Spletna stran ustvarjena z <span className="text-dark-red">❤</span>
+        </p>
       </div>
     </footer>
   );
