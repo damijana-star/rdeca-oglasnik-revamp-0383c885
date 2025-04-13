@@ -3,25 +3,41 @@ import { createRoot } from 'react-dom/client'
 import App from './App.tsx'
 import './index.css'
 
-// Better error handling for root element mounting and initialization
+// Enhanced error handling for root element mounting and initialization
 try {
-  const root = document.getElementById("root");
-  if (root) {
-    createRoot(root).render(<App />);
-    console.log("React app successfully mounted");
+  const rootElement = document.getElementById("root");
+  
+  if (!rootElement) {
+    console.error("Critical Error: Root element not found in DOM");
+    
+    // Create a fallback element if root doesn't exist
+    const fallbackRoot = document.createElement("div");
+    fallbackRoot.id = "root";
+    document.body.appendChild(fallbackRoot);
+    
+    console.log("Created fallback root element");
+    
+    // Render to the fallback element
+    createRoot(fallbackRoot).render(<App />);
+    console.log("App rendered to fallback root element");
   } else {
-    console.error("Root element not found - DOM may not be fully loaded");
-    // Try again after a short delay in case DOM is still loading
-    setTimeout(() => {
-      const delayedRoot = document.getElementById("root");
-      if (delayedRoot) {
-        createRoot(delayedRoot).render(<App />);
-        console.log("React app mounted after delay");
-      } else {
-        console.error("Root element still not found after delay");
-      }
-    }, 500);
+    // Normal rendering path
+    createRoot(rootElement).render(<App />);
+    console.log("React app successfully mounted to existing root element");
   }
 } catch (error) {
-  console.error("Error rendering React application:", error);
+  console.error("Critical application initialization error:", error);
+  
+  // Display error message to user
+  const errorMessage = document.createElement("div");
+  errorMessage.style.color = "red";
+  errorMessage.style.padding = "20px";
+  errorMessage.style.fontFamily = "sans-serif";
+  errorMessage.innerHTML = `
+    <h2>Application Error</h2>
+    <p>Sorry, the application failed to initialize. Please try refreshing the page.</p>
+    <p>Error details: ${error instanceof Error ? error.message : 'Unknown error'}</p>
+  `;
+  
+  document.body.appendChild(errorMessage);
 }
