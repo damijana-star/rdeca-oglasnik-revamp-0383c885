@@ -36,7 +36,7 @@ export const Header = () => {
               Nasveti
             </Link>
             <Link 
-              to="/#contact" 
+              to="/" 
               onClick={(e) => {
                 e.preventDefault();
                 if (location.pathname !== '/') {
@@ -57,13 +57,14 @@ export const Header = () => {
             </Button>
             <Button className="bg-[#e32530] hover:bg-[#e32530]/90 transform transition-all duration-300 hover:scale-105 hover:shadow-md flex items-center gap-2" asChild>
               <Link 
-                to="/#contact" 
+                to="/" 
                 onClick={(e) => {
                   e.preventDefault();
+                  const contactSection = document.getElementById('contact');
                   if (location.pathname !== '/') {
                     window.location.href = '/#contact';
-                  } else {
-                    navigateToSection('contact');
+                  } else if (contactSection) {
+                    contactSection.scrollIntoView({ behavior: 'smooth' });
                   }
                 }}
               >
@@ -94,7 +95,7 @@ export const Header = () => {
               Nasveti
             </Link>
             <Link 
-              to="/#contact" 
+              to="/" 
               onClick={(e) => {
                 e.preventDefault();
                 if (location.pathname !== '/') {
@@ -115,13 +116,14 @@ export const Header = () => {
             </Button>
             <Button className="bg-[#e32530] hover:bg-[#e32530]/90 w-full transform transition-all duration-300 hover:scale-105 hover:shadow-md flex items-center justify-center gap-2" asChild>
               <Link 
-                to="/#contact" 
+                to="/" 
                 onClick={(e) => {
                   e.preventDefault();
+                  const contactSection = document.getElementById('contact');
                   if (location.pathname !== '/') {
                     window.location.href = '/#contact';
-                  } else {
-                    navigateToSection('contact');
+                  } else if (contactSection) {
+                    contactSection.scrollIntoView({ behavior: 'smooth' });
                   }
                 }}
               >

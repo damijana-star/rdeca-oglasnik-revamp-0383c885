@@ -59,7 +59,7 @@ export const Footer = () => {
             </li>
             <li>
               <Link 
-                to="/#contact" 
+                to="/" 
                 onClick={(e) => {
                   e.preventDefault();
                   if (location.pathname !== '/') {
@@ -80,16 +80,17 @@ export const Footer = () => {
             </li>
             <li>
               <Link 
-                to="/#contact" 
+                to="/" 
                 onClick={(e) => {
                   e.preventDefault();
+                  const contactSection = document.getElementById('contact');
                   if (location.pathname !== '/') {
                     window.location.href = '/#contact';
-                  } else {
-                    navigateToHomeSection('contact');
+                  } else if (contactSection) {
+                    contactSection.scrollIntoView({ behavior: 'smooth' });
                   }
                 }}
-                className="text-gray-600 hover:text-dark-red flex items-center gap-1 text-dark-red font-medium hover:text-dark-red/80 transition-colors duration-300"
+                className="text-gray-600 flex items-center gap-1 text-dark-red font-medium hover:text-dark-red/80 transition-colors duration-300"
               >
                 <Send size={16} />
                 Oddaj oglas
