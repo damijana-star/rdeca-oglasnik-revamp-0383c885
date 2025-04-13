@@ -13,8 +13,7 @@ export default defineConfig(({ mode }) => ({
   plugins: [
     react({
       jsxImportSource: "react",
-      // The 'refresh' property doesn't exist in the plugin options
-      // Let the plugin handle refresh automatically
+      refresh: true, // Explicitly enable React Refresh
     }),
     mode === 'development' &&
     componentTagger(),
