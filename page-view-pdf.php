@@ -22,13 +22,13 @@ get_header();
             $pdf_url = get_post_meta(get_the_ID(), '_pdf_url', true);
             
             if (empty($pdf_url)) {
-                // Default PDF if none is set
-                $pdf_url = get_template_directory_uri() . '/assets/pdf/sample-oglasnik.pdf';
+                // Default PDF if none is set - using the site URL to ensure proper path
+                $pdf_url = get_template_directory_uri() . '/assets/pdf/oglasnik-april-2025.pdf';
             }
             ?>
             
             <div class="aspect-w-16 aspect-h-12 border border-gray-200 rounded-lg overflow-hidden mb-6">
-                <iframe src="<?php echo esc_url($pdf_url); ?>" class="w-full h-full"></iframe>
+                <iframe src="<?php echo esc_url($pdf_url); ?>" class="w-full h-[600px]"></iframe>
             </div>
             
             <div class="text-center">
@@ -48,17 +48,17 @@ get_header();
                 array(
                     'title' => 'April 2025',
                     'date' => '01.04.2025',
-                    'url' => '#',
+                    'url' => get_template_directory_uri() . '/assets/pdf/oglasnik-april-2025.pdf',
                 ),
                 array(
                     'title' => 'Marec 2025',
                     'date' => '01.03.2025',
-                    'url' => '#',
+                    'url' => get_template_directory_uri() . '/assets/pdf/oglasnik-marec-2025.pdf',
                 ),
                 array(
                     'title' => 'Februar 2025',
                     'date' => '01.02.2025',
-                    'url' => '#',
+                    'url' => get_template_directory_uri() . '/assets/pdf/oglasnik-februar-2025.pdf',
                 ),
             );
             ?>

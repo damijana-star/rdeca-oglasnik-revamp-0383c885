@@ -29,6 +29,23 @@ function nanoski_setup() {
         'gallery',
         'caption',
     ));
+    
+    // Create assets directories if they don't exist
+    $theme_dir = get_template_directory();
+    $directories = array(
+        '/assets',
+        '/assets/css',
+        '/assets/js',
+        '/assets/pdf',
+        '/assets/images',
+        '/assets/images/partners',
+    );
+    
+    foreach ($directories as $dir) {
+        if (!file_exists($theme_dir . $dir)) {
+            wp_mkdir_p($theme_dir . $dir);
+        }
+    }
 }
 add_action('after_setup_theme', 'nanoski_setup');
 
@@ -140,3 +157,43 @@ function nanoski_save_meta_box_data($post_id) {
     }
 }
 add_action('save_post', 'nanoski_save_meta_box_data');
+
+// Add custom meta box for PDF upload
+function nanoski_add_pdf_meta_box() {
+    add_meta_box(
+        'pdf_info',
+        'PDF Information',
+        'nanoski_pdf_info_callback',
+        'page',
+        'normal',
+        'high'
+    );
+}
+add_action('add_meta_boxes', 'nanoski_add_pdf_meta_box');
+
+function nanoski_pdf_info_callback($post) {
+    wp_nonce_field('nanoski_pdf_meta_box', 'nanoski_pdf_meta_box_nonce');
+    
+    $pdf_url = get_post_meta($post->ID, '_pdf_url', true);
+    
+    echo '<p><label for="pdf_url">PDF URL:</label>';
+    echo '<input type="text" id="pdf_url" name="pdf_url" value="' . esc_attr($pdf_url) . '" size="60" /></p>';
+    echo '<p class="description">Enter the full URL to the PDF file, or upload a PDF using the Media Library.</p>';
+}
+
+function nanoski_save_pdf_meta_box_data($post_id) {
+    if (!isset($_POST['nanoski_pdf_meta_box_nonce'])) {
+        return;
+    }
+    if (!wp_verify_nonce($_POST['nanoski_pdf_meta_box_nonce'], 'nanoski_pdf_meta_box')) {
+        return;
+    }
+    if (defined('DOING_AUTOSAVE') && DOING_AUTOSAVE) {
+        return;
+    }
+    
+    if (isset($_POST['pdf_url'])) {
+        update_post_meta($post_id, '_pdf_url', esc_url_raw($_POST['pdf_url']));
+    }
+}
+add_action('save_post', 'nanoski_save_pdf_meta_box_data');
