@@ -14,9 +14,8 @@ export const toast = (props: ToastProps) => {
     return sonnerToast(props)
   }
   
-  // For object props, pass it as is
-  return sonnerToast({
-    title: props.title,
+  // For object props, construct the arguments properly
+  return sonnerToast(props.title, {
     description: props.description,
     // Only pass variant if it exists
     ...(props.variant && { variant: props.variant })

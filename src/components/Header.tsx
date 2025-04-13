@@ -35,6 +35,18 @@ export const Header = () => {
     }
   };
   
+  // Added direct navigation function for home link
+  const navigateHome = (e: React.MouseEvent) => {
+    e.preventDefault();
+    if (location.pathname !== '/') {
+      navigate('/');
+    } else {
+      // If already on home page, scroll to top
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+    setIsMenuOpen(false);
+  };
+
   useEffect(() => {
     const state = location.state as { scrollTo?: string };
     if (state?.scrollTo) {
@@ -69,10 +81,14 @@ export const Header = () => {
             <NavigationMenu className="mx-auto">
               <NavigationMenuList className="gap-1">
                 <NavigationMenuItem>
-                  <Link to="/" className="flex items-center gap-1 px-4 py-2 text-foreground hover:text-dark-red font-medium transition-colors duration-300">
+                  <a 
+                    href="/" 
+                    onClick={navigateHome} 
+                    className="flex items-center gap-1 px-4 py-2 text-foreground hover:text-dark-red font-medium transition-colors duration-300"
+                  >
                     <Home className="h-4 w-4" />
                     Domov
-                  </Link>
+                  </a>
                 </NavigationMenuItem>
                 <NavigationMenuItem>
                   <Link to="/blog" className="px-4 py-2 text-foreground hover:text-dark-red font-medium transition-colors duration-300">
@@ -80,13 +96,13 @@ export const Header = () => {
                   </Link>
                 </NavigationMenuItem>
                 <NavigationMenuItem>
-                  <Link 
-                    to="/#contact" 
+                  <a 
+                    href="/#contact" 
                     onClick={(e) => navigateToSection('contact', e)}
                     className="px-4 py-2 text-foreground hover:text-dark-red font-medium transition-colors duration-300"
                   >
                     Kontakt
-                  </Link>
+                  </a>
                 </NavigationMenuItem>
               </NavigationMenuList>
             </NavigationMenu>
@@ -100,12 +116,12 @@ export const Header = () => {
               </Link>
             </Button>
             <Button className="bg-[#e32530] hover:bg-[#e32530]/90 text-white transform transition-all duration-300 hover:scale-105 hover:shadow-md" asChild>
-              <Link 
-                to="/#contact" 
+              <a 
+                href="/#contact" 
                 onClick={(e) => navigateToSection('contact', e)}
               >
                 Oddaj oglas
-              </Link>
+              </a>
             </Button>
           </div>
 
@@ -126,20 +142,24 @@ export const Header = () => {
 
         <div className={`md:hidden mt-4 pb-4 transition-all duration-300 overflow-hidden ${isMenuOpen ? 'max-h-96 opacity-100' : 'max-h-0 opacity-0'}`}>
           <nav className="flex flex-col space-y-4">
-            <Link to="/" className="nav-link text-foreground hover:text-dark-red font-medium transition-colors duration-300 flex items-center gap-1 p-2 rounded-md hover:bg-gray-50">
+            <a 
+              href="/" 
+              onClick={navigateHome}
+              className="nav-link text-foreground hover:text-dark-red font-medium transition-colors duration-300 flex items-center gap-1 p-2 rounded-md hover:bg-gray-50"
+            >
               <Home className="h-4 w-4" />
               Domov
-            </Link>
+            </a>
             <Link to="/blog" className="nav-link text-foreground hover:text-dark-red font-medium transition-colors duration-300 p-2 rounded-md hover:bg-gray-50">
               Nasveti
             </Link>
-            <Link 
-              to="/#contact" 
+            <a 
+              href="/#contact" 
               onClick={(e) => navigateToSection('contact', e)}
               className="nav-link text-foreground hover:text-dark-red font-medium transition-colors duration-300 p-2 rounded-md hover:bg-gray-50"
             >
               Kontakt
-            </Link>
+            </a>
             <Button variant="outline" className="flex items-center justify-center gap-2 border-[#e32530] text-[#e32530]" asChild>
               <Link to="/view-pdf">
                 <FileText className="h-4 w-4" />
@@ -147,12 +167,12 @@ export const Header = () => {
               </Link>
             </Button>
             <Button className="bg-[#e32530] hover:bg-[#e32530]/90 text-white w-full transform transition-all duration-300 hover:scale-105 hover:shadow-md" asChild>
-              <Link 
-                to="/#contact" 
+              <a 
+                href="/#contact" 
                 onClick={(e) => navigateToSection('contact', e)}
               >
                 Oddaj oglas
-              </Link>
+              </a>
             </Button>
           </nav>
         </div>
