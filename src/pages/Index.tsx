@@ -31,18 +31,10 @@ const Index = () => {
       <Header />
       <main className="flex-grow">
         <Hero />
-        <div className="animate-slide-up">
-          <StatsBar />
-        </div>
-        <div className="animate-slide-up" style={{ animationDelay: '0.2s' }}>
-          <AdvertisingBenefits />
-        </div>
-        <div className="animate-slide-up" style={{ animationDelay: '0.4s' }}>
-          <Blog />
-        </div>
-        <div className="animate-slide-up" style={{ animationDelay: '0.6s' }}>
-          <ContactForm />
-        </div>
+        <StatsBar />
+        <AdvertisingBenefits />
+        <Blog />
+        <ContactForm />
       </main>
       <Footer />
     </div>

@@ -33,15 +33,15 @@ const blogPosts = [{
 const Blog = () => {
   const navigate = useNavigate();
   
-  const handlePostClick = (postId) => {
+  const handlePostClick = (postId: number) => {
     console.log('Blog: Navigating to post:', postId);
     navigate(`/blog/${postId}`);
     window.scrollTo(0, 0);
   };
 
   return (
-    <div id="blog" className="section bg-white">
-      <div className="container">
+    <div id="blog" className="section bg-white py-16">
+      <div className="container mx-auto px-4">
         <h2 className="text-2xl md:text-3xl font-bold mb-2">Nasveti</h2>
         <p className="text-gray-600 mb-8">Najnovejši članki, nasveti in novice iz sveta oglasov in marketinga</p>
         
