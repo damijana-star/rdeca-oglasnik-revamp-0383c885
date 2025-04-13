@@ -1,41 +1,20 @@
 
-import { Facebook, Mail, PhoneCall, Send } from "lucide-react";
+import { Facebook, Mail, PhoneCall } from "lucide-react";
 import { Separator } from "@/components/ui/separator";
-import { Link, useLocation, useNavigate } from "react-router-dom";
-import { useEffect } from "react";
+import { Link, useLocation } from "react-router-dom";
 
 export const Footer = () => {
   const location = useLocation();
-  const navigate = useNavigate();
   
-  const handleContactClick = (e: React.MouseEvent) => {
-    e.preventDefault();
-    
-    if (location.pathname !== '/') {
-      // Navigate to homepage with contact parameter
-      navigate('/?scrollTo=contact');
-    } else {
-      // On homepage, scroll to contact section
-      const contactSection = document.getElementById('contact');
-      if (contactSection) {
-        contactSection.scrollIntoView({ behavior: 'smooth' });
+  const navigateToHomeSection = (sectionId: string) => {
+    if (location.pathname === '/') {
+      const element = document.getElementById(sectionId);
+      if (element) {
+        element.scrollIntoView({ behavior: 'smooth' });
       }
     }
   };
-  
-  // Check for scrollTo parameter when component mounts or updates
-  useEffect(() => {
-    if (location.pathname === '/' && location.search.includes('scrollTo=contact')) {
-      const contactSection = document.getElementById('contact');
-      if (contactSection) {
-        // Add a small delay to ensure the section is rendered
-        setTimeout(() => {
-          contactSection.scrollIntoView({ behavior: 'smooth' });
-        }, 100);
-      }
-    }
-  }, [location]);
-  
+
   return (
     <footer className="bg-gray-100 pt-12 pb-6 text-center" id="footer">
       <Separator className="mb-8 mx-auto max-w-4xl" />
@@ -79,12 +58,21 @@ export const Footer = () => {
               </Link>
             </li>
             <li>
-              <button 
-                onClick={handleContactClick}
-                className="text-gray-600 hover:text-dark-red transition-colors duration-300 bg-transparent border-none cursor-pointer p-0 text-left"
+              <Link 
+                to="/#contact" 
+                onClick={(e) => {
+                  if (location.pathname !== '/') {
+                    e.preventDefault();
+                    window.location.href = '/#contact';
+                  } else {
+                    e.preventDefault();
+                    navigateToHomeSection('contact');
+                  }
+                }}
+                className="text-gray-600 hover:text-dark-red transition-colors duration-300"
               >
                 Kontakt
-              </button>
+              </Link>
             </li>
             <li>
               <Link to="/view-pdf" className="text-gray-600 hover:text-dark-red transition-colors duration-300">
@@ -92,13 +80,21 @@ export const Footer = () => {
               </Link>
             </li>
             <li>
-              <button 
-                onClick={handleContactClick}
-                className="text-gray-600 flex items-center gap-1 text-dark-red font-medium hover:text-dark-red/80 transition-colors duration-300 bg-transparent border-none cursor-pointer p-0 text-left"
+              <Link 
+                to="/#contact" 
+                onClick={(e) => {
+                  if (location.pathname !== '/') {
+                    e.preventDefault();
+                    window.location.href = '/#contact';
+                  } else {
+                    e.preventDefault();
+                    navigateToHomeSection('contact');
+                  }
+                }}
+                className="text-gray-600 hover:text-dark-red transition-colors duration-300"
               >
-                <Send size={16} />
                 Oddaj oglas
-              </button>
+              </Link>
             </li>
           </ul>
         </div>

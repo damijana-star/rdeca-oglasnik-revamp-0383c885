@@ -1,42 +1,22 @@
 
 import { Button } from "@/components/ui/button";
-import { FileText, Home, Send } from "lucide-react";
-import { useState, useEffect } from "react";
-import { Link, useLocation, useNavigate } from "react-router-dom";
+import { FileText, Home } from "lucide-react";
+import { useState } from "react";
+import { Link, useLocation } from "react-router-dom";
 
 export const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const location = useLocation();
-  const navigate = useNavigate();
   
-  const handleContactClick = (e: React.MouseEvent) => {
-    e.preventDefault();
+  const navigateToSection = (sectionId: string) => {
+    if (location.pathname === '/') {
+      const element = document.getElementById(sectionId);
+      if (element) {
+        element.scrollIntoView({ behavior: 'smooth' });
+      }
+    }
     setIsMenuOpen(false);
-    
-    if (location.pathname !== '/') {
-      // Navigate to homepage with contact hash
-      navigate('/?scrollTo=contact');
-    } else {
-      // Already on homepage, scroll to contact section
-      const contactSection = document.getElementById('contact');
-      if (contactSection) {
-        contactSection.scrollIntoView({ behavior: 'smooth' });
-      }
-    }
   };
-  
-  // Check for scrollTo parameter when component mounts or updates
-  useEffect(() => {
-    if (location.pathname === '/' && location.search.includes('scrollTo=contact')) {
-      const contactSection = document.getElementById('contact');
-      if (contactSection) {
-        // Add a small delay to ensure the section is rendered
-        setTimeout(() => {
-          contactSection.scrollIntoView({ behavior: 'smooth' });
-        }, 100);
-      }
-    }
-  }, [location]);
   
   return <header className="bg-white shadow-sm sticky top-0 z-50">
       <div className="container py-4">
@@ -55,24 +35,34 @@ export const Header = () => {
             <Link to="/blog" className="nav-link text-foreground hover:text-dark-red font-medium transition-colors duration-300">
               Nasveti
             </Link>
-            <button 
-              onClick={handleContactClick}
-              className="nav-link text-foreground hover:text-dark-red font-medium transition-colors duration-300 bg-transparent border-none cursor-pointer"
+            <Link 
+              to="/" 
+              onClick={(e) => {
+                e.preventDefault();
+                navigateToSection('contact');
+                window.location.href = '/#contact';
+              }}
+              className="nav-link text-foreground hover:text-dark-red font-medium transition-colors duration-300"
             >
               Kontakt
-            </button>
+            </Link>
             <Button variant="outline" className="flex items-center gap-2 border-[#e32530] text-[#e32530]" asChild>
               <Link to="/view-pdf">
                 <FileText className="h-4 w-4" />
                 Prelistaj
               </Link>
             </Button>
-            <Button 
-              className="bg-[#e32530] hover:bg-[#e32530]/90 transform transition-all duration-300 hover:scale-105 hover:shadow-md flex items-center gap-2"
-              onClick={handleContactClick}
-            >
-              <Send className="h-4 w-4" />
-              Oddaj oglas
+            <Button className="bg-[#e32530] hover:bg-[#e32530]/90 transform transition-all duration-300 hover:scale-105 hover:shadow-md" asChild>
+              <Link 
+                to="/" 
+                onClick={(e) => {
+                  e.preventDefault();
+                  navigateToSection('contact');
+                  window.location.href = '/#contact';
+                }}
+              >
+                Oddaj oglas
+              </Link>
             </Button>
           </nav>
 
@@ -96,24 +86,34 @@ export const Header = () => {
             <Link to="/blog" className="nav-link text-foreground hover:text-dark-red font-medium transition-colors duration-300">
               Nasveti
             </Link>
-            <button 
-              onClick={handleContactClick}
-              className="nav-link text-foreground hover:text-dark-red font-medium transition-colors duration-300 text-left bg-transparent border-none cursor-pointer"
+            <Link 
+              to="/" 
+              onClick={(e) => {
+                e.preventDefault();
+                navigateToSection('contact');
+                window.location.href = '/#contact';
+              }}
+              className="nav-link text-foreground hover:text-dark-red font-medium transition-colors duration-300"
             >
               Kontakt
-            </button>
+            </Link>
             <Button variant="outline" className="flex items-center justify-center gap-2 border-[#e32530] text-[#e32530]" asChild>
               <Link to="/view-pdf">
                 <FileText className="h-4 w-4" />
                 Prelistaj
               </Link>
             </Button>
-            <Button 
-              className="bg-[#e32530] hover:bg-[#e32530]/90 w-full transform transition-all duration-300 hover:scale-105 hover:shadow-md flex items-center justify-center gap-2"
-              onClick={handleContactClick}
-            >
-              <Send className="h-4 w-4" />
-              Oddaj oglas
+            <Button className="bg-[#e32530] hover:bg-[#e32530]/90 w-full transform transition-all duration-300 hover:scale-105 hover:shadow-md" asChild>
+              <Link 
+                to="/" 
+                onClick={(e) => {
+                  e.preventDefault();
+                  navigateToSection('contact');
+                  window.location.href = '/#contact';
+                }}
+              >
+                Oddaj oglas
+              </Link>
             </Button>
           </nav>
         </div>
@@ -122,3 +122,4 @@ export const Header = () => {
 };
 
 export default Header;
+
