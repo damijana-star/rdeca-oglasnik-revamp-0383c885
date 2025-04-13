@@ -1,5 +1,5 @@
 
-import { Facebook, Mail, PhoneCall } from "lucide-react";
+import { Facebook, Mail, PhoneCall, Send } from "lucide-react";
 import { Separator } from "@/components/ui/separator";
 import { Link, useLocation } from "react-router-dom";
 
@@ -89,8 +89,9 @@ export const Footer = () => {
                     navigateToHomeSection('contact');
                   }
                 }}
-                className="text-gray-600 hover:text-dark-red transition-colors duration-300"
+                className="text-gray-600 hover:text-dark-red flex items-center gap-1 text-dark-red font-medium hover:text-dark-red/80 transition-colors duration-300"
               >
+                <Send size={16} />
                 Oddaj oglas
               </Link>
             </li>

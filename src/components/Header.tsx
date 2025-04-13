@@ -1,6 +1,6 @@
 
 import { Button } from "@/components/ui/button";
-import { FileText, Home } from "lucide-react";
+import { FileText, Home, Send } from "lucide-react";
 import { useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 
@@ -55,7 +55,7 @@ export const Header = () => {
                 Prelistaj
               </Link>
             </Button>
-            <Button className="bg-[#e32530] hover:bg-[#e32530]/90 transform transition-all duration-300 hover:scale-105 hover:shadow-md" asChild>
+            <Button className="bg-[#e32530] hover:bg-[#e32530]/90 transform transition-all duration-300 hover:scale-105 hover:shadow-md flex items-center gap-2" asChild>
               <Link 
                 to="/#contact" 
                 onClick={(e) => {
@@ -67,6 +67,7 @@ export const Header = () => {
                   }
                 }}
               >
+                <Send className="h-4 w-4" />
                 Oddaj oglas
               </Link>
             </Button>
@@ -112,7 +113,7 @@ export const Header = () => {
                 Prelistaj
               </Link>
             </Button>
-            <Button className="bg-[#e32530] hover:bg-[#e32530]/90 w-full transform transition-all duration-300 hover:scale-105 hover:shadow-md" asChild>
+            <Button className="bg-[#e32530] hover:bg-[#e32530]/90 w-full transform transition-all duration-300 hover:scale-105 hover:shadow-md flex items-center justify-center gap-2" asChild>
               <Link 
                 to="/#contact" 
                 onClick={(e) => {
@@ -124,6 +125,7 @@ export const Header = () => {
                   }
                 }}
               >
+                <Send className="h-4 w-4" />
                 Oddaj oglas
               </Link>
             </Button>
