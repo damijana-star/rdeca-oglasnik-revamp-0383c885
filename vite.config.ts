@@ -12,7 +12,8 @@ export default defineConfig(({ mode }) => ({
   },
   plugins: [
     react({
-      jsxImportSource: "react"
+      jsxImportSource: "react",
+      refresh: true
     }),
     mode === 'development' &&
     componentTagger(),
