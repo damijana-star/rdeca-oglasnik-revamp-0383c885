@@ -14,16 +14,29 @@ export const Header = () => {
     setIsMenuOpen(false);
     
     if (location.pathname !== '/') {
-      // If not on homepage, navigate to homepage with contact anchor
-      navigate('/#contact');
+      // Navigate to homepage with contact hash
+      navigate('/?scrollTo=contact');
     } else {
-      // If on homepage, scroll to contact section
+      // Already on homepage, scroll to contact section
       const contactSection = document.getElementById('contact');
       if (contactSection) {
         contactSection.scrollIntoView({ behavior: 'smooth' });
       }
     }
   };
+  
+  // Check for scrollTo parameter when component mounts or updates
+  useEffect(() => {
+    if (location.pathname === '/' && location.search.includes('scrollTo=contact')) {
+      const contactSection = document.getElementById('contact');
+      if (contactSection) {
+        // Add a small delay to ensure the section is rendered
+        setTimeout(() => {
+          contactSection.scrollIntoView({ behavior: 'smooth' });
+        }, 100);
+      }
+    }
+  }, [location]);
   
   return <header className="bg-white shadow-sm sticky top-0 z-50">
       <div className="container py-4">
@@ -54,14 +67,12 @@ export const Header = () => {
                 Prelistaj
               </Link>
             </Button>
-            <Button className="bg-[#e32530] hover:bg-[#e32530]/90 transform transition-all duration-300 hover:scale-105 hover:shadow-md flex items-center gap-2">
-              <button 
-                onClick={handleContactClick}
-                className="flex items-center gap-2 bg-transparent border-none text-white cursor-pointer"
-              >
-                <Send className="h-4 w-4" />
-                Oddaj oglas
-              </button>
+            <Button 
+              className="bg-[#e32530] hover:bg-[#e32530]/90 transform transition-all duration-300 hover:scale-105 hover:shadow-md flex items-center gap-2"
+              onClick={handleContactClick}
+            >
+              <Send className="h-4 w-4" />
+              Oddaj oglas
             </Button>
           </nav>
 
@@ -97,14 +108,12 @@ export const Header = () => {
                 Prelistaj
               </Link>
             </Button>
-            <Button className="bg-[#e32530] hover:bg-[#e32530]/90 w-full transform transition-all duration-300 hover:scale-105 hover:shadow-md flex items-center justify-center gap-2">
-              <button 
-                onClick={handleContactClick}
-                className="flex items-center gap-2 bg-transparent border-none text-white cursor-pointer"
-              >
-                <Send className="h-4 w-4" />
-                Oddaj oglas
-              </button>
+            <Button 
+              className="bg-[#e32530] hover:bg-[#e32530]/90 w-full transform transition-all duration-300 hover:scale-105 hover:shadow-md flex items-center justify-center gap-2"
+              onClick={handleContactClick}
+            >
+              <Send className="h-4 w-4" />
+              Oddaj oglas
             </Button>
           </nav>
         </div>

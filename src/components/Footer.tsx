@@ -2,6 +2,7 @@
 import { Facebook, Mail, PhoneCall, Send } from "lucide-react";
 import { Separator } from "@/components/ui/separator";
 import { Link, useLocation, useNavigate } from "react-router-dom";
+import { useEffect } from "react";
 
 export const Footer = () => {
   const location = useLocation();
@@ -11,16 +12,29 @@ export const Footer = () => {
     e.preventDefault();
     
     if (location.pathname !== '/') {
-      // If not on homepage, navigate to homepage with contact anchor
-      navigate('/#contact');
+      // Navigate to homepage with contact parameter
+      navigate('/?scrollTo=contact');
     } else {
-      // If on homepage, scroll to contact section
+      // On homepage, scroll to contact section
       const contactSection = document.getElementById('contact');
       if (contactSection) {
         contactSection.scrollIntoView({ behavior: 'smooth' });
       }
     }
   };
+  
+  // Check for scrollTo parameter when component mounts or updates
+  useEffect(() => {
+    if (location.pathname === '/' && location.search.includes('scrollTo=contact')) {
+      const contactSection = document.getElementById('contact');
+      if (contactSection) {
+        // Add a small delay to ensure the section is rendered
+        setTimeout(() => {
+          contactSection.scrollIntoView({ behavior: 'smooth' });
+        }, 100);
+      }
+    }
+  }, [location]);
   
   return (
     <footer className="bg-gray-100 pt-12 pb-6 text-center" id="footer">
