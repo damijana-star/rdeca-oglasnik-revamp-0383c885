@@ -9,10 +9,255 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;500;600;700&family=Montserrat:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <title>Nanoski Oglasnik</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://cdn.gpteng.co/gptengineer.js" type="module"></script>
   </head>
   <body>
-    <div id="root"></div>
-    <script src="https://cdn.gpteng.co/gptengineer.js" type="module"></script>
-    <script type="module" src="/src/main.tsx"></script>
+    <header class="sticky-header">
+      <div class="container">
+        <div class="header-content">
+          <div class="logo">
+            <a href="index.html">
+              <img src="/lovable-uploads/0ad2c6b5-12cf-4c0b-9c30-5af74d87725a.png" alt="NANOSKI OGLASNIK" class="logo-image">
+            </a>
+          </div>
+
+          <nav class="desktop-nav">
+            <ul class="nav-list">
+              <li><a href="index.html" class="nav-link"><span class="icon-home"></span>Domov</a></li>
+              <li><a href="blog.html" class="nav-link">Nasveti</a></li>
+              <li><a href="#contact" class="nav-link">Kontakt</a></li>
+            </ul>
+          </nav>
+
+          <div class="cta-buttons">
+            <a href="view-pdf.html" class="btn btn-outline"><span class="icon-file"></span>Prelistaj</a>
+            <a href="#contact" class="btn btn-primary">Oddaj oglas</a>
+          </div>
+
+          <button class="mobile-menu-toggle" aria-label="Toggle Menu">
+            <span class="menu-icon"></span>
+          </button>
+        </div>
+
+        <div class="mobile-nav">
+          <ul class="mobile-nav-list">
+            <li><a href="index.html" class="mobile-nav-link"><span class="icon-home"></span>Domov</a></li>
+            <li><a href="blog.html" class="mobile-nav-link">Nasveti</a></li>
+            <li><a href="#contact" class="mobile-nav-link">Kontakt</a></li>
+            <a href="view-pdf.html" class="btn btn-outline mobile-btn"><span class="icon-file"></span>Prelistaj</a>
+            <a href="#contact" class="btn btn-primary mobile-btn">Oddaj oglas</a>
+          </ul>
+        </div>
+      </div>
+    </header>
+
+    <main>
+      <!-- Hero Section -->
+      <section class="hero">
+        <div class="hero-overlay"></div>
+        <div class="container">
+          <div class="hero-content">
+            <h1 class="hero-title">OGLAŠUJ TAM,<br>KJER TE RES VIDIJO</h1>
+            <p class="hero-text">Distribucija po Notranjsko-kraški, Notranjsko-obalni in Goriški regiji zagotavlja visoko prepoznavnost in direkten stik z vašimi strankami.</p>
+          </div>
+          <div class="partner-logos">
+            <!-- Partner logo carousel will be loaded with JS -->
+          </div>
+        </div>
+      </section>
+
+      <!-- Stats Bar -->
+      <section class="stats-bar">
+        <div class="container">
+          <div class="stats-grid">
+            <div class="stat-item">
+              <div class="stat-number">25,000+</div>
+              <div class="stat-text">Izvodov mesečno</div>
+            </div>
+            <div class="stat-item">
+              <div class="stat-number">3</div>
+              <div class="stat-text">Regije</div>
+            </div>
+            <div class="stat-item">
+              <div class="stat-number">100+</div>
+              <div class="stat-text">Lokalnih podjetij</div>
+            </div>
+            <div class="stat-item">
+              <div class="stat-number">15+</div>
+              <div class="stat-text">Let tradicije</div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Benefits Section -->
+      <section class="benefits">
+        <div class="container">
+          <h2 class="section-title">Zakaj oglaševati pri nas?</h2>
+          <div class="benefits-grid">
+            <div class="benefit-card">
+              <div class="benefit-icon icon-target"></div>
+              <h3 class="benefit-title">Ciljna publika</h3>
+              <p class="benefit-text">Dosežite prave kupce z naslovno distribucijo po gospodinjstvih.</p>
+            </div>
+            <div class="benefit-card">
+              <div class="benefit-icon icon-pin"></div>
+              <h3 class="benefit-title">Lokalna prepoznavnost</h3>
+              <p class="benefit-text">Okrepite svojo prisotnost v lokalni skupnosti in povečajte zaupanje.</p>
+            </div>
+            <div class="benefit-card">
+              <div class="benefit-icon icon-money"></div>
+              <h3 class="benefit-title">Ugodne cene</h3>
+              <p class="benefit-text">Dostopno oglaševanje z odličnim razmerjem med ceno in učinkom.</p>
+            </div>
+            <div class="benefit-card">
+              <div class="benefit-icon icon-design"></div>
+              <h3 class="benefit-title">Oblikovanje oglasov</h3>
+              <p class="benefit-text">Pomagamo vam oblikovati oglas, ki bo pritegnil pozornost.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Blog Section -->
+      <section class="blog">
+        <div class="container">
+          <h2 class="section-title">Zadnji nasveti in novice</h2>
+          <div class="blog-grid">
+            <article class="blog-card">
+              <img src="/lovable-uploads/9d2bf50c-8258-41d6-80a5-c71a06939606.png" alt="Kako pripraviti učinkovit oglas" class="blog-image">
+              <div class="blog-content">
+                <h3 class="blog-title">Kako pripraviti učinkovit oglas</h3>
+                <p class="blog-excerpt">Spoznajte ključne elemente, ki naredijo oglas uspešen in pritegnejo stranke.</p>
+                <a href="blog-post.html" class="blog-link">Preberi več</a>
+              </div>
+            </article>
+            <article class="blog-card">
+              <img src="/lovable-uploads/fb97cac4-7bc2-4659-aac9-346efcc70f67.png" alt="Trendi v lokalnem oglaševanju" class="blog-image">
+              <div class="blog-content">
+                <h3 class="blog-title">Trendi v lokalnem oglaševanju</h3>
+                <p class="blog-excerpt">Preverite najnovejše trende, ki oblikujejo lokalno oglaševanje v letu 2025.</p>
+                <a href="blog-post.html" class="blog-link">Preberi več</a>
+              </div>
+            </article>
+            <article class="blog-card">
+              <img src="/lovable-uploads/7bb6fbc9-f86e-41ec-8b55-658095999864.png" alt="Uspešne zgodbe naših strank" class="blog-image">
+              <div class="blog-content">
+                <h3 class="blog-title">Uspešne zgodbe naših strank</h3>
+                <p class="blog-excerpt">Preberite, kako so naši oglaševalci povečali prodajo z oglasi v Nanoškem oglasniku.</p>
+                <a href="blog-post.html" class="blog-link">Preberi več</a>
+              </div>
+            </article>
+          </div>
+          <div class="blog-cta">
+            <a href="blog.html" class="btn btn-secondary">Vsi nasveti</a>
+          </div>
+        </div>
+      </section>
+
+      <!-- Contact Form Section -->
+      <section id="contact" class="contact">
+        <div class="container">
+          <h2 class="section-title">Oddajte oglas ali vprašanje</h2>
+          <div class="contact-layout">
+            <div class="contact-info">
+              <p class="contact-text">Izpolnite spodnji obrazec za oddajo oglasa ali povpraševanje. Odgovorili vam bomo v najkrajšem možnem času.</p>
+              <div class="contact-details">
+                <div class="contact-item">
+                  <span class="icon-phone"></span>
+                  <span>+386 40 123 456</span>
+                </div>
+                <div class="contact-item">
+                  <span class="icon-email"></span>
+                  <span>info@nanoski-oglasnik.si</span>
+                </div>
+                <div class="contact-item">
+                  <span class="icon-location"></span>
+                  <span>Slovenska cesta, Ljubljana, Slovenija</span>
+                </div>
+              </div>
+            </div>
+            <form id="contactForm" class="contact-form">
+              <div class="form-group">
+                <label for="name">Ime in priimek</label>
+                <input type="text" id="name" name="name" required>
+              </div>
+              <div class="form-group">
+                <label for="email">E-pošta</label>
+                <input type="email" id="email" name="email" required>
+              </div>
+              <div class="form-group">
+                <label for="phone">Telefon</label>
+                <input type="tel" id="phone" name="phone">
+              </div>
+              <div class="form-group">
+                <label for="subject">Zadeva</label>
+                <select id="subject" name="subject">
+                  <option value="oglas">Oddaja oglasa</option>
+                  <option value="povprasevanje">Povpraševanje</option>
+                  <option value="drugo">Drugo</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label for="message">Sporočilo</label>
+                <textarea id="message" name="message" rows="5" required></textarea>
+              </div>
+              <div class="form-group checkbox-group">
+                <input type="checkbox" id="consent" name="consent" required>
+                <label for="consent">Strinjam se s <a href="#">politiko zasebnosti</a> in obdelavo osebnih podatkov.</label>
+              </div>
+              <button type="submit" class="btn btn-primary submit-btn">Pošlji sporočilo</button>
+            </form>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <div class="container">
+        <div class="footer-content">
+          <div class="footer-logo">
+            <img src="/lovable-uploads/0ad2c6b5-12cf-4c0b-9c30-5af74d87725a.png" alt="NANOSKI OGLASNIK" class="footer-logo-image">
+            <p class="footer-tagline">Vaš lokalni vir informacij in oglasov</p>
+          </div>
+          <div class="footer-nav">
+            <h3 class="footer-heading">Povezave</h3>
+            <ul class="footer-links">
+              <li><a href="index.html">Domov</a></li>
+              <li><a href="blog.html">Nasveti</a></li>
+              <li><a href="#contact">Kontakt</a></li>
+              <li><a href="view-pdf.html">Prelistaj</a></li>
+            </ul>
+          </div>
+          <div class="footer-contact">
+            <h3 class="footer-heading">Kontakt</h3>
+            <ul class="footer-contact-list">
+              <li><span class="icon-phone"></span>+386 40 123 456</li>
+              <li><span class="icon-email"></span>info@nanoski-oglasnik.si</li>
+              <li><span class="icon-location"></span>Slovenska cesta, Ljubljana, Slovenija</li>
+            </ul>
+          </div>
+        </div>
+        <div class="footer-bottom">
+          <div class="copyright">&copy; 2025 Nanoski Oglasnik. Vse pravice pridržane.</div>
+          <div class="footer-legal">
+            <a href="#">Pogoji uporabe</a> | <a href="#">Politika zasebnosti</a>
+          </div>
+        </div>
+      </div>
+    </footer>
+
+    <div id="cookieConsent" class="cookie-consent">
+      <div class="cookie-content">
+        <p>Ta stran uporablja piškotke za boljšo uporabniško izkušnjo.</p>
+        <div class="cookie-buttons">
+          <button id="acceptCookies" class="btn btn-primary cookie-btn">Sprejmi</button>
+          <button id="rejectCookies" class="btn btn-outline cookie-btn">Zavrni</button>
+        </div>
+      </div>
+    </div>
+
+    <script src="script.js"></script>
   </body>
 </html>

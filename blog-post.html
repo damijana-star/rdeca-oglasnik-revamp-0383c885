@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="sl">
   <head>
@@ -7,87 +8,233 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;500;600;700&family=Montserrat:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-    <title>Članek - Nanoski Oglasnik</title>
+    <title>Kako pripraviti učinkovit oglas - Nanoski Oglasnik</title>
     <link rel="stylesheet" href="styles.css">
+    <script src="https://cdn.gpteng.co/gptengineer.js" type="module"></script>
+    <style>
+      /* Additional styles specific to blog post */
+      .blog-post {
+        padding: 4rem 0;
+      }
+      
+      .blog-post-container {
+        max-width: 800px;
+        margin: 0 auto;
+      }
+      
+      .post-image {
+        width: 100%;
+        height: auto;
+        border-radius: 0.5rem;
+        margin-bottom: 2rem;
+      }
+      
+      .post-date {
+        color: var(--medium-gray);
+        font-size: 0.875rem;
+        margin-bottom: 1rem;
+      }
+      
+      .post-title {
+        font-size: 2.5rem;
+        margin-bottom: 1.5rem;
+      }
+      
+      .post-content {
+        line-height: 1.8;
+      }
+      
+      .post-content p {
+        margin-bottom: 1.5rem;
+      }
+      
+      .post-content h2 {
+        margin-top: 2.5rem;
+        margin-bottom: 1rem;
+        font-size: 1.75rem;
+      }
+      
+      .post-content ul, .post-content ol {
+        margin-bottom: 1.5rem;
+        padding-left: 1.5rem;
+      }
+      
+      .post-content li {
+        margin-bottom: 0.5rem;
+      }
+      
+      .related-posts {
+        background-color: var(--light-gray);
+        padding: 4rem 0;
+      }
+      
+      .page-header {
+        background-color: var(--light-gray);
+        padding: 2rem 0;
+      }
+      
+      .page-title {
+        font-size: 2.5rem;
+        text-align: center;
+      }
+      
+      .blog-grid.wide {
+        grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      }
+      
+      @media (min-width: 768px) {
+        .post-title {
+          font-size: 3rem;
+        }
+      }
+    </style>
   </head>
   <body>
-    <!-- Header -->
-    <header class="header">
+    <header class="sticky-header">
       <div class="container">
         <div class="header-content">
           <div class="logo">
             <a href="index.html">
-              <img src="/lovable-uploads/0ad2c6b5-12cf-4c0b-9c30-5af74d87725a.png" alt="NANOSKI OGLASNIK" class="logo-img">
+              <img src="/lovable-uploads/0ad2c6b5-12cf-4c0b-9c30-5af74d87725a.png" alt="NANOSKI OGLASNIK" class="logo-image">
             </a>
           </div>
 
           <nav class="desktop-nav">
-            <a href="index.html" class="nav-link">
-              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path><polyline points="9 22 9 12 15 12 15 22"></polyline></svg>
-              Domov
-            </a>
-            <a href="blog.html" class="nav-link">Nasveti</a>
-            <a href="index.html#contact" class="nav-link">Kontakt</a>
-            <a href="view-pdf.html" class="btn btn-outline">
-              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.5 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7.5L14.5 2z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" x2="8" y1="13" y2="13"></line><line x1="16" x2="8" y1="17" y2="17"></line><line x1="10" x2="8" y1="9" y2="9"></line></svg>
-              Prelistaj
-            </a>
-            <a href="index.html#contact" class="btn btn-primary">Oddaj oglas</a>
+            <ul class="nav-list">
+              <li><a href="index.html" class="nav-link"><span class="icon-home"></span>Domov</a></li>
+              <li><a href="blog.html" class="nav-link">Nasveti</a></li>
+              <li><a href="index.html#contact" class="nav-link">Kontakt</a></li>
+            </ul>
           </nav>
 
-          <button class="mobile-menu-toggle" aria-label="Toggle menu">
-            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="4" x2="20" y1="12" y2="12"></line><line x1="4" x2="20" y1="6" y2="6"></line><line x1="4" x2="20" y1="18" y2="18"></line></svg>
+          <div class="cta-buttons">
+            <a href="view-pdf.html" class="btn btn-outline"><span class="icon-file"></span>Prelistaj</a>
+            <a href="index.html#contact" class="btn btn-primary">Oddaj oglas</a>
+          </div>
+
+          <button class="mobile-menu-toggle" aria-label="Toggle Menu">
+            <span class="menu-icon"></span>
           </button>
         </div>
 
         <div class="mobile-nav">
-          <a href="index.html" class="nav-link">
-            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path><polyline points="9 22 9 12 15 12 15 22"></polyline></svg>
-            Domov
-          </a>
-          <a href="blog.html" class="nav-link">Nasveti</a>
-          <a href="index.html#contact" class="nav-link">Kontakt</a>
-          <a href="view-pdf.html" class="btn btn-outline">
-            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.5 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7.5L14.5 2z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" x2="8" y1="13" y2="13"></line><line x1="16" x2="8" y1="17" y2="17"></line><line x1="10" x2="8" y1="9" y2="9"></line></svg>
-            Prelistaj
-          </a>
-          <a href="index.html#contact" class="btn btn-primary btn-block">Oddaj oglas</a>
+          <ul class="mobile-nav-list">
+            <li><a href="index.html" class="mobile-nav-link"><span class="icon-home"></span>Domov</a></li>
+            <li><a href="blog.html" class="mobile-nav-link">Nasveti</a></li>
+            <li><a href="index.html#contact" class="mobile-nav-link">Kontakt</a></li>
+            <a href="view-pdf.html" class="btn btn-outline mobile-btn"><span class="icon-file"></span>Prelistaj</a>
+            <a href="index.html#contact" class="btn btn-primary mobile-btn">Oddaj oglas</a>
+          </ul>
         </div>
       </div>
     </header>
 
     <main>
-      <article class="blog-post-container">
-        <div class="container">
-          <div class="blog-post-header">
-            <div class="blog-post-header-content">
-              <a href="blog.html" class="blog-back-link">
-                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m12 19-7-7 7-7"></path><path d="M19 12H5"></path></svg>
-                Nazaj na pregled
-              </a>
-              <h1 id="blog-title" class="blog-post-title">Oglaševanje s tiskanimi oglasi: Zakaj jih podjetja še vedno uporabljajo</h1>
-              <div class="blog-post-meta">
-                <span id="blog-date" class="blog-post-date">09. 04. 2025</span>
-                <span class="blog-post-author">Avtor: <span id="blog-author">Ana Kovač</span></span>
-                <span id="blog-category" class="blog-post-category">Marketing</span>
-              </div>
-            </div>
-            <div class="blog-post-image">
-              <img id="blog-image" src="/lovable-uploads/9d2bf50c-8258-41d6-80a5-c71a06939606.png" alt="Tiskani oglasi">
-            </div>
-          </div>
+      <section class="blog-post">
+        <div class="container blog-post-container">
+          <p class="post-date">13. April, 2025</p>
+          <h1 class="post-title">Kako pripraviti učinkovit oglas</h1>
+          <img src="/lovable-uploads/9d2bf50c-8258-41d6-80a5-c71a06939606.png" alt="Kako pripraviti učinkovit oglas" class="post-image">
           
-          <div class="blog-post-content">
-            <div id="blog-content">
-              <p>V dobi digitalnega sveta, kjer nas vsak dan preplavljajo spletni oglasi, tiskani oglasi še vedno ohranjajo svojo moč – še posebej v lokalnem okolju.</p>
-              
-              <h2>Zakaj so tiskani oglasi še vedno učinkoviti?</h2>
-              
-              <p>Čeprav smo v današnjem času obkroženi z digitalnimi mediji, tiskani oglasi prinašajo edinstvene prednosti, ki jih spletno oglaševanje ne more ponuditi:</p>
-              
-              <ul>
-                <li><strong>Otipljivost</strong> – tiskane oglase lahko bralci fizično primejo, kar poveča zaupanje in avtentičnost sporočila.</li>
-                <li><strong>Trajnost</strong> – tiskan oglas ostane na voljo za branje več dni ali celo tednov, medtem ko spletni oglasi hitro izginejo iz pogleda.</li>
-                <li><strong>Lokalna relevantnost</strong> – lokalni tiskani oglasniki imajo zvesto občinstvo, ki je natančno geografsko segmentirano.</li>
-                <li><strong>Manj konkurence</strong> – z zmanjšanjem števila tiskovin se je zmanjšala tudi gneča oglasov, kar omogoča boljšo vidnost.</li>
-                <li><strong>Večja pozornost</strong> – bralci tiskanih medijev
+          <div class="post-content">
+            <p>V današnjem konkurenčnem poslovnem okolju je priprava učinkovitega oglasa ključnega pomena za uspeh vaše oglaševalske kampanje. Oglas, ki pritegne pozornost in spodbudi akcijo, lahko bistveno poveča prepoznavnost vaše blagovne znamke in pripomore k večji prodaji.</p>
+            
+            <h2>1. Jasno sporočilo</h2>
+            <p>Vsak učinkovit oglas mora imeti jasno in jedrnato sporočilo. Izogibajte se prenatrpanosti z informacijami in se osredotočite na eno ali dve ključni prednosti vašega izdelka ali storitve. Potencialni kupci morajo v nekaj sekundah razumeti, kaj jim ponujate in zakaj bi jih to moralo zanimati.</p>
+            
+            <h2>2. Poznavanje ciljne publike</h2>
+            <p>Pred oblikovanjem oglasa si vzemite čas za razumevanje vaše ciljne publike. Razmislite o njihovih potrebah, željah, interesih in bolečih točkah. Oglas, ki nagovarja specifične potrebe vaše ciljne publike, bo veliko bolj učinkovit kot generično sporočilo.</p>
+            
+            <h2>3. Močna vizualna podoba</h2>
+            <p>Človeški možgani hitreje in lažje obdelujejo slike kot besedilo. Uporabite visokokakovostne fotografije ali grafike, ki podpirajo vaše sporočilo in pritegnejo pozornost. Vizualni elementi morajo biti relevantni za vašo ponudbo in ciljno publiko.</p>
+            
+            <h2>4. Poziv k akciji</h2>
+            <p>Vsak učinkovit oglas vsebuje jasen poziv k akciji (CTA). Povejte potencialnim strankam, kaj naj storijo kot naslednji korak – naj pokličejo določeno številko, obiščejo vašo spletno stran, obiščejo vašo trgovino ali izkoristijo posebno ponudbo. Poziv k akciji mora biti jasen, neposreden in spodbuden.</p>
+            
+            <h2>5. Poudarjanje koristi, ne le značilnosti</h2>
+            <p>Namesto da naštevate značilnosti vašega izdelka ali storitve, se osredotočite na koristi, ki jih bodo kupci pridobili. Na primer, namesto da poveste, da ima vaš pralni stroj posebno tehnologijo za prihranek energije (značilnost), poudarite, da bo stranka prihranila pri računih za elektriko (korist).</p>
+            
+            <h2>6. Uporaba prepričljivega besedila</h2>
+            <p>Besedilo v vašem oglasu mora biti prepričljivo, privlačno in relevantno. Uporabljajte aktivne glagole in neposreden jezik. Izogibajte se klišejem in žargonu, ki ga vaša ciljna publika morda ne razume.</p>
+            
+            <h2>7. Konsistentnost z blagovno znamko</h2>
+            <p>Vaš oglas mora odražati identiteto vaše blagovne znamke, vključno z uporabo ustreznih barv, pisav in tona komunikacije. Konsistentnost pomaga graditi prepoznavnost in zaupanje.</p>
+            
+            <h2>8. Testiranje in optimizacija</h2>
+            <p>Pred večjo investicijo testirajte različne različice vašega oglasa na manjši skupini ljudi. Analizirajte rezultate in optimizirajte oglas na podlagi pridobljenega znanja. Nenehno izboljševanje bo vodilo do boljših rezultatov.</p>
+            
+            <p>S sledenju tem smernicam boste lahko pripravili oglas, ki bo učinkovito nagovoril vašo ciljno publiko in dosegel zastavljene poslovne cilje. Ne pozabite, da je ključ do uspeha v razumevanju vaših strank in jasnem komuniciranju, kako jim lahko pomagate rešiti njihove težave ali izboljšati njihovo življenje.</p>
+          </div>
+        </div>
+      </section>
+      
+      <section class="related-posts">
+        <div class="container">
+          <h2 class="section-title">Sorodni članki</h2>
+          <div class="blog-grid">
+            <article class="blog-card">
+              <img src="/lovable-uploads/fb97cac4-7bc2-4659-aac9-346efcc70f67.png" alt="Trendi v lokalnem oglaševanju" class="blog-image">
+              <div class="blog-content">
+                <h3 class="blog-title">Trendi v lokalnem oglaševanju</h3>
+                <p class="blog-excerpt">Preverite najnovejše trende, ki oblikujejo lokalno oglaševanje v letu 2025.</p>
+                <a href="blog-post.html" class="blog-link">Preberi več</a>
+              </div>
+            </article>
+            <article class="blog-card">
+              <img src="/lovable-uploads/7bb6fbc9-f86e-41ec-8b55-658095999864.png" alt="Uspešne zgodbe naših strank" class="blog-image">
+              <div class="blog-content">
+                <h3 class="blog-title">Uspešne zgodbe naših strank</h3>
+                <p class="blog-excerpt">Preberite, kako so naši oglaševalci povečali prodajo z oglasi v Nanoškem oglasniku.</p>
+                <a href="blog-post.html" class="blog-link">Preberi več</a>
+              </div>
+            </article>
+            <article class="blog-card">
+              <img src="/lovable-uploads/9d2bf50c-8258-41d6-80a5-c71a06939606.png" alt="Oblikovanje oglasov, ki prodajajo" class="blog-image">
+              <div class="blog-content">
+                <h3 class="blog-title">Oblikovanje oglasov, ki prodajajo</h3>
+                <p class="blog-excerpt">Nasveti za oblikovanje oglasov, ki pritegnejo pozornost in spodbudijo akcijo kupcev.</p>
+                <a href="blog-post.html" class="blog-link">Preberi več</a>
+              </div>
+            </article>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <div class="container">
+        <div class="footer-content">
+          <div class="footer-logo">
+            <img src="/lovable-uploads/0ad2c6b5-12cf-4c0b-9c30-5af74d87725a.png" alt="NANOSKI OGLASNIK" class="footer-logo-image">
+            <p class="footer-tagline">Vaš lokalni vir informacij in oglasov</p>
+          </div>
+          <div class="footer-nav">
+            <h3 class="footer-heading">Povezave</h3>
+            <ul class="footer-links">
+              <li><a href="index.html">Domov</a></li>
+              <li><a href="blog.html">Nasveti</a></li>
+              <li><a href="index.html#contact">Kontakt</a></li>
+              <li><a href="view-pdf.html">Prelistaj</a></li>
+            </ul>
+          </div>
+          <div class="footer-contact">
+            <h3 class="footer-heading">Kontakt</h3>
+            <ul class="footer-contact-list">
+              <li><span class="icon-phone"></span>+386 40 123 456</li>
+              <li><span class="icon-email"></span>info@nanoski-oglasnik.si</li>
+              <li><span class="icon-location"></span>Slovenska cesta, Ljubljana, Slovenija</li>
+            </ul>
+          </div>
+        </div>
+        <div class="footer-bottom">
+          <div class="copyright">&copy; 2025 Nanoski Oglasnik. Vse pravice pridržane.</div>
+          <div class="footer-legal">
+            <a href="#">Pogoji uporabe</a> | <a href="#">Politika zasebnosti</a>
+          </div>
+        </div>
+      </div>
+    </footer>
+
+    <script src="script.js"></script>
+  </body>
+</html>
