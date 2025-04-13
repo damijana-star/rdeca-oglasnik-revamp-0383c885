@@ -1,81 +1,81 @@
 
-import React, { useEffect } from "react";
-import { useInView } from "react-intersection-observer";
-import LogoItem from "./LogoItem";
-import {
+import React, { useEffect, useRef, useState } from "react";
+import { 
   Carousel,
   CarouselContent,
   CarouselItem,
   CarouselNext,
-  CarouselPrevious,
+  CarouselPrevious
 } from "@/components/ui/carousel";
+import LogoItem from "./LogoItem";
 
-interface PartnerLogoCarouselProps {
+export interface PartnerLogoCarouselProps {
   logos: string[];
   size?: "small" | "medium" | "large";
   hoverEffect?: boolean;
   autoplay?: boolean;
   autoplayInterval?: number;
-  showControls?: boolean;
 }
 
-const PartnerLogoCarousel = ({
+const PartnerLogoCarousel: React.FC<PartnerLogoCarouselProps> = ({
   logos,
   size = "medium",
   hoverEffect = true,
-  autoplay = true,
-  autoplayInterval = 3000,
-  showControls = false
-}: PartnerLogoCarouselProps) => {
-  const { ref, inView } = useInView({
-    threshold: 0.1,
-    triggerOnce: false
-  });
+  autoplay = false,
+  autoplayInterval = 3000
+}) => {
+  const [api, setApi] = useState<any>(null);
+  const intervalRef = useRef<NodeJS.Timeout | null>(null);
 
-  // Create a duplicate set of logos for infinite-like scrolling effect
-  const displayLogos = [...logos, ...logos].slice(0, Math.min(logos.length * 2, 20));
+  // Setup autoplay
+  useEffect(() => {
+    if (!autoplay || !api) return;
+    
+    // Clear any existing interval
+    if (intervalRef.current) {
+      clearInterval(intervalRef.current);
+    }
+    
+    // Set up new interval for autoplay
+    intervalRef.current = setInterval(() => {
+      api.scrollNext();
+    }, autoplayInterval);
+    
+    // Cleanup function
+    return () => {
+      if (intervalRef.current) {
+        clearInterval(intervalRef.current);
+      }
+    };
+  }, [api, autoplay, autoplayInterval]);
 
   return (
-    <div ref={ref} className="w-full py-4">
-      <Carousel
-        opts={{
-          align: "start",
-          loop: true,
-          dragFree: true,
-        }}
-        className="w-full"
-      >
-        <CarouselContent className="-ml-2 md:-ml-4">
-          {displayLogos.map((logo, index) => (
-            <CarouselItem 
-              key={`logo-${index}`} 
-              className={
-                size === "small" 
-                  ? "pl-2 md:pl-4 basis-1/4 md:basis-1/5 lg:basis-1/6" 
-                  : size === "medium"
-                    ? "pl-2 md:pl-4 basis-1/3 md:basis-1/4 lg:basis-1/5" 
-                    : "pl-2 md:pl-4 basis-1/2 md:basis-1/3 lg:basis-1/4"
-              }
-            >
-              <LogoItem
-                logo={logo}
-                index={index}
-                totalLogos={logos.length}
-                size={size}
-                hoverEffect={hoverEffect}
-              />
-            </CarouselItem>
-          ))}
-        </CarouselContent>
-        
-        {showControls && (
-          <>
-            <CarouselPrevious className="hidden md:flex -left-4 border-[#e32530]/20 bg-white" />
-            <CarouselNext className="hidden md:flex -right-4 border-[#e32530]/20 bg-white" />
-          </>
-        )}
-      </Carousel>
-    </div>
+    <Carousel
+      opts={{
+        align: "start",
+        loop: true,
+      }}
+      className="w-full"
+      setApi={setApi}
+    >
+      <CarouselContent>
+        {logos.map((logo, index) => (
+          <CarouselItem key={index} className="basis-1/2 md:basis-1/3 lg:basis-1/4">
+            <LogoItem 
+              logo={logo} 
+              index={index} 
+              totalLogos={logos.length}
+              size={size}
+              hoverEffect={hoverEffect}
+            />
+          </CarouselItem>
+        ))}
+      </CarouselContent>
+      <div className="hidden md:flex justify-end mt-4 gap-2">
+        <CarouselPrevious className="static" />
+        <CarouselNext className="static" />
+      </div>
+    </Carousel>
   );
 };
 
