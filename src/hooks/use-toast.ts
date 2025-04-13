@@ -15,7 +15,12 @@ export const toast = (props: ToastProps) => {
   }
   
   // For object props, pass it as is
-  return sonnerToast(props)
+  return sonnerToast({
+    title: props.title,
+    description: props.description,
+    // Only pass variant if it exists
+    ...(props.variant && { variant: props.variant })
+  })
 }
 
 // Export a useToast hook that returns the toast function
