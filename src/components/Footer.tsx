@@ -61,11 +61,10 @@ export const Footer = () => {
               <Link 
                 to="/#contact" 
                 onClick={(e) => {
+                  e.preventDefault();
                   if (location.pathname !== '/') {
-                    e.preventDefault();
                     window.location.href = '/#contact';
                   } else {
-                    e.preventDefault();
                     navigateToHomeSection('contact');
                   }
                 }}
@@ -83,11 +82,10 @@ export const Footer = () => {
               <Link 
                 to="/#contact" 
                 onClick={(e) => {
+                  e.preventDefault();
                   if (location.pathname !== '/') {
-                    e.preventDefault();
                     window.location.href = '/#contact';
                   } else {
-                    e.preventDefault();
                     navigateToHomeSection('contact');
                   }
                 }}

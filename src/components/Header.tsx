@@ -14,8 +14,8 @@ export const Header = () => {
       if (element) {
         element.scrollIntoView({ behavior: 'smooth' });
       }
+      setIsMenuOpen(false);
     }
-    setIsMenuOpen(false);
   };
   
   return <header className="bg-white shadow-sm sticky top-0 z-50">
@@ -36,11 +36,14 @@ export const Header = () => {
               Nasveti
             </Link>
             <Link 
-              to="/" 
+              to="/#contact" 
               onClick={(e) => {
                 e.preventDefault();
-                navigateToSection('contact');
-                window.location.href = '/#contact';
+                if (location.pathname !== '/') {
+                  window.location.href = '/#contact';
+                } else {
+                  navigateToSection('contact');
+                }
               }}
               className="nav-link text-foreground hover:text-dark-red font-medium transition-colors duration-300"
             >
@@ -54,11 +57,14 @@ export const Header = () => {
             </Button>
             <Button className="bg-[#e32530] hover:bg-[#e32530]/90 transform transition-all duration-300 hover:scale-105 hover:shadow-md" asChild>
               <Link 
-                to="/" 
+                to="/#contact" 
                 onClick={(e) => {
                   e.preventDefault();
-                  navigateToSection('contact');
-                  window.location.href = '/#contact';
+                  if (location.pathname !== '/') {
+                    window.location.href = '/#contact';
+                  } else {
+                    navigateToSection('contact');
+                  }
                 }}
               >
                 Oddaj oglas
@@ -87,11 +93,14 @@ export const Header = () => {
               Nasveti
             </Link>
             <Link 
-              to="/" 
+              to="/#contact" 
               onClick={(e) => {
                 e.preventDefault();
-                navigateToSection('contact');
-                window.location.href = '/#contact';
+                if (location.pathname !== '/') {
+                  window.location.href = '/#contact';
+                } else {
+                  navigateToSection('contact');
+                }
               }}
               className="nav-link text-foreground hover:text-dark-red font-medium transition-colors duration-300"
             >
@@ -105,11 +114,14 @@ export const Header = () => {
             </Button>
             <Button className="bg-[#e32530] hover:bg-[#e32530]/90 w-full transform transition-all duration-300 hover:scale-105 hover:shadow-md" asChild>
               <Link 
-                to="/" 
+                to="/#contact" 
                 onClick={(e) => {
                   e.preventDefault();
-                  navigateToSection('contact');
-                  window.location.href = '/#contact';
+                  if (location.pathname !== '/') {
+                    window.location.href = '/#contact';
+                  } else {
+                    navigateToSection('contact');
+                  }
                 }}
               >
                 Oddaj oglas
@@ -122,4 +134,3 @@ export const Header = () => {
 };
 
 export default Header;
-
