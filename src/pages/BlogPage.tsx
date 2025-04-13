@@ -1,11 +1,12 @@
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import { Calendar, ChevronRight, User, Search } from "lucide-react";
 import { Link, useNavigate } from "react-router-dom";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
+import { useToast } from "@/hooks/use-toast";
 
 const allBlogPosts = [
   {
@@ -46,6 +47,11 @@ const BlogPage = () => {
   const [searchTerm, setSearchTerm] = useState("");
   const [selectedCategory, setSelectedCategory] = useState("Vse");
   const navigate = useNavigate();
+  const { toast } = useToast();
+
+  useEffect(() => {
+    console.log("BlogPage mounted");
+  }, []);
 
   const filteredPosts = allBlogPosts.filter(post => {
     const matchesSearch = post.title.toLowerCase().includes(searchTerm.toLowerCase()) || 
@@ -121,7 +127,11 @@ const BlogPage = () => {
           {filteredPosts.length > 0 ? (
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
               {filteredPosts.map((post) => (
-                <div key={post.id} className="bg-white rounded-lg overflow-hidden shadow-sm card-hover border border-gray-100">
+                <div 
+                  key={post.id} 
+                  className="bg-white rounded-lg overflow-hidden shadow-sm card-hover border border-gray-100 cursor-pointer"
+                  onClick={() => handlePostClick(post.id)}
+                >
                   <div className="relative h-48 overflow-hidden">
                     <img 
                       src={post.image} 
@@ -147,12 +157,11 @@ const BlogPage = () => {
                         <span>{post.author}</span>
                       </div>
                     </div>
-                    <button 
-                      onClick={() => handlePostClick(post.id)}
+                    <div 
                       className="inline-flex items-center text-[#e32530] font-medium hover:underline"
                     >
                       Preberi več <ChevronRight className="w-4 h-4 ml-1" />
-                    </button>
+                    </div>
                   </div>
                 </div>
               ))}

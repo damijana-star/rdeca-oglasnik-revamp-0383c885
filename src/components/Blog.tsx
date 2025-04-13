@@ -3,6 +3,7 @@ import React from 'react';
 import { Button } from "@/components/ui/button";
 import { ArrowRight, ExternalLink } from "lucide-react";
 import { Link, useNavigate } from "react-router-dom";
+import { useToast } from "@/hooks/use-toast";
 
 const blogPosts = [{
   id: 4,
@@ -32,6 +33,7 @@ const blogPosts = [{
 
 const Blog = () => {
   const navigate = useNavigate();
+  const { toast } = useToast();
   
   const handlePostClick = (postId: number) => {
     console.log('Blog: Navigating to post:', postId);
