@@ -19,7 +19,6 @@ const ScrollToTop = () => {
   const { pathname, hash } = useLocation();
 
   useEffect(() => {
-    // If there's a hash, try to scroll to that element
     if (hash) {
       setTimeout(() => {
         const element = document.getElementById(hash.substring(1));
@@ -28,7 +27,6 @@ const ScrollToTop = () => {
         }
       }, 100);
     } else {
-      // Otherwise scroll to top of page
       window.scrollTo(0, 0);
     }
   }, [pathname, hash]);
@@ -46,7 +44,6 @@ const AppRoutes = () => {
         <Route path="/blog/:id" element={<BlogPostPage />} />
         <Route path="/upload-pdf" element={<PDFUploadPage />} />
         <Route path="/view-pdf" element={<PDFViewPage />} />
-        {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
         <Route path="*" element={<NotFound />} />
       </Routes>
     </>
