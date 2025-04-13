@@ -3,7 +3,7 @@ import { toast as sonnerToast } from "sonner"
 import type { ToastProps } from "@/components/ui/toast"
 
 // Create a simple toast function that uses sonner
-export const toast = (props: any) => {
+export const toast = (props: ToastProps | string) => {
   return sonnerToast(props)
 }
 
