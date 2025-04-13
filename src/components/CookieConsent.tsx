@@ -11,14 +11,14 @@ const CookieConsent = () => {
   const { toast } = useToast();
   
   useEffect(() => {
-    // Za testiranje - izbrišemo obstoječi piškotek (odstranimo komentar spodaj za testiranje)
-    eraseCookie("cookie-consent");
+    // For testing - remove the existing cookie (uncomment below for testing)
+    // eraseCookie("cookie-consent");
     
-    // Preverimo, če je uporabnik že privolil v piškotke
+    // Check if the user has already consented to cookies
     const hasConsented = getCookie("cookie-consent");
     
     if (!hasConsented) {
-      // Zakasnimo prikaz dialoga za boljšo uporabniško izkušnjo
+      // Delay dialog display for better user experience
       const timer = setTimeout(() => {
         setOpen(true);
       }, 1000);
