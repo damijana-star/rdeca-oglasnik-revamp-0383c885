@@ -1,73 +1,39 @@
-# Welcome to your Lovable project
 
-## Project info
+# Nanoski Oglasnik WordPress Theme
 
-**URL**: https://lovable.dev/projects/9112e636-9c13-4de9-b466-b0c889884383
+This is a custom WordPress theme for Nanoski Oglasnik, converted from a React application.
 
-## How can I edit this code?
+## Features
 
-There are several ways of editing your application.
+- Responsive design with Tailwind CSS
+- Custom post types for Blog posts
+- Contact form integration
+- PDF viewer functionality
+- Mobile-friendly navigation
+- Featured sections for advertising benefits
+- Partner logo showcase
 
-**Use Lovable**
+## Installation
 
-Simply visit the [Lovable Project](https://lovable.dev/projects/9112e636-9c13-4de9-b466-b0c889884383) and start prompting.
+1. Upload the theme folder to your WordPress site's `/wp-content/themes/` directory
+2. Activate the theme through the WordPress admin interface
+3. Configure theme settings and upload necessary assets
 
-Changes made via Lovable will be committed automatically to this repo.
+## Required Plugins
 
-**Use your preferred IDE**
+- Contact Form 7 (recommended for contact forms)
+- Advanced Custom Fields (for custom fields like PDF uploads)
 
-If you want to work locally using your own IDE, you can clone this repo and push changes. Pushed changes will also be reflected in Lovable.
+## Theme Structure
 
-The only requirement is having Node.js & npm installed - [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating)
+- `/template-parts/` - Contains reusable template components
+- `/assets/` - Contains CSS, JS, images, and other static assets
+- `/inc/` - Contains PHP classes and functions
 
-Follow these steps:
+## Customization
 
-```sh
-# Step 1: Clone the repository using the project's Git URL.
-git clone <YOUR_GIT_URL>
+The theme supports WordPress Customizer for basic theme options.
 
-# Step 2: Navigate to the project directory.
-cd <YOUR_PROJECT_NAME>
+## Credits
 
-# Step 3: Install the necessary dependencies.
-npm i
-
-# Step 4: Start the development server with auto-reloading and an instant preview.
-npm run dev
-```
-
-**Edit a file directly in GitHub**
-
-- Navigate to the desired file(s).
-- Click the "Edit" button (pencil icon) at the top right of the file view.
-- Make your changes and commit the changes.
-
-**Use GitHub Codespaces**
-
-- Navigate to the main page of your repository.
-- Click on the "Code" button (green button) near the top right.
-- Select the "Codespaces" tab.
-- Click on "New codespace" to launch a new Codespace environment.
-- Edit files directly within the Codespace and commit and push your changes once you're done.
-
-## What technologies are used for this project?
-
-This project is built with:
-
-- Vite
-- TypeScript
-- React
-- shadcn-ui
-- Tailwind CSS
-
-## How can I deploy this project?
-
-Simply open [Lovable](https://lovable.dev/projects/9112e636-9c13-4de9-b466-b0c889884383) and click on Share -> Publish.
-
-## Can I connect a custom domain to my Lovable project?
-
-Yes it is!
-
-To connect a domain, navigate to Project > Settings > Domains and click Connect Domain.
-
-Read more here: [Setting up a custom domain](https://docs.lovable.dev/tips-tricks/custom-domain#step-by-step-guide)
+Based on the original React application design for Nanoski Oglasnik.

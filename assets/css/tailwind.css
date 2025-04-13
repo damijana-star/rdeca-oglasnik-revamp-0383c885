@@ -1,0 +1,185 @@
+
+/* 
+ * This file contains the compiled Tailwind CSS
+ * In a real implementation, you would generate this using PostCSS/Tailwind CLI
+ */
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground font-body;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-heading font-bold;
+  }
+
+  /* Smooth scrolling for the entire page */
+  html {
+    scroll-behavior: smooth;
+  }
+}
+
+@layer components {
+  /* Enhanced hover effects for navigation links */
+  .nav-link {
+    @apply relative font-heading font-semibold;
+  }
+  
+  .nav-link::after {
+    @apply content-[''] absolute w-0 h-0.5 bg-dark-red left-0 bottom-0 transition-all duration-300 ease-in-out;
+  }
+  
+  .nav-link:hover::after {
+    @apply w-full;
+  }
+  
+  /* Card hover animation */
+  .card-hover {
+    @apply transition-all duration-300 hover:shadow-md hover:-translate-y-1;
+  }
+  
+  /* Fade in animation */
+  .fade-in {
+    animation: fadeIn 0.8s ease-out forwards;
+  }
+  
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+      transform: translateY(10px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  
+  /* Slide in animation */
+  .slide-in {
+    animation: slideIn 0.5s ease-out forwards;
+  }
+  
+  @keyframes slideIn {
+    from {
+      transform: translateX(-20px);
+      opacity: 0;
+    }
+    to {
+      transform: translateX(0);
+      opacity: 1;
+    }
+  }
+
+  /* Enhanced typography for modern, trendy look */
+  .modern-heading {
+    @apply font-heading font-extrabold tracking-tight text-foreground;
+  }
+
+  .modern-subheading {
+    @apply font-accent font-bold tracking-wide text-foreground/80;
+  }
+
+  .modern-body {
+    @apply font-body font-medium leading-relaxed text-foreground/90;
+  }
+  
+  .display-title {
+    @apply font-display font-bold tracking-tight;
+  }
+  
+  .accent-text {
+    @apply font-accent font-bold;
+  }
+}
+
+.container {
+  @apply px-4 mx-auto max-w-7xl;
+}
+
+.section {
+  @apply py-10 md:py-16;
+}
+
+/* WordPress specific styles */
+.wp-caption {
+  max-width: 100%;
+}
+
+.wp-caption-text {
+  font-size: 0.875rem;
+  color: #6b7280;
+  text-align: center;
+  margin-top: 0.5rem;
+}
+
+.screen-reader-text {
+  border: 0;
+  clip: rect(1px, 1px, 1px, 1px);
+  clip-path: inset(50%);
+  height: 1px;
+  margin: -1px;
+  overflow: hidden;
+  padding: 0;
+  position: absolute !important;
+  width: 1px;
+  word-wrap: normal !important;
+}
+
+.alignleft {
+  float: left;
+  margin-right: 1.5rem;
+  margin-bottom: 1rem;
+}
+
+.alignright {
+  float: right;
+  margin-left: 1.5rem;
+  margin-bottom: 1rem;
+}
+
+.aligncenter {
+  clear: both;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* Form styles for WordPress */
+.wpcf7-form input[type="text"],
+.wpcf7-form input[type="email"],
+.wpcf7-form input[type="tel"],
+.wpcf7-form textarea {
+  @apply w-full rounded-md border-gray-300 shadow-sm focus:border-dark-red focus:ring focus:ring-dark-red focus:ring-opacity-50;
+}
+
+.wpcf7-form label {
+  @apply block text-sm font-medium text-gray-700 mb-1;
+}
+
+.wpcf7-form .wpcf7-submit {
+  @apply w-full inline-flex items-center justify-center px-4 py-2 bg-dark-red text-white rounded-md hover:bg-dark-red/90 font-medium;
+}
+
+.wpcf7-not-valid-tip {
+  @apply text-red-500 text-sm mt-1;
+}
+
+.wpcf7-response-output {
+  @apply p-4 rounded-md mt-4 text-sm;
+}
+
+.wpcf7-validation-errors {
+  @apply bg-yellow-50 text-yellow-700 border border-yellow-200;
+}
+
+.wpcf7-mail-sent-ok {
+  @apply bg-green-50 text-green-700 border border-green-200;
+}
