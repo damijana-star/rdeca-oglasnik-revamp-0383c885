@@ -1,8 +1,8 @@
+
 import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
-import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import { HashRouter, Routes, Route, useLocation, useNavigate } from "react-router-dom";
+import { HashRouter, Routes, Route, useLocation } from "react-router-dom";
 import { useEffect } from "react";
 import Index from "./pages/Index";
 import NotFound from "./pages/NotFound";
@@ -11,6 +11,7 @@ import BlogPostPage from "./pages/BlogPostPage";
 import PDFUploadPage from "./pages/PDFUploadPage";
 import PDFViewPage from "./pages/PDFViewPage";
 import CookieConsent from "./components/CookieConsent";
+import { TooltipProvider } from "@/components/ui/tooltip";
 
 const queryClient = new QueryClient();
 
@@ -46,7 +47,6 @@ const AppRoutes = () => {
         <Route path="/blog/:id" element={<BlogPostPage />} />
         <Route path="/upload-pdf" element={<PDFUploadPage />} />
         <Route path="/view-pdf" element={<PDFViewPage />} />
-        {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
         <Route path="*" element={<NotFound />} />
       </Routes>
     </>

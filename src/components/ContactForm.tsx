@@ -1,3 +1,4 @@
+
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
@@ -14,6 +15,7 @@ import {
   FormLabel,
   FormMessage,
 } from "@/components/ui/form";
+import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip";
 
 const formSchema = z.object({
   name: z.string().min(2, { message: "Ime mora vsebovati vsaj 2 znaka." }),
@@ -54,7 +56,7 @@ export const ContactForm = () => {
   }
 
   return (
-    <div id="contact" className="section bg-gray-50">
+    <div id="contact" className="section bg-gray-50 py-16">
       <div className="container">
         <div className="text-center mb-12">
           <h2 className="text-2xl md:text-3xl font-bold mb-2">Kontaktirajte nas</h2>
@@ -154,21 +156,39 @@ export const ContactForm = () => {
             <h3 className="text-xl font-semibold mb-6">Kontaktni podatki</h3>
             
             <div className="space-y-6">
-              <div className="flex items-start">
-                <Phone className="text-dark-red mr-4 h-5 w-5 mt-1" />
-                <div>
-                  <h4 className="font-medium mb-1">Telefon</h4>
-                  <p className="text-gray-600">031 646 666</p>
-                </div>
-              </div>
+              <TooltipProvider>
+                <Tooltip>
+                  <TooltipTrigger asChild>
+                    <div className="flex items-start cursor-pointer">
+                      <Phone className="text-dark-red mr-4 h-5 w-5 mt-1" />
+                      <div>
+                        <h4 className="font-medium mb-1">Telefon</h4>
+                        <p className="text-gray-600">031 646 666</p>
+                      </div>
+                    </div>
+                  </TooltipTrigger>
+                  <TooltipContent>
+                    <p>Pokličite nas</p>
+                  </TooltipContent>
+                </Tooltip>
+              </TooltipProvider>
               
-              <div className="flex items-start">
-                <Mail className="text-dark-red mr-4 h-5 w-5 mt-1" />
-                <div>
-                  <h4 className="font-medium mb-1">E-pošta</h4>
-                  <p className="text-gray-600">info@nanoski-oglasnik.eu</p>
-                </div>
-              </div>
+              <TooltipProvider>
+                <Tooltip>
+                  <TooltipTrigger asChild>
+                    <div className="flex items-start cursor-pointer">
+                      <Mail className="text-dark-red mr-4 h-5 w-5 mt-1" />
+                      <div>
+                        <h4 className="font-medium mb-1">E-pošta</h4>
+                        <p className="text-gray-600">info@nanoski-oglasnik.eu</p>
+                      </div>
+                    </div>
+                  </TooltipTrigger>
+                  <TooltipContent>
+                    <p>Pošljite nam e-poštno sporočilo</p>
+                  </TooltipContent>
+                </Tooltip>
+              </TooltipProvider>
               
               <div>
                 <h4 className="font-medium mb-1">Delovni čas</h4>
