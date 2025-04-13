@@ -6,15 +6,6 @@ import { Link, useLocation } from "react-router-dom";
 export const Footer = () => {
   const location = useLocation();
   
-  const navigateToHomeSection = (sectionId: string) => {
-    if (location.pathname === '/') {
-      const element = document.getElementById(sectionId);
-      if (element) {
-        element.scrollIntoView({ behavior: 'smooth' });
-      }
-    }
-  };
-
   return (
     <footer className="bg-gray-100 pt-12 pb-6 text-center" id="footer">
       <Separator className="mb-8 mx-auto max-w-4xl" />
@@ -65,7 +56,10 @@ export const Footer = () => {
                   if (location.pathname !== '/') {
                     window.location.href = '/#contact';
                   } else {
-                    navigateToHomeSection('contact');
+                    const element = document.getElementById('contact');
+                    if (element) {
+                      element.scrollIntoView({ behavior: 'smooth' });
+                    }
                   }
                 }}
                 className="text-gray-600 hover:text-dark-red transition-colors duration-300"
@@ -83,11 +77,13 @@ export const Footer = () => {
                 to="/" 
                 onClick={(e) => {
                   e.preventDefault();
-                  const contactSection = document.getElementById('contact');
                   if (location.pathname !== '/') {
                     window.location.href = '/#contact';
-                  } else if (contactSection) {
-                    contactSection.scrollIntoView({ behavior: 'smooth' });
+                  } else {
+                    const element = document.getElementById('contact');
+                    if (element) {
+                      element.scrollIntoView({ behavior: 'smooth' });
+                    }
                   }
                 }}
                 className="text-gray-600 flex items-center gap-1 text-dark-red font-medium hover:text-dark-red/80 transition-colors duration-300"

@@ -42,7 +42,10 @@ export const Header = () => {
                 if (location.pathname !== '/') {
                   window.location.href = '/#contact';
                 } else {
-                  navigateToSection('contact');
+                  const element = document.getElementById('contact');
+                  if (element) {
+                    element.scrollIntoView({ behavior: 'smooth' });
+                  }
                 }
               }}
               className="nav-link text-foreground hover:text-dark-red font-medium transition-colors duration-300"
@@ -60,11 +63,13 @@ export const Header = () => {
                 to="/" 
                 onClick={(e) => {
                   e.preventDefault();
-                  const contactSection = document.getElementById('contact');
                   if (location.pathname !== '/') {
                     window.location.href = '/#contact';
-                  } else if (contactSection) {
-                    contactSection.scrollIntoView({ behavior: 'smooth' });
+                  } else {
+                    const element = document.getElementById('contact');
+                    if (element) {
+                      element.scrollIntoView({ behavior: 'smooth' });
+                    }
                   }
                 }}
               >
@@ -101,8 +106,12 @@ export const Header = () => {
                 if (location.pathname !== '/') {
                   window.location.href = '/#contact';
                 } else {
-                  navigateToSection('contact');
+                  const element = document.getElementById('contact');
+                  if (element) {
+                    element.scrollIntoView({ behavior: 'smooth' });
+                  }
                 }
+                setIsMenuOpen(false);
               }}
               className="nav-link text-foreground hover:text-dark-red font-medium transition-colors duration-300"
             >
@@ -119,12 +128,15 @@ export const Header = () => {
                 to="/" 
                 onClick={(e) => {
                   e.preventDefault();
-                  const contactSection = document.getElementById('contact');
                   if (location.pathname !== '/') {
                     window.location.href = '/#contact';
-                  } else if (contactSection) {
-                    contactSection.scrollIntoView({ behavior: 'smooth' });
+                  } else {
+                    const element = document.getElementById('contact');
+                    if (element) {
+                      element.scrollIntoView({ behavior: 'smooth' });
+                    }
                   }
+                  setIsMenuOpen(false);
                 }}
               >
                 <Send className="h-4 w-4" />
