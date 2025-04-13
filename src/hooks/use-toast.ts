@@ -1,8 +1,14 @@
 
 import { toast as sonnerToast } from "sonner"
 
+type ToastProps = string | { 
+  title: string; 
+  description?: string; 
+  variant?: "default" | "destructive" 
+}
+
 // Create a simple toast function that uses sonner
-export const toast = (props: string | { title: string; description?: string; variant?: "default" | "destructive" }) => {
+export const toast = (props: ToastProps) => {
   return sonnerToast(props)
 }
 
