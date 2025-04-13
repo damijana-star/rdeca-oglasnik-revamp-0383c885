@@ -9,6 +9,12 @@ type ToastProps = string | {
 
 // Create a simple toast function that uses sonner
 export const toast = (props: ToastProps) => {
+  // For string props, just pass it directly
+  if (typeof props === 'string') {
+    return sonnerToast(props)
+  }
+  
+  // For object props, pass it as is
   return sonnerToast(props)
 }
 
