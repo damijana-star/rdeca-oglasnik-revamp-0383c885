@@ -2,11 +2,12 @@
 import { Button } from "@/components/ui/button";
 import { FileText, Home, Send } from "lucide-react";
 import { useState, useEffect } from "react";
-import { Link, useLocation } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 
 export const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const location = useLocation();
+  const navigate = useNavigate();
   
   const handleContactClick = (e: React.MouseEvent) => {
     e.preventDefault();
@@ -14,7 +15,7 @@ export const Header = () => {
     
     if (location.pathname !== '/') {
       // If not on homepage, navigate to homepage with contact anchor
-      window.location.href = '/#contact';
+      navigate('/#contact');
     } else {
       // If on homepage, scroll to contact section
       const contactSection = document.getElementById('contact');
@@ -41,27 +42,26 @@ export const Header = () => {
             <Link to="/blog" className="nav-link text-foreground hover:text-dark-red font-medium transition-colors duration-300">
               Nasveti
             </Link>
-            <a 
-              href="#contact" 
+            <button 
               onClick={handleContactClick}
-              className="nav-link text-foreground hover:text-dark-red font-medium transition-colors duration-300"
+              className="nav-link text-foreground hover:text-dark-red font-medium transition-colors duration-300 bg-transparent border-none cursor-pointer"
             >
               Kontakt
-            </a>
+            </button>
             <Button variant="outline" className="flex items-center gap-2 border-[#e32530] text-[#e32530]" asChild>
               <Link to="/view-pdf">
                 <FileText className="h-4 w-4" />
                 Prelistaj
               </Link>
             </Button>
-            <Button className="bg-[#e32530] hover:bg-[#e32530]/90 transform transition-all duration-300 hover:scale-105 hover:shadow-md flex items-center gap-2" asChild>
-              <a 
-                href="#contact" 
+            <Button className="bg-[#e32530] hover:bg-[#e32530]/90 transform transition-all duration-300 hover:scale-105 hover:shadow-md flex items-center gap-2">
+              <button 
                 onClick={handleContactClick}
+                className="flex items-center gap-2 bg-transparent border-none text-white cursor-pointer"
               >
                 <Send className="h-4 w-4" />
                 Oddaj oglas
-              </a>
+              </button>
             </Button>
           </nav>
 
@@ -85,27 +85,26 @@ export const Header = () => {
             <Link to="/blog" className="nav-link text-foreground hover:text-dark-red font-medium transition-colors duration-300">
               Nasveti
             </Link>
-            <a 
-              href="#contact" 
+            <button 
               onClick={handleContactClick}
-              className="nav-link text-foreground hover:text-dark-red font-medium transition-colors duration-300"
+              className="nav-link text-foreground hover:text-dark-red font-medium transition-colors duration-300 text-left bg-transparent border-none cursor-pointer"
             >
               Kontakt
-            </a>
+            </button>
             <Button variant="outline" className="flex items-center justify-center gap-2 border-[#e32530] text-[#e32530]" asChild>
               <Link to="/view-pdf">
                 <FileText className="h-4 w-4" />
                 Prelistaj
               </Link>
             </Button>
-            <Button className="bg-[#e32530] hover:bg-[#e32530]/90 w-full transform transition-all duration-300 hover:scale-105 hover:shadow-md flex items-center justify-center gap-2" asChild>
-              <a 
-                href="#contact" 
+            <Button className="bg-[#e32530] hover:bg-[#e32530]/90 w-full transform transition-all duration-300 hover:scale-105 hover:shadow-md flex items-center justify-center gap-2">
+              <button 
                 onClick={handleContactClick}
+                className="flex items-center gap-2 bg-transparent border-none text-white cursor-pointer"
               >
                 <Send className="h-4 w-4" />
                 Oddaj oglas
-              </a>
+              </button>
             </Button>
           </nav>
         </div>

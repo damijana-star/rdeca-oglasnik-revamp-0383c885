@@ -1,17 +1,18 @@
 
 import { Facebook, Mail, PhoneCall, Send } from "lucide-react";
 import { Separator } from "@/components/ui/separator";
-import { Link, useLocation } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 
 export const Footer = () => {
   const location = useLocation();
+  const navigate = useNavigate();
   
   const handleContactClick = (e: React.MouseEvent) => {
     e.preventDefault();
     
     if (location.pathname !== '/') {
       // If not on homepage, navigate to homepage with contact anchor
-      window.location.href = '/#contact';
+      navigate('/#contact');
     } else {
       // If on homepage, scroll to contact section
       const contactSection = document.getElementById('contact');
@@ -64,13 +65,12 @@ export const Footer = () => {
               </Link>
             </li>
             <li>
-              <a 
-                href="#contact" 
+              <button 
                 onClick={handleContactClick}
-                className="text-gray-600 hover:text-dark-red transition-colors duration-300"
+                className="text-gray-600 hover:text-dark-red transition-colors duration-300 bg-transparent border-none cursor-pointer p-0 text-left"
               >
                 Kontakt
-              </a>
+              </button>
             </li>
             <li>
               <Link to="/view-pdf" className="text-gray-600 hover:text-dark-red transition-colors duration-300">
@@ -78,14 +78,13 @@ export const Footer = () => {
               </Link>
             </li>
             <li>
-              <a 
-                href="#contact" 
+              <button 
                 onClick={handleContactClick}
-                className="text-gray-600 flex items-center gap-1 text-dark-red font-medium hover:text-dark-red/80 transition-colors duration-300"
+                className="text-gray-600 flex items-center gap-1 text-dark-red font-medium hover:text-dark-red/80 transition-colors duration-300 bg-transparent border-none cursor-pointer p-0 text-left"
               >
                 <Send size={16} />
                 Oddaj oglas
-              </a>
+              </button>
             </li>
           </ul>
         </div>
