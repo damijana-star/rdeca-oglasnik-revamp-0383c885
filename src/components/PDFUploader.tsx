@@ -1,4 +1,3 @@
-
 import React, { useState, useRef } from 'react';
 import { Input } from "@/components/ui/input";
 import { useToast } from "@/hooks/use-toast";
@@ -6,8 +5,9 @@ import { useNavigate } from "react-router-dom";
 import PDFDropzone from "./pdf/PDFDropzone";
 import PDFFileDisplay from "./pdf/PDFFileDisplay";
 import { Alert, AlertDescription } from "@/components/ui/alert";
-import { Info } from "lucide-react";
+import { Info, X } from "lucide-react";
 import { validatePDFFile, savePDFToLocalStorage, readFileAsDataURL } from "@/services/pdfService";
+import { Dialog, DialogContent } from "@/components/ui/dialog";
 
 interface PDFUploaderProps {
   onFileSelect?: (file: File) => void;
@@ -21,6 +21,8 @@ const PDFUploader: React.FC<PDFUploaderProps> = ({
   const [selectedFile, setSelectedFile] = useState<File | null>(null);
   const [uploadProgress, setUploadProgress] = useState(0);
   const [isUploading, setIsUploading] = useState(false);
+  const [previewOpen, setPreviewOpen] = useState(false);
+  const [previewUrl, setPreviewUrl] = useState<string | null>(null);
   const { toast } = useToast();
   const navigate = useNavigate();
   const fileInputRef = useRef<HTMLInputElement>(null);
@@ -52,12 +54,17 @@ const PDFUploader: React.FC<PDFUploaderProps> = ({
       onFileSelect(file);
     }
   };
-
+  
   const handleRemoveFile = () => {
     setSelectedFile(null);
     setUploadProgress(0);
     if (fileInputRef.current) {
       fileInputRef.current.value = '';
+    }
+    // Also clear preview if it exists
+    if (previewUrl) {
+      URL.revokeObjectURL(previewUrl);
+      setPreviewUrl(null);
     }
   };
   
@@ -144,8 +151,19 @@ const PDFUploader: React.FC<PDFUploaderProps> = ({
   const handlePreview = () => {
     if (!selectedFile) return;
     
+    // Create a new object URL for the file
     const fileURL = URL.createObjectURL(selectedFile);
-    window.open(fileURL, '_blank');
+    console.log("Created preview URL:", fileURL);
+    
+    // Store the URL for cleanup later
+    setPreviewUrl(fileURL);
+    
+    // Open the preview dialog
+    setPreviewOpen(true);
+  };
+  
+  const closePreview = () => {
+    setPreviewOpen(false);
   };
   
   const handleInputClick = () => {
@@ -197,6 +215,30 @@ const PDFUploader: React.FC<PDFUploaderProps> = ({
           />
         )}
       </div>
+      
+      {/* PDF Preview Dialog */}
+      <Dialog open={previewOpen} onOpenChange={setPreviewOpen}>
+        <DialogContent className="max-w-4xl w-[90vw] max-h-[90vh] p-0">
+          <div className="p-4 bg-white rounded-t-lg border-b flex justify-between items-center">
+            <h3 className="text-lg font-medium">Predogled: {selectedFile?.name}</h3>
+            <button 
+              onClick={closePreview}
+              className="text-gray-500 hover:text-gray-700"
+            >
+              <X className="h-5 w-5" />
+            </button>
+          </div>
+          <div className="h-[80vh] overflow-auto">
+            {previewUrl && (
+              <iframe 
+                src={previewUrl} 
+                className="w-full h-full border-0" 
+                title="PDF Preview"
+              />
+            )}
+          </div>
+        </DialogContent>
+      </Dialog>
     </div>
   );
 };

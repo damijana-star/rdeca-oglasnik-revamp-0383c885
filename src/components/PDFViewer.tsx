@@ -1,35 +1,33 @@
-
 import React, { useState, useEffect } from 'react';
 import { Button } from "@/components/ui/button";
-import { ChevronLeft, ChevronRight, ZoomIn, ZoomOut, Download, Maximize } from "lucide-react";
+import { ChevronLeft, ChevronRight, ZoomIn, ZoomOut, Download, Maximize, X } from "lucide-react";
 import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/dialog";
 import { ScrollArea } from "@/components/ui/scroll-area";
 
 interface PDFViewerProps {
   pdfUrl: string;
   title?: string;
+  isPreview?: boolean;
 }
 
 const PDFViewer: React.FC<PDFViewerProps> = ({ 
   pdfUrl,
-  title
+  title,
+  isPreview = false
 }) => {
-  // We'll use this for controlling UI elements, but actual zoom 
-  // will be handled differently since iframe doesn't support style.zoom
   const [zoomLevel, setZoomLevel] = useState(100);
   const [fullscreen, setFullscreen] = useState(false);
   const [isObjectFallback, setIsObjectFallback] = useState(false);
   const [loadError, setLoadError] = useState(false);
   
   useEffect(() => {
-    // Reset zoom level and error states when PDF changes
     setZoomLevel(100);
     setIsObjectFallback(false);
     setLoadError(false);
     
-    // Log information about the PDF URL for debugging
-    console.log("Loading PDF:", pdfUrl);
-    console.log("PDF is base64:", pdfUrl.startsWith('data:application/pdf'));
+    if (pdfUrl.startsWith('blob:')) {
+      console.log("Loading blob URL PDF:", pdfUrl);
+    }
   }, [pdfUrl]);
   
   const handleZoomIn = () => {
@@ -41,7 +39,6 @@ const PDFViewer: React.FC<PDFViewerProps> = ({
   };
   
   const handleDownload = () => {
-    // For base64 data
     if (pdfUrl.startsWith('data:application/pdf')) {
       const link = document.createElement('a');
       link.href = pdfUrl;
@@ -52,7 +49,6 @@ const PDFViewer: React.FC<PDFViewerProps> = ({
       return;
     }
     
-    // For regular URLs (local or remote)
     const link = document.createElement('a');
     link.href = pdfUrl;
     link.download = title || 'document.pdf';
@@ -71,10 +67,9 @@ const PDFViewer: React.FC<PDFViewerProps> = ({
     setLoadError(true);
   };
 
-  // Determine if we're using a base64 encoded PDF or a file URL
   const isPdfBase64 = pdfUrl.startsWith('data:application/pdf');
+  const isPdfBlob = pdfUrl.startsWith('blob:');
   
-  // Create a direct link for users to open in a new tab
   const openInNewTab = () => {
     window.open(pdfUrl, '_blank');
   };
@@ -160,8 +155,8 @@ const PDFViewer: React.FC<PDFViewerProps> = ({
             </div>
           </object>
         ) : (
-          <embed
-            src={`${pdfUrl}#toolbar=0&navpanes=0&scrollbar=0&view=FitH`}
+          <iframe
+            src={`${pdfUrl}${isPdfBlob || isPdfBase64 ? '' : '#toolbar=0&navpanes=0&scrollbar=0&view=FitH'}`}
             type="application/pdf"
             className="w-full h-full"
             style={{ 
