@@ -21,14 +21,14 @@ const PDFUploadPage = () => {
             <h2 className="text-xl font-semibold mb-4">Navodila za nalaganje</h2>
             <ol className="list-decimal pl-5 space-y-2 mb-6">
               <li>Izberite PDF datoteko s klikom na gumb "Izberi datoteko"</li>
-              <li>Največja dovoljena velikost datoteke je 10MB</li>
+              <li>Največja dovoljena velikost datoteke je 20MB</li>
               <li>Po izbiri datoteke kliknite "Naloži datoteko"</li>
               <li>Počakajte, da se datoteka naloži</li>
               <li>Po uspešnem nalaganju boste videli potrditev</li>
             </ol>
             
             <div className="bg-gray-50 p-4 rounded-md mb-4">
-              <PDFUploader onFileSelect={handleFileSelect} maxSizeMB={10} />
+              <PDFUploader onFileSelect={handleFileSelect} maxSizeMB={20} />
             </div>
             
             <p className="text-sm text-gray-600">

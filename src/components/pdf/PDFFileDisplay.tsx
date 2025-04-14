@@ -64,11 +64,11 @@ const PDFFileDisplay: React.FC<PDFFileDisplayProps> = ({
       
       {!isUploading && uploadProgress < 100 && (
         <Button 
-          className="w-full mt-2 bg-[#e32530] hover:bg-[#e32530]/90 flex items-center justify-center"
+          className="w-full mt-4 bg-[#e32530] hover:bg-[#e32530]/90 flex items-center justify-center text-lg py-3 font-semibold"
           onClick={onUpload}
           disabled={isUploading}
         >
-          <Upload className="h-4 w-4 mr-2" />
+          <Upload className="h-5 w-5 mr-2" />
           Naloži datoteko
         </Button>
       )}

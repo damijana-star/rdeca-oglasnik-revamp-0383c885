@@ -1,4 +1,3 @@
-
 import { toast } from "@/hooks/use-toast";
 import pako from 'pako';
 
@@ -30,8 +29,8 @@ export const compressData = (data: string): string => {
       bytes[i] = binaryString.charCodeAt(i);
     }
     
-    // Compress the data
-    const compressed = pako.deflate(bytes);
+    // Compress the data with highest compression level (9)
+    const compressed = pako.deflate(bytes, { level: 9 });
     console.log("Data compressed successfully");
     
     // Convert back to base64 string
@@ -82,10 +81,23 @@ export const decompressData = (data: string): string => {
   }
 };
 
+export const clearLocalStorage = () => {
+  console.log("Clearing localStorage to make space for new PDF");
+  // Keep track of what we're removing
+  for (let key in localStorage) {
+    if (localStorage.hasOwnProperty(key)) {
+      console.log(`Removing item: ${key}`);
+      localStorage.removeItem(key);
+    }
+  }
+  console.log("localStorage cleared successfully");
+};
+
 export const savePDFToLocalStorage = (pdfInfo: PDFInfo): boolean => {
   try {
     console.log("Attempting to save PDF to localStorage");
-    const MAX_LOCAL_STORAGE_SIZE = 10 * 1024 * 1024; // 10MB limit
+    // Increased to 50MB limit
+    const MAX_LOCAL_STORAGE_SIZE = 50 * 1024 * 1024; 
     
     // Try compression if the file is large and not already compressed
     if (!pdfInfo.compressed && pdfInfo.data.startsWith('data:application/pdf;base64,')) {
@@ -116,28 +128,15 @@ export const savePDFToLocalStorage = (pdfInfo: PDFInfo): boolean => {
     localStorage.removeItem('lastUploadedPdf');
     
     if (getLocalStorageSize() + infoSize > MAX_LOCAL_STORAGE_SIZE) {
-      // Try clearing other localStorage items first
-      console.log("Not enough space, clearing other items");
-      let clearedSpace = 0;
-      for (let key in localStorage) {
-        if (localStorage.hasOwnProperty(key)) {
-          clearedSpace += (localStorage[key].length + key.length) * 2;
-          localStorage.removeItem(key);
-          console.log(`Removed item: ${key}, cleared space: ${clearedSpace/1024} KB`);
-          
-          // If we've cleared enough space, break
-          if (getLocalStorageSize() + infoSize <= MAX_LOCAL_STORAGE_SIZE) {
-            break;
-          }
-        }
-      }
+      // Clear all localStorage to make room
+      clearLocalStorage();
       
       // Check if we now have enough space
       if (getLocalStorageSize() + infoSize > MAX_LOCAL_STORAGE_SIZE) {
         console.error("Still not enough space after clearing localStorage");
         toast({
-          title: "Napaka pri shranjevanju",
-          description: "PDF datoteka je prevelika za shranjevanje tudi po kompresiji. Poskusite z manjšo datoteko.",
+          title: "PDF prevelik",
+          description: `PDF datoteka je prevelika (${(infoSize/1024/1024).toFixed(2)}MB). Poskusite z manjšo datoteko.`,
           variant: "destructive"
         });
         return false;
