@@ -1,3 +1,4 @@
+
 import React, { useEffect } from 'react';
 import { useParams, Link, useNavigate } from "react-router-dom";
 import Header from "@/components/Header";
@@ -196,7 +197,7 @@ const allBlogPosts = [{
 }];
 
 const BlogPostPage = () => {
-  const { id, slug } = useParams<{ id: string, slug: string }>();
+  const { id, slug } = useParams<{ id: string, slug?: string }>();
   const navigate = useNavigate();
   const postId = parseInt(id || "0");
   
@@ -234,7 +235,7 @@ const BlogPostPage = () => {
   
   // If slug doesn't match or is missing, redirect to canonical URL
   useEffect(() => {
-    if (slug !== expectedSlug) {
+    if (slug !== expectedSlug && expectedSlug) {
       navigate(`/blog/${post.id}/${expectedSlug}`, { replace: true });
     }
   }, [slug, expectedSlug, post.id, navigate]);

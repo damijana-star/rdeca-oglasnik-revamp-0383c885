@@ -1,4 +1,3 @@
-
 import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
@@ -17,12 +16,10 @@ import { TooltipProvider } from "@/components/ui/tooltip";
 
 const queryClient = new QueryClient();
 
-// ScrollToTop component to handle scrolling when routes change
 const ScrollToTop = () => {
   const { pathname, hash } = useLocation();
 
   useEffect(() => {
-    // If there's a hash, try to scroll to that element
     if (hash) {
       setTimeout(() => {
         const element = document.getElementById(hash.substring(1));
@@ -31,7 +28,6 @@ const ScrollToTop = () => {
         }
       }, 100);
     } else {
-      // Otherwise scroll to top of page
       window.scrollTo(0, 0);
     }
   }, [pathname, hash]);
