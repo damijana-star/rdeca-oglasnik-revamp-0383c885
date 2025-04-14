@@ -4,7 +4,7 @@ import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import PDFViewer from "@/components/PDFViewer";
 import { useToast } from "@/hooks/use-toast";
-import { useLocation } from "react-router-dom";
+import { useLocation, useSearchParams } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { FileText, Upload } from "lucide-react";
 import { Link } from "react-router-dom";
@@ -20,6 +20,7 @@ const PDFViewPage = () => {
   const { toast } = useToast();
   const location = useLocation();
   const isMobile = useIsMobile();
+  const [searchParams] = useSearchParams();
   
   useEffect(() => {
     // Set loading state
@@ -31,6 +32,18 @@ const PDFViewPage = () => {
     // Check if we're coming from the upload page
     const fromUpload = location.state && location.state.fromUpload;
     console.log("Coming from upload:", fromUpload);
+    
+    // Check if there's a URL parameter
+    const urlParam = searchParams.get('url');
+    const titleParam = searchParams.get('title');
+    
+    if (urlParam) {
+      console.log("Loading PDF from URL parameter:", urlParam);
+      setLastUploadedPdf(decodeURIComponent(urlParam));
+      setPdfTitle(titleParam ? decodeURIComponent(titleParam) : "External PDF");
+      setIsLoading(false);
+      return;
+    }
     
     try {
       loadPdfFromStorage();
@@ -46,7 +59,7 @@ const PDFViewPage = () => {
       setIsLoading(false);
     }
     
-  }, [toast, location.state]);
+  }, [toast, location.state, searchParams]);
   
   const loadPdfFromStorage = () => {
     const storedPdfInfo = localStorage.getItem('lastUploadedPdf');

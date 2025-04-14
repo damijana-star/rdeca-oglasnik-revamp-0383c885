@@ -23,16 +23,25 @@ const PDFViewer: React.FC<PDFViewerProps> = ({
   const [fullscreen, setFullscreen] = useState(false);
   const [isObjectFallback, setIsObjectFallback] = useState(false);
   const [loadError, setLoadError] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
   const isMobile = useIsMobile();
   
   useEffect(() => {
     setZoomLevel(isMobile ? 100 : 100);
     setIsObjectFallback(false);
     setLoadError(false);
+    setIsLoading(true);
     
     if (pdfUrl.startsWith('blob:')) {
       console.log("Loading blob URL PDF:", pdfUrl);
     }
+    
+    // Reset loading state after a delay
+    const timer = setTimeout(() => {
+      setIsLoading(false);
+    }, 1500);
+    
+    return () => clearTimeout(timer);
   }, [pdfUrl, isMobile]);
   
   const handleZoomIn = () => {
@@ -137,7 +146,14 @@ const PDFViewer: React.FC<PDFViewerProps> = ({
         className="border border-gray-200 rounded-b-lg overflow-hidden bg-gray-50"
         style={{ height: containerHeight }}
       >
-        {loadError ? (
+        {isLoading ? (
+          <div className="flex items-center justify-center h-full">
+            <div className="animate-pulse flex flex-col items-center">
+              <div className="h-12 w-12 bg-gray-200 rounded-full mb-2"></div>
+              <div className="h-4 w-24 bg-gray-200 rounded"></div>
+            </div>
+          </div>
+        ) : loadError ? (
           <div className="flex flex-col items-center justify-center p-6 text-center bg-white h-full">
             <p className="mb-4 text-gray-600">PDF ni mogoče prikazati. Poskusite s prenosom.</p>
             <div className="flex flex-col sm:flex-row gap-2">
@@ -174,6 +190,12 @@ const PDFViewer: React.FC<PDFViewerProps> = ({
         ) : isMobile ? (
           // Enhanced mobile view with better display options
           <div className="flex flex-col items-center justify-center h-full p-4">
+            <iframe
+              src={`${pdfUrl}${isPdfBlob || isPdfBase64 ? '' : '#toolbar=0&navpanes=0&scrollbar=0&view=FitH'}`}
+              className="w-full h-full mb-4"
+              style={{ height: '60%' }}
+              onError={handleError}
+            />
             <p className="text-gray-600 mb-6 text-center text-sm">Za najboljšo izkušnjo priporočamo, da PDF dokument odprete ali prenesete.</p>
             <div className="flex flex-col space-y-3 w-full max-w-xs">
               <Button onClick={openInNewTab} variant="outline" className="w-full justify-center">
