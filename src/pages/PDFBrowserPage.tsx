@@ -7,33 +7,69 @@ import { Button } from "@/components/ui/button";
 import { FileText, Upload } from "lucide-react";
 import { Link } from "react-router-dom";
 import { useToast } from "@/hooks/use-toast";
+import { decompressData } from "@/services/pdfService";
 
 const PDFBrowserPage = () => {
   const [currentPdf, setCurrentPdf] = useState<string>("/sample.pdf");
-  const [pdfTitle, setPdfTitle] = useState<string>("Nanoski Oglasnik - April 2025");
+  const [pdfTitle, setPdfTitle] = useState<string>("Sample PDF");
   const [pdfError, setPdfError] = useState<boolean>(false);
-  const { toast } = useToast();
-
-  // Sample PDFs that users can choose from
-  const availablePdfs = [
+  const [availablePdfs, setAvailablePdfs] = useState<Array<{ url: string; title: string }>>([
     {
       url: "/sample.pdf",
-      title: "Nanoski Oglasnik - April 2025"
+      title: "Sample PDF"
     },
-    // Add more sample PDFs here in the future
-  ];
+  ]);
+  const { toast } = useToast();
 
   useEffect(() => {
     // Reset error state when changing PDF
     setPdfError(false);
-  }, [currentPdf]);
+    
+    // Try to load previously uploaded PDF
+    const storedPdfInfo = localStorage.getItem('lastUploadedPdf');
+    if (storedPdfInfo) {
+      try {
+        const pdfInfo = JSON.parse(storedPdfInfo);
+        
+        // Check if we have base64 data
+        if (pdfInfo && pdfInfo.data) {
+          // Check if the data is compressed and decompress if needed
+          const pdfData = pdfInfo.compressed ? decompressData(pdfInfo.data) : pdfInfo.data;
+          
+          // Add the uploaded PDF to the available PDFs
+          const newPdf = {
+            url: pdfData,
+            title: pdfInfo.title || "Uploaded PDF"
+          };
+          
+          // Check if we already have this PDF in the list
+          const exists = availablePdfs.some(pdf => pdf.title === newPdf.title);
+          
+          if (!exists) {
+            setAvailablePdfs(prev => [newPdf, ...prev]);
+            
+            // Automatically select the uploaded PDF
+            setCurrentPdf(pdfData);
+            setPdfTitle(pdfInfo.title || "Uploaded PDF");
+            
+            toast({
+              title: "Uploaded PDF loaded",
+              description: `Displaying: ${pdfInfo.title || "Uploaded PDF"}`,
+            });
+          }
+        }
+      } catch (error) {
+        console.error("Error parsing stored PDF info:", error);
+      }
+    }
+  }, [toast]); // eslint-disable-line react-hooks/exhaustive-deps
 
   const selectPdf = (url: string, title: string) => {
     setCurrentPdf(url);
     setPdfTitle(title);
     toast({
-      title: "PDF naložen",
-      description: `Prikazujem: ${title}`,
+      title: "PDF loaded",
+      description: `Displaying: ${title}`,
     });
   };
 
@@ -41,8 +77,8 @@ const PDFBrowserPage = () => {
     setPdfError(true);
     toast({
       variant: "destructive",
-      title: "Napaka pri nalaganju",
-      description: "PDF ni mogoče prikazati. Prosimo, poskusite z drugo datoteko.",
+      title: "Error loading PDF",
+      description: "The PDF could not be displayed. Please try with another file.",
     });
   };
 
@@ -56,7 +92,7 @@ const PDFBrowserPage = () => {
             <Link to="/upload-pdf">
               <Button variant="outline" className="flex items-center gap-2">
                 <Upload className="h-4 w-4" />
-                Naloži svojo PDF datoteko
+                Upload your own PDF
               </Button>
             </Link>
           </div>
@@ -65,9 +101,9 @@ const PDFBrowserPage = () => {
             {pdfError ? (
               <div className="p-8 text-center">
                 <FileText className="h-12 w-12 text-gray-400 mx-auto mb-4" />
-                <h3 className="text-lg font-medium mb-2">PDF datoteke ni mogoče prikazati</h3>
-                <p className="text-gray-500 mb-4">PDF datoteka ne obstaja ali ni dosegljiva.</p>
-                <Button onClick={() => setPdfError(false)}>Poskusi znova</Button>
+                <h3 className="text-lg font-medium mb-2">PDF cannot be displayed</h3>
+                <p className="text-gray-500 mb-4">The PDF file doesn't exist or is not accessible.</p>
+                <Button onClick={() => setPdfError(false)}>Try again</Button>
               </div>
             ) : (
               <PDFViewer 
