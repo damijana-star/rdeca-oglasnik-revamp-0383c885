@@ -18,11 +18,14 @@ export const ContactForm = () => {
   function onSubmit(values: FormValues) {
     setIsSubmitting(true);
     
+    // Initialize EmailJS with the user ID
+    emailjs.init(EMAILJS_USER_ID);
+    
     // Prepare the email template parameters
     const templateParams = {
       from_name: values.name,
       reply_to: values.email,
-      to_email: RECIPIENT_EMAIL, // Explicitly set the recipient email
+      to_email: RECIPIENT_EMAIL,
       phone: values.phone,
       message: values.message
     };
@@ -31,8 +34,7 @@ export const ContactForm = () => {
     emailjs.send(
       EMAILJS_SERVICE_ID,
       EMAILJS_TEMPLATE_ID,
-      templateParams,
-      EMAILJS_USER_ID
+      templateParams
     )
     .then((response) => {
       console.log('SUCCESS!', response.status, response.text);
