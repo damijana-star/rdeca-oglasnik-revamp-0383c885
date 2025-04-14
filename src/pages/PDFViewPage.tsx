@@ -9,6 +9,7 @@ import { Button } from "@/components/ui/button";
 import { FileText, Upload } from "lucide-react";
 import { Link } from "react-router-dom";
 import { decompressData } from "@/services/pdfService";
+import { useIsMobile } from "@/hooks/use-mobile";
 
 const PDFViewPage = () => {
   // Default to the sample PDF file
@@ -18,6 +19,7 @@ const PDFViewPage = () => {
   const [loadError, setLoadError] = useState(false);
   const { toast } = useToast();
   const location = useLocation();
+  const isMobile = useIsMobile();
   
   useEffect(() => {
     // Set loading state
@@ -104,21 +106,21 @@ const PDFViewPage = () => {
   return (
     <div className="min-h-screen flex flex-col">
       <Header />
-      <main className="flex-grow container py-12">
-        <div className="max-w-5xl mx-auto">
-          <h1 className="text-3xl font-bold mb-8">{pdfTitle}</h1>
+      <main className="flex-grow container py-6 md:py-12">
+        <div className="max-w-5xl mx-auto px-4">
+          <h1 className="text-2xl md:text-3xl font-bold mb-4 md:mb-8">{pdfTitle}</h1>
           
           {isLoading ? (
-            <div className="flex items-center justify-center p-12">
+            <div className="flex items-center justify-center p-6 md:p-12">
               <div className="animate-pulse">
                 <p className="text-gray-500">Nalaganje PDF datoteke...</p>
               </div>
             </div>
           ) : loadError ? (
-            <div className="bg-white rounded-lg shadow-sm p-6 mb-8 text-center">
-              <FileText className="h-16 w-16 text-gray-400 mx-auto mb-4" />
-              <h2 className="text-xl font-semibold mb-2">Napaka pri nalaganju PDF datoteke</h2>
-              <p className="text-gray-600 mb-6">PDF datoteke ni bilo mogoče naložiti. Poskusite z nalaganjem nove datoteke.</p>
+            <div className="bg-white rounded-lg shadow-sm p-4 md:p-6 mb-4 md:mb-8 text-center">
+              <FileText className="h-12 w-12 md:h-16 md:w-16 text-gray-400 mx-auto mb-4" />
+              <h2 className="text-lg md:text-xl font-semibold mb-2">Napaka pri nalaganju PDF datoteke</h2>
+              <p className="text-gray-600 mb-4 md:mb-6">PDF datoteke ni bilo mogoče naložiti. Poskusite z nalaganjem nove datoteke.</p>
               <Link to="/upload-pdf">
                 <Button className="bg-[#e32530] hover:bg-[#e32530]/90">
                   <Upload className="h-4 w-4 mr-2" />
@@ -127,7 +129,7 @@ const PDFViewPage = () => {
               </Link>
             </div>
           ) : (
-            <div className="bg-white rounded-lg shadow-sm p-6 mb-8">
+            <div className="bg-white rounded-lg shadow-sm p-3 md:p-6 mb-4 md:mb-8">
               <PDFViewer 
                 pdfUrl={lastUploadedPdf} 
                 title={pdfTitle} 
@@ -135,11 +137,11 @@ const PDFViewPage = () => {
             </div>
           )}
           
-          <div className="mt-6 flex justify-center">
+          <div className="mt-4 md:mt-6 flex justify-center">
             <Link to="/upload-pdf">
               <Button variant="outline" className="flex items-center gap-2">
                 <Upload className="h-4 w-4" />
-                Naloži drugo PDF datoteko
+                {isMobile ? "Naloži drugo" : "Naloži drugo PDF datoteko"}
               </Button>
             </Link>
           </div>

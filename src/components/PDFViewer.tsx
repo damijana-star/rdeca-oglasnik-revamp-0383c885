@@ -4,6 +4,7 @@ import { Button } from "@/components/ui/button";
 import { ChevronLeft, ChevronRight, ZoomIn, ZoomOut, Download, Maximize, X } from "lucide-react";
 import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/dialog";
 import { ScrollArea } from "@/components/ui/scroll-area";
+import { useIsMobile } from "@/hooks/use-mobile";
 
 interface PDFViewerProps {
   pdfUrl: string;
@@ -22,16 +23,17 @@ const PDFViewer: React.FC<PDFViewerProps> = ({
   const [fullscreen, setFullscreen] = useState(false);
   const [isObjectFallback, setIsObjectFallback] = useState(false);
   const [loadError, setLoadError] = useState(false);
+  const isMobile = useIsMobile();
   
   useEffect(() => {
-    setZoomLevel(100);
+    setZoomLevel(isMobile ? 100 : 100);
     setIsObjectFallback(false);
     setLoadError(false);
     
     if (pdfUrl.startsWith('blob:')) {
       console.log("Loading blob URL PDF:", pdfUrl);
     }
-  }, [pdfUrl]);
+  }, [pdfUrl, isMobile]);
   
   const handleZoomIn = () => {
     setZoomLevel(prev => Math.min(prev + 25, 200));
@@ -81,6 +83,9 @@ const PDFViewer: React.FC<PDFViewerProps> = ({
     window.open(pdfUrl, '_blank');
   };
 
+  // Mobile optimization: use different height for mobile
+  const containerHeight = isMobile ? "50vh" : "70vh";
+
   return (
     <div className="w-full flex flex-col">
       <div className="bg-gray-100 p-2 rounded-t-lg flex items-center justify-between">
@@ -126,11 +131,14 @@ const PDFViewer: React.FC<PDFViewerProps> = ({
         </div>
       </div>
       
-      <div className="border border-gray-200 rounded-b-lg overflow-hidden bg-gray-50 h-[70vh]">
+      <div 
+        className={`border border-gray-200 rounded-b-lg overflow-hidden bg-gray-50`}
+        style={{ height: containerHeight }}
+      >
         {loadError ? (
           <div className="flex flex-col items-center justify-center p-6 text-center bg-white h-full">
             <p className="mb-4 text-gray-600">PDF ni mogoče prikazati. Poskusite s prenosom.</p>
-            <div className="flex gap-2">
+            <div className="flex flex-col sm:flex-row gap-2">
               <Button onClick={openInNewTab} variant="outline">
                 <Maximize className="h-4 w-4 mr-2" />
                 Odpri v novem zavihku
@@ -161,6 +169,21 @@ const PDFViewer: React.FC<PDFViewerProps> = ({
               </Button>
             </div>
           </object>
+        ) : isMobile ? (
+          // Mobile-specific rendering with better optimization
+          <div className="flex flex-col items-center justify-center h-full">
+            <p className="text-gray-600 mb-4">PDF predogled ni optimiziran za mobilne naprave.</p>
+            <div className="flex flex-col space-y-2 w-full px-4">
+              <Button onClick={openInNewTab} className="w-full">
+                <Maximize className="h-4 w-4 mr-2" />
+                Odpri v brskalniku
+              </Button>
+              <Button onClick={handleDownload} className="w-full bg-[#e32530] hover:bg-[#e32530]/90">
+                <Download className="h-4 w-4 mr-2" />
+                Prenesi PDF
+              </Button>
+            </div>
+          </div>
         ) : (
           <iframe
             src={`${pdfUrl}${isPdfBlob || isPdfBase64 ? '' : '#toolbar=0&navpanes=0&scrollbar=0&view=FitH'}`}
