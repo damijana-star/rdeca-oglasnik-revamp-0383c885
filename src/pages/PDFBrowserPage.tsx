@@ -1,32 +1,65 @@
 
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 
 const PDFBrowserPage = () => {
+  const [isScriptLoaded, setIsScriptLoaded] = useState(false);
+  const [isWidgetLoaded, setIsWidgetLoaded] = useState(false);
+  
   useEffect(() => {
-    // Create and append the Elfsight script
-    const script = document.createElement('script');
-    script.src = 'https://static.elfsight.com/platform/platform.js';
-    script.setAttribute('data-use-service-core', '');
-    script.defer = true;
-    document.head.appendChild(script);
-
-    // Create a div for the widget
-    const widgetDiv = document.getElementById('elfsight-widget-container');
-    if (widgetDiv) {
-      const appDiv = document.createElement('div');
-      appDiv.className = 'elfsight-app-e19d93cc850940f2a1ec9d0f0cbd122c';
-      widgetDiv.appendChild(appDiv);
+    // Check if script is already loaded
+    const existingScript = document.querySelector('script[src="https://static.elfsight.com/platform/platform.js"]');
+    
+    if (!existingScript) {
+      // Create and append the Elfsight script
+      const script = document.createElement('script');
+      script.src = 'https://static.elfsight.com/platform/platform.js';
+      script.defer = true;
+      script.onload = () => {
+        console.log("Elfsight script loaded successfully");
+        setIsScriptLoaded(true);
+      };
+      
+      document.head.appendChild(script);
+      
+      // Clean up function
+      return () => {
+        if (script && document.head.contains(script)) {
+          document.head.removeChild(script);
+        }
+      };
+    } else {
+      console.log("Elfsight script already exists in the document");
+      setIsScriptLoaded(true);
     }
-
-    return () => {
-      // Clean up
-      if (script && document.head.contains(script)) {
-        document.head.removeChild(script);
-      }
-    };
   }, []);
+  
+  useEffect(() => {
+    if (isScriptLoaded) {
+      // Create widget container after script is loaded
+      const container = document.getElementById('elfsight-widget-container');
+      if (container && !isWidgetLoaded) {
+        // Clear any existing content first
+        container.innerHTML = '';
+        
+        // Create the widget div
+        const widgetDiv = document.createElement('div');
+        widgetDiv.className = 'elfsight-app-e19d93cc850940f2a1ec9d0f0cbd122c';
+        container.appendChild(widgetDiv);
+        
+        console.log("Elfsight widget container created");
+        setIsWidgetLoaded(true);
+        
+        // Try to force widget initialization if the platform is already loaded
+        if (window.eapps && typeof window.eapps.reinitializeWidget === 'function') {
+          setTimeout(() => {
+            window.eapps.reinitializeWidget('e19d93cc850940f2a1ec9d0f0cbd122c');
+          }, 500);
+        }
+      }
+    }
+  }, [isScriptLoaded, isWidgetLoaded]);
 
   return (
     <div className="min-h-screen flex flex-col">
@@ -37,7 +70,11 @@ const PDFBrowserPage = () => {
           
           <div className="bg-white rounded-lg shadow-sm p-4">
             <div id="elfsight-widget-container" className="w-full rounded-md min-h-[600px]">
-              {/* Elfsight widget will be dynamically inserted here */}
+              {!isScriptLoaded && (
+                <div className="flex items-center justify-center h-[400px]">
+                  <p className="text-gray-500">Nalaganje...</p>
+                </div>
+              )}
             </div>
           </div>
         </div>
@@ -46,5 +83,14 @@ const PDFBrowserPage = () => {
     </div>
   );
 };
+
+// Add this global type definition for the eapps object
+declare global {
+  interface Window {
+    eapps?: {
+      reinitializeWidget?: (widgetId: string) => void;
+    };
+  }
+}
 
 export default PDFBrowserPage;
