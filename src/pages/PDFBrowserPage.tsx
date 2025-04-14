@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from 'react';
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
@@ -33,7 +32,6 @@ const PDFBrowserPage = () => {
   useEffect(() => {
     setPdfError(false);
     
-    // Load previously saved external PDFs
     const externalPdfs = localStorage.getItem('externalPdfs');
     let externalPdfsList: Array<{ url: string; title: string; isExternal: boolean }> = [];
     
@@ -76,15 +74,26 @@ const PDFBrowserPage = () => {
         console.error("Error parsing stored PDF info:", error);
       }
     } else {
-      // If no uploaded PDF, just show the external ones
       setAvailablePdfs(externalPdfsList);
       
-      // If there are external PDFs, select the first one
       if (externalPdfsList.length > 0) {
         selectPdf(externalPdfsList[0].url, externalPdfsList[0].title);
       }
     }
   }, [toast]);
+
+  useEffect(() => {
+    const script = document.createElement('script');
+    script.src = "https://static.elfsight.com/platform/platform.js";
+    script.async = true;
+    document.body.appendChild(script);
+    
+    return () => {
+      if (document.body.contains(script)) {
+        document.body.removeChild(script);
+      }
+    };
+  }, []);
 
   const selectPdf = (url: string, title: string) => {
     setCurrentPdf(url);
@@ -125,18 +134,15 @@ const PDFBrowserPage = () => {
       isExternal: true
     };
     
-    // Check if this PDF is already in the list
     const exists = availablePdfs.some(pdf => pdf.url === newPdf.url);
     
     if (!exists) {
       const updatedPdfs = [...availablePdfs, newPdf];
       setAvailablePdfs(updatedPdfs);
       
-      // Save external PDFs to localStorage
       const externalPdfs = updatedPdfs.filter(pdf => pdf.isExternal);
       localStorage.setItem('externalPdfs', JSON.stringify(externalPdfs));
       
-      // Select the newly added PDF
       selectPdf(newPdf.url, newPdf.title);
       
       toast({
@@ -151,7 +157,6 @@ const PDFBrowserPage = () => {
       });
     }
     
-    // Reset form and close dialog
     setExternalPdfUrl("");
     setExternalPdfTitle("");
     setIsAddLinkDialogOpen(false);
@@ -167,7 +172,6 @@ const PDFBrowserPage = () => {
       return;
     }
     
-    // Validate the URL is from SharePoint
     if (!sharePointUrl.includes('sharepoint.com')) {
       toast({
         variant: "destructive",
@@ -180,24 +184,18 @@ const PDFBrowserPage = () => {
     setIsProcessing(true);
     
     try {
-      // SharePoint URLs need to be processed differently
-      // We'll convert the sharing URL to a direct download URL
       let directUrl = sharePointUrl;
       
-      // If it's a sharing URL with "?e=" parameter, we need to handle it
       if (directUrl.includes('?e=')) {
-        // Remove the sharing parameters and add direct download parameter
         directUrl = directUrl.split('?')[0] + '?download=1';
       }
       
-      // If URL doesn't already have download parameter, add it
       if (!directUrl.includes('download=1')) {
         directUrl = directUrl.includes('?') 
           ? directUrl + '&download=1' 
           : directUrl + '?download=1';
       }
       
-      // Create the PDF object
       const pdfTitle = sharePointTitle || "SharePoint PDF";
       
       const newPdf = {
@@ -206,18 +204,15 @@ const PDFBrowserPage = () => {
         isExternal: true
       };
       
-      // Check if this PDF is already in the list
       const exists = availablePdfs.some(pdf => pdf.url === newPdf.url);
       
       if (!exists) {
         const updatedPdfs = [...availablePdfs, newPdf];
         setAvailablePdfs(updatedPdfs);
         
-        // Save external PDFs to localStorage
         const externalPdfs = updatedPdfs.filter(pdf => pdf.isExternal);
         localStorage.setItem('externalPdfs', JSON.stringify(externalPdfs));
         
-        // Select the newly added PDF
         selectPdf(newPdf.url, newPdf.title);
         
         toast({
@@ -232,7 +227,6 @@ const PDFBrowserPage = () => {
         });
       }
       
-      // Reset form and close dialog
       setSharePointUrl("");
       setSharePointTitle("");
       setIsAddLinkDialogOpen(false);
@@ -262,6 +256,11 @@ const PDFBrowserPage = () => {
               <LinkIcon className="h-4 w-4" />
               <span className={isMobile ? "hidden" : ""}>Add External PDF</span>
             </Button>
+          </div>
+          
+          <div className="mb-8 bg-white rounded-lg shadow-sm p-4">
+            <h3 className="text-lg font-medium mb-4">Nanoski Oglasnik - Prelistaj</h3>
+            <div className="elfsight-app-e19d93cc-8509-40f2-a1ec-9d0f0cbd122c" data-elfsight-app-lazy></div>
           </div>
           
           {availablePdfs.length === 0 ? (
@@ -332,7 +331,6 @@ const PDFBrowserPage = () => {
         </div>
       </main>
       
-      {/* Add External PDF Dialog */}
       <Dialog open={isAddLinkDialogOpen} onOpenChange={setIsAddLinkDialogOpen}>
         <DialogContent>
           <DialogHeader>
