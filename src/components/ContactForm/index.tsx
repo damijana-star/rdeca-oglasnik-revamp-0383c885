@@ -34,8 +34,8 @@ export const ContactForm = () => {
   return (
     <div id="contact" className="section bg-gray-50 py-16">
       <div className="container">
+        {/* Removed h1 "Kontaktirajte nas" */}
         <div className="text-center mb-12">
-          <h2 className="text-2xl md:text-3xl font-bold mb-2">Kontaktirajte nas</h2>
           <p className="text-gray-600 max-w-2xl mx-auto">
             Imate vprašanje ali potrebujete dodatne informacije? Izpolnite spodnji obrazec in odgovorili vam bomo v najkrajšem možnem času.
           </p>
