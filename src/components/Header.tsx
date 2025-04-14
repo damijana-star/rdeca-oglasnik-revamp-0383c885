@@ -51,7 +51,7 @@ export const Header = () => {
               Kontakt
             </Link>
             <Button variant="outline" className="flex items-center gap-2 border-[#e32530] text-[#e32530]" asChild>
-              <Link to="/view-pdf">
+              <Link to="/browse-pdf">
                 <FileText className="h-4 w-4" />
                 Prelistaj
               </Link>
@@ -87,7 +87,7 @@ export const Header = () => {
               Kontakt
             </Link>
             <Button variant="outline" className="flex items-center justify-center gap-2 border-[#e32530] text-[#e32530]" asChild>
-              <Link to="/view-pdf">
+              <Link to="/browse-pdf">
                 <FileText className="h-4 w-4" />
                 Prelistaj
               </Link>
