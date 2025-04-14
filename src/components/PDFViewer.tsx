@@ -83,8 +83,8 @@ const PDFViewer: React.FC<PDFViewerProps> = ({
     window.open(pdfUrl, '_blank');
   };
 
-  // Mobile optimization: use different height for mobile
-  const containerHeight = isMobile ? "50vh" : "70vh";
+  // Mobile optimization: use different height based on device
+  const containerHeight = isMobile ? "40vh" : "70vh";
 
   return (
     <div className="w-full flex flex-col">
@@ -94,16 +94,18 @@ const PDFViewer: React.FC<PDFViewerProps> = ({
             variant="ghost" 
             size="sm" 
             onClick={handleZoomOut}
-            disabled={zoomLevel <= 50}
+            disabled={zoomLevel <= 50 || isMobile}
+            className={isMobile ? "hidden" : ""}
           >
             <ZoomOut className="h-4 w-4" />
           </Button>
-          <span className="text-sm font-medium">{zoomLevel}%</span>
+          <span className={`text-sm font-medium ${isMobile ? "hidden" : ""}`}>{zoomLevel}%</span>
           <Button 
             variant="ghost" 
             size="sm" 
             onClick={handleZoomIn}
-            disabled={zoomLevel >= 200}
+            disabled={zoomLevel >= 200 || isMobile}
+            className={isMobile ? "hidden" : ""}
           >
             <ZoomIn className="h-4 w-4" />
           </Button>
@@ -114,7 +116,7 @@ const PDFViewer: React.FC<PDFViewerProps> = ({
             variant="ghost" 
             size="sm" 
             onClick={openInNewTab}
-            className="hidden sm:flex items-center gap-1"
+            className="flex items-center gap-1"
           >
             <Maximize className="h-4 w-4" />
             <span className="hidden sm:inline">Odpri</span>
@@ -132,7 +134,7 @@ const PDFViewer: React.FC<PDFViewerProps> = ({
       </div>
       
       <div 
-        className={`border border-gray-200 rounded-b-lg overflow-hidden bg-gray-50`}
+        className="border border-gray-200 rounded-b-lg overflow-hidden bg-gray-50"
         style={{ height: containerHeight }}
       >
         {loadError ? (
@@ -157,7 +159,7 @@ const PDFViewer: React.FC<PDFViewerProps> = ({
             style={{ 
               transform: `scale(${zoomLevel / 100})`, 
               transformOrigin: 'top left',
-              width: `${10000 / zoomLevel}%`  // Adjust width based on zoom
+              width: `${10000 / zoomLevel}%`
             }}
             onError={handleObjectError}
           >
@@ -170,15 +172,15 @@ const PDFViewer: React.FC<PDFViewerProps> = ({
             </div>
           </object>
         ) : isMobile ? (
-          // Mobile-specific rendering with better optimization
-          <div className="flex flex-col items-center justify-center h-full">
-            <p className="text-gray-600 mb-4">PDF predogled ni optimiziran za mobilne naprave.</p>
-            <div className="flex flex-col space-y-2 w-full px-4">
-              <Button onClick={openInNewTab} className="w-full">
+          // Enhanced mobile view with better display options
+          <div className="flex flex-col items-center justify-center h-full p-4">
+            <p className="text-gray-600 mb-6 text-center text-sm">Za najboljšo izkušnjo priporočamo, da PDF dokument odprete ali prenesete.</p>
+            <div className="flex flex-col space-y-3 w-full max-w-xs">
+              <Button onClick={openInNewTab} variant="outline" className="w-full justify-center">
                 <Maximize className="h-4 w-4 mr-2" />
                 Odpri v brskalniku
               </Button>
-              <Button onClick={handleDownload} className="w-full bg-[#e32530] hover:bg-[#e32530]/90">
+              <Button onClick={handleDownload} className="w-full bg-[#e32530] hover:bg-[#e32530]/90 justify-center">
                 <Download className="h-4 w-4 mr-2" />
                 Prenesi PDF
               </Button>
@@ -191,7 +193,7 @@ const PDFViewer: React.FC<PDFViewerProps> = ({
             style={{ 
               transform: `scale(${zoomLevel / 100})`, 
               transformOrigin: 'top left',
-              width: `${10000 / zoomLevel}%`  // Adjust width based on zoom
+              width: `${10000 / zoomLevel}%`
             }}
             onError={handleError}
           />

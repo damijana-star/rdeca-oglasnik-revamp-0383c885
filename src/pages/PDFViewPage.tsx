@@ -106,19 +106,19 @@ const PDFViewPage = () => {
   return (
     <div className="min-h-screen flex flex-col">
       <Header />
-      <main className="flex-grow container py-6 md:py-12">
-        <div className="max-w-5xl mx-auto px-4">
-          <h1 className="text-2xl md:text-3xl font-bold mb-4 md:mb-8">{pdfTitle}</h1>
+      <main className="flex-grow container py-4 md:py-12">
+        <div className="max-w-5xl mx-auto px-3 md:px-4">
+          <h1 className="text-xl md:text-3xl font-bold mb-3 md:mb-8">{pdfTitle}</h1>
           
           {isLoading ? (
-            <div className="flex items-center justify-center p-6 md:p-12">
+            <div className="flex items-center justify-center p-4 md:p-12">
               <div className="animate-pulse">
                 <p className="text-gray-500">Nalaganje PDF datoteke...</p>
               </div>
             </div>
           ) : loadError ? (
             <div className="bg-white rounded-lg shadow-sm p-4 md:p-6 mb-4 md:mb-8 text-center">
-              <FileText className="h-12 w-12 md:h-16 md:w-16 text-gray-400 mx-auto mb-4" />
+              <FileText className="h-10 w-10 md:h-16 md:w-16 text-gray-400 mx-auto mb-3" />
               <h2 className="text-lg md:text-xl font-semibold mb-2">Napaka pri nalaganju PDF datoteke</h2>
               <p className="text-gray-600 mb-4 md:mb-6">PDF datoteke ni bilo mogoče naložiti. Poskusite z nalaganjem nove datoteke.</p>
               <Link to="/upload-pdf">
@@ -129,7 +129,7 @@ const PDFViewPage = () => {
               </Link>
             </div>
           ) : (
-            <div className="bg-white rounded-lg shadow-sm p-3 md:p-6 mb-4 md:mb-8">
+            <div className="bg-white rounded-lg shadow-sm p-2 md:p-6 mb-3 md:mb-8">
               <PDFViewer 
                 pdfUrl={lastUploadedPdf} 
                 title={pdfTitle} 
@@ -137,7 +137,7 @@ const PDFViewPage = () => {
             </div>
           )}
           
-          <div className="mt-4 md:mt-6 flex justify-center">
+          <div className="mt-3 md:mt-6 flex justify-center">
             <Link to="/upload-pdf">
               <Button variant="outline" className="flex items-center gap-2">
                 <Upload className="h-4 w-4" />

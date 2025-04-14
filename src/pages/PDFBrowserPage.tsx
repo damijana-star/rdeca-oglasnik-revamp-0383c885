@@ -74,24 +74,24 @@ const PDFBrowserPage = () => {
   return (
     <div className="min-h-screen flex flex-col">
       <Header />
-      <main className="flex-grow container py-6 md:py-12">
-        <div className="max-w-5xl mx-auto px-4">
+      <main className="flex-grow container py-4 md:py-12">
+        <div className="max-w-5xl mx-auto px-3 md:px-4">
           {availablePdfs.length === 0 ? (
             <div className="p-4 md:p-8 text-center">
-              <FileText className="h-10 w-10 md:h-12 md:w-12 text-gray-400 mx-auto mb-4" />
+              <FileText className="h-10 w-10 md:h-12 md:w-12 text-gray-400 mx-auto mb-3" />
               <h3 className="text-lg font-medium mb-2">No PDFs available</h3>
               <p className="text-gray-500 mb-4">No PDFs have been uploaded yet</p>
             </div>
           ) : (
             <>
-              <div className="flex items-center mb-4 md:mb-8">
-                <h1 className="text-2xl md:text-3xl font-bold">{pdfTitle}</h1>
+              <div className="flex items-center mb-3 md:mb-8">
+                <h1 className="text-xl md:text-3xl font-bold">{pdfTitle}</h1>
               </div>
               
-              <div className="bg-white rounded-lg shadow-sm p-3 md:p-6 mb-4 md:mb-8">
+              <div className="bg-white rounded-lg shadow-sm p-2 md:p-6 mb-3 md:mb-8">
                 {pdfError ? (
                   <div className="p-4 md:p-8 text-center">
-                    <FileText className="h-10 w-10 md:h-12 md:w-12 text-gray-400 mx-auto mb-4" />
+                    <FileText className="h-10 w-10 md:h-12 md:w-12 text-gray-400 mx-auto mb-3" />
                     <h3 className="text-lg font-medium mb-2">PDF cannot be displayed</h3>
                     <p className="text-gray-500 mb-4">The PDF file doesn't exist or is not accessible.</p>
                   </div>
@@ -104,17 +104,17 @@ const PDFBrowserPage = () => {
                 )}
               </div>
               
-              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 md:gap-4 mt-4 md:mt-8">
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-2 md:gap-4 mt-3 md:mt-8">
                 {availablePdfs.map((pdf, index) => (
                   <div 
                     key={index}
-                    className={`border rounded-lg p-3 md:p-4 hover:shadow-md cursor-pointer transition-all duration-300 ${currentPdf === pdf.url ? 'border-[#e32530] bg-red-50' : 'border-gray-200'}`}
+                    className={`border rounded-lg p-3 hover:shadow-md cursor-pointer transition-all duration-300 ${currentPdf === pdf.url ? 'border-[#e32530] bg-red-50' : 'border-gray-200'}`}
                     onClick={() => selectPdf(pdf.url, pdf.title)}
                   >
                     <div className="flex items-center">
-                      <FileText className={`h-5 w-5 md:h-6 md:w-6 mr-2 ${currentPdf === pdf.url ? 'text-[#e32530]' : 'text-gray-500'}`} />
+                      <FileText className={`h-5 w-5 mr-2 ${currentPdf === pdf.url ? 'text-[#e32530]' : 'text-gray-500'}`} />
                       <div>
-                        <p className="font-medium text-sm md:text-base">{pdf.title}</p>
+                        <p className="font-medium text-sm md:text-base line-clamp-1">{pdf.title}</p>
                       </div>
                     </div>
                   </div>
