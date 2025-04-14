@@ -5,6 +5,8 @@ import { useToast } from "@/hooks/use-toast";
 import { useNavigate } from "react-router-dom";
 import PDFDropzone from "./pdf/PDFDropzone";
 import PDFFileDisplay from "./pdf/PDFFileDisplay";
+import { Alert, AlertDescription } from "@/components/ui/alert";
+import { Info } from "lucide-react";
 import { validatePDFFile, savePDFToLocalStorage, readFileAsDataURL } from "@/services/pdfService";
 
 interface PDFUploaderProps {
@@ -150,12 +152,21 @@ const PDFUploader: React.FC<PDFUploaderProps> = ({
     fileInputRef.current?.click();
   };
 
+  const recommendedMaxSize = 5; // MB
+
   return (
     <div className="w-full">
       <div className="mb-4">
         <label htmlFor="pdf-upload" className="block text-sm font-medium mb-2">
           Naloži PDF datoteko
         </label>
+        
+        <Alert variant="warning" className="mb-4 bg-amber-50 border-amber-200">
+          <Info className="h-4 w-4 text-amber-600" />
+          <AlertDescription className="text-amber-800">
+            Čeprav je največja velikost {maxSizeMB}MB, priporočamo datoteko manjšo od {recommendedMaxSize}MB za boljšo zmogljivost.
+          </AlertDescription>
+        </Alert>
         
         <Input
           id="pdf-upload"

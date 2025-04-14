@@ -1,3 +1,4 @@
+
 import { toast } from "@/hooks/use-toast";
 import pako from 'pako';
 
@@ -18,6 +19,17 @@ export const getLocalStorageSize = () => {
   return total;
 };
 
+// Helper function to safely convert Uint8Array to base64 string
+// This fixes the "too many arguments" error with String.fromCharCode.apply
+const uint8ArrayToBase64 = (bytes: Uint8Array): string => {
+  let binary = '';
+  const len = bytes.length;
+  for (let i = 0; i < len; i++) {
+    binary += String.fromCharCode(bytes[i]);
+  }
+  return btoa(binary);
+};
+
 export const compressData = (data: string): string => {
   try {
     console.log("Compressing PDF data of length:", data.length);
@@ -33,8 +45,8 @@ export const compressData = (data: string): string => {
     const compressed = pako.deflate(bytes, { level: 9 });
     console.log("Data compressed successfully");
     
-    // Convert back to base64 string
-    const compressedBase64 = btoa(String.fromCharCode.apply(null, compressed as unknown as number[]));
+    // Convert back to base64 string using the safe helper function
+    const compressedBase64 = uint8ArrayToBase64(compressed);
     
     // Add the compression marker
     return 'data:application/pdf-compressed;base64,' + compressedBase64;
@@ -65,8 +77,8 @@ export const decompressData = (data: string): string => {
     const decompressed = pako.inflate(bytes);
     console.log("Data decompressed successfully");
     
-    // Convert back to base64 string
-    const decompressedBase64 = btoa(String.fromCharCode.apply(null, decompressed as unknown as number[]));
+    // Convert back to base64 string using the safe helper function
+    const decompressedBase64 = uint8ArrayToBase64(decompressed);
     
     // Return with the PDF data prefix
     return 'data:application/pdf;base64,' + decompressedBase64;
