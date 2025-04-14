@@ -28,8 +28,11 @@ const PDFUploader: React.FC<PDFUploaderProps> = ({
     
     if (!files || files.length === 0) return;
     
-    const file = files[0];
-    const validation = validatePDFFile(file, maxSizeMB);
+    processPDFFile(files[0]);
+  };
+  
+  const processPDFFile = (file: File) => {
+    const validation = validatePDFFile(file, maxSizeMB || 5);
     
     if (!validation.valid) {
       toast({
@@ -53,6 +56,10 @@ const PDFUploader: React.FC<PDFUploaderProps> = ({
     if (fileInputRef.current) {
       fileInputRef.current.value = '';
     }
+  };
+  
+  const handleFileDrop = (file: File) => {
+    processPDFFile(file);
   };
   
   const simulateUpload = async () => {
@@ -149,7 +156,8 @@ const PDFUploader: React.FC<PDFUploaderProps> = ({
         {!selectedFile ? (
           <PDFDropzone 
             maxSizeMB={maxSizeMB} 
-            onInputClick={handleInputClick} 
+            onInputClick={handleInputClick}
+            onFileDrop={handleFileDrop}
           />
         ) : (
           <PDFFileDisplay 
