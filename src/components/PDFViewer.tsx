@@ -1,7 +1,9 @@
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Button } from "@/components/ui/button";
 import { ChevronLeft, ChevronRight, ZoomIn, ZoomOut, Download } from "lucide-react";
+import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/dialog";
+import { ScrollArea } from "@/components/ui/scroll-area";
 
 interface PDFViewerProps {
   pdfUrl: string;
@@ -15,6 +17,13 @@ const PDFViewer: React.FC<PDFViewerProps> = ({
   // We'll use this for controlling UI elements, but actual zoom 
   // will be handled differently since iframe doesn't support style.zoom
   const [zoomLevel, setZoomLevel] = useState(100);
+  const [fullscreen, setFullscreen] = useState(false);
+  const [isObjectFallback, setIsObjectFallback] = useState(false);
+  
+  useEffect(() => {
+    // Reset zoom level when PDF changes
+    setZoomLevel(100);
+  }, [pdfUrl]);
   
   const handleZoomIn = () => {
     setZoomLevel(prev => Math.min(prev + 25, 200));
@@ -44,6 +53,14 @@ const PDFViewer: React.FC<PDFViewerProps> = ({
     link.click();
     document.body.removeChild(link);
   };
+
+  const handleError = () => {
+    console.log("PDF iframe failed to load, switching to object tag");
+    setIsObjectFallback(true);
+  };
+
+  // Determine if we're using a base64 encoded PDF or a file URL
+  const isPdfBase64 = pdfUrl.startsWith('data:application/pdf');
 
   return (
     <div className="w-full flex flex-col">
@@ -79,21 +96,39 @@ const PDFViewer: React.FC<PDFViewerProps> = ({
         </Button>
       </div>
       
-      <div className="border border-gray-200 rounded-b-lg overflow-hidden bg-gray-800 h-[70vh]">
-        <iframe
-          src={pdfUrl}
-          className="w-full h-full"
-          title={title || "PDF Viewer"}
-          style={{ border: 'none' }}
-        >
-          <div className="flex flex-col items-center justify-center p-6 text-center bg-white h-full">
-            <p className="mb-4 text-gray-600">Vaš brskalnik ne podpira vgrajenega PDF prikazovalnika.</p>
-            <Button onClick={handleDownload} className="bg-[#e32530] hover:bg-[#e32530]/90">
-              <Download className="h-4 w-4 mr-2" />
-              Prenesi PDF
-            </Button>
-          </div>
-        </iframe>
+      <div className="border border-gray-200 rounded-b-lg overflow-hidden bg-gray-50 h-[70vh]">
+        {isObjectFallback ? (
+          <object
+            data={pdfUrl}
+            type="application/pdf"
+            className="w-full h-full"
+            style={{ 
+              transform: `scale(${zoomLevel / 100})`, 
+              transformOrigin: 'top left',
+              width: `${10000 / zoomLevel}%`  // Adjust width based on zoom
+            }}
+          >
+            <div className="flex flex-col items-center justify-center p-6 text-center bg-white h-full">
+              <p className="mb-4 text-gray-600">Vaš brskalnik ne podpira PDF prikazovalnika.</p>
+              <Button onClick={handleDownload} className="bg-[#e32530] hover:bg-[#e32530]/90">
+                <Download className="h-4 w-4 mr-2" />
+                Prenesi PDF
+              </Button>
+            </div>
+          </object>
+        ) : (
+          <embed
+            src={`${pdfUrl}#toolbar=0&navpanes=0&scrollbar=0&view=FitH`}
+            type="application/pdf"
+            className="w-full h-full"
+            style={{ 
+              transform: `scale(${zoomLevel / 100})`, 
+              transformOrigin: 'top left',
+              width: `${10000 / zoomLevel}%`  // Adjust width based on zoom
+            }}
+            onError={handleError}
+          />
+        )}
       </div>
     </div>
   );
