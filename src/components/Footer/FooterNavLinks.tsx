@@ -21,11 +21,6 @@ export const FooterNavLinks = ({ navigateToSection }: FooterNavLinksProps) => {
           </Link>
         </li>
         <li>
-          <Link to="/view-pdf" className="text-gray-600 hover:text-dark-red transition-colors duration-300">
-            April 2025
-          </Link>
-        </li>
-        <li>
           <Link to="/browse-pdf" className="text-gray-600 hover:text-dark-red transition-colors duration-300">
             Prelistaj
           </Link>

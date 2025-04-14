@@ -1,4 +1,3 @@
-
 import { Button } from "@/components/ui/button";
 import { FileText, Home } from "lucide-react";
 import { useState } from "react";
@@ -50,9 +49,6 @@ export const Header = () => {
             <Link to="/contact" className="nav-link text-foreground hover:text-dark-red font-medium transition-colors duration-300">
               Kontakt
             </Link>
-            <Link to="/view-pdf" className="nav-link text-foreground hover:text-dark-red font-medium transition-colors duration-300">
-              April 2025
-            </Link>
             <Button variant="outline" className="flex items-center gap-2 border-[#e32530] text-[#e32530]" asChild>
               <Link to="/browse-pdf">
                 <FileText className="h-4 w-4" />
@@ -88,9 +84,6 @@ export const Header = () => {
             </Link>
             <Link to="/contact" className="nav-link text-foreground hover:text-dark-red font-medium transition-colors duration-300">
               Kontakt
-            </Link>
-            <Link to="/view-pdf" className="nav-link text-foreground hover:text-dark-red font-medium transition-colors duration-300">
-              April 2025
             </Link>
             <Button variant="outline" className="flex items-center justify-center gap-2 border-[#e32530] text-[#e32530]" asChild>
               <Link to="/browse-pdf">
