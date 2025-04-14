@@ -87,7 +87,7 @@ export const Footer = () => {
               </a>
             </li>
             <li>
-              <Link to="/view-pdf" className="text-gray-600 hover:text-dark-red transition-colors duration-300">
+              <Link to="/browse-pdf" className="text-gray-600 hover:text-dark-red transition-colors duration-300">
                 Prelistaj
               </Link>
             </li>
