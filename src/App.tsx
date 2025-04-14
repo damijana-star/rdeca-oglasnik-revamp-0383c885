@@ -47,6 +47,7 @@ const AppRoutes = () => {
         <Route path="/" element={<Index />} />
         <Route path="/blog" element={<BlogPage />} />
         <Route path="/blog/:id" element={<BlogPostPage />} />
+        <Route path="/blog/:id/:slug" element={<BlogPostPage />} />
         <Route path="/upload-pdf" element={<PDFUploadPage />} />
         <Route path="/view-pdf" element={<PDFViewPage />} />
         <Route path="/browse-pdf" element={<PDFBrowserPage />} />

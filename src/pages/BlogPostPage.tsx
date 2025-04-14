@@ -4,6 +4,7 @@ import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import { ChevronLeft, ChevronRight, Tag, ArrowLeft, ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { slugify } from "@/lib/utils";
 import { 
   Breadcrumb,
   BreadcrumbItem,
@@ -195,11 +196,11 @@ const allBlogPosts = [{
 }];
 
 const BlogPostPage = () => {
-  const { id } = useParams<{ id: string }>();
+  const { id, slug } = useParams<{ id: string, slug: string }>();
   const navigate = useNavigate();
   const postId = parseInt(id || "0");
   
-  console.log('Current Blog Post ID:', postId);
+  console.log('Current Blog Post ID:', postId, 'Slug:', slug);
 
   useEffect(() => {
     // Scroll to top when post ID changes
@@ -227,6 +228,16 @@ const BlogPostPage = () => {
         <Footer />
       </div>;
   }
+
+  // Check if the slug in the URL matches the expected slug for this post
+  const expectedSlug = slugify(post.title);
+  
+  // If slug doesn't match or is missing, redirect to canonical URL
+  useEffect(() => {
+    if (slug !== expectedSlug) {
+      navigate(`/blog/${post.id}/${expectedSlug}`, { replace: true });
+    }
+  }, [slug, expectedSlug, post.id, navigate]);
 
   // Find related posts (same category, different ID)
   const relatedPosts = allBlogPosts.filter(p => p.category === post.category && p.id !== post.id).slice(0, 2);
@@ -326,7 +337,7 @@ const BlogPostPage = () => {
             <div className="flex justify-between items-center my-12 border-t border-b py-4">
               {prevPost ? (
                 <Link 
-                  to={`/blog/${prevPost.id}`}
+                  to={`/blog/${prevPost.id}/${slugify(prevPost.title)}`}
                   className="flex items-center text-gray-600 hover:text-[#e32530] transition-colors"
                   onClick={() => window.scrollTo(0, 0)}
                 >
@@ -346,7 +357,7 @@ const BlogPostPage = () => {
               
               {nextPost ? (
                 <Link 
-                  to={`/blog/${nextPost.id}`}
+                  to={`/blog/${nextPost.id}/${slugify(nextPost.title)}`}
                   className="flex items-center text-gray-600 hover:text-[#e32530] transition-colors"
                   onClick={() => window.scrollTo(0, 0)}
                 >
@@ -364,7 +375,7 @@ const BlogPostPage = () => {
                   {relatedPosts.map(relatedPost => (
                     <Link 
                       key={relatedPost.id} 
-                      to={`/blog/${relatedPost.id}`}
+                      to={`/blog/${relatedPost.id}/${slugify(relatedPost.title)}`}
                       onClick={() => window.scrollTo(0, 0)}
                       className="cursor-pointer hover:shadow-md transition-all duration-300 flex flex-col h-full group"
                     >

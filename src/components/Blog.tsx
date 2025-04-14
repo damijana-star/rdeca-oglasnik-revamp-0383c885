@@ -3,6 +3,7 @@ import React from 'react';
 import { Button } from "@/components/ui/button";
 import { ArrowRight, ExternalLink } from "lucide-react";
 import { Link } from "react-router-dom";
+import { slugify } from "@/lib/utils";
 
 const blogPosts = [{
   id: 4,
@@ -45,7 +46,7 @@ export const Blog = () => {
               style={{ animationDelay: `${(post.id % 3) * 0.1}s` }}
             >
               <Link 
-                to={`/blog/${post.id}`} 
+                to={`/blog/${post.id}/${slugify(post.title)}`} 
                 className="block h-48 overflow-hidden relative"
                 onClick={() => window.scrollTo(0, 0)}
               >
@@ -60,7 +61,7 @@ export const Blog = () => {
               </Link>
               <div className="p-6">
                 <Link 
-                  to={`/blog/${post.id}`}
+                  to={`/blog/${post.id}/${slugify(post.title)}`}
                   onClick={() => window.scrollTo(0, 0)}
                   className="hover:text-[#e32530] transition-colors"
                 >
@@ -70,7 +71,7 @@ export const Blog = () => {
                   {post.excerpt}
                 </p>
                 <Link 
-                  to={`/blog/${post.id}`}
+                  to={`/blog/${post.id}/${slugify(post.title)}`}
                   onClick={() => window.scrollTo(0, 0)}
                   className="inline-flex items-center text-[#e32530] font-medium hover:underline"
                 >
