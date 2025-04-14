@@ -3,7 +3,7 @@ import React, { useState, useEffect } from 'react';
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import PDFViewer from "@/components/PDFViewer";
-import { FileText, Plus, Link as LinkIcon } from "lucide-react";
+import { FileText, Plus, Link as LinkIcon, AlertTriangle } from "lucide-react";
 import { Link } from "react-router-dom";
 import { useToast } from "@/hooks/use-toast";
 import { decompressData } from "@/services/pdfService";
@@ -12,6 +12,8 @@ import { Button } from "@/components/ui/button";
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogFooter } from "@/components/ui/dialog";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
+import { Alert, AlertDescription } from "@/components/ui/alert";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 
 const PDFBrowserPage = () => {
   const [currentPdf, setCurrentPdf] = useState<string>("");
@@ -21,6 +23,10 @@ const PDFBrowserPage = () => {
   const [isAddLinkDialogOpen, setIsAddLinkDialogOpen] = useState<boolean>(false);
   const [externalPdfUrl, setExternalPdfUrl] = useState<string>("");
   const [externalPdfTitle, setExternalPdfTitle] = useState<string>("");
+  const [sharePointUrl, setSharePointUrl] = useState<string>("");
+  const [sharePointTitle, setSharePointTitle] = useState<string>("");
+  const [activeTab, setActiveTab] = useState<string>("external");
+  const [isProcessing, setIsProcessing] = useState<boolean>(false);
   const { toast } = useToast();
   const isMobile = useIsMobile();
 
@@ -151,6 +157,97 @@ const PDFBrowserPage = () => {
     setIsAddLinkDialogOpen(false);
   };
 
+  const handleAddSharePointPdf = async () => {
+    if (!sharePointUrl) {
+      toast({
+        variant: "destructive",
+        title: "Invalid URL",
+        description: "Please enter a valid SharePoint URL",
+      });
+      return;
+    }
+    
+    // Validate the URL is from SharePoint
+    if (!sharePointUrl.includes('sharepoint.com')) {
+      toast({
+        variant: "destructive",
+        title: "Invalid SharePoint URL",
+        description: "Please enter a valid SharePoint URL",
+      });
+      return;
+    }
+    
+    setIsProcessing(true);
+    
+    try {
+      // SharePoint URLs need to be processed differently
+      // We'll convert the sharing URL to a direct download URL
+      let directUrl = sharePointUrl;
+      
+      // If it's a sharing URL with "?e=" parameter, we need to handle it
+      if (directUrl.includes('?e=')) {
+        // Remove the sharing parameters and add direct download parameter
+        directUrl = directUrl.split('?')[0] + '?download=1';
+      }
+      
+      // If URL doesn't already have download parameter, add it
+      if (!directUrl.includes('download=1')) {
+        directUrl = directUrl.includes('?') 
+          ? directUrl + '&download=1' 
+          : directUrl + '?download=1';
+      }
+      
+      // Create the PDF object
+      const pdfTitle = sharePointTitle || "SharePoint PDF";
+      
+      const newPdf = {
+        url: directUrl,
+        title: pdfTitle,
+        isExternal: true
+      };
+      
+      // Check if this PDF is already in the list
+      const exists = availablePdfs.some(pdf => pdf.url === newPdf.url);
+      
+      if (!exists) {
+        const updatedPdfs = [...availablePdfs, newPdf];
+        setAvailablePdfs(updatedPdfs);
+        
+        // Save external PDFs to localStorage
+        const externalPdfs = updatedPdfs.filter(pdf => pdf.isExternal);
+        localStorage.setItem('externalPdfs', JSON.stringify(externalPdfs));
+        
+        // Select the newly added PDF
+        selectPdf(newPdf.url, newPdf.title);
+        
+        toast({
+          title: "SharePoint PDF added",
+          description: `Added: ${pdfTitle}`,
+        });
+      } else {
+        toast({
+          variant: "destructive",
+          title: "Duplicate PDF",
+          description: "This PDF is already in your list",
+        });
+      }
+      
+      // Reset form and close dialog
+      setSharePointUrl("");
+      setSharePointTitle("");
+      setIsAddLinkDialogOpen(false);
+    } catch (error) {
+      console.error("Error adding SharePoint PDF:", error);
+      toast({
+        variant: "destructive",
+        title: "Error adding PDF",
+        description: "Failed to add SharePoint PDF. Please try again.",
+      });
+    } finally {
+      setIsProcessing(false);
+    }
+  };
+
   return (
     <div className="min-h-screen flex flex-col">
       <Header />
@@ -241,33 +338,81 @@ const PDFBrowserPage = () => {
           <DialogHeader>
             <DialogTitle>Add External PDF</DialogTitle>
           </DialogHeader>
-          <div className="space-y-4 py-4">
-            <div className="space-y-2">
-              <Label htmlFor="pdf-url">PDF URL</Label>
-              <Input 
-                id="pdf-url" 
-                placeholder="https://example.com/document.pdf" 
-                value={externalPdfUrl}
-                onChange={(e) => setExternalPdfUrl(e.target.value)}
-              />
-              <p className="text-xs text-gray-500">
-                Enter the full URL to the PDF file
-              </p>
-            </div>
-            <div className="space-y-2">
-              <Label htmlFor="pdf-title">Title (optional)</Label>
-              <Input 
-                id="pdf-title" 
-                placeholder="My Document" 
-                value={externalPdfTitle}
-                onChange={(e) => setExternalPdfTitle(e.target.value)}
-              />
-            </div>
-          </div>
-          <DialogFooter>
-            <Button variant="outline" onClick={() => setIsAddLinkDialogOpen(false)}>Cancel</Button>
-            <Button onClick={handleAddExternalPdf}>Add PDF</Button>
-          </DialogFooter>
+          
+          <Tabs value={activeTab} onValueChange={setActiveTab}>
+            <TabsList className="grid w-full grid-cols-2">
+              <TabsTrigger value="external">Standard URL</TabsTrigger>
+              <TabsTrigger value="sharepoint">SharePoint</TabsTrigger>
+            </TabsList>
+            
+            <TabsContent value="external" className="space-y-4 py-4">
+              <div className="space-y-2">
+                <Label htmlFor="pdf-url">PDF URL</Label>
+                <Input 
+                  id="pdf-url" 
+                  placeholder="https://example.com/document.pdf" 
+                  value={externalPdfUrl}
+                  onChange={(e) => setExternalPdfUrl(e.target.value)}
+                />
+                <p className="text-xs text-gray-500">
+                  Enter the full URL to the PDF file
+                </p>
+              </div>
+              <div className="space-y-2">
+                <Label htmlFor="pdf-title">Title (optional)</Label>
+                <Input 
+                  id="pdf-title" 
+                  placeholder="My Document" 
+                  value={externalPdfTitle}
+                  onChange={(e) => setExternalPdfTitle(e.target.value)}
+                />
+              </div>
+              <DialogFooter>
+                <Button variant="outline" onClick={() => setIsAddLinkDialogOpen(false)}>Cancel</Button>
+                <Button onClick={handleAddExternalPdf}>Add PDF</Button>
+              </DialogFooter>
+            </TabsContent>
+            
+            <TabsContent value="sharepoint" className="space-y-4 py-4">
+              <Alert className="bg-amber-50 border-amber-200">
+                <AlertTriangle className="h-4 w-4 text-amber-600" />
+                <AlertDescription className="text-amber-800">
+                  Make sure the SharePoint PDF is set to allow anyone with the link to view it
+                </AlertDescription>
+              </Alert>
+              
+              <div className="space-y-2">
+                <Label htmlFor="sharepoint-url">SharePoint URL</Label>
+                <Input 
+                  id="sharepoint-url" 
+                  placeholder="https://company-my.sharepoint.com/:b:/g/..." 
+                  value={sharePointUrl}
+                  onChange={(e) => setSharePointUrl(e.target.value)}
+                />
+                <p className="text-xs text-gray-500">
+                  Paste the SharePoint sharing link here
+                </p>
+              </div>
+              <div className="space-y-2">
+                <Label htmlFor="sharepoint-title">Title (optional)</Label>
+                <Input 
+                  id="sharepoint-title" 
+                  placeholder="My SharePoint Document" 
+                  value={sharePointTitle}
+                  onChange={(e) => setSharePointTitle(e.target.value)}
+                />
+              </div>
+              <DialogFooter>
+                <Button variant="outline" onClick={() => setIsAddLinkDialogOpen(false)}>Cancel</Button>
+                <Button 
+                  onClick={handleAddSharePointPdf} 
+                  disabled={isProcessing}
+                >
+                  {isProcessing ? "Processing..." : "Add SharePoint PDF"}
+                </Button>
+              </DialogFooter>
+            </TabsContent>
+          </Tabs>
         </DialogContent>
       </Dialog>
       
