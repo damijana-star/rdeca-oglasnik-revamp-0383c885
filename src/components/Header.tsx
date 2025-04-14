@@ -20,9 +20,13 @@ export const Header = () => {
         setIsMenuOpen(false);
       }
     } else {
-      // If we're on another page, navigate to home page with the section as hash
-      // Fixed to work with HashRouter
-      window.location.href = `/#/${sectionId}`;
+      // If we're on another page, navigate to contact page
+      if (sectionId === 'contact') {
+        window.location.href = '/#/contact';
+      } else {
+        // For other sections, go to home with that section hash
+        window.location.href = `/#/${sectionId}`;
+      }
     }
   };
   
@@ -43,13 +47,9 @@ export const Header = () => {
             <Link to="/blog" className="nav-link text-foreground hover:text-dark-red font-medium transition-colors duration-300">
               Nasveti
             </Link>
-            <a 
-              href="#contact" 
-              onClick={(e) => navigateToSection('contact', e)}
-              className="nav-link text-foreground hover:text-dark-red font-medium transition-colors duration-300"
-            >
+            <Link to="/contact" className="nav-link text-foreground hover:text-dark-red font-medium transition-colors duration-300">
               Kontakt
-            </a>
+            </Link>
             <Button variant="outline" className="flex items-center gap-2 border-[#e32530] text-[#e32530]" asChild>
               <Link to="/view-pdf">
                 <FileText className="h-4 w-4" />
@@ -57,12 +57,9 @@ export const Header = () => {
               </Link>
             </Button>
             <Button className="bg-[#e32530] hover:bg-[#e32530]/90 transform transition-all duration-300 hover:scale-105 hover:shadow-md" asChild>
-              <a 
-                href="#contact" 
-                onClick={(e) => navigateToSection('contact', e)}
-              >
+              <Link to="/contact">
                 Oddaj oglas
-              </a>
+              </Link>
             </Button>
           </nav>
 
@@ -86,13 +83,9 @@ export const Header = () => {
             <Link to="/blog" className="nav-link text-foreground hover:text-dark-red font-medium transition-colors duration-300">
               Nasveti
             </Link>
-            <a 
-              href="#contact" 
-              onClick={(e) => navigateToSection('contact', e)}
-              className="nav-link text-foreground hover:text-dark-red font-medium transition-colors duration-300"
-            >
+            <Link to="/contact" className="nav-link text-foreground hover:text-dark-red font-medium transition-colors duration-300">
               Kontakt
-            </a>
+            </Link>
             <Button variant="outline" className="flex items-center justify-center gap-2 border-[#e32530] text-[#e32530]" asChild>
               <Link to="/view-pdf">
                 <FileText className="h-4 w-4" />
@@ -100,12 +93,9 @@ export const Header = () => {
               </Link>
             </Button>
             <Button className="bg-[#e32530] hover:bg-[#e32530]/90 w-full transform transition-all duration-300 hover:scale-105 hover:shadow-md" asChild>
-              <a 
-                href="#contact" 
-                onClick={(e) => navigateToSection('contact', e)}
-              >
+              <Link to="/contact">
                 Oddaj oglas
-              </a>
+              </Link>
             </Button>
           </nav>
         </div>

@@ -33,9 +33,13 @@ export const Footer = () => {
         element.scrollIntoView({ behavior: 'smooth' });
       }
     } else {
-      // If we're on another page, navigate to home page with the section as hash
-      // Fixed to work with HashRouter
-      window.location.href = `/#/${sectionId}`;
+      // If we're on another page, navigate to the appropriate page
+      if (sectionId === 'contact') {
+        window.location.href = '/#/contact';
+      } else {
+        // For other sections, go to home with that section hash
+        window.location.href = `/#/${sectionId}`;
+      }
     }
   };
 

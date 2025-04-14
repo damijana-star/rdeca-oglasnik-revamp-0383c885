@@ -1,5 +1,5 @@
 
-import { Link, useLocation } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 type FooterNavLinksProps = {
   navigateToSection: (sectionId: string, e: React.MouseEvent) => void;
@@ -16,13 +16,9 @@ export const FooterNavLinks = ({ navigateToSection }: FooterNavLinksProps) => {
           </Link>
         </li>
         <li>
-          <a 
-            href="#contact" 
-            onClick={(e) => navigateToSection('contact', e)}
-            className="text-gray-600 hover:text-dark-red transition-colors duration-300"
-          >
+          <Link to="/contact" className="text-gray-600 hover:text-dark-red transition-colors duration-300">
             Kontakt
-          </a>
+          </Link>
         </li>
         <li>
           <Link to="/view-pdf" className="text-gray-600 hover:text-dark-red transition-colors duration-300">
@@ -30,13 +26,9 @@ export const FooterNavLinks = ({ navigateToSection }: FooterNavLinksProps) => {
           </Link>
         </li>
         <li>
-          <a 
-            href="#contact" 
-            onClick={(e) => navigateToSection('contact', e)}
-            className="text-gray-600 hover:text-dark-red transition-colors duration-300"
-          >
+          <Link to="/contact" className="text-gray-600 hover:text-dark-red transition-colors duration-300">
             Oddaj oglas
-          </a>
+          </Link>
         </li>
       </ul>
     </div>
