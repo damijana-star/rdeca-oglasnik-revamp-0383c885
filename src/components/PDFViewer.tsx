@@ -1,3 +1,4 @@
+
 import React, { useState, useEffect } from 'react';
 import { Button } from "@/components/ui/button";
 import { ChevronLeft, ChevronRight, ZoomIn, ZoomOut, Download, Maximize, X } from "lucide-react";
@@ -157,7 +158,6 @@ const PDFViewer: React.FC<PDFViewerProps> = ({
         ) : (
           <iframe
             src={`${pdfUrl}${isPdfBlob || isPdfBase64 ? '' : '#toolbar=0&navpanes=0&scrollbar=0&view=FitH'}`}
-            type="application/pdf"
             className="w-full h-full"
             style={{ 
               transform: `scale(${zoomLevel / 100})`, 
