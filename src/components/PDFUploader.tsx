@@ -161,7 +161,10 @@ const PDFUploader: React.FC<PDFUploaderProps> = ({
           Naloži PDF datoteko
         </label>
         
-        <Alert variant="warning" className="mb-4 bg-amber-50 border-amber-200">
+        <Alert 
+          variant="default" 
+          className="mb-4 bg-amber-50 border-amber-200 border-l-4 border-amber-500"
+        >
           <Info className="h-4 w-4 text-amber-600" />
           <AlertDescription className="text-amber-800">
             Čeprav je največja velikost {maxSizeMB}MB, priporočamo datoteko manjšo od {recommendedMaxSize}MB za boljšo zmogljivost.
