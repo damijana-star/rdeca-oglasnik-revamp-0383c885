@@ -1,4 +1,3 @@
-
 import React, { useState, useRef } from 'react';
 import { Input } from "@/components/ui/input";
 import { useToast } from "@/hooks/use-toast";
@@ -14,7 +13,7 @@ interface PDFUploaderProps {
 
 const PDFUploader: React.FC<PDFUploaderProps> = ({ 
   onFileSelect, 
-  maxSizeMB = 5 
+  maxSizeMB = 10 
 }) => {
   const [selectedFile, setSelectedFile] = useState<File | null>(null);
   const [uploadProgress, setUploadProgress] = useState(0);
