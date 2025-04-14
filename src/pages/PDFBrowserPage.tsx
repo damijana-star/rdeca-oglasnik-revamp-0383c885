@@ -1,10 +1,8 @@
-
 import React, { useState, useEffect } from 'react';
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import PDFViewer from "@/components/PDFViewer";
-import { Button } from "@/components/ui/button";
-import { FileText, Upload } from "lucide-react";
+import { FileText } from "lucide-react";
 import { Link } from "react-router-dom";
 import { useToast } from "@/hooks/use-toast";
 import { decompressData } from "@/services/pdfService";
@@ -17,33 +15,26 @@ const PDFBrowserPage = () => {
   const { toast } = useToast();
 
   useEffect(() => {
-    // Reset error state when changing PDF
     setPdfError(false);
     
-    // Try to load previously uploaded PDF
     const storedPdfInfo = localStorage.getItem('lastUploadedPdf');
     if (storedPdfInfo) {
       try {
         const pdfInfo = JSON.parse(storedPdfInfo);
         
-        // Check if we have base64 data
         if (pdfInfo && pdfInfo.data) {
-          // Check if the data is compressed and decompress if needed
           const pdfData = pdfInfo.compressed ? decompressData(pdfInfo.data) : pdfInfo.data;
           
-          // Add the uploaded PDF to the available PDFs
           const newPdf = {
             url: pdfData,
             title: pdfInfo.title || "Uploaded PDF"
           };
           
-          // Check if we already have this PDF in the list
           const exists = availablePdfs.some(pdf => pdf.title === newPdf.title);
           
           if (!exists) {
             setAvailablePdfs(prev => [newPdf, ...prev]);
             
-            // Automatically select the uploaded PDF
             setCurrentPdf(pdfData);
             setPdfTitle(pdfInfo.title || "Uploaded PDF");
             
@@ -57,7 +48,7 @@ const PDFBrowserPage = () => {
         console.error("Error parsing stored PDF info:", error);
       }
     }
-  }, [toast]); // eslint-disable-line react-hooks/exhaustive-deps
+  }, [toast]);
 
   const selectPdf = (url: string, title: string) => {
     setCurrentPdf(url);
@@ -86,24 +77,12 @@ const PDFBrowserPage = () => {
             <div className="p-8 text-center">
               <FileText className="h-12 w-12 text-gray-400 mx-auto mb-4" />
               <h3 className="text-lg font-medium mb-2">No PDFs available</h3>
-              <p className="text-gray-500 mb-4">Upload a PDF to get started</p>
-              <Link to="/upload-pdf">
-                <Button variant="default" className="flex items-center gap-2">
-                  <Upload className="h-4 w-4" />
-                  Upload your first PDF
-                </Button>
-              </Link>
+              <p className="text-gray-500 mb-4">No PDFs have been uploaded yet</p>
             </div>
           ) : (
             <>
-              <div className="flex items-center justify-between mb-8">
+              <div className="flex items-center mb-8">
                 <h1 className="text-3xl font-bold">{pdfTitle}</h1>
-                <Link to="/upload-pdf">
-                  <Button variant="outline" className="flex items-center gap-2">
-                    <Upload className="h-4 w-4" />
-                    Upload your own PDF
-                  </Button>
-                </Link>
               </div>
               
               <div className="bg-white rounded-lg shadow-sm p-6 mb-8">
@@ -112,7 +91,6 @@ const PDFBrowserPage = () => {
                     <FileText className="h-12 w-12 text-gray-400 mx-auto mb-4" />
                     <h3 className="text-lg font-medium mb-2">PDF cannot be displayed</h3>
                     <p className="text-gray-500 mb-4">The PDF file doesn't exist or is not accessible.</p>
-                    <Button onClick={() => setPdfError(false)}>Try again</Button>
                   </div>
                 ) : (
                   <PDFViewer 
