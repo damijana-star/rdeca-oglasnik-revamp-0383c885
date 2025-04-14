@@ -1,22 +1,9 @@
 
-import React, { useEffect } from 'react';
+import React from 'react';
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 
 const PDFBrowserPage = () => {
-  // Load the Elfsight widget script
-  useEffect(() => {
-    const script = document.createElement('script');
-    script.src = 'https://static.elfsight.com/platform/platform.js';
-    script.defer = true;
-    document.body.appendChild(script);
-
-    return () => {
-      // Cleanup script when component unmounts
-      document.body.removeChild(script);
-    }
-  }, []);
-
   return (
     <div className="min-h-screen flex flex-col">
       <Header />
@@ -25,7 +12,17 @@ const PDFBrowserPage = () => {
           <h1 className="text-xl md:text-3xl font-bold mb-8">Prelistaj Nanoski Oglasnik</h1>
           
           <div className="bg-white rounded-lg shadow-sm p-4">
-            <div id="e19d93cc850940f2a1ec9d0f0cbd122c" className="elfsight-app-e19d93cc850940f2a1ec9d0f0cbd122c"></div>
+            {/* Using the direct Elfsight.site URL instead of the widget div */}
+            <iframe 
+              src="https://e19d93cc850940f2a1ec9d0f0cbd122c.elf.site" 
+              width="100%" 
+              height="600" 
+              frameBorder="0"
+              title="Nanoski Oglasnik"
+              className="w-full rounded-md"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+              allowFullScreen
+            ></iframe>
           </div>
         </div>
       </main>
