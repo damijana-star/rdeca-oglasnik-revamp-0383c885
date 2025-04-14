@@ -8,6 +8,7 @@ import { useLocation } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { FileText, Upload } from "lucide-react";
 import { Link } from "react-router-dom";
+import { decompressData } from "@/services/pdfService";
 
 const PDFViewPage = () => {
   // Default to the sample PDF file
@@ -56,7 +57,11 @@ const PDFViewPage = () => {
         // Check if we have base64 data
         if (pdfInfo && pdfInfo.data) {
           console.log("Loading PDF from storage (base64)");
-          setLastUploadedPdf(pdfInfo.data);
+          
+          // Check if the data is compressed and decompress if needed
+          const pdfData = pdfInfo.compressed ? decompressData(pdfInfo.data) : pdfInfo.data;
+          
+          setLastUploadedPdf(pdfData);
           setPdfTitle(pdfInfo.title || "Uploaded PDF");
           
           toast({
