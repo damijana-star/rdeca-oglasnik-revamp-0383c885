@@ -47,8 +47,6 @@ const allBlogPosts = [{
       
       <p>➡️ Razmislite, kako lahko vaš naslednji oglas izstopa prav v tiskanem oglasniku – s pravim sporočilom, v pravem okolju.</p>
     `,
-  date: "09. 04. 2025",
-  author: "Ana Kovač",
   image: "/lovable-uploads/9d2bf50c-8258-41d6-80a5-c71a06939606.png",
   category: "Marketing",
   tags: ["marketing", "oglasi", "tiskani mediji", "lokalno oglaševanje", "strategija"]
@@ -124,8 +122,6 @@ const allBlogPosts = [{
       <p>✔️ Slika/logotip</p>
       <p>✔️ Preprost in pregleden dizajn</p>
     `,
-  date: "10. 04. 2025",
-  author: "Ana Kovač",
   image: "/lovable-uploads/039a48a7-0aeb-4fc5-a920-fa78940f29aa.png",
   category: "Marketing",
   tags: ["marketing", "oglasi", "oglaševanje", "prodaja", "strategija"]
@@ -189,8 +185,6 @@ const allBlogPosts = [{
       <p>Napake pri oglaševanju so pogoste – a tudi enostavno popravljive.</p>
       <p>S pravim pristopom lahko tvoj oglas izstopa, pritegne in prinese prave stranke.</p>
     `,
-  date: "12. 04. 2025",
-  author: "Ana Kovač",
   image: "/lovable-uploads/fb97cac4-7bc2-4659-aac9-346efcc70f67.png",
   category: "Marketing",
   tags: ["marketing", "oglasi", "napake", "mala podjetja", "strategija"]
@@ -308,11 +302,7 @@ const BlogPostPage = () => {
                 </Link>
               </Button>
               
-              <div className="flex items-center gap-2 text-sm text-gray-500">
-                <span>{post.date}</span>
-                <span>•</span>
-                <span>{post.author}</span>
-              </div>
+              {/* Removed date and author information */}
             </div>
             
             <div className="prose prose-lg max-w-none mb-12">
