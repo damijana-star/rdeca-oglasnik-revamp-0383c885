@@ -9,12 +9,14 @@ interface PDFViewerProps {
   pdfUrl: string;
   title?: string;
   isPreview?: boolean;
+  onError?: () => void;
 }
 
 const PDFViewer: React.FC<PDFViewerProps> = ({ 
   pdfUrl,
   title,
-  isPreview = false
+  isPreview = false,
+  onError
 }) => {
   const [zoomLevel, setZoomLevel] = useState(100);
   const [fullscreen, setFullscreen] = useState(false);
@@ -66,6 +68,10 @@ const PDFViewer: React.FC<PDFViewerProps> = ({
   const handleObjectError = () => {
     console.log("PDF object tag also failed, showing error state");
     setLoadError(true);
+    // Call the onError callback if provided
+    if (onError) {
+      onError();
+    }
   };
 
   const isPdfBase64 = pdfUrl.startsWith('data:application/pdf');
