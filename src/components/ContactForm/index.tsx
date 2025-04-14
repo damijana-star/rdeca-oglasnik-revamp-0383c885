@@ -2,6 +2,13 @@
 import { useState } from "react";
 import ContactFormInputs, { FormValues } from "./ContactFormInputs";
 import ContactInfoDisplay from "./ContactInfoDisplay";
+import emailjs from 'emailjs-com';
+import { toast } from "@/hooks/use-toast";
+
+// These are the IDs needed for EmailJS
+const EMAILJS_SERVICE_ID = "service_p7fmfp9"; // Replace with your EmailJS service ID
+const EMAILJS_TEMPLATE_ID = "template_r2dgxz1"; // Replace with your EmailJS template ID 
+const EMAILJS_USER_ID = "J7bQx7e37a96cTJl7"; // Replace with your EmailJS public key
 
 export const ContactForm = () => {
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -10,17 +17,49 @@ export const ContactForm = () => {
   function onSubmit(values: FormValues) {
     setIsSubmitting(true);
     
-    // Simulate API call
-    setTimeout(() => {
-      console.log(values);
+    // Prepare the email template parameters
+    const templateParams = {
+      from_name: values.name,
+      reply_to: values.email,
+      phone: values.phone,
+      message: values.message
+    };
+    
+    // Send the email using EmailJS
+    emailjs.send(
+      EMAILJS_SERVICE_ID,
+      EMAILJS_TEMPLATE_ID,
+      templateParams,
+      EMAILJS_USER_ID
+    )
+    .then((response) => {
+      console.log('SUCCESS!', response.status, response.text);
       setIsSubmitting(false);
       setIsSuccess(true);
+      
+      // Show success toast notification
+      toast({
+        title: "Sporočilo poslano",
+        description: "Vaše sporočilo je bilo uspešno poslano. Odgovorili vam bomo v najkrajšem možnem času.",
+        variant: "default",
+      });
       
       // Reset success message after 5 seconds
       setTimeout(() => {
         setIsSuccess(false);
       }, 5000);
-    }, 1500);
+    })
+    .catch((err) => {
+      console.error('FAILED...', err);
+      setIsSubmitting(false);
+      
+      // Show error toast notification
+      toast({
+        title: "Napaka pri pošiljanju",
+        description: "Prišlo je do napake pri pošiljanju sporočila. Prosimo, poskusite ponovno kasneje.",
+        variant: "destructive",
+      });
+    });
   }
 
   return (
