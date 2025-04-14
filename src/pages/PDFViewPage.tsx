@@ -15,7 +15,7 @@ const PDFViewPage = () => {
   // Default to the sample PDF file
   const [lastUploadedPdf, setLastUploadedPdf] = useState<string>("/oglasnik-april-2025.pdf");
   const [pdfTitle, setPdfTitle] = useState<string>("Nanoski Oglasnik - April 2025");
-  const [isLoading, setIsLoading] = useState(true);
+  const [isLoading, setIsLoading] = useState(false); // Changed to false initially
   const [loadError, setLoadError] = useState(false);
   const { toast } = useToast();
   const location = useLocation();
@@ -23,8 +23,17 @@ const PDFViewPage = () => {
   const [searchParams] = useSearchParams();
   
   useEffect(() => {
-    // Set loading state
-    setIsLoading(true);
+    // Only set loading if we're actually loading from storage or parameters
+    const hasUrlParam = searchParams.get('url') !== null;
+    const hasStateFromUpload = location.state && location.state.fromUpload;
+    
+    // Only show loading state if we're loading from parameters or storage
+    if (hasUrlParam || hasStateFromUpload) {
+      setIsLoading(true);
+    } else {
+      setIsLoading(false); // Default PDF should load instantly
+    }
+    
     setLoadError(false);
     
     console.log("PDFViewPage mounted, checking for PDF data");
@@ -56,6 +65,7 @@ const PDFViewPage = () => {
         variant: "destructive"
       });
     } finally {
+      // Ensure loading is set to false when complete
       setIsLoading(false);
     }
     

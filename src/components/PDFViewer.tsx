@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from 'react';
 import { useIsMobile } from "@/hooks/use-mobile";
 import PDFToolbar from "@/components/pdf/PDFToolbar";
@@ -31,16 +30,11 @@ const PDFViewer: React.FC<PDFViewerProps> = ({
     setZoomLevel(isMobile ? 100 : 100);
     setIsObjectFallback(false);
     setLoadError(false);
+    
     setIsLoading(true);
-    
-    if (pdfUrl.startsWith('blob:')) {
-      console.log("Loading blob URL PDF:", pdfUrl);
-    }
-    
-    // Reset loading state after a delay
     const timer = setTimeout(() => {
       setIsLoading(false);
-    }, 1500);
+    }, 300);
     
     return () => clearTimeout(timer);
   }, [pdfUrl, isMobile]);
@@ -80,7 +74,6 @@ const PDFViewer: React.FC<PDFViewerProps> = ({
   const handleObjectError = () => {
     console.log("PDF object tag also failed, showing error state");
     setLoadError(true);
-    // Call the onError callback if provided
     if (onError) {
       onError();
     }
@@ -93,8 +86,7 @@ const PDFViewer: React.FC<PDFViewerProps> = ({
     window.open(pdfUrl, '_blank');
   };
 
-  // Mobile optimization: use different height based on device
-  const containerHeight = isMobile ? "40vh" : "70vh";
+  const containerHeight = isMobile ? "50vh" : "70vh";
 
   const renderContent = () => {
     if (isLoading) {
