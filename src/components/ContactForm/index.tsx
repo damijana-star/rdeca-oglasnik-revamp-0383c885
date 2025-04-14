@@ -9,6 +9,7 @@ import { toast } from "@/hooks/use-toast";
 const EMAILJS_SERVICE_ID = "service_p7fmfp9"; // Replace with your EmailJS service ID
 const EMAILJS_TEMPLATE_ID = "template_r2dgxz1"; // Replace with your EmailJS template ID 
 const EMAILJS_USER_ID = "J7bQx7e37a96cTJl7"; // Replace with your EmailJS public key
+const RECIPIENT_EMAIL = "info@nanoski-oglasnik.eu"; // The email address that should receive contact form submissions
 
 export const ContactForm = () => {
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -21,6 +22,7 @@ export const ContactForm = () => {
     const templateParams = {
       from_name: values.name,
       reply_to: values.email,
+      to_email: RECIPIENT_EMAIL, // Explicitly set the recipient email
       phone: values.phone,
       message: values.message
     };
