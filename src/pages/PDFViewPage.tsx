@@ -53,6 +53,7 @@ const PDFViewPage = () => {
     if (storedPdfInfo) {
       try {
         const pdfInfo = JSON.parse(storedPdfInfo);
+        console.log("PDF info parsed successfully:", pdfInfo.title);
         
         // Check if we have base64 data
         if (pdfInfo && pdfInfo.data) {
@@ -60,6 +61,7 @@ const PDFViewPage = () => {
           
           // Check if the data is compressed and decompress if needed
           const pdfData = pdfInfo.compressed ? decompressData(pdfInfo.data) : pdfInfo.data;
+          console.log("PDF data processed, compressed:", pdfInfo.compressed);
           
           setLastUploadedPdf(pdfData);
           setPdfTitle(pdfInfo.title || "Uploaded PDF");

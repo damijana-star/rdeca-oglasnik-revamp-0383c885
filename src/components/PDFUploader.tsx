@@ -1,3 +1,4 @@
+
 import React, { useState, useRef } from 'react';
 import { Input } from "@/components/ui/input";
 import { useToast } from "@/hooks/use-toast";
@@ -31,6 +32,7 @@ const PDFUploader: React.FC<PDFUploaderProps> = ({
   };
   
   const processPDFFile = (file: File) => {
+    console.log("Processing PDF file:", file.name, file.size);
     const validation = validatePDFFile(file, maxSizeMB || 5);
     
     if (!validation.valid) {
@@ -62,64 +64,76 @@ const PDFUploader: React.FC<PDFUploaderProps> = ({
   };
   
   const simulateUpload = async () => {
-    if (!selectedFile) return;
+    if (!selectedFile) {
+      console.log("No file selected for upload");
+      return;
+    }
     
+    console.log("Starting upload simulation for file:", selectedFile.name);
     setIsUploading(true);
     setUploadProgress(0);
     
     try {
+      // Start reading the file in parallel
+      console.log("Reading file as data URL");
+      const base64Data = await readFileAsDataURL(selectedFile);
+      console.log("File read successfully, data length:", base64Data.length);
+      
       // Simulate upload process
       let progress = 0;
       const interval = setInterval(() => {
         progress += 10;
         setUploadProgress(progress);
+        console.log(`Upload progress: ${progress}%`);
         
         if (progress >= 100) {
           clearInterval(interval);
-          completeUpload();
+          completeUpload(base64Data);
         }
       }, 300);
-      
-      // Start reading the file in parallel
-      const base64Data = await readFileAsDataURL(selectedFile);
-      
-      // Store data for when upload completes
-      const pdfInfo = {
-        data: base64Data,
-        title: selectedFile.name,
-        uploadedAt: new Date().toISOString()
-      };
-      
-      function completeUpload() {
-        setIsUploading(false);
-        
-        const saved = savePDFToLocalStorage(pdfInfo);
-        
-        if (saved) {
-          toast({
-            title: "Uspešno naloženo",
-            description: "Vaša PDF datoteka je bila uspešno naložena.",
-          });
-          
-          // Navigate to the PDF view page
-          navigate("/view-pdf", { 
-            state: { 
-              fromUpload: true
-            } 
-          });
-        } else {
-          toast({
-            title: "Napaka pri shranjevanju",
-            description: "PDF je prevelik za shranjevanje. Poskusite z manjšo datoteko.",
-            variant: "destructive"
-          });
-        }
-      }
     } catch (error) {
+      console.error("Error during file reading:", error);
       setIsUploading(false);
       toast({
         title: "Napaka pri branju datoteke",
         description: "Prosimo, poskusite z drugo datoteko.",
+        variant: "destructive"
+      });
+    }
+  };
+  
+  const completeUpload = (base64Data: string) => {
+    console.log("Upload complete, saving to localStorage");
+    setIsUploading(false);
+    
+    if (!selectedFile) return;
+    
+    const pdfInfo = {
+      data: base64Data,
+      title: selectedFile.name,
+      uploadedAt: new Date().toISOString()
+    };
+    
+    const saved = savePDFToLocalStorage(pdfInfo);
+    
+    if (saved) {
+      console.log("PDF successfully saved to localStorage");
+      toast({
+        title: "Uspešno naloženo",
+        description: "Vaša PDF datoteka je bila uspešno naložena.",
+      });
+      
+      // Navigate to the PDF view page
+      navigate("/view-pdf", { 
+        state: { 
+          fromUpload: true
+        } 
+      });
+    } else {
+      console.error("Failed to save PDF to localStorage");
+      toast({
+        title: "Napaka pri shranjevanju",
+        description: "PDF je prevelik za shranjevanje. Poskusite z manjšo datoteko.",
         variant: "destructive"
       });
     }

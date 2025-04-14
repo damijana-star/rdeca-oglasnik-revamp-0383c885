@@ -21,6 +21,7 @@ export const getLocalStorageSize = () => {
 
 export const compressData = (data: string): string => {
   try {
+    console.log("Compressing PDF data of length:", data.length);
     // Convert base64 to binary string
     const binaryString = atob(data.split(',')[1]);
     // Convert binary string to Uint8Array
@@ -31,6 +32,7 @@ export const compressData = (data: string): string => {
     
     // Compress the data
     const compressed = pako.deflate(bytes);
+    console.log("Data compressed successfully");
     
     // Convert back to base64 string
     const compressedBase64 = btoa(String.fromCharCode.apply(null, compressed as unknown as number[]));
@@ -49,6 +51,7 @@ export const decompressData = (data: string): string => {
   }
   
   try {
+    console.log("Decompressing PDF data");
     // Extract the base64 part
     const base64Data = data.split(',')[1];
     // Convert base64 to binary string
@@ -61,6 +64,7 @@ export const decompressData = (data: string): string => {
     
     // Decompress the data
     const decompressed = pako.inflate(bytes);
+    console.log("Data decompressed successfully");
     
     // Convert back to base64 string
     const decompressedBase64 = btoa(String.fromCharCode.apply(null, decompressed as unknown as number[]));
@@ -80,13 +84,17 @@ export const decompressData = (data: string): string => {
 
 export const savePDFToLocalStorage = (pdfInfo: PDFInfo): boolean => {
   try {
-    const MAX_LOCAL_STORAGE_SIZE = 10 * 1024 * 1024; // Increased to 10MB limit
+    console.log("Attempting to save PDF to localStorage");
+    const MAX_LOCAL_STORAGE_SIZE = 10 * 1024 * 1024; // 10MB limit
     
     // Try compression if the file is large and not already compressed
     if (!pdfInfo.compressed && pdfInfo.data.startsWith('data:application/pdf;base64,')) {
       const originalSize = pdfInfo.data.length * 2;
+      console.log("Original PDF size:", originalSize/1024, "KB");
+      
       const compressedData = compressData(pdfInfo.data);
       const compressedSize = compressedData.length * 2;
+      console.log("Compressed PDF size:", compressedSize/1024, "KB");
       
       // If compression is effective, use the compressed data
       if (compressedSize < originalSize) {
@@ -101,17 +109,24 @@ export const savePDFToLocalStorage = (pdfInfo: PDFInfo): boolean => {
     
     const currentSize = getLocalStorageSize();
     const infoSize = JSON.stringify(pdfInfo).length * 2;
+    console.log("Current localStorage size:", currentSize/1024, "KB");
+    console.log("PDF info size to store:", infoSize/1024, "KB");
 
-    if (currentSize + infoSize > MAX_LOCAL_STORAGE_SIZE) {
+    // First, try to remove existing PDF if it exists
+    localStorage.removeItem('lastUploadedPdf');
+    
+    if (getLocalStorageSize() + infoSize > MAX_LOCAL_STORAGE_SIZE) {
       // Try clearing other localStorage items first
+      console.log("Not enough space, clearing other items");
       let clearedSpace = 0;
       for (let key in localStorage) {
-        if (key !== 'lastUploadedPdf' && localStorage.hasOwnProperty(key)) {
+        if (localStorage.hasOwnProperty(key)) {
           clearedSpace += (localStorage[key].length + key.length) * 2;
           localStorage.removeItem(key);
+          console.log(`Removed item: ${key}, cleared space: ${clearedSpace/1024} KB`);
           
           // If we've cleared enough space, break
-          if (currentSize - clearedSpace + infoSize <= MAX_LOCAL_STORAGE_SIZE) {
+          if (getLocalStorageSize() + infoSize <= MAX_LOCAL_STORAGE_SIZE) {
             break;
           }
         }
@@ -119,6 +134,7 @@ export const savePDFToLocalStorage = (pdfInfo: PDFInfo): boolean => {
       
       // Check if we now have enough space
       if (getLocalStorageSize() + infoSize > MAX_LOCAL_STORAGE_SIZE) {
+        console.error("Still not enough space after clearing localStorage");
         toast({
           title: "Napaka pri shranjevanju",
           description: "PDF datoteka je prevelika za shranjevanje tudi po kompresiji. Poskusite z manjšo datoteko.",
@@ -128,7 +144,10 @@ export const savePDFToLocalStorage = (pdfInfo: PDFInfo): boolean => {
       }
     }
 
+    // Save the PDF info
+    console.log("Saving PDF to localStorage");
     localStorage.setItem('lastUploadedPdf', JSON.stringify(pdfInfo));
+    console.log("PDF saved successfully");
     return true;
   } catch (e) {
     console.error("Error saving to localStorage:", e);

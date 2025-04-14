@@ -2,7 +2,7 @@
 import React from 'react';
 import { Button } from "@/components/ui/button";
 import { Progress } from "@/components/ui/progress";
-import { FileText, X, Eye } from "lucide-react";
+import { FileText, X, Eye, Upload } from "lucide-react";
 
 interface PDFFileDisplayProps {
   file: File;
@@ -64,10 +64,11 @@ const PDFFileDisplay: React.FC<PDFFileDisplayProps> = ({
       
       {!isUploading && uploadProgress < 100 && (
         <Button 
-          className="w-full mt-2 bg-[#e32530] hover:bg-[#e32530]/90"
+          className="w-full mt-2 bg-[#e32530] hover:bg-[#e32530]/90 flex items-center justify-center"
           onClick={onUpload}
           disabled={isUploading}
         >
+          <Upload className="h-4 w-4 mr-2" />
           Naloži datoteko
         </Button>
       )}
