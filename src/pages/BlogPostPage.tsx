@@ -2,8 +2,16 @@ import React, { useEffect } from 'react';
 import { useParams, Link, useNavigate } from "react-router-dom";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
-import { ChevronLeft, ChevronRight, Tag } from "lucide-react";
+import { ChevronLeft, ChevronRight, Tag, ArrowLeft, ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { 
+  Breadcrumb,
+  BreadcrumbItem,
+  BreadcrumbLink,
+  BreadcrumbList,
+  BreadcrumbPage,
+  BreadcrumbSeparator
+} from "@/components/ui/breadcrumb";
 
 const allBlogPosts = [{
   id: 4,
@@ -108,7 +116,7 @@ const allBlogPosts = [{
       
       <h2>Povzetek: Recept za učinkovit oglas</h2>
       <p>✔️ Naslov, ki pritegne</p>
-      <p>✔️ Jasna ponudba s koristmi</p>
+      <p>✔�� Jasna ponudba s koristmi</p>
       <p>✔️ Poziv k dejanju</p>
       <p>✔️ Kontaktni podatki</p>
       <p>✔️ Slika/logotip</p>
@@ -186,7 +194,6 @@ const allBlogPosts = [{
   tags: ["marketing", "oglasi", "napake", "mala podjetja", "strategija"]
 }];
 
-// Enhanced BlogPostPage component with improved navigation
 const BlogPostPage = () => {
   const { id } = useParams<{ id: string }>();
   const navigate = useNavigate();
@@ -224,15 +231,33 @@ const BlogPostPage = () => {
   // Find related posts (same category, different ID)
   const relatedPosts = allBlogPosts.filter(p => p.category === post.category && p.id !== post.id).slice(0, 2);
   
-  // Function to handle clicking related post links
-  const handleRelatedPostClick = (relatedPostId: number) => {
-    console.log('BlogPostPage: Navigating to post:', relatedPostId);
-    navigate(`/blog/${relatedPostId}`);
-  };
+  // Find previous and next posts for navigation
+  const sortedPosts = [...allBlogPosts].sort((a, b) => a.id - b.id);
+  const currentPostIndex = sortedPosts.findIndex(p => p.id === post.id);
+  const prevPost = currentPostIndex > 0 ? sortedPosts[currentPostIndex - 1] : null;
+  const nextPost = currentPostIndex < sortedPosts.length - 1 ? sortedPosts[currentPostIndex + 1] : null;
 
   return <div className="min-h-screen flex flex-col">
       <Header />
       <main className="flex-grow">
+        <div className="container py-6">
+          <Breadcrumb>
+            <BreadcrumbList>
+              <BreadcrumbItem>
+                <BreadcrumbLink href="/">Domov</BreadcrumbLink>
+              </BreadcrumbItem>
+              <BreadcrumbSeparator />
+              <BreadcrumbItem>
+                <BreadcrumbLink href="/blog">Nasveti</BreadcrumbLink>
+              </BreadcrumbItem>
+              <BreadcrumbSeparator />
+              <BreadcrumbItem>
+                <BreadcrumbPage>{post.title.length > 30 ? post.title.substring(0, 30) + '...' : post.title}</BreadcrumbPage>
+              </BreadcrumbItem>
+            </BreadcrumbList>
+          </Breadcrumb>
+        </div>
+        
         <div className="relative text-white h-[50vh] md:h-[60vh] flex items-end">
           <div className="absolute inset-0 z-0">
             <img src={post.image} alt={post.title} className="w-full h-full object-cover" />
@@ -242,9 +267,12 @@ const BlogPostPage = () => {
           <div className="container relative z-10 py-16">
             <div className="max-w-4xl">
               <div className="flex items-center space-x-4 mb-6">
-                <span className="inline-flex items-center bg-[#e32530] text-white text-sm font-semibold px-3 py-1.5 rounded-full">
+                <Link 
+                  to={`/blog?category=${post.category}`} 
+                  className="inline-flex items-center bg-[#e32530] text-white text-sm font-semibold px-3 py-1.5 rounded-full hover:bg-[#e32530]/90 transition-colors"
+                >
                   {post.category}
-                </span>
+                </Link>
               </div>
               
               <h1 className="text-3xl md:text-5xl mb-6 leading-tight max-w-4xl font-bold">
@@ -260,12 +288,20 @@ const BlogPostPage = () => {
 
         <div className="container py-12">
           <div className="max-w-4xl mx-auto">
-            <Button variant="outline" className="mb-8 hover:bg-gray-100" asChild>
-              <Link to="/blog" className="flex items-center">
-                <ChevronLeft className="mr-2 h-4 w-4" />
-                Nazaj na nasvete
-              </Link>
-            </Button>
+            <div className="flex justify-between items-center mb-8">
+              <Button variant="outline" className="hover:bg-gray-100" asChild>
+                <Link to="/blog" className="flex items-center">
+                  <ChevronLeft className="mr-2 h-4 w-4" />
+                  Nazaj na nasvete
+                </Link>
+              </Button>
+              
+              <div className="flex items-center gap-2 text-sm text-gray-500">
+                <span>{post.date}</span>
+                <span>•</span>
+                <span>{post.author}</span>
+              </div>
+            </div>
             
             <div className="prose prose-lg max-w-none mb-12">
               <div dangerouslySetInnerHTML={{
@@ -275,43 +311,84 @@ const BlogPostPage = () => {
             
             {post.tags && post.tags.length > 0 && <div className="flex items-center flex-wrap gap-2 mb-12 border-t border-b py-4">
                 <Tag className="h-4 w-4 text-gray-500 mr-2" />
-                {post.tags.map((tag, index) => <span key={index} className="bg-gray-100 text-gray-800 text-sm px-3 py-1 rounded-full">
+                {post.tags.map((tag, index) => (
+                  <Link 
+                    key={index} 
+                    to={`/blog?tag=${tag}`} 
+                    className="bg-gray-100 text-gray-800 text-sm px-3 py-1 rounded-full hover:bg-gray-200 transition-colors"
+                  >
                     {tag}
-                  </span>)}
+                  </Link>
+                ))}
               </div>}
+            
+            {/* Post navigation */}
+            <div className="flex justify-between items-center my-12 border-t border-b py-4">
+              {prevPost ? (
+                <Link 
+                  to={`/blog/${prevPost.id}`}
+                  className="flex items-center text-gray-600 hover:text-[#e32530] transition-colors"
+                  onClick={() => window.scrollTo(0, 0)}
+                >
+                  <ArrowLeft className="mr-2 h-4 w-4" />
+                  <span className="hidden sm:inline">Prejšnji članek</span>
+                </Link>
+              ) : (
+                <div></div>
+              )}
+              
+              <Link 
+                to="/blog"
+                className="text-gray-600 hover:text-[#e32530] transition-colors"
+              >
+                Vsi članki
+              </Link>
+              
+              {nextPost ? (
+                <Link 
+                  to={`/blog/${nextPost.id}`}
+                  className="flex items-center text-gray-600 hover:text-[#e32530] transition-colors"
+                  onClick={() => window.scrollTo(0, 0)}
+                >
+                  <span className="hidden sm:inline">Naslednji članek</span>
+                  <ArrowRight className="ml-2 h-4 w-4" />
+                </Link>
+              ) : (
+                <div></div>
+              )}
+            </div>
             
             {relatedPosts.length > 0 && <div className="mt-12">
                 <h3 className="text-xl font-bold mb-6">Sorodni članki</h3>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                   {relatedPosts.map(relatedPost => (
-                    <div 
+                    <Link 
                       key={relatedPost.id} 
-                      className="cursor-pointer hover:shadow-md transition-all duration-300"
-                      onClick={() => handleRelatedPostClick(relatedPost.id)}
+                      to={`/blog/${relatedPost.id}`}
+                      onClick={() => window.scrollTo(0, 0)}
+                      className="cursor-pointer hover:shadow-md transition-all duration-300 flex flex-col h-full group"
                     >
                       <div className="relative h-48 overflow-hidden">
-                        <img src={relatedPost.image} alt={relatedPost.title} className="w-full h-full object-cover" />
+                        <img 
+                          src={relatedPost.image} 
+                          alt={relatedPost.title} 
+                          className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                        />
                         <span className="absolute top-2 right-2 bg-[#e32530] text-white text-xs font-semibold px-2 py-1 rounded">
                           {relatedPost.category}
                         </span>
                       </div>
-                      <div className="p-6">
-                        <h3 className="font-semibold text-xl mb-3">{relatedPost.title}</h3>
-                        <p className="text-gray-600 mb-4 text-sm line-clamp-2">
+                      <div className="p-6 flex-grow flex flex-col">
+                        <h3 className="font-semibold text-xl mb-3 group-hover:text-[#e32530] transition-colors">{relatedPost.title}</h3>
+                        <p className="text-gray-600 mb-4 text-sm line-clamp-2 flex-grow">
                           {relatedPost.excerpt}
                         </p>
-                        <div 
-                          className="inline-flex items-center text-[#e32530] font-medium hover:underline cursor-pointer"
-                          onClick={(e) => {
-                            e.stopPropagation(); // Prevent triggering parent onClick
-                            handleRelatedPostClick(relatedPost.id);
-                          }}
-                        >
+                        <div className="text-[#e32530] font-medium group-hover:underline mt-auto flex items-center">
                           Preberi več 
                           <ChevronRight className="w-4 h-4 ml-1" />
                         </div>
                       </div>
-                    </div>
+                    </Link>
                   ))}
                 </div>
               </div>}
