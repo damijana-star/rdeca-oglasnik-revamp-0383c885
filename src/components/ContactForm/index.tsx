@@ -30,11 +30,12 @@ export const ContactForm = () => {
       message: values.message
     };
     
-    // Send the email using EmailJS
+    // Send the email using EmailJS - correct parameters order
     emailjs.send(
       EMAILJS_SERVICE_ID,
       EMAILJS_TEMPLATE_ID,
-      templateParams
+      templateParams,
+      EMAILJS_USER_ID  // Add the user ID parameter back - it's required in this position
     )
     .then((response) => {
       console.log('SUCCESS!', response.status, response.text);
