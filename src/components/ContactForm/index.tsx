@@ -5,12 +5,16 @@ import ContactInfoDisplay from "./ContactInfoDisplay";
 import { toast } from "@/hooks/use-toast";
 import emailjs from "emailjs-com";
 
+// Initialize EmailJS with your public key
+emailjs.init("ejoTXEF5clFp3_Cnx");
+
 export const ContactForm = () => {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSuccess, setIsSuccess] = useState(false);
 
   function onSubmit(values: FormValues) {
     setIsSubmitting(true);
+    console.log("Submitting form with values:", values);
     
     // Prepare the email template parameters
     const templateParams = {
@@ -20,12 +24,13 @@ export const ContactForm = () => {
       message: values.message
     };
 
+    console.log("Sending email with params:", templateParams);
+
     // Send email using emailjs
     emailjs.send(
       "service_n429gen", // service ID
       "template_hdewjqm", // template ID
-      templateParams,
-      "ejoTXEF5clFp3_Cnx" // public key from .env file
+      templateParams
     )
     .then((response) => {
       console.log('Email sent successfully:', response);
