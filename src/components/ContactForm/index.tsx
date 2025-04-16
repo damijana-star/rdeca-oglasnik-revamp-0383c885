@@ -5,7 +5,8 @@ import ContactInfoDisplay from "./ContactInfoDisplay";
 import { toast } from "@/hooks/use-toast";
 import emailjs from "emailjs-com";
 
-// Initialize EmailJS with your public key
+// Make sure EmailJS is properly initialized with your public key
+// The public key should be visible in your EmailJS dashboard
 emailjs.init("ejoTXEF5clFp3_Cnx");
 
 export const ContactForm = () => {
@@ -26,7 +27,7 @@ export const ContactForm = () => {
 
     console.log("Sending email with params:", templateParams);
 
-    // Send email using emailjs
+    // Send email using emailjs with proper error handling
     emailjs.send(
       "service_n429gen", // service ID
       "template_hdewjqm", // template ID
