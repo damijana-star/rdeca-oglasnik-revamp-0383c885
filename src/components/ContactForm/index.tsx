@@ -22,10 +22,10 @@ export const ContactForm = () => {
 
     // Send email using emailjs
     emailjs.send(
-      "service_nanoskioglasnik", // service ID - you'll need to set this up
-      "template_contact", // template ID - you'll need to set this up
+      "service_n429gen", // service ID
+      "template_hdewjqm", // template ID
       templateParams,
-      "YOUR_USER_ID" // public key - you'll need to set this up
+      "ejoTXEF5clFp3_Cnx" // public key from .env file
     )
     .then((response) => {
       console.log('Email sent successfully:', response);
