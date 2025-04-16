@@ -29,7 +29,7 @@ export const ContactForm = () => {
 
     // Send email using emailjs with proper error handling
     emailjs.send(
-      "service_n429gen", // service ID
+      "default_service", // service ID
       "template_hdewjqm", // template ID
       templateParams
     )
