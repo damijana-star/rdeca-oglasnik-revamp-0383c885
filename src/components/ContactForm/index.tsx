@@ -25,11 +25,11 @@ export const ContactForm = () => {
     };
 
     console.log("Sending email with params:", templateParams);
-    console.log("Using service_n429gen and template_hdewjqm");
+    console.log("Using service_550bmn7 and template_hdewjqm");
 
     // Send email using emailjs with proper error handling
     emailjs.send(
-      "service_n429gen", // service ID
+      "service_550bmn7", // Updated service ID
       "template_hdewjqm", // template ID
       templateParams
     )
