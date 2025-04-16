@@ -1,3 +1,4 @@
+
 import { useState } from "react";
 import ContactFormInputs, { FormValues } from "./ContactFormInputs";
 import ContactInfoDisplay from "./ContactInfoDisplay";
@@ -24,6 +25,7 @@ export const ContactForm = () => {
     };
 
     console.log("Sending email with params:", templateParams);
+    console.log("Using service_n429gen and template_hdewjqm");
 
     // Send email using emailjs with proper error handling
     emailjs.send(
@@ -52,10 +54,10 @@ export const ContactForm = () => {
       console.error('Email sending failed:', error);
       setIsSubmitting(false);
       
-      // Show error toast notification
+      // Show error toast notification with specific error message
       toast({
         title: "Napaka",
-        description: "Pri pošiljanju sporočila je prišlo do napake. Prosimo, poskusite ponovno kasneje.",
+        description: `Pri pošiljanju sporočila je prišlo do napake: ${error.text || error.message || "Neznana napaka"}. Prosimo, poskusite ponovno kasneje.`,
         variant: "destructive",
       });
     });

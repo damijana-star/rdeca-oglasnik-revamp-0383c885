@@ -6,7 +6,8 @@ import ContactForm from "@/components/ContactForm";
 import { Toaster } from "@/components/ui/toaster";
 
 const ContactPage = () => {
-  return <div className="min-h-screen flex flex-col">
+  return (
+    <div className="min-h-screen flex flex-col">
       <Header />
       <main className="flex-grow">
         <div className="py-12 bg-gray-50">
@@ -20,7 +21,7 @@ const ContactPage = () => {
       </main>
       <Footer />
       <Toaster />
-    </div>;
+    </div>
+  );
 };
 export default ContactPage;
-
