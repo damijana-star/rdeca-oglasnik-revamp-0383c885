@@ -2,28 +2,48 @@
 import React, { useState } from "react";
 import { useToast } from "@/hooks/use-toast";
 import ContactInfoDisplay from "./ContactInfoDisplay";
+import { useForm } from "react-hook-form";
+import { zodResolver } from "@hookform/resolvers/zod";
+import * as z from "zod";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { Textarea } from "@/components/ui/textarea";
+import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
+import { Send } from "lucide-react";
+
+// Define form validation schema
+const formSchema = z.object({
+  name: z.string().min(2, { message: "Ime mora vsebovati vsaj 2 znaka" }),
+  email: z.string().email({ message: "Vpišite veljaven email naslov" }),
+  phone: z.string().optional(),
+  message: z.string().min(5, { message: "Sporočilo mora vsebovati vsaj 5 znakov" }),
+});
+
+type FormValues = z.infer<typeof formSchema>;
 
 export const ContactForm = () => {
   const { toast } = useToast();
   const [isSubmitting, setIsSubmitting] = useState(false);
+  
+  // Initialize React Hook Form
+  const form = useForm<FormValues>({
+    resolver: zodResolver(formSchema),
+    defaultValues: {
+      name: "",
+      email: "",
+      phone: "",
+      message: "",
+    },
+  });
 
-  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    
+  const onSubmit = async (values: FormValues) => {
     setIsSubmitting(true);
     
-    const formData = new FormData(e.currentTarget);
-    
     // Log form data for debugging
-    console.log("Submitting form with values:", {
-      name: formData.get("name"),
-      email: formData.get("email"),
-      phone: formData.get("phone") || "",
-      message: formData.get("message")
-    });
+    console.log("Submitting form with values:", values);
 
     try {
-      // Create a standard form submission but with fetch
+      // Send data to FormSubmit.co
       const response = await fetch("https://formsubmit.co/ajax/info@nanoski-oglasnik.eu", {
         method: "POST",
         headers: {
@@ -31,10 +51,7 @@ export const ContactForm = () => {
           'Content-Type': 'application/json'
         },
         body: JSON.stringify({
-          name: formData.get("name"),
-          email: formData.get("email"),
-          phone: formData.get("phone") || "",
-          message: formData.get("message"),
+          ...values,
           _captcha: "false",
           _subject: "Nova poizvedba iz spletne strani",
           _template: "table"
@@ -51,7 +68,7 @@ export const ContactForm = () => {
         });
         
         // Reset form
-        e.currentTarget.reset();
+        form.reset();
       } else {
         throw new Error(result.message || "Form submission failed");
       }
@@ -79,54 +96,79 @@ export const ContactForm = () => {
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-10 items-start max-w-5xl mx-auto">
           <div className="bg-white p-8 rounded-lg shadow-sm">
-            <form onSubmit={handleSubmit} className="space-y-6">
-              <div className="space-y-4">
-                <div>
-                  <input
-                    type="text"
-                    name="name"
-                    className="w-full rounded-md border border-gray-300 px-4 py-2 focus:border-dark-red focus:outline-none focus:ring-1 focus:ring-dark-red"
-                    placeholder="Ime in Priimek"
-                    required
-                  />
-                </div>
-                <div>
-                  <input
-                    type="email"
-                    name="email"
-                    className="w-full rounded-md border border-gray-300 px-4 py-2 focus:border-dark-red focus:outline-none focus:ring-1 focus:ring-dark-red"
-                    placeholder="Email naslov"
-                    required
-                  />
-                </div>
-                <div>
-                  <input
-                    type="tel"
-                    name="phone"
-                    className="w-full rounded-md border border-gray-300 px-4 py-2 focus:border-dark-red focus:outline-none focus:ring-1 focus:ring-dark-red"
-                    placeholder="Telefonska številka (neobvezno)"
-                  />
-                </div>
-                <div>
-                  <textarea
-                    name="message"
-                    rows={6}
-                    className="w-full rounded-md border border-gray-300 px-4 py-2 focus:border-dark-red focus:outline-none focus:ring-1 focus:ring-dark-red"
-                    placeholder="Sporočilo"
-                    required
-                  />
-                </div>
-              </div>
-              <button
-                type="submit"
-                disabled={isSubmitting}
-                className={`w-full bg-dark-red hover:bg-dark-red/90 text-white px-4 py-3 rounded-md transition-colors ${
-                  isSubmitting ? "opacity-70 cursor-not-allowed" : ""
-                }`}
-              >
-                {isSubmitting ? "Pošiljanje..." : "Pošlji sporočilo"}
-              </button>
-            </form>
+            <Form {...form}>
+              <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
+                <FormField
+                  control={form.control}
+                  name="name"
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormLabel>Ime in Priimek</FormLabel>
+                      <FormControl>
+                        <Input placeholder="Ime in Priimek" {...field} />
+                      </FormControl>
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
+                
+                <FormField
+                  control={form.control}
+                  name="email"
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormLabel>Email naslov</FormLabel>
+                      <FormControl>
+                        <Input placeholder="Email naslov" type="email" {...field} />
+                      </FormControl>
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
+                
+                <FormField
+                  control={form.control}
+                  name="phone"
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormLabel>Telefonska številka (neobvezno)</FormLabel>
+                      <FormControl>
+                        <Input placeholder="Telefonska številka" type="tel" {...field} />
+                      </FormControl>
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
+                
+                <FormField
+                  control={form.control}
+                  name="message"
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormLabel>Sporočilo</FormLabel>
+                      <FormControl>
+                        <Textarea placeholder="Sporočilo" className="min-h-[150px]" {...field} />
+                      </FormControl>
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
+                
+                <Button 
+                  type="submit" 
+                  className="w-full bg-dark-red hover:bg-dark-red/90 text-white"
+                  disabled={isSubmitting}
+                >
+                  {isSubmitting ? (
+                    "Pošiljanje..."
+                  ) : (
+                    <>
+                      Pošlji sporočilo <Send className="ml-2 h-4 w-4" />
+                    </>
+                  )}
+                </Button>
+              </form>
+            </Form>
           </div>
           <ContactInfoDisplay />
         </div>
