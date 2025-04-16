@@ -1,4 +1,3 @@
-
 import { useState } from "react";
 import ContactFormInputs, { FormValues } from "./ContactFormInputs";
 import ContactInfoDisplay from "./ContactInfoDisplay";
@@ -19,8 +18,8 @@ export const ContactForm = () => {
     formData.append("phone", values.phone);
     formData.append("message", values.message);
 
-    // Send form data to FormSubmit.co service (replace your-email@example.com with your actual email)
-    fetch("https://formsubmit.co/info@nanoski-oglasnik.eu", {
+    // IMPORTANT: Replace 'your-email@example.com' with YOUR actual email
+    fetch("https://formsubmit.co/your-email@example.com", {
       method: "POST",
       body: formData,
       headers: {
