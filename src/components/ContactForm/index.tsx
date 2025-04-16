@@ -38,19 +38,26 @@ export const ContactForm = () => {
 
   const onSubmit = async (values: FormValues) => {
     setIsSubmitting(true);
+    console.log("Submitting form with values:", values);
     
     const formData = new FormData();
     formData.append('name', values.name);
     formData.append('email', values.email);
     formData.append('phone', values.phone || '');
     formData.append('message', values.message);
+    // Add these required FormSubmit fields
+    formData.append('_captcha', 'false');
+    formData.append('_subject', 'Nova poizvedba iz spletne strani');
+    formData.append('_template', 'table');
 
     try {
-      // Send data to FormSubmit.co
-      const response = await fetch(`https://formsubmit.co/3d46f4b0b47d881b8a8820990542e23b`, {
+      // Send data to FormSubmit.co with the correct URL format
+      const response = await fetch("https://formsubmit.co/3d46f4b0b47d881b8a8820990542e23b", {
         method: "POST",
         body: formData
       });
+      
+      console.log("Form submission response:", response);
       
       if (response.ok) {
         toast({
@@ -62,6 +69,7 @@ export const ContactForm = () => {
         // Reset form
         form.reset();
       } else {
+        console.error("Form submission failed with status:", response.status);
         throw new Error("Form submission failed");
       }
     } catch (error) {
