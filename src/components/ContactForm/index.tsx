@@ -23,11 +23,25 @@ export const ContactForm = () => {
     });
 
     try {
-      // Use the FormSubmit service
-      const response = await fetch("https://formsubmit.co/info@nanoski-oglasnik.eu", {
+      // Create a standard form submission but with fetch
+      const response = await fetch("https://formsubmit.co/ajax/info@nanoski-oglasnik.eu", {
         method: "POST",
-        body: formData,
+        headers: {
+          'Accept': 'application/json',
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+          name: formData.get("name"),
+          email: formData.get("email"),
+          phone: formData.get("phone") || "",
+          message: formData.get("message"),
+          _captcha: "false",
+          _subject: "Nova poizvedba iz spletne strani",
+          _template: "table"
+        }),
       });
+      
+      const result = await response.json();
       
       if (response.ok) {
         toast({
@@ -39,7 +53,7 @@ export const ContactForm = () => {
         // Reset form
         e.currentTarget.reset();
       } else {
-        throw new Error("Form submission failed");
+        throw new Error(result.message || "Form submission failed");
       }
     } catch (error) {
       console.error("Form submission failed:", error);
@@ -102,9 +116,6 @@ export const ContactForm = () => {
                     required
                   />
                 </div>
-                <input type="hidden" name="_captcha" value="false" />
-                <input type="hidden" name="_subject" value="Nova poizvedba iz spletne strani" />
-                <input type="hidden" name="_template" value="table" />
               </div>
               <button
                 type="submit"
