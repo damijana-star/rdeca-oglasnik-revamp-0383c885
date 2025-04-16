@@ -1,7 +1,58 @@
 
+import React, { useState } from "react";
+import { useToast } from "@/hooks/use-toast";
 import ContactInfoDisplay from "./ContactInfoDisplay";
 
 export const ContactForm = () => {
+  const { toast } = useToast();
+  const [isSubmitting, setIsSubmitting] = useState(false);
+
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    
+    setIsSubmitting(true);
+    
+    const formData = new FormData(e.currentTarget);
+    
+    // Log form data for debugging
+    console.log("Submitting form with values:", {
+      name: formData.get("name"),
+      email: formData.get("email"),
+      phone: formData.get("phone") || "",
+      message: formData.get("message")
+    });
+
+    try {
+      // Use the FormSubmit service
+      const response = await fetch("https://formsubmit.co/info@nanoski-oglasnik.eu", {
+        method: "POST",
+        body: formData,
+      });
+      
+      if (response.ok) {
+        toast({
+          title: "Sporočilo poslano",
+          description: "Hvala za vaše sporočilo. Odgovorili vam bomo v najkrajšem možnem času.",
+          variant: "default",
+        });
+        
+        // Reset form
+        e.currentTarget.reset();
+      } else {
+        throw new Error("Form submission failed");
+      }
+    } catch (error) {
+      console.error("Form submission failed:", error);
+      toast({
+        title: "Napaka",
+        description: "Prišlo je do napake pri pošiljanju. Prosimo, poskusite znova.",
+        variant: "destructive",
+      });
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
+
   return (
     <div id="contact" className="section bg-gray-50 py-16">
       <div className="container">
@@ -14,12 +65,7 @@ export const ContactForm = () => {
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-10 items-start max-w-5xl mx-auto">
           <div className="bg-white p-8 rounded-lg shadow-sm">
-            <form
-              target="_blank"
-              action="https://formsubmit.co/info@nanoski-oglasnik.eu"
-              method="POST"
-              className="space-y-6"
-            >
+            <form onSubmit={handleSubmit} className="space-y-6">
               <div className="space-y-4">
                 <div>
                   <input
@@ -40,20 +86,34 @@ export const ContactForm = () => {
                   />
                 </div>
                 <div>
+                  <input
+                    type="tel"
+                    name="phone"
+                    className="w-full rounded-md border border-gray-300 px-4 py-2 focus:border-dark-red focus:outline-none focus:ring-1 focus:ring-dark-red"
+                    placeholder="Telefonska številka (neobvezno)"
+                  />
+                </div>
+                <div>
                   <textarea
                     name="message"
-                    rows={10}
+                    rows={6}
                     className="w-full rounded-md border border-gray-300 px-4 py-2 focus:border-dark-red focus:outline-none focus:ring-1 focus:ring-dark-red"
                     placeholder="Sporočilo"
                     required
                   />
                 </div>
+                <input type="hidden" name="_captcha" value="false" />
+                <input type="hidden" name="_subject" value="Nova poizvedba iz spletne strani" />
+                <input type="hidden" name="_template" value="table" />
               </div>
               <button
                 type="submit"
-                className="w-full bg-dark-red hover:bg-dark-red/90 text-white px-4 py-3 rounded-md transition-colors"
+                disabled={isSubmitting}
+                className={`w-full bg-dark-red hover:bg-dark-red/90 text-white px-4 py-3 rounded-md transition-colors ${
+                  isSubmitting ? "opacity-70 cursor-not-allowed" : ""
+                }`}
               >
-                Pošlji sporočilo
+                {isSubmitting ? "Pošiljanje..." : "Pošlji sporočilo"}
               </button>
             </form>
           </div>
