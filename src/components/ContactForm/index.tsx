@@ -1,82 +1,62 @@
-import { useState } from "react";
-import ContactFormInputs, { FormValues } from "./ContactFormInputs";
+
 import ContactInfoDisplay from "./ContactInfoDisplay";
-import { toast } from "@/hooks/use-toast";
 
 export const ContactForm = () => {
-  const [isSubmitting, setIsSubmitting] = useState(false);
-  const [isSuccess, setIsSuccess] = useState(false);
-
-  function onSubmit(values: FormValues) {
-    setIsSubmitting(true);
-    console.log("Submitting form with values:", values);
-    
-    // Create a FormData object
-    const formData = new FormData();
-    formData.append("name", values.name);
-    formData.append("email", values.email);
-    formData.append("phone", values.phone);
-    formData.append("message", values.message);
-
-    // IMPORTANT: Replace 'your-email@example.com' with YOUR actual email
-    fetch("https://formsubmit.co/your-email@example.com", {
-      method: "POST",
-      body: formData,
-      headers: {
-        'Accept': 'application/json'
-      },
-    })
-    .then(response => {
-      if (!response.ok) {
-        throw new Error(`Status: ${response.status}`);
-      }
-      return response.json();
-    })
-    .then(data => {
-      console.log('Form submission successful:', data);
-      setIsSubmitting(false);
-      setIsSuccess(true);
-      
-      // Show success toast notification
-      toast({
-        title: "Sporočilo poslano",
-        description: "Vaše sporočilo je bilo uspešno poslano. Odgovorili vam bomo v najkrajšem možnem času.",
-        variant: "default",
-      });
-      
-      // Reset success message after 5 seconds
-      setTimeout(() => {
-        setIsSuccess(false);
-      }, 5000);
-    })
-    .catch(error => {
-      console.error('Form submission failed:', error);
-      setIsSubmitting(false);
-      
-      // Show error toast notification
-      toast({
-        title: "Napaka",
-        description: `Pri pošiljanju sporočila je prišlo do napake. Prosimo, poskusite ponovno kasneje.`,
-        variant: "destructive",
-      });
-    });
-  }
-
   return (
     <div id="contact" className="section bg-gray-50 py-16">
       <div className="container">
         <div className="text-center mb-12">
+          <h1 className="text-3xl font-bold mb-4">Kontaktni obrazec</h1>
           <p className="text-gray-600 max-w-2xl mx-auto">
             Imate vprašanje ali potrebujete dodatne informacije? Izpolnite spodnji obrazec in odgovorili vam bomo v najkrajšem možnem času.
           </p>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-10 items-start max-w-5xl mx-auto">
-          <ContactFormInputs 
-            onSubmit={onSubmit} 
-            isSubmitting={isSubmitting} 
-            isSuccess={isSuccess} 
-          />
+          <div className="bg-white p-8 rounded-lg shadow-sm">
+            <form
+              target="_blank"
+              action="https://formsubmit.co/info@nanoski-oglasnik.eu"
+              method="POST"
+              className="space-y-6"
+            >
+              <div className="space-y-4">
+                <div>
+                  <input
+                    type="text"
+                    name="name"
+                    className="w-full rounded-md border border-gray-300 px-4 py-2 focus:border-dark-red focus:outline-none focus:ring-1 focus:ring-dark-red"
+                    placeholder="Ime in Priimek"
+                    required
+                  />
+                </div>
+                <div>
+                  <input
+                    type="email"
+                    name="email"
+                    className="w-full rounded-md border border-gray-300 px-4 py-2 focus:border-dark-red focus:outline-none focus:ring-1 focus:ring-dark-red"
+                    placeholder="Email naslov"
+                    required
+                  />
+                </div>
+                <div>
+                  <textarea
+                    name="message"
+                    rows={10}
+                    className="w-full rounded-md border border-gray-300 px-4 py-2 focus:border-dark-red focus:outline-none focus:ring-1 focus:ring-dark-red"
+                    placeholder="Sporočilo"
+                    required
+                  />
+                </div>
+              </div>
+              <button
+                type="submit"
+                className="w-full bg-dark-red hover:bg-dark-red/90 text-white px-4 py-3 rounded-md transition-colors"
+              >
+                Pošlji sporočilo
+              </button>
+            </form>
+          </div>
           <ContactInfoDisplay />
         </div>
       </div>
