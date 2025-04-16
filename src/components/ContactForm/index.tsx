@@ -3,6 +3,7 @@ import { useState } from "react";
 import ContactFormInputs, { FormValues } from "./ContactFormInputs";
 import ContactInfoDisplay from "./ContactInfoDisplay";
 import { toast } from "@/hooks/use-toast";
+import emailjs from "emailjs-com";
 
 export const ContactForm = () => {
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -11,9 +12,23 @@ export const ContactForm = () => {
   function onSubmit(values: FormValues) {
     setIsSubmitting(true);
     
-    // Simulate form submission
-    setTimeout(() => {
-      console.log('Form submitted with values:', values);
+    // Prepare the email template parameters
+    const templateParams = {
+      from_name: values.name,
+      reply_to: values.email,
+      phone: values.phone,
+      message: values.message
+    };
+
+    // Send email using emailjs
+    emailjs.send(
+      "service_nanoskioglasnik", // service ID - you'll need to set this up
+      "template_contact", // template ID - you'll need to set this up
+      templateParams,
+      "YOUR_USER_ID" // public key - you'll need to set this up
+    )
+    .then((response) => {
+      console.log('Email sent successfully:', response);
       setIsSubmitting(false);
       setIsSuccess(true);
       
@@ -28,7 +43,18 @@ export const ContactForm = () => {
       setTimeout(() => {
         setIsSuccess(false);
       }, 5000);
-    }, 1500); // Simulate network delay
+    })
+    .catch((error) => {
+      console.error('Email sending failed:', error);
+      setIsSubmitting(false);
+      
+      // Show error toast notification
+      toast({
+        title: "Napaka",
+        description: "Pri pošiljanju sporočila je prišlo do napake. Prosimo, poskusite ponovno kasneje.",
+        variant: "destructive",
+      });
+    });
   }
 
   return (
