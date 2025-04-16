@@ -1,4 +1,3 @@
-
 import { useState } from "react";
 import ContactFormInputs, { FormValues } from "./ContactFormInputs";
 import ContactInfoDisplay from "./ContactInfoDisplay";
@@ -6,7 +5,6 @@ import { toast } from "@/hooks/use-toast";
 import emailjs from "emailjs-com";
 
 // Make sure EmailJS is properly initialized with your public key
-// The public key should be visible in your EmailJS dashboard
 emailjs.init("ejoTXEF5clFp3_Cnx");
 
 export const ContactForm = () => {
@@ -29,7 +27,7 @@ export const ContactForm = () => {
 
     // Send email using emailjs with proper error handling
     emailjs.send(
-      "default_service", // service ID
+      "service_n429gen", // service ID
       "template_hdewjqm", // template ID
       templateParams
     )
@@ -66,7 +64,6 @@ export const ContactForm = () => {
   return (
     <div id="contact" className="section bg-gray-50 py-16">
       <div className="container">
-        {/* Removed h1 "Kontaktirajte nas" */}
         <div className="text-center mb-12">
           <p className="text-gray-600 max-w-2xl mx-auto">
             Imate vprašanje ali potrebujete dodatne informacije? Izpolnite spodnji obrazec in odgovorili vam bomo v najkrajšem možnem času.
