@@ -6,6 +6,7 @@ import StatsBar from "@/components/StatsBar";
 import Blog from "@/components/Blog";
 import ContactForm from "@/components/ContactForm";
 import Footer from "@/components/Footer";
+import { Toaster } from "@/components/ui/toaster";
 
 const Index = () => {
   return (
@@ -19,6 +20,7 @@ const Index = () => {
         <ContactForm />
       </main>
       <Footer />
+      <Toaster />
     </div>
   );
 };

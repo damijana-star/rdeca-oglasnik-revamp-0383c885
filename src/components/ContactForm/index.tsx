@@ -3,10 +3,6 @@ import { useState } from "react";
 import ContactFormInputs, { FormValues } from "./ContactFormInputs";
 import ContactInfoDisplay from "./ContactInfoDisplay";
 import { toast } from "@/hooks/use-toast";
-import emailjs from "emailjs-com";
-
-// Make sure EmailJS is properly initialized with your public key
-emailjs.init("ejoTXEF5clFp3_Cnx");
 
 export const ContactForm = () => {
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -16,25 +12,29 @@ export const ContactForm = () => {
     setIsSubmitting(true);
     console.log("Submitting form with values:", values);
     
-    // Prepare the email template parameters
-    const templateParams = {
-      from_name: values.name,
-      reply_to: values.email,
-      phone: values.phone,
-      message: values.message
-    };
+    // Create a FormData object
+    const formData = new FormData();
+    formData.append("name", values.name);
+    formData.append("email", values.email);
+    formData.append("phone", values.phone);
+    formData.append("message", values.message);
 
-    console.log("Sending email with params:", templateParams);
-    console.log("Using service_550bmn7 and template_u5tq75i");
-
-    // Send email using emailjs with proper error handling
-    emailjs.send(
-      "service_550bmn7", // Updated service ID
-      "template_u5tq75i", // Updated template ID
-      templateParams
-    )
-    .then((response) => {
-      console.log('Email sent successfully:', response);
+    // Send form data to FormSubmit.co service (replace your-email@example.com with your actual email)
+    fetch("https://formsubmit.co/info@nanoski-oglasnik.eu", {
+      method: "POST",
+      body: formData,
+      headers: {
+        'Accept': 'application/json'
+      },
+    })
+    .then(response => {
+      if (!response.ok) {
+        throw new Error(`Status: ${response.status}`);
+      }
+      return response.json();
+    })
+    .then(data => {
+      console.log('Form submission successful:', data);
       setIsSubmitting(false);
       setIsSuccess(true);
       
@@ -50,14 +50,14 @@ export const ContactForm = () => {
         setIsSuccess(false);
       }, 5000);
     })
-    .catch((error) => {
-      console.error('Email sending failed:', error);
+    .catch(error => {
+      console.error('Form submission failed:', error);
       setIsSubmitting(false);
       
-      // Show error toast notification with specific error message
+      // Show error toast notification
       toast({
         title: "Napaka",
-        description: `Pri pošiljanju sporočila je prišlo do napake: ${error.text || error.message || "Neznana napaka"}. Prosimo, poskusite ponovno kasneje.`,
+        description: `Pri pošiljanju sporočila je prišlo do napake. Prosimo, poskusite ponovno kasneje.`,
         variant: "destructive",
       });
     });
