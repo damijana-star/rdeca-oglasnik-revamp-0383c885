@@ -39,26 +39,18 @@ export const ContactForm = () => {
   const onSubmit = async (values: FormValues) => {
     setIsSubmitting(true);
     
-    // Log form data for debugging
-    console.log("Submitting form with values:", values);
+    const formData = new FormData();
+    formData.append('name', values.name);
+    formData.append('email', values.email);
+    formData.append('phone', values.phone || '');
+    formData.append('message', values.message);
 
     try {
       // Send data to FormSubmit.co
-      const response = await fetch("https://formsubmit.co/ajax/info@nanoski-oglasnik.eu", {
+      const response = await fetch(`https://formsubmit.co/3d46f4b0b47d881b8a8820990542e23b`, {
         method: "POST",
-        headers: {
-          'Accept': 'application/json',
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({
-          ...values,
-          _captcha: "false",
-          _subject: "Nova poizvedba iz spletne strani",
-          _template: "table"
-        }),
+        body: formData
       });
-      
-      const result = await response.json();
       
       if (response.ok) {
         toast({
@@ -70,7 +62,7 @@ export const ContactForm = () => {
         // Reset form
         form.reset();
       } else {
-        throw new Error(result.message || "Form submission failed");
+        throw new Error("Form submission failed");
       }
     } catch (error) {
       console.error("Form submission failed:", error);
