@@ -89,7 +89,7 @@ const NewsletterSignup: React.FC = () => {
           onClick={() => setShowForm(true)}
         >
           <Mail className="mr-2 opacity-70 group-hover:animate-bounce" />
-          Prijavi se na e-novičke za 15% popust
+          Prijavi se na e-novičke za 15% popust na prvi oglas
         </Button>
       </div>
     );
