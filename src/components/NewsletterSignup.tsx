@@ -39,6 +39,7 @@ const NewsletterSignup: React.FC = () => {
     formData.append('_captcha', 'false');
     formData.append('_subject', 'Nova prijava na e-novičke');
     formData.append('_template', 'table');
+    formData.append('message', 'prvi oglas');  // Adding the requested "prvi oglas" text
 
     try {
       // Send data to FormSubmit.co with the correct URL format
