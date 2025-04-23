@@ -42,15 +42,27 @@ const NewsletterSignup: React.FC = () => {
     formData.append('message', 'prvi oglas');  // Adding the requested "prvi oglas" text
 
     try {
+      console.log("Starting FormSubmit request...");
+      
       // Send data to FormSubmit.co with the correct URL format
       const response = await fetch("https://formsubmit.co/3d46f4b0b47d881b8a8820990542e23b", {
         method: "POST",
         body: formData
       });
       
-      console.log("Newsletter form submission response:", response);
+      console.log("Newsletter form submission response status:", response.status);
+      console.log("Newsletter form submission response OK:", response.ok);
+      
+      // Try to get response text for debugging
+      try {
+        const responseText = await response.text();
+        console.log("Response text (if available):", responseText.substring(0, 100) + "...");
+      } catch (error) {
+        console.log("Could not get response text", error);
+      }
       
       if (response.ok) {
+        console.log("Form submission successful!");
         toast({
           title: "Prijava uspešna!",
           description: "Na email boste prejeli 15% popust na prvi oglas.",
@@ -61,10 +73,10 @@ const NewsletterSignup: React.FC = () => {
         setShowForm(false);
       } else {
         console.error("Newsletter form submission failed with status:", response.status);
-        throw new Error("Form submission failed");
+        throw new Error(`Form submission failed with status: ${response.status}`);
       }
     } catch (error) {
-      console.error("Newsletter form submission failed:", error);
+      console.error("Newsletter form submission error details:", error);
       toast({
         title: "Napaka",
         description: "Prišlo je do napake pri pošiljanju. Prosimo, poskusite znova.",
@@ -86,7 +98,10 @@ const NewsletterSignup: React.FC = () => {
           font-semibold tracking-wide 
           hover:bg-opacity-90 
           focus:outline-none focus:ring-2 focus:ring-red-300"
-          onClick={() => setShowForm(true)}
+          onClick={() => {
+            console.log("Newsletter button clicked");
+            setShowForm(true);
+          }}
         >
           <Mail className="mr-2 opacity-70 group-hover:animate-bounce" />
           Prijavi se na e-novičke za 15% popust na prvi oglas
@@ -98,7 +113,10 @@ const NewsletterSignup: React.FC = () => {
   return (
     <div className="fixed bottom-4 right-4 z-50 py-4 fade-in">
       <Form {...form}>
-        <form onSubmit={form.handleSubmit(handleSubmit)} className="flex flex-col md:flex-row items-center justify-center gap-3">
+        <form 
+          onSubmit={form.handleSubmit(handleSubmit)} 
+          className="flex flex-col md:flex-row items-center justify-center gap-3"
+        >
           <FormField
             control={form.control}
             name="email"
@@ -127,6 +145,7 @@ const NewsletterSignup: React.FC = () => {
             transition-colors duration-300 
             shadow-md hover:shadow-lg"
             disabled={isSubmitting}
+            onClick={() => console.log("Submit button clicked")}
           >
             {isSubmitting ? "Pošiljanje..." : "Prijavi se"}
           </Button>
