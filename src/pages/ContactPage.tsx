@@ -4,6 +4,7 @@ import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import ContactForm from "@/components/ContactForm";
 import { Toaster } from "@/components/ui/toaster";
+import NewsletterSignup from "@/components/NewsletterSignup";
 
 const ContactPage = () => {
   return (
@@ -12,6 +13,7 @@ const ContactPage = () => {
       <main className="flex-grow">
         <ContactForm />
       </main>
+      <NewsletterSignup />
       <Footer />
       <Toaster />
     </div>

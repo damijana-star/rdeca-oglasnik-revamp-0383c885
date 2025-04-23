@@ -7,6 +7,7 @@ import Blog from "@/components/Blog";
 import ContactForm from "@/components/ContactForm";
 import Footer from "@/components/Footer";
 import { Toaster } from "@/components/ui/toaster";
+import NewsletterSignup from "@/components/NewsletterSignup";
 
 const Index = () => {
   return (
@@ -19,6 +20,7 @@ const Index = () => {
         <Blog />
         <ContactForm />
       </main>
+      <NewsletterSignup />
       <Footer />
       <Toaster />
     </div>
