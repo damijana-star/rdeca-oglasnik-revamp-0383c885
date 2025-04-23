@@ -31,12 +31,12 @@ const NewsletterSignup: React.FC = () => {
       <div className="flex justify-center py-4 fade-in">
         <Button
           size="lg"
-          className="bg-gradient-to-r from-[#E5DEFF] via-[#D6BCFA] to-[#9b87f5] 
+          className="bg-gradient-to-r from-[#FDE1D3] via-[#FEC6A1] to-[#F97316] 
           text-dark-gray-900 shadow-lg hover:scale-105 transition-all 
           group flex items-center gap-2 
           font-semibold tracking-wide 
           hover:bg-opacity-90 
-          focus:outline-none focus:ring-2 focus:ring-purple-300"
+          focus:outline-none focus:ring-2 focus:ring-orange-300"
           onClick={() => setShowForm(true)}
         >
           <Mail className="mr-2 opacity-70 group-hover:animate-bounce" />
@@ -57,15 +57,15 @@ const NewsletterSignup: React.FC = () => {
         value={email}
         onChange={(e) => setEmail(e.target.value)}
         required
-        className="w-64 border-[#9b87f5] focus:ring-[#9b87f5] 
+        className="w-64 border-[#F97316] focus:ring-[#FEC6A1] 
         transition-all duration-300 
-        hover:border-[#7E69AB] 
-        focus:border-[#6E59A5]"
+        hover:border-[#FDE1D3] 
+        focus:border-[#F97316]"
         disabled={isSubmitting}
       />
       <Button
         type="submit"
-        className="bg-[#9b87f5] hover:bg-[#7E69AB] text-white 
+        className="bg-[#F97316] hover:bg-[#FEC6A1] text-white 
         transition-colors duration-300 
         shadow-md hover:shadow-lg"
         disabled={isSubmitting}
@@ -75,8 +75,8 @@ const NewsletterSignup: React.FC = () => {
       <Button
         variant="ghost"
         type="button"
-        className="ml-2 text-[#6E59A5] hover:text-[#1A1F2C] 
-        hover:bg-[#E5DEFF] transition-colors duration-300"
+        className="ml-2 text-[#F97316] hover:text-[#1A1F2C] 
+        hover:bg-[#FDE1D3] transition-colors duration-300"
         onClick={() => setShowForm(false)}
         disabled={isSubmitting}
       >
