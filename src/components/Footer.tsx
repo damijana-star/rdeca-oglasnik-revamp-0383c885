@@ -115,7 +115,7 @@ export const Footer = () => {
               <span className="text-gray-600">info@nanoski-oglasnik.eu</span>
             </div>
             <address className="text-gray-600 not-italic transition-transform duration-300 hover:translate-x-1">
-              Volče 88<br />
+              Volče 88A<br />
               5220 Tolmin<br />
               Slovenija
             </address>
