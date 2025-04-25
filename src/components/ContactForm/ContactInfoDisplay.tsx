@@ -1,4 +1,3 @@
-
 import { Mail, Phone } from "lucide-react";
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip";
 
@@ -52,7 +51,7 @@ export const ContactInfoDisplay = () => {
         <div>
           <h4 className="font-medium mb-1">Naslov</h4>
           <address className="text-gray-600 not-italic">
-            Volče 88<br />
+            Volče 88A<br />
             5220 Tolmin<br />
             Slovenija
           </address>
