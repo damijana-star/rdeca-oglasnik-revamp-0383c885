@@ -39,10 +39,10 @@ const allBlogPosts = [{
       
       <h2>Kako izkoristiti potencial PR članka?</h2>
       <ul>
-        <li>Pripravite jasno sporočilo: Kaj želite, da si bralec zapomni?</li>
-        <li>Bodite iskreni in konkretni: Ne prodajajte – svetujte.</li>
-        <li>Zaključite z jasnim pozivom k dejanju (klic, obisk, naročilo).</li>
-        <li>Objavite v mediju, ki ga vaša ciljna skupina res bere.</li>
+        <li><strong>Pripravite jasno sporočilo:</strong> Kaj želite, da si bralec zapomni?</li>
+        <li><strong>Bodite iskreni in konkretni:</strong> Ne prodajajte – svetujte.</li>
+        <li><strong>Zaključite z jasnim pozivom k dejanju</strong> (klic, obisk, naročilo).</li>
+        <li><strong>Objavite v mediju</strong>, ki ga vaša ciljna skupina res bere.</li>
       </ul>
       
       <h2>Zaključek</h2>
