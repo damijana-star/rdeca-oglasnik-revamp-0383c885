@@ -25,17 +25,25 @@ const PDFMobileView: React.FC<PDFMobileViewProps> = ({
   // Refresh iframe when pdfUrl changes
   useEffect(() => {
     if (iframeRef.current) {
-      const iframe = iframeRef.current;
-      // Force iframe reload
-      iframe.src = iframe.src;
+      try {
+        // Create a unique URL with timestamp to force refresh
+        const timestamp = new Date().getTime();
+        const refreshUrl = isPdfBase64 || isPdfBlob 
+          ? pdfUrl
+          : `${pdfUrl}${pdfUrl.includes('?') ? '&' : '?'}_t=${timestamp}#toolbar=0&navpanes=0&scrollbar=0&view=FitH`;
+        
+        iframeRef.current.src = refreshUrl;
+      } catch (error) {
+        console.error("Error refreshing mobile PDF iframe:", error);
+        onError();
+      }
     }
-  }, [pdfUrl]);
+  }, [pdfUrl, isPdfBase64, isPdfBlob]);
 
   return (
     <div className="flex flex-col items-center justify-center h-full p-4 bg-white">
       <iframe
         ref={iframeRef}
-        src={`${pdfUrl}${isPdfBlob || isPdfBase64 ? '' : '#toolbar=0&navpanes=0&scrollbar=0&view=FitH'}`}
         className="w-full mb-4 border border-gray-200 rounded"
         style={{ height: '60%' }}
         onError={onError}

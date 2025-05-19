@@ -21,19 +21,32 @@ const PDFObjectFallback: React.FC<PDFObjectFallbackProps> = ({
   // Refresh object when pdfUrl changes
   useEffect(() => {
     if (objectRef.current) {
-      const obj = objectRef.current;
-      // Force object reload
-      obj.data = '';
-      setTimeout(() => {
-        obj.data = pdfUrl;
-      }, 100);
+      try {
+        // Clear the data attribute
+        objectRef.current.data = '';
+        
+        // Create a unique URL with timestamp to force refresh
+        const timestamp = new Date().getTime();
+        const refreshUrl = pdfUrl.includes('data:') || pdfUrl.includes('blob:') 
+          ? pdfUrl 
+          : `${pdfUrl}${pdfUrl.includes('?') ? '&' : '?'}_t=${timestamp}`;
+        
+        // Set timeout to ensure DOM updates before setting the new URL
+        setTimeout(() => {
+          if (objectRef.current) {
+            objectRef.current.data = refreshUrl;
+          }
+        }, 100);
+      } catch (error) {
+        console.error("Error refreshing PDF object:", error);
+        onError();
+      }
     }
   }, [pdfUrl]);
 
   return (
     <object
       ref={objectRef}
-      data={pdfUrl}
       type="application/pdf"
       className="w-full h-full bg-white"
       style={{ 

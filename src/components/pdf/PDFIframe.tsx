@@ -21,16 +21,24 @@ const PDFIframe: React.FC<PDFIframeProps> = ({
   // Refresh iframe when pdfUrl changes
   useEffect(() => {
     if (iframeRef.current) {
-      const iframe = iframeRef.current;
-      // Force iframe reload by updating the key attribute
-      iframe.src = iframe.src;
+      try {
+        // Create a unique URL with timestamp to force refresh
+        const timestamp = new Date().getTime();
+        const refreshUrl = isPdfBase64 || isPdfBlob 
+          ? pdfUrl
+          : `${pdfUrl}${pdfUrl.includes('?') ? '&' : '?'}_t=${timestamp}#toolbar=0&navpanes=0&scrollbar=0&view=FitH`;
+        
+        iframeRef.current.src = refreshUrl;
+      } catch (error) {
+        console.error("Error refreshing PDF iframe:", error);
+        onError();
+      }
     }
-  }, [pdfUrl]);
+  }, [pdfUrl, isPdfBase64, isPdfBlob]);
 
   return (
     <iframe
       ref={iframeRef}
-      src={`${pdfUrl}${isPdfBlob || isPdfBase64 ? '' : '#toolbar=0&navpanes=0&scrollbar=0&view=FitH'}`}
       className="w-full h-full bg-white"
       style={{ 
         transform: `scale(${zoomLevel / 100})`, 
