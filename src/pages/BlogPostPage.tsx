@@ -16,6 +16,42 @@ import {
 } from "@/components/ui/breadcrumb";
 
 const allBlogPosts = [{
+  id: 7,
+  title: "Zakaj je sponzoriran članek učinkovit?",
+  excerpt: "Dobro napisan sponzoriran članek gradi zaupanje, povečuje angažiranost in omogoča večjo vsebinsko svobodo pri predstavitvi vaše blagovne znamke ali storitve.",
+  content: `
+      <p>Sponzorirani članki - pogosto imenovani tudi PR članki ali advertoriali - so vse bolj priljubljeno orodje v marketinškem svetu. V nadaljevanju vam predstavljamo ključne prednosti tega pristopa in zakaj deluje bolje kot klasično oglaševanje.</p>
+      
+      <h2>1. Zgradi zaupanje</h2>
+      <p>Branje članka je manj vsiljivo kot oglas. Bralec dobi občutek, da bere priporočilo, informacijo ali izkušnjo, ne pa direktne prodajne vsebine.</p>
+      
+      <h2>2. Večja angažiranost</h2>
+      <p>Ljudje se hitreje odzovejo na zgodbo kot na golo reklamo. Dobro napisan članek pritegne pozornost, zadrži bralca in pogosto vodi k dejanju (npr. obisku spletne strani ali nakupu).</p>
+      
+      <h2>3. Večja vsebinska svoboda</h2>
+      <p>V PR članku lahko poveste več: predstavite ozadje, dodate citate, mnenja, podatke in vtise uporabnikov. Gre za odlično priložnost, da poglobljeno predstavite svojo blagovno znamko.</p>
+      
+      <h2>4. Odličen SEO učinek (če je objavljen tudi na spletu)</h2>
+      <p>Spletna objava članka, ki vsebuje povezave do vaše strani, pripomore k boljši prepoznavnosti v iskalnikih, kar dolgoročno dviguje vašo spletno prisotnost.</p>
+      
+      <h2>5. Lokalna ciljanost</h2>
+      <p>V tiskanih in spletnih oglasnikih sponzorirani članki dosegajo točno določeno občinstvo – lokalno skupnost, kjer vaše stranke živijo, delajo in kupujejo.</p>
+      
+      <h2>Kako izkoristiti potencial PR članka?</h2>
+      <ul>
+        <li>Pripravite jasno sporočilo: Kaj želite, da si bralec zapomni?</li>
+        <li>Bodite iskreni in konkretni: Ne prodajajte – svetujte.</li>
+        <li>Zaključite z jasnim pozivom k dejanju (klic, obisk, naročilo).</li>
+        <li>Objavite v mediju, ki ga vaša ciljna skupina res bere.</li>
+      </ul>
+      
+      <h2>Zaključek</h2>
+      <p>Sponzorirani članki niso le oglaševanje – so gradniki odnosa z bralcem. V poplavi hrupnih oglasov ponujajo umirjeno, informativno in zaupanja vredno izkušnjo. Če želite svojo ponudbo predstaviti na način, ki dodaja vrednost in gradi prepoznavnost, je čas za dobro vsebino – čas za PR članek.</p>
+    `,
+  image: "https://images.unsplash.com/photo-1486312338219-ce68d2c6f44d",
+  category: "Marketing",
+  tags: ["marketing", "PR članek", "sponzorirana vsebina", "oglaševanje", "strategija"]
+}, {
   id: 4,
   title: "Oglaševanje s tiskanimi oglasi: Zakaj jih podjetja še vedno uporabljajo",
   excerpt: "V dobi digitalnega sveta, kjer nas vsak dan preplavljajo spletni oglasi, tiskani oglasi še vedno ohranjajo svojo moč – še posebej v lokalnem okolju.",

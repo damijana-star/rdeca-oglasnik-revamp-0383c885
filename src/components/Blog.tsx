@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { Button } from "@/components/ui/button";
 import { ArrowRight } from "lucide-react";
@@ -6,6 +5,12 @@ import { Link } from "react-router-dom";
 import { slugify } from "@/lib/utils";
 
 const blogPosts = [{
+  id: 7,
+  title: "Zakaj je sponzoriran članek učinkovit?",
+  image: "https://images.unsplash.com/photo-1486312338219-ce68d2c6f44d",
+  excerpt: "Dobro napisan sponzoriran članek gradi zaupanje, povečuje angažiranost in omogoča večjo vsebinsko svobodo pri predstavitvi vaše blagovne znamke ali storitve.",
+  category: "Marketing"
+}, {
   id: 4,
   title: "📰 Oglaševanje s tiskanimi oglasi: Zakaj jih podjetja še vedno uporabljajo",
   image: "/lovable-uploads/9d2bf50c-8258-41d6-80a5-c71a06939606.png",
@@ -16,12 +21,6 @@ const blogPosts = [{
   title: "Kako pripraviti učinkovit oglas, ki pritegne pozornost (in prodaja)",
   image: "/lovable-uploads/039a48a7-0aeb-4fc5-a920-fa78940f29aa.png",
   excerpt: "Ali se tudi ti sprašuješ, zakaj nekateri oglasi pritegnejo takojšnjo pozornost, drugi pa ostanejo spregledani? Učinkovit oglas ima jasno strukturo, močno sporočilo in poziv k dejanju.",
-  category: "Marketing"
-}, {
-  id: 6,
-  title: "5 najpogostejših napak pri oglaševanju malih podjetij – in kako se jim izogniti",
-  image: "/lovable-uploads/fb97cac4-7bc2-4659-aac9-346efcc70f67.png",
-  excerpt: "Oglaševanje je lahko eno najboljših orodij za rast podjetja – če se ga lotimo premišljeno. Prevečkrat pa se mala podjetja znajdejo v situaciji, ko vlagajo v oglase, a učinka ni.",
   category: "Marketing"
 }];
 

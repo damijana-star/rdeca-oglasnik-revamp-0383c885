@@ -9,6 +9,13 @@ import { Button } from "@/components/ui/button";
 
 const allBlogPosts = [
   {
+    id: 7,
+    title: "Zakaj je sponzoriran članek učinkovit?",
+    excerpt: "Dobro napisan sponzoriran članek gradi zaupanje, povečuje angažiranost in omogoča večjo vsebinsko svobodo pri predstavitvi vaše blagovne znamke ali storitve.",
+    image: "https://images.unsplash.com/photo-1486312338219-ce68d2c6f44d",
+    category: "Marketing"
+  },
+  {
     id: 6,
     title: "5 najpogostejših napak pri oglaševanju malih podjetij – in kako se jim izogniti",
     excerpt: "Oglaševanje je lahko eno najboljših orodij za rast podjetja – če se ga lotimo premišljeno. Prevečkrat pa se mala podjetja znajdejo v situaciji, ko vlagajo v oglase, a učinka ni.",
