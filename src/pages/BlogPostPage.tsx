@@ -1,4 +1,3 @@
-
 import React, { useEffect } from 'react';
 import { useParams, Link, useNavigate } from "react-router-dom";
 import Header from "@/components/Header";
@@ -152,7 +151,7 @@ const allBlogPosts = [{
       
       <h2>Povzetek: Recept za učinkovit oglas</h2>
       <p>✔️ Naslov, ki pritegne</p>
-      <p>✔�� Jasna ponudba s koristmi</p>
+      <p>✔ Jasna ponudba s koristmi</p>
       <p>✔️ Poziv k dejanju</p>
       <p>✔️ Kontaktni podatki</p>
       <p>✔️ Slika/logotip</p>
