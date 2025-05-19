@@ -1,5 +1,5 @@
 
-import React from 'react';
+import React, { useEffect, useRef } from 'react';
 import { Button } from "@/components/ui/button";
 import { Download } from "lucide-react";
 
@@ -16,11 +16,26 @@ const PDFObjectFallback: React.FC<PDFObjectFallbackProps> = ({
   onDownload, 
   onError 
 }) => {
+  const objectRef = useRef<HTMLObjectElement>(null);
+  
+  // Refresh object when pdfUrl changes
+  useEffect(() => {
+    if (objectRef.current) {
+      const obj = objectRef.current;
+      // Force object reload
+      obj.data = '';
+      setTimeout(() => {
+        obj.data = pdfUrl;
+      }, 100);
+    }
+  }, [pdfUrl]);
+
   return (
     <object
+      ref={objectRef}
       data={pdfUrl}
       type="application/pdf"
-      className="w-full h-full"
+      className="w-full h-full bg-white"
       style={{ 
         transform: `scale(${zoomLevel / 100})`, 
         transformOrigin: 'top left',
