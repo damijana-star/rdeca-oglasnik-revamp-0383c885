@@ -25,25 +25,37 @@ const allBlogPosts = [{
       <h2><strong>1. Zgradi zaupanje</strong></h2>
       <p>Branje članka je manj vsiljivo kot oglas. Bralec dobi občutek, da bere priporočilo, informacijo ali izkušnjo, ne pa direktne prodajne vsebine.</p>
       
+      <br/>
+      
       <h2><strong>2. Večja angažiranost</strong></h2>
       <p>Ljudje se hitreje odzovejo na zgodbo kot na golo reklamo. Dobro napisan članek pritegne pozornost, zadrži bralca in pogosto vodi k dejanju (npr. obisku spletne strani ali nakupu).</p>
+      
+      <br/>
       
       <h2><strong>3. Večja vsebinska svoboda</strong></h2>
       <p>V PR članku lahko poveste več: predstavite ozadje, dodate citate, mnenja, podatke in vtise uporabnikov. Gre za odlično priložnost, da poglobljeno predstavite svojo blagovno znamko.</p>
       
+      <br/>
+      
       <h2><strong>4. Odličen SEO učinek (če je objavljen tudi na spletu)</strong></h2>
       <p>Spletna objava članka, ki vsebuje povezave do vaše strani, pripomore k boljši prepoznavnosti v iskalnikih, kar dolgoročno dviguje vašo spletno prisotnost.</p>
+      
+      <br/>
       
       <h2><strong>5. Lokalna ciljanost</strong></h2>
       <p>V tiskanih in spletnih oglasnikih sponzorirani članki dosegajo točno določeno občinstvo – lokalno skupnost, kjer vaše stranke živijo, delajo in kupujejo.</p>
       
+      <br/>
+      
       <h2><strong>Kako izkoristiti potencial PR članka?</strong></h2>
-      <ul>
+      <ul style="list-style-type: disc; margin-left: 20px;">
         <li><strong>Pripravite jasno sporočilo:</strong> Kaj želite, da si bralec zapomni?</li>
         <li><strong>Bodite iskreni in konkretni:</strong> Ne prodajajte – svetujte.</li>
         <li><strong>Zaključite z jasnim pozivom k dejanju</strong> (klic, obisk, naročilo).</li>
         <li><strong>Objavite v mediju</strong>, ki ga vaša ciljna skupina res bere.</li>
       </ul>
+      
+      <br/>
       
       <h2><strong>Zaključek</strong></h2>
       <p>Sponzorirani članki niso le oglaševanje – so gradniki odnosa z bralcem. V poplavi hrupnih oglasov ponujajo umirjeno, informativno in zaupanja vredno izkušnjo. Če želite svojo ponudbo predstaviti na način, ki dodaja vrednost in gradi prepoznavnost, je čas za dobro vsebino – čas za PR članek.</p>
