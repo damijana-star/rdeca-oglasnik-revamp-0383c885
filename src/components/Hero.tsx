@@ -43,7 +43,7 @@ export const Hero = () => {
             OGLAŠUJ TAM,<br />KJER TE RES VIDIJO
           </p>
           <p className={`font-body text-lg md:text-xl mb-12 opacity-90 transition-all duration-1000 delay-300 transform ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
-            Distribucija po Notranjsko-kraški, Notranjsko-obalni in Goriški regiji zagotavlja visoko prepoznavnost in direkten stik z vašimi strankami.
+            Distribucija po Obalno-kraški, Goriški in Notranjsko-kraški regiji zagotavlja visoko prepoznavnost in direkten stik z vašimi strankami.
           </p>
         </div>
         
